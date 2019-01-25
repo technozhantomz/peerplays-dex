@@ -1,0 +1,42 @@
+.switch{
+  display: flex;
+  align-items: center;
+  user-select: none;
+  &:hover{
+    cursor: pointer;
+  }
+  input{
+    display: none;
+  }
+  &__icon{
+    width: 2.2rem;
+    height: 1.2rem;
+    position: relative;
+    border: 1.5px solid $dark-light;
+    box-sizing: border-box;
+    border-radius: 9px;
+    &:after{
+      content: "";
+      position: absolute;
+      top: 50%;
+      right: 2px;
+      width: .7rem;
+      height: .7rem;
+      border-radius: 50%;
+      background: $dark-light;
+      transform: translateY(-50%);
+      transition: $anim;
+    }
+  }
+  &__title{
+    margin-left: 1.5rem;
+    line-height: 1;
+  }
+  &--selected{
+    .switch{
+      &__icon:after{
+        right: calc(100% - 9px);
+      }
+    }
+  }
+}

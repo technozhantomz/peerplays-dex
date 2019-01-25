@@ -1,0 +1,55 @@
+body{
+  margin: 0;
+  font-family: $primary-font;
+  font-size: $fzMD;
+  color: rgba(0,0,0,.87);
+}
+
+button{
+  background-color: transparent;
+  font-family: $primary-font;
+  font-size: $fzMD;
+  border: 0;
+  padding: 0;
+  transition: $anim/2;
+  &:hover{
+    cursor: pointer;
+  }
+  &:focus, &:active{
+    outline: 0;
+  }
+  &:disabled:hover{
+    cursor: default;
+  }
+}
+
+h1, h2, h3, h4, h5{
+  margin: 0;
+  font-family: $primary-font;
+  font-weight: 500;
+}
+
+a, a:hover{
+  text-decoration: none;
+}
+
+.clr{
+  &--negative{
+    color: $negative;
+  }
+  &--positive{
+    color: $positive;
+  }
+}
+
+.tbd{
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $dark-light;
+  font-size: 6.1rem;
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+}

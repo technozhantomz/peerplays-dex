@@ -1,0 +1,1 @@
+export const setInstance = node => dispatch => dispatch({type: 'SET_INSTANCE', payload: node});

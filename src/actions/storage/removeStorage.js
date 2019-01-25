@@ -1,0 +1,1 @@
+export const removeStorageItem = (item) => window.localStorage.removeItem(item);

@@ -1,0 +1,46 @@
+.page{
+  display: flex;
+  flex-direction: column;
+  &__title-wrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 0.8rem;
+    margin-bottom: 1rem;
+  }
+  &__title{
+    font-size: $fzXLG;
+  }
+  &__menu{
+    display: flex;
+  }
+  &__menu-item{
+    min-width: 12rem;
+    position: relative;
+    padding: 1.8rem 2rem;
+    box-sizing: border-box;
+    font-size: $fzSM + .1rem;
+    font-weight: 500;
+    color: $dark-light;
+    letter-spacing: 1.16px;
+    text-transform: uppercase;
+    text-align: center;
+    &:after{
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: $dark-light;
+      transition: $anim / 2;
+    }
+    &.active:after{
+      width: 100%;
+    }
+  }
+  &__content{
+    padding: 2.25rem 0;
+    flex: 1;
+  }
+}

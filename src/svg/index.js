@@ -1,0 +1,17 @@
+///// export svg file as react component
+
+export { default as IconDashboard } from './dashboard.svg'
+export { default as IconExchange } from './exchange.svg'
+export { default as IconAssets } from './assets.svg'
+export { default as IconBlockchain } from './blockchain.svg'
+export { default as IconVoting } from './voting.svg'
+export { default as IconBusiness } from './business.svg'
+export { default as IconSettings } from './settings.svg'
+export { default as IconContacts } from './contacts.svg'
+export { default as IconQuestion } from './question.svg'
+export { default as IconMore } from './more.svg'
+export { default as IconNode } from './node.svg'
+export { default as IconConnectedNode } from './nodeConnected.svg'
+export { default as IconCheck } from './check.svg'
+export { default as Caret } from './caret.svg'
+export { default as IconCross } from './cross.svg'

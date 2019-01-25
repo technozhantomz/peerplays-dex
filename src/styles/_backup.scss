@@ -1,0 +1,35 @@
+.backup{
+  display: flex;
+  margin-top: 3.6rem;
+  h2{
+    font-size: $fzLG;
+    color: $dark-light;
+    margin-bottom: 2.02rem;
+  }
+  &__item{
+    width: 33.4rem;
+    margin-right: 6.62rem;
+  }
+  .dropdown{
+    margin-bottom: 3.4rem;
+  }
+  &__warning{
+    height: 2.8rem;
+    display: flex;
+    align-items: center;
+    color: $negative;
+  }
+  &__desc{
+    height: 8rem;
+    margin: 2.8rem 0 4.3rem;
+    font-size: $fzSM;
+    line-height: 1.6rem;
+    color: $dark-light;
+  }
+  .btn-round{
+    width: 18.6rem;
+    &--grey{
+      width: 14.9rem;
+    }
+  }
+}

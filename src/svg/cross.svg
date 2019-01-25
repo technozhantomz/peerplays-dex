@@ -1,0 +1,14 @@
+<svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+        <path id="cross"
+              d="M14.25 4.808L13.193 3.75 9 7.942 4.808 3.75 3.75 4.808 7.942 9 3.75 13.193l1.058 1.057L9 10.057l4.193 4.193 1.057-1.057L10.057 9z"/>
+    </defs>
+    <g transform="translate(-3 -3)" fill="none" fill-rule="evenodd">
+        <mask id="crossMask" fill="#fff">
+            <use xlink:href="#cross"/>
+        </mask>
+        <g class="mask" mask="url(#crossMask)" fill="#647090" opacity=".497">
+            <path d="M0 0h18v18H0z"/>
+        </g>
+    </g>
+</svg>

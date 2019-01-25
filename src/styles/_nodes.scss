@@ -1,0 +1,60 @@
+.nodes{
+  margin: 0 1.3rem 0 1.6rem;
+  h2{
+    font-size: $fzLG;
+    margin: 2.8rem 0 2rem;
+  }
+  &__top{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 .8rem 4.2rem;
+  }
+  &__autoselect{
+    display: flex;
+  }
+  &__amount{
+    margin-left: 8.5rem;
+    color: $dark-light;
+  }
+}
+
+.node{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 0;
+  border-bottom: 1px solid $grey-light;
+  &__group{
+    display: flex;
+    flex-direction: column;
+  }
+  &__group-title{
+    font-size: $fzLG;
+    margin-bottom: .4rem;
+  }
+  &__group-subtitle{
+    font-size: $fzSM;
+    color: $dark-light;
+  }
+  &__primary-data{
+    width: 44.7%;
+    display: flex;
+    align-items: center;
+    button{
+      margin-right: 2.5rem;
+    }
+    .node{
+      &__group-title{
+        font-weight: 500;
+      }
+      &__group-subtitle{
+        color: $grey;
+      }
+    }
+  }
+}
+
+.more-icon{
+  margin: 0 1.7rem;
+}
