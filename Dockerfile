@@ -1,6 +1,4 @@
-FROM node:8
-
-RUN apt-get update && apt-get install -y sshpass rsync && rm -rf /var/lib/apt/lists/*
+FROM node:8 as builder
 
 RUN apt-get update && apt-get install build-essential nasm && rm -rf /var/lib/apt/lists/*
 
@@ -13,6 +11,13 @@ RUN npm install
 COPY . .
 
 RUN npm run prod
+
+FROM alpine:latest as deployer
+
+RUN apk update && apk add --no-cache sshpass rsync openssh-client
+#RUN apt-get update && apt-get install -y sshpass rsync && rm -rf /var/lib/apt/lists/*
+
+COPY --from=builder /source/dist .
 
 ARG DEPLOY_HOST=127.0.0.1
 ARG DEPLOY_PASS=password
