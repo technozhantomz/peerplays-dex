@@ -17,7 +17,7 @@ FROM alpine:latest as deployer
 RUN apk update && apk add --no-cache sshpass rsync openssh-client
 #RUN apt-get update && apt-get install -y sshpass rsync && rm -rf /var/lib/apt/lists/*
 
-COPY --from=builder /source/dist .
+COPY --from=builder /source/dist ./dist
 
 ARG DEPLOY_HOST=127.0.0.1
 ARG DEPLOY_PASS=password
