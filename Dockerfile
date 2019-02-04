@@ -2,6 +2,8 @@ FROM node:8
 
 RUN apt-get update && apt-get install -y sshpass rsync && rm -rf /var/lib/apt/lists/*
 
+RUN apt-get update && apt-get install build-essential nasm && rm -rf /var/lib/apt/lists/*
+
 WORKDIR /source
 
 COPY package.json .
