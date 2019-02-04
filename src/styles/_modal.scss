@@ -1,0 +1,41 @@
+.modal{
+  width: 66.2rem;
+  padding: 2.5rem 4.4rem 1.8rem;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: scaleY(0);
+  opacity: 0;
+  z-index: -1;
+  border-radius: 4px;
+  background: $white;
+  transition: $anim;
+  box-shadow: $shadow-bold;
+  &.open{
+    transform: scaleY(1) translate(-50%, -50%);
+    opacity: 1;
+    z-index: 101;
+  }
+  &__header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4.5rem;
+  }
+  &__title{
+    font-size: $fzLG;
+  }
+  &__bottom{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 8rem;
+    margin-right: -2.5rem;
+    button{
+      width: 13.5rem;
+      margin-left: .5rem;
+      color: #3C476C;
+      text-align: center;
+    }
+  }
+}

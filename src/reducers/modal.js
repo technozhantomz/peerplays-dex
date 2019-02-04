@@ -1,9 +1,9 @@
-const reducer = (state = {}, action) => {
-    switch (action.type) {
+const reducer = (state = false, {type, payload}) => {
+    switch (type) {
         case 'SET_MODAL':
-            return {modalContent: action.modalContent};
-        case 'REMOVE_MODAL':
-            return {};
+            return payload;
+        case 'CLOSE_MODAL':
+            return false;
         default:
             return state;
     }

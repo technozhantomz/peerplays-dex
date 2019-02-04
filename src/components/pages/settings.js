@@ -4,10 +4,9 @@ import GeneralSettings from "./generalSettings";
 import NodesSelect from "./nodesSelect";
 import Security from "./security";
 import Backup from "./backup";
-import {IconMore} from "../../svg";
 import Translate from "react-translate-component";
 import Tbd from "./tbd";
-import Dropdown from "../helpers/dropdown";
+import ActionsBtn from "../helpers/actionsBtn";
 
 const settingsMenu = [
     {
@@ -38,11 +37,10 @@ const settingsMenu = [
 
 const Settings = () => (
     <div className="container page">
-        <div className="page__title-wrapper">
+        <div className="page__header-wrapper">
             <h1 className="page__title">Settings</h1>
-            <Dropdown
-                btn={<IconMore className="btn btn--icon" />}
-                list={[
+            <ActionsBtn
+                actionsList={[
                     <button>Reset Settings</button>,
                     <button>Body 2</button>,
                     <button>Body 2</button>

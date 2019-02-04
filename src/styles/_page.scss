@@ -1,12 +1,18 @@
 .page{
-  display: flex;
-  flex-direction: column;
-  &__title-wrapper{
+  &__header-wrapper, &__user-title{
     display: flex;
-    justify-content: space-between;
     align-items: center;
     margin-left: 0.8rem;
+  }
+  &__header-wrapper{
+    justify-content: space-between;
     margin-bottom: 1rem;
+    min-height: 5rem;
+    display: flex;
+    align-items: center;
+  }
+  &__user-title{
+    margin-bottom: 1.8rem;
   }
   &__title{
     font-size: $fzXLG;
@@ -41,6 +47,26 @@
   }
   &__content{
     padding: 2.25rem 0;
-    flex: 1;
+    .tbd{
+      min-height: calc(100vh - 265px);
+    }
+  }
+}
+
+.quantity-converter{
+  width: 21.6rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 3rem;
+  &__summ{
+    font-size: $fzLG;
+  }
+  .field{
+    min-height: 0;
+    font-size: $fzMD;
+    font-weight: normal;
+    color: $dark-light;
+    padding: 0 4rem 0 2rem;
   }
 }

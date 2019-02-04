@@ -1,0 +1,106 @@
+.table{
+  width: 100%;
+  display: table;
+  border-spacing: 0;
+  &__header, &__row{
+    display: table-row;
+    vertical-align: middle;
+  }
+  &__header{
+    .table__cell{
+      padding: 1.6rem 3rem 1.6rem 1.6rem;
+      font-size: $fzSM;
+      color: $dark-light;
+    }
+  }
+  &__row:hover{
+    .actions__on-hover{
+      opacity: 1;
+    }
+  }
+  &__cell{
+    display: table-cell;
+    vertical-align: inherit;
+    padding: 1.4rem 3rem 1.3rem 1.6rem;
+    border-bottom: 1px solid $grey-light;
+  }
+  &__link{
+    width: 80%;
+    height: 4.5rem;
+    position: absolute;
+    top: auto;
+    left: 0;
+    &:hover{
+      cursor: pointer;
+    }
+  }
+  &--with-link{
+    position: relative;
+    .table{
+      &__row{
+        transition: $anim;
+        &:hover{
+          background-color: $grey-light;
+        }
+      }
+    }
+  }
+}
+
+.actions{
+  padding: 0 1.6rem;
+  &__wrapper{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  &__on-hover{
+    opacity: 0;
+    transition: $anim;
+    button{
+      margin-left: 1.6rem;
+    }
+  }
+  .dropdown{
+    width: fit-content;
+    margin-left: 1.6rem;
+  }
+  &--long{
+    width: 250px;
+  }
+}
+
+.align-right{
+  text-align: right;
+}
+
+.align-center{
+  text-align: center;
+}
+
+.fit-content{
+  width: 1px;
+  white-space: nowrap;
+}
+
+.content-padding {
+  padding: 0 50px;
+}
+
+.operation {
+  font-size: 12px;
+  letter-spacing: 0.2px;
+  line-height: 16px;
+  text-transform: uppercase;
+  border-radius: 3px;
+  padding: 4px 12px;
+  &.negative{
+    color: #3C476C;
+    background-color: #D8D8D8;
+    font-size: 10px;
+  }
+  &.positive{
+    color: $light;
+    background-color: $positive;
+  }
+}

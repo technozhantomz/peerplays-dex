@@ -2,8 +2,55 @@ export const en = {
     "global": {
         "tbd": "TBD"
     },
+    "tableHead": {
+        "asset": "Asset",
+        "available" : "Available",
+        "priceUSD" : "Price (%(token)s)",
+        "change" : "Change (24h)",
+        "valueUSD" : "Value (%(token)s)",
+        "actions" : "Actions",
+        "trade" : "Trade",
+        "orderID" : "Order ID",
+        "description" : "Description",
+        "price" : "Price",
+        "marketPrice" : "Market Price",
+        "value" : "Value",
+        "hash": "#",
+        "name": "Name",
+        "url": "URL",
+        "lastBlock": "Last Block",
+        "missingBlock": "Missing Block",
+        "votes": "Votes",
+        "key": "Key",
+        "time": "Time",
+        "type": "Type",
+        "info": "Info",
+        "id": "ID",
+        "fee": "Fee",
+        "weight": "Weight",
+        "webpage": "Webpage",
+        "operation": "Operation",
+        "standardFee": "Standard Fee (bitUSD)",
+        "memberFee": "Member Fee (bitUSD)",
+        "blockID": "Block ID",
+        "date": "Date",
+        "witness": "Witness",
+        "transaction": "Transaction",
+        "user": "User",
+        "details": "Details"
+    },
     "dashboard": {
         "title": "Dashboard"
+    },
+    "login": {
+        "accName": "Account Name",
+        "password": "Password",
+        "remember": "Remember me"
+    },
+    "errors": {
+        "noAcc": "Failed to find this account",
+        "wrongPass": "Password is wrong",
+        "required": "This field is required. Please, fill it!"
     },
     "exchange": {
         "title": "Exchange"
@@ -12,7 +59,25 @@ export const en = {
         "title": "My Assets"
     },
     "blockchain": {
-        "title": "Blockchain"
+        "title": "Blockchain",
+        "blockchain": {
+            "title": "Blockchain"
+        },
+        "assets": {
+            "title": "Assets"
+        },
+        "witnesses": {
+            "title": "Witnesses"
+        },
+        "committee": {
+            "title": "Committee"
+        },
+        "markets": {
+            "title": "Markets"
+        },
+        "fees": {
+            "title": "Fees"
+        }
     },
     "voting": {
         "title": "Voting"
@@ -35,7 +100,10 @@ export const en = {
         "language": "Language",
         "theme": "Enable Dark Theme",
         "notifications": "Notifications",
-        "transferNotifications": "Transfers to my account"
+        "transferNotifications": "Transfers to my account",
+        "faucet": "Faucet",
+        "faucetURL": "Faucet URL",
+        "faucetComment": " The faucet address is used to pay the registration fee for new users."
     },
     "wallet": {
         "title": "Wallet"
@@ -71,5 +139,23 @@ export const en = {
         "fromBin": "Restore from a backup file (.bin)",
         "fromPrivate": "Import a private key",
         "fromBrain": "Restore using a local wallet brainkey"
-    }
+    },
+    "userAssets": {
+        "title": "Assets"
+    },
+    "orders": {
+        "title": "Open orders",
+    },
+    "activity": {
+        "title": "Activity",
+    },
+    "positions": {
+        "title": "Margin positions",
+    },
+    "blacklist": {
+        "title": "Black List",
+    },
+    "permissions": {
+        "title": "Permissions",
+    },
 };

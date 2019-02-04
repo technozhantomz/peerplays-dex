@@ -30,6 +30,54 @@ export const defaultNodesList = [
             name: 'Flash Infrastructure Worker ',
             status: 'Witness'
         }
+    },
+    {
+        location: 'Northern America - U.S.A. - Dallas',
+        url: 'wss://testnet.node.bitshares.ws',
+        user: {
+            name: 'Flash Infrastructure Worker ',
+            status: 'Witness'
+        }
+    },
+    {
+        location: 'Northern America - U.S.A. - Dallas',
+        url: 'wss://testnet.node.bitshares.ws',
+        user: {
+            name: 'Flash Infrastructure Worker ',
+            status: 'Witness'
+        }
+    },
+    {
+        location: 'Northern America - U.S.A. - Dallas',
+        url: 'wss://testnet.node.bitshares.ws',
+        user: {
+            name: 'Flash Infrastructure Worker ',
+            status: 'Witness'
+        }
+    },
+    {
+        location: 'Northern America - U.S.A. - Dallas',
+        url: 'wss://testnet.node.bitshares.ws',
+        user: {
+            name: 'Flash Infrastructure Worker ',
+            status: 'Witness'
+        }
+    },
+    {
+        location: 'Northern America - U.S.A. - Dallas',
+        url: 'wss://testnet.node.bitshares.ws',
+        user: {
+            name: 'Flash Infrastructure Worker ',
+            status: 'Witness'
+        }
+    },
+    {
+        location: 'Northern America - U.S.A. - Dallas',
+        url: 'wss://testnet.node.bitshares.ws',
+        user: {
+            name: 'Flash Infrastructure Worker ',
+            status: 'Witness'
+        }
     }
 ];
 export const siteWithNodes = '';

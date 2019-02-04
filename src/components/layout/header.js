@@ -1,7 +1,13 @@
 import React from 'react';
+import {connect} from "react-redux";
+import {setModal} from "../../dispatch/setModal";
 import {store} from '../../index';
 import Dropdown from "../helpers/dropdown";
 import UserData from "../helpers/userData";
+import {IconNotify} from "../../svg";
+import Notifications from "../helpers/notifications";
+import Avatar from "../helpers/avatar";
+import LogIn from "../helpers/logIn";
 
 const openMenu = () => {
     [
@@ -10,7 +16,7 @@ const openMenu = () => {
     ].forEach(e => store.dispatch(e))
 };
 
-const Header = () => (
+const Header = ({account}) => (
     <header>
         <button className="header__burger" onClick={openMenu}>
             <span></span>
@@ -18,18 +24,29 @@ const Header = () => (
             <span></span>
         </button>
         <div className="header__user-data">
-            <div className="header__notifications">
-
-            </div>
-            <Dropdown
-                btn={<div className="header__avatar btn-round btn-round--light-blue">TS</div>}
-                body={<UserData />}
-            />
-            <div className="user">
-
-            </div>
+            {!account
+                ? <button
+                    onClick={() => setModal(<LogIn/>)}
+                >
+                    Log in
+                </button>
+                : <React.Fragment>
+                    <Dropdown
+                        btn={<IconNotify />}
+                        body={<Notifications />}
+                        position="bottom-right"
+                    />
+                    <Dropdown
+                        btn={<Avatar userName={account.name} />}
+                        body={<UserData data={account} />}
+                        position="top-right"
+                    />
+                </React.Fragment>
+            }
         </div>
     </header>
 );
 
-export default Header;
+const mapStateToProps = (state) => ({account: state.account});
+
+export default connect(mapStateToProps)(Header);

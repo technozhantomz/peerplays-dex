@@ -52,22 +52,20 @@ class NodesSelect extends Component{
         }
 
         return(
-            <div className="container">
-                <div className="nodes">
-                    <div className="nodes__top">
-                        <div className="nodes__autoselect">
-                            <Switcher
-                                id="autoSwitch"
-                                label="nodes.autoSelect"
-                                selected={autoSelect}
-                                handleChange={this.changeAutoSelect}
-                            />
-                            <span className="nodes__amount">{nodesAmount} listed</span>
-                        </div>
-                        <button className="btn btn--round" onClick={this.ping}>Ping</button>
+            <div className="nodes">
+                <div className="nodes__top">
+                    <div className="nodes__autoselect">
+                        <Switcher
+                            id="autoSwitch"
+                            label="nodes.autoSelect"
+                            selected={autoSelect}
+                            handleChange={this.changeAutoSelect}
+                        />
+                        <span className="nodes__amount">{nodesAmount} listed</span>
                     </div>
-                    {content}
+                    <button className="btn btn--round" onClick={this.ping}>Ping</button>
                 </div>
+                {content}
             </div>
         )
     }

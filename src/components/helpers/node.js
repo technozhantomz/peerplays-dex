@@ -1,5 +1,6 @@
 import React from 'react';
 import {IconConnectedNode, IconMore, IconNode} from "../../svg";
+import ActionsBtn from "./actionsBtn";
 
 const Node = ({data, handleActivation}) => (
     <div className="node">
@@ -25,9 +26,13 @@ const Node = ({data, handleActivation}) => (
             <span className="node__group-title">{data.user.name}</span>
             <span className="node__group-subtitle">{data.user.status}</span>
         </div>
-        <button className="btn btn--icon">
-            <IconMore />
-        </button>
+        <ActionsBtn
+            actionsList={[
+                <button>Option 1</button>,
+                <button>Option 2</button>,
+                <button>Option 3</button>
+            ]}
+        />
     </div>
 );
 

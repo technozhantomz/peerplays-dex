@@ -1,32 +1,9 @@
 import React from "react";
 import {IconCross, IconMore} from "../../svg";
-
-const userAssets = [
-    {
-        name: 'BTS',
-        quantity: 3320.56
-    },
-    {
-        name: 'UTDEV',
-        quantity: 234876.2500
-    },
-    {
-        name: 'UTDEV',
-        quantity: 234876.2500
-    },
-    {
-        name: 'UTDEV',
-        quantity: 234876.2500
-    },
-    {
-        name: 'UTDEV',
-        quantity: 234876.2500
-    },
-    {
-        name: 'UTDEV',
-        quantity: 234876.2500
-    }
-];
+import ActionsBtn from "./actionsBtn";
+import Link from "react-router-dom/es/Link";
+import {store} from "../../index";
+import {removeStorageItem, setStorage} from "../../actions/storage";
 
 const userWallets = [
     {
@@ -52,17 +29,26 @@ const userWallets = [
     }
 ];
 
-const UserData = () => (
+const logout = () => {
+    store.dispatch({type: 'REMOVE_ACCOUNT'});
+    removeStorageItem('account');
+};
+
+const UserData = ({data}) => (
     <div className="drop-user">
         <div className="drop-user__title">
-            <h2 className="drop-user__name">Timber-Steam</h2>
-            <IconMore />
+            <Link to={`/user/${data.name}`} className="drop-user__name">{data.name}</Link>
+            <ActionsBtn
+                actionsList={[
+                    <button onClick={logout}>Logout</button>
+                ]}
+            />
         </div>
         <div className="drop-user__assets">
-            {userAssets.map((el, id) => (
+            {data.assets.map((el, id) => (
                 <div key={id} className="drop-user__asset">
-                    <span>{el.name}</span>
-                    <span>{el.quantity}</span>
+                    <span>{el.symbol}</span>
+                    <span>{el.quantity / (10 ** el.precision)}</span>
                 </div>
             ))}
         </div>

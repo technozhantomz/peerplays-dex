@@ -7,11 +7,14 @@
 //layouts
 @import "layouts";
 @import "header";
+@import "notifications";
 @import "page";
+@import "modal";
 
 //components
 @import "card";
 @import "switch";
+@import "tables";
 
 //inputs
 @import "checkbox";
@@ -22,3 +25,4 @@
 @import "security";
 @import "nodes";
 @import "backup";
+@import "permissions";

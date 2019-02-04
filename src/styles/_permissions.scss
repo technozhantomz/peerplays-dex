@@ -1,0 +1,42 @@
+.permissions{
+  padding-top: 2rem;
+  &__header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1.3rem .8rem 1.3rem 1.6rem;
+  }
+  &__title{
+    font-size: $fzLG;
+    margin-bottom: .5rem;
+  }
+  &__subtitle{
+    font-size: $fzSM;
+    color: $dark-light;
+  }
+  &__filter-wrapper{
+    display: flex;
+    align-items: center;
+    > span{
+      color: $dark-light;
+    }
+    .dropdown{
+      margin: 0 13px;
+    }
+    .field{
+      width: 13.4rem;
+      padding-top: .8rem;
+      min-height: fit-content;
+      border-radius: 0;
+    }
+    > .field{
+      width: 9.5rem;
+    }
+  }
+  .table{
+    margin: 1.2rem 0 1.8rem;
+  }
+  &__table{
+    margin-bottom: 7.2rem;
+  }
+}

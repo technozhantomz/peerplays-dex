@@ -11,10 +11,9 @@ export const nodeInit = async (url) => {
 
     return instance.init_promise
         .then(() => ({
-                instance,
-                connectTime: getPassedTime(start)
-            })
-        )
+            instance,
+            connectTime: getPassedTime(start)
+        }))
         .catch(e => {
             console.error('--error', e);
             return false;

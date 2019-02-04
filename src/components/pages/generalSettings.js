@@ -7,13 +7,17 @@ import CheckBox from "../helpers/checkbox";
 import Translate from "react-translate-component";
 import Dropdown from "../helpers/dropdown";
 import SelectHeader from "../helpers/selectHeader";
+import Input from "../helpers/input";
 
 class GeneralSettings extends Component {
 
     state = {
+        formData: {
+            faucet: 'https://faucet.bitshares.eu/onboarding'
+        },
         activeLang: '',
         whiteTheme: true,
-        notifications: true
+        notifications: true,
     };
 
     componentDidMount(){
@@ -42,7 +46,7 @@ class GeneralSettings extends Component {
 
     render(){
 
-        const {activeLang, whiteTheme, notifications} = this.state;
+        const {formData, activeLang, whiteTheme, notifications} = this.state;
 
         const localesList = defaultLocales.map((el, id) => <button key={id} onClick={() => this.changeLocale(el)}>{el.title}</button>);
 
@@ -69,6 +73,15 @@ class GeneralSettings extends Component {
                     labelTag="general.transferNotifications"
                     value={notifications}
                     onChange={this.handleNotifications}
+                />
+                <Translate content="general.faucet" component="h2" />
+                <Input
+                    name="faucet"
+                    labelTag="general.faucetURL"
+                    comment="general.faucetComment"
+                    className="with-bg with-border"
+                    value={formData}
+                    disabled
                 />
             </div>
         );

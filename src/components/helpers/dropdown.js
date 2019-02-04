@@ -14,7 +14,7 @@ class Dropdown extends Component {
         } else {
             document.addEventListener('click', this.handleOutsideClick, false);
             let arrDrops = Object.values(document.querySelectorAll('.dropdown.open'));
-            arrDrops.forEach(el => el.classList.remove("open"));
+            // arrDrops.forEach(el => el.classList.remove("open"));
             obj.classList.add('open')
         }
     };
@@ -46,6 +46,7 @@ class Dropdown extends Component {
             body = '',
             btn = '',
             comment = '',
+            position = '',
             className
         } = this.props;
 
@@ -60,7 +61,7 @@ class Dropdown extends Component {
         }
 
         return (
-            <div className={`dropdown ${className ? className : ''}`}>
+            <div className={`dropdown ${className ? className : ''} ${position ? position : ''}`}>
                 <button className="dropdown__btn-wrapper" onClick={this.open}>
                     {btn}
                 </button>
@@ -68,7 +69,7 @@ class Dropdown extends Component {
                     {content}
                 </div>
                 {comment
-                    ? <div className="dropdown__comment">
+                    ? <div className="field__comment">
                         {comment}
                     </div>
                     : ''
