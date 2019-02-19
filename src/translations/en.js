@@ -210,6 +210,7 @@ export const en = {
     },
     "empty": {
         "default": "No data",
-        "userOrders": "User haven't open any order"
+        "userOrders": "User haven't open any order",
+        "login": "Please, log in to see this page"
     }
 };

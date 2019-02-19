@@ -5,7 +5,7 @@ import UserAssets from "./userAssets";
 import OpenOrders from "./openOrders";
 import UserActivity from "./userActivity";
 import UserPermissions from "./userPermissions";
-import UserMargins from "./UserMargins";
+import UserMargins from "./userMargins";
 import PageMenu from "../../helpers/pageMenu";
 
 const basicMenu = [

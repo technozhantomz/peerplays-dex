@@ -13,6 +13,8 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import {setModal} from "../../dispatch/setModal";
 import {MyAssetsModal} from "../helpers/myAssetsModal";
 import OpenOrders from "../helpers/openOrders";
+import NoData from "../helpers/noData";
+import {getStorage} from "../../actions/storage";
 
 const tableActivityHead = [
     {
@@ -153,6 +155,9 @@ const tableAssets = [
 class Dashboard extends Component {
 
     render() {
+
+        if(!getStorage('account').name) return <NoData tag={'empty.login'} />;
+
         return (
             <div className="container">
                 <div className="card__list">

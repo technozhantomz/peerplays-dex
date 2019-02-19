@@ -1,5 +1,4 @@
 import React from "react";
-import Tbd from "../tbd";
 import dataFetch from "../../helpers/dataFetch";
 import {dbApi} from "../../../actions/nodes";
 import {getAsset, setPrecision} from "../../../actions/assets";
