@@ -1,9 +1,7 @@
 .card {
   border-radius: 20px;
+  box-shadow: $shadow-default;
   border: 1px solid $border-color;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2),
-  0 1px 1px 0 rgba(0, 0, 0, 0.14),
-  0 2px 1px -1px rgba(0, 0, 0, 0.12);
 
   &__header {
     height: 57px;
@@ -21,6 +19,7 @@
     letter-spacing: 0.15px;
     line-height: 24px;
     margin-left: 32px;
+    text-transform: uppercase;
   }
 
   &__button {
@@ -47,11 +46,13 @@
 
   &--small {
     margin-right: 21px;
+    height: 174px;
+    width: 193px;
     border: none;
 
     .card__header {
       height: auto;
-      padding: 13px 16px 7px 16px;
+      padding: 0.5rem 1.6rem 0 1.6rem;
     }
 
     .card__title {
@@ -69,7 +70,7 @@
     }
 
     .card__content {
-      padding: 0 1.6rem 1.6rem;
+      //padding: 0 1.6rem 1.6rem;
       display: block;
       width: auto;
     }
@@ -78,6 +79,11 @@
   &--graph {
     height: 352px;
     width: 416px;
+  }
+
+  &--widget {
+    height: 352px;
+    width: 640px;
   }
 
   &--table {
@@ -119,6 +125,44 @@
       font-size: 34px;
     }
   }
+
+  &--witnesses {
+    box-shadow: none;
+    padding-right: 1rem;
+
+    .card__title {
+      font-size: 14px;
+      margin: 0;
+      font-family: $primary-font;
+      padding: 13px 16px;
+      letter-spacing: 0.25px;
+      line-height: 20px;
+    }
+
+    .card__content {
+      padding: 0 6.6rem 1.6rem 1.6rem;
+      display: block;
+      width: auto;
+      font-family: $primary-font;
+      font-size: 20px;
+    }
+  }
+}
+
+.card--graph {
+  .dropdown {
+    height: 56px;
+    width: 145px;
+
+    &__btn-wrapper {
+      .field {
+        padding: 0 0 0 2rem;
+        display: flex;
+        align-items: center;
+        border-radius: 4px;
+      }
+    }
+  }
 }
 
 .graph__pie {
@@ -150,82 +194,81 @@
   }
 }
 
-.graph_dots {
-  width: 90%;
+.graph__names {
+  width: 100%;
+  height: 44px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
+  padding-bottom: 10px;
+
+  div {
+    margin: 0 28px;
+    font-size: 17px;
+  }
+
+  div:first-child {
+    color: #6B37DD;
+  }
+
+  div:last-child {
+    color: #FF28F1;
+  }
+}
+
+.graph__dots {
+  width: 100%;
   height: 44px;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-content: center;
   align-items: center;
+  padding-bottom: 20px;
   color: rgba(0, 0, 0, 0.38);
-}
 
-.dashboard__table {
-  width: 100%;
-  padding: 0 10px 20px 16px;
-  border-spacing: 1px;
-
-  thead {
-    font-size: 12px;
+  div {
+    height: 24px;
+    width: 32px;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
   }
 
-  tr.border-bottom td {
-    border-bottom: 1px solid $border-color;
-  }
-
-  tr.border-bottom:last-child td {
-    border-bottom: none;
-  }
-
-  tr {
-    height: 48px;
-
-    td {
-      width: auto;
-
-      .operation {
-        color: $light;
-        font-size: 12px;
-        letter-spacing: 0.2px;
-        line-height: 16px;
-        text-transform: uppercase;
-        border-radius: 3px;
-        background-color: #2EBD41;
-        padding: 4px 12px;
-      }
-    }
-
-    td:last-child {
-      display: flex;
-      justify-content: flex-end;
-      align-content: center;
-      align-items: center;
-      height: 48px;
-      padding: 0;
-    }
-
-    .button {
-      margin: 0 !important;
-    }
+  .selected {
+    background-color: #4DA1FF;
+    color: white;
+    border-radius: 4px;
   }
 }
 
 .small__content {
+  &--positive {
+    color: $positive;
+  }
+
+  &--negative {
+    color: $rose;
+  }
+
   .number {
-    color: $dark;
     font-family: $secondary-font;
     font-size: 19px;
     font-weight: 600;
     letter-spacing: 0.25px;
     line-height: 27px;
+    padding: 0 1.6rem 0.6rem 1.6rem;
   }
 
   .blocks {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding-top: 11px;
+    margin-left: 1.6rem;
 
     .block {
       &__title {
@@ -237,7 +280,6 @@
       }
 
       &__number {
-        color: rgba(0, 0, 0, 0.87);
         font-family: $secondary-font;
         font-size: 13.82px;
         font-weight: 600;
@@ -246,8 +288,8 @@
         margin-right: 1rem;
       }
 
-      &__percent {
-        color: $dark;
+      &:last-child {
+        margin-right: 0.5rem;
       }
     }
   }
@@ -259,6 +301,10 @@
   align-items: center;
   margin-bottom: 32px;
   justify-content: space-between;
+
+  .card--small:last-child {
+    margin: 0;
+  }
 
   .plus {
     display: flex;
@@ -276,27 +322,87 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
+  margin-bottom: 4rem;
 }
 
-.bg-white{
+.bg-white {
   background-color: $white;
-}
-.bg-success, .bg-green{
-  background-color: $positive;
-}
-.bg-primary, .bg-blue{
-  background-color: $blue;
-}
-.bg-red, .bg-danger{
-  background-color: $negative;
+  color: $dark;
 }
 
-.card{
-  &.bg-success, &.bg-green,
-  &.bg-primary, &.bg-blue,
-  &.bg-red, &.bg-danger{
-    .number, .block__percent{
-      color: $light;
+.bg-success, .bg-green {
+  background-color: $positive;
+  color: $light;
+}
+
+.bg-primary, .bg-blue {
+  background-color: $blue;
+  color: $light;
+}
+
+.bg-red, .bg-danger {
+  background-color: $negative;
+  color: $light;
+}
+
+.table__cell > button {
+  height: 30px;
+  width: 30px;
+  border-radius: 50px;
+  color: $button;
+  padding-right: -12px !important;
+}
+
+.card--table {
+  .table__cell:last-child {
+    padding-right: 12px;
+  }
+}
+
+.table--without_header {
+  .table__header {
+    display: none;
+  }
+}
+
+.pie {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+
+  &__info {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    font-size: 20px;
+    min-width: 70px;
+
+    .pie__percent {
+      font-size: 14px;
+      color: $dark-light;
+      font-weight: 600;
     }
+
+    &--first {
+      left: 125px;
+      color: $positive;
+    }
+
+    &--second {
+      right: 115px;
+      color: $violet;
+    }
+  }
+
+  &__labels {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    font-family: $secondary-font;
+    color: $blue;
+    font-size: 15.8px;
   }
 }

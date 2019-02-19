@@ -1,6 +1,6 @@
 import {defaultNodesList} from "../../params/nodesList";
 import {setNodes} from "../../dispatch/setNodes";
-import {getStorage} from "../storage";
+import {getStorage, removeStorageItem} from "../storage";
 import {setSocketCallBack} from "./setSocketCallback";
 import {setInstance} from "../../dispatch";
 import {nodeInit} from "./nodeInit";
@@ -17,12 +17,19 @@ export const initFirstNode = async () => {
     if(nodesList.list){
         const {active, list} = nodesList;
         const activeNode = list.find(e => e.url === active);
-        const initedInstance = await nodeInit(activeNode.url);
+        const initedInstance = await nodeInit(activeNode.url, true).catch(() => false);
+
+        if(!initedInstance) {
+            removeStorageItem('nodes');
+            return initFirstNode();
+        }
+
         initedNode = {...activeNode, ...initedInstance};
         actions.push(setNodes(nodesList.list));
     } else {
         for(let node of defaultNodesList){
-            let initedInstance = await nodeInit(node.url);
+            let initedInstance = await nodeInit(node.url, true);
+            console.log(initedInstance);
             if(initedInstance){
                 initedNode = {...node, ...initedInstance};
                 break
@@ -34,7 +41,7 @@ export const initFirstNode = async () => {
 
     actions.forEach(e => store.dispatch(e));
 
-    setSocketCallBack(initedNode.instance);
+    // setSocketCallBack(initedNode.instance);
 
     return initedNode;
 };

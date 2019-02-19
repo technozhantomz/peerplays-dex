@@ -7,7 +7,7 @@
         <mask id="contactsMask" fill="#fff">
             <use xlink:href="#contacts"/>
         </mask>
-        <g class="mask" mask="url(#contactsMask)" fill="#647090" opacity=".497">
+        <g class="mask" mask="url(#contactsMask)" fill="#647090">
             <path d="M0 0h24v24H0z"/>
         </g>
     </g>

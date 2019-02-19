@@ -1,9 +1,8 @@
-import {ChainConfig} from "bitsharesjs-ws";
 import {defaultNetwork, defaultToken, defaultChainParams} from "../../params/networkParams";
 import {store} from "../../index";
 
-ChainConfig.setPrefix(defaultToken);
-ChainConfig.networks[defaultNetwork] = defaultChainParams;
+// ChainConfig.setPrefix(defaultToken);
+// ChainConfig.networks[defaultNetwork] = defaultChainParams;
 
 const getData = type => (request, data = []) => store.getState().instance[type].exec(request, data);
 

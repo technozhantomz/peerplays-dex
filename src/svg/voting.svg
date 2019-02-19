@@ -7,7 +7,7 @@
         <mask id="votingMask" fill="#fff">
             <use xlink:href="#voting"/>
         </mask>
-        <g class="mask" mask="url(#votingMask)" fill="#647090" opacity=".497">
+        <g class="mask" mask="url(#votingMask)" fill="#647090">
             <path d="M0 0h24v24H0z"/>
         </g>
     </g>

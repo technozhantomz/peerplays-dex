@@ -25,9 +25,25 @@ header{
   &__user-data{
     display: flex;
     align-items: center;
-    > div{
-      margin-left: 2.7rem;
+  }
+  &__notifications{
+    .dropdown__body{
+      bottom: -10px !important;
     }
+  }
+  &__user{
+    display: flex;
+    align-items: center;
+    &:hover{
+      .avatar{
+        background-color: $blue;
+      }
+    }
+  }
+  &__user-name{
+    display: block;
+    margin: 0 1.75rem 0 2.55rem;
+    color: #3C476C;
   }
 }
 
@@ -110,16 +126,14 @@ header{
   justify-content: center;
   align-items: center;
   padding: 0;
-  background-color: $blue-light;
+  background-color: $blue-dark;
   color: $white;
   border-radius: 50%;
   transition: $anim;
-  &:hover{
-    background-color: $blue;
-  }
   img{
     width: 100%;
     height: 100%;
+    border-radius: 50%;
     object-fit: cover;
   }
 }

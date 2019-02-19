@@ -34,15 +34,15 @@ export const pingNodes = async (actualNode = false) => {
     }
 
     const sortedList = successConnection.sort((prev, next) => prev.connectTime - next.connectTime);
-    const needToReconnect = activeNode !== sortedList[0].url;
+    const needToReconnect = activeNode !== sortedList[0].url && nodeAutoselect;
     const actions = [];
 
     if(actualNode && needToReconnect){
         await actualNode.instance.close();
     }
 
-    if(nodeAutoselect && needToReconnect){
-        const {instance} = await nodeInit(sortedList[0].url);
+    if(needToReconnect){
+        const {instance} = await nodeInit(sortedList[0].url, true);
         console.log('--newQuickInstance!', instance);
         actions.push(setInstance(instance));
         setSocketCallBack(instance);

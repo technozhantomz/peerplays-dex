@@ -7,6 +7,7 @@ import user from "./user";
 import menu from "./menu";
 import overlay from "./overlay";
 import account from "./account";
+import globalData from "./globalData";
 
 ///// create folders and exports to this file
 ///// example:
@@ -18,6 +19,7 @@ const app = combineReducers({
     account,
     wallet,
     nodesList,
+    globalData,
     instance,
     menu,
     overlay,

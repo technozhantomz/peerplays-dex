@@ -1,7 +1,7 @@
 //fonts
 
-$primary-font: 'Roboto', sans-serif;
-$secondary-font: 'Open Sans', sans-serif;
+$primary-font: 'Open Sans', sans-serif;
+$secondary-font: 'Roboto', sans-serif;
 
 //font-size
 
@@ -18,10 +18,15 @@ $grey-light: rgba(0,0,0,0.12);
 $grey: rgba(0,0,0,0.32);
 $dark-light: rgba(0,0,0,0.6);
 $dark: rgba(0,0,0,0.87);
-$blue: #0090D8;
-$blue-light: #0ca3ef;
+$blue: #34BAEB;
+$blue-dark: #009EE6;
+$blue-light: rgba(0,158,230,0.04);
 $negative: #FF444A;
 $positive: #2EBD41;
+$violet: #9939CD;
+$rose: #FF0F4D;
+
+$icon: #647090;
 
 $border-color: #e3e3e3;
 $button: #647090;

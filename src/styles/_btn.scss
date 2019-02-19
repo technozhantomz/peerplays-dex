@@ -5,6 +5,9 @@
     transition: $anim;
     &:hover{
       background: $grey-light;
+      .mask{
+        opacity: 1;
+      }
     }
   }
   &--round{
@@ -12,30 +15,30 @@
     padding: 1rem 1.6rem;
     text-transform: uppercase;
     color: $white;
-    background-color: $blue;
+    background-color: $blue-dark;
     box-shadow: $shadow-default;
     border-radius: 2.5rem;
     letter-spacing: 1.25px;
     &:hover{
-      background-color: $blue-light;
+      background-color: $blue;
     }
   }
 }
 
 .btn-round{
-  padding: 1rem 1.6rem;
+  padding: 1rem 2.4rem;
   text-transform: uppercase;
   color: $white;
-  background-color: $blue;
+  background-color: $blue-dark;
   box-shadow: $shadow-default;
   border-radius: 2.5rem;
   letter-spacing: 1.25px;
   line-height: 1;
-  border: 1px solid $blue;
+  border: 1px solid $blue-dark;
   box-sizing: border-box;
   &:hover{
-    background-color: $blue-light;
-    border-color: $blue-light;
+    background-color: $blue;
+    border-color: $blue;
   }
   &--grey{
     padding: .6rem 1.6rem;
@@ -50,13 +53,13 @@
     }
   }
   &--light-blue{
-    background-color: $blue-light;
-    border-color: $blue-light;
+    background-color: $blue;
+    border-color: $blue;
     color: $white;
     box-shadow: none;
     &:hover{
-      background-color: $blue;
-      border-color: $blue;
+      background-color: $blue-dark;
+      border-color: $blue-dark;
     }
   }
 }

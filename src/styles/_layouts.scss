@@ -30,12 +30,14 @@ main{
   min-width: 30.4rem;
   position: fixed;
   top: 0;
-  left: -100%;
+  left: 0;
   background-color: $white;
+  font-family: $secondary-font;
   z-index: 101;
   transition: $anim;
+  transform: translate3d(-100%, 0, 0);
   &.open{
-    left: 0;
+    transform: translate3d(0, 0, 0);
   }
   &__logo-wrapper{
     width: 13.3rem;

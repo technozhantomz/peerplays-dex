@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import {menuList} from "../../params/menuList";
 import {NavLink} from "react-router-dom";
 import Translate from "react-translate-component";
@@ -19,13 +19,13 @@ const Menu = (props) => (
         </div>
         {
             menuList.map((el, id) => (
-                <React.Fragment key={id}>
+                <Fragment key={id}>
                     <NavLink className="menu__item" exact to={el.link} onClick={closeMenu}>
                         <span className="menu__icon-wrapper">{el.icon}</span>
                         <Translate content={`${el.tag}.title`} />
                     </NavLink>
                     { (id + 1) % 3 === 0 && id !== 8 && <div className="menu__separator" />}
-                </React.Fragment>
+                </Fragment>
             ))
         }
     </div>

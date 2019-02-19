@@ -37,20 +37,51 @@ export const en = {
         "witness": "Witness",
         "transaction": "Transaction",
         "user": "User",
-        "details": "Details"
+        "details": "Details",
+        "issuer": "Issuer",
+        "supply": "Supply",
+        "balance": "Balance",
+        "debt": "Debt",
+        "collateral": "Collateral (%(token)s)",
+        "ratio": "Ratio",
+        "callPrice": "Call Price",
+        "total": "Total (%(token)s)"
     },
     "dashboard": {
-        "title": "Dashboard"
+        "title": "Dashboard",
+        "sendForm": {
+            "from": "From",
+            "quantity": "Quantity",
+            "currency": "Currency",
+            "to": "To",
+            "BTS": "BTS"
+        }
     },
     "login": {
         "accName": "Account Name",
         "password": "Password",
         "remember": "Remember me"
     },
+    "send":{
+        "from": "From",
+        "to": "To",
+        "quantity": "Quantity",
+        "memo": "Memo",
+        "memoComment": "Only users with a memo key can read your memos",
+        "fee": "Fee"
+    },
     "errors": {
+        "sendYourself": "You can\'t transfer tokens for yourself",
         "noAcc": "Failed to find this account",
+        "noKey": "Failed to find this key",
         "wrongPass": "Password is wrong",
-        "required": "This field is required. Please, fill it!"
+        "required": "This field is required. Please, fill it!",
+        "isNan": "Amount is not a number. Please, enter the number.",
+        "isNull": "You can't send a null. Please, enter summ above null.",
+        "nullWeight": "Can\'t be null",
+        "isNotEnough": "The total summ exceeds the amount on the account.",
+        "accUsed": "Account is already in use.",
+        "keyUsed": "Key is already in use."
     },
     "exchange": {
         "title": "Exchange"
@@ -89,7 +120,8 @@ export const en = {
         "title": "Settings"
     },
     "contacts": {
-        "title": "Contacts"
+        "title": "Contacts",
+        "blacklistedSwitcher": "Blacklisted"
     },
     "help": {
         "title": "Help"
@@ -157,5 +189,27 @@ export const en = {
     },
     "permissions": {
         "title": "Permissions",
+        "threshold": "Threshold",
+        "add": "Add Permission",
+        "owner": {
+            "title": "Account Ownership",
+            "subtitle": "Owner permissions define who has control over the account. Owners may overwrite all keys and change any account settings."
+        },
+        "active": {
+            "title": "Assets Management",
+            "subtitle": "Active permissions define the accounts that have permission to spend funds for this account."
+        },
+        "memo": {
+            "title": "Memos View",
+            "subtitle": "The memo key is where you receive memos, in order to decode the memos you need to control the private key for the public key. By using a public/private key pair without spending authority, you may give read-only access to your memos to third parties."
+        },
+        "activity": {
+            "title": "Permissions Related Activity",
+            "subtitle": "Active permissions define the accounts that have permission to spend funds for this account."
+        }
     },
+    "empty": {
+        "default": "No data",
+        "userOrders": "User haven't open any order"
+    }
 };

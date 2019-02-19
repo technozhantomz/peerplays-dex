@@ -1,6 +1,6 @@
 export const defaultSettings = {
     language: 'en',
-    whiteTheme: true,
+    darkTheme: false,
     notifications: true,
     walletLock: 0,
     nodeAutoselect: true

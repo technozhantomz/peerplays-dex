@@ -1,13 +1,18 @@
-import {Apis} from "bitsharesjs-ws";
 import {getPassedTime} from "../getPassedTime";
+import {Apis} from "bitsharesjs-ws";
 
-export const nodeInit = async (url) => {
+export const nodeInit = async (url, actualNode = false) => {
 
     const start = new Date();
 
-    const instance = new Apis();
+    let instance = '';
 
-    instance.connect(url, 1000);
+    if(actualNode){
+        instance = Apis.instance(url, true);
+    } else {
+        instance = new Apis();
+        instance.connect(url, 1000);
+    }
 
     return instance.init_promise
         .then(() => ({

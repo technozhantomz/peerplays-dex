@@ -5,7 +5,8 @@
   "scripts": {
     "start": "webpack-dev-server --https",
     "dev": "webpack-dev-server",
-    "prod": "NODE_ENV=production webpack"
+    "prod": "NODE_ENV=production webpack",
+    "build": "webpack"
   },
   "dependencies": {
     "@material-ui/core": "^3.9.0",
@@ -40,8 +41,8 @@
     "redux-thunk": "^2.2.0",
     "url-loader": "^1.0.1",
     "whatwg-fetch": "^2.0.4",
-    "bitsharesjs": "^1.0.2",
-    "bitsharesjs-ws": "^1.0.3",
+    "bitsharesjs": "^1.8.3",
+    "bitsharesjs-ws": "^1.5.5",
     "dexie": "^2.0.4"
   },
   "devDependencies": {

@@ -7,7 +7,7 @@
         <mask id="crossMask" fill="#fff">
             <use xlink:href="#cross"/>
         </mask>
-        <g class="mask" mask="url(#crossMask)" fill="#647090" opacity=".497">
+        <g class="mask" mask="url(#crossMask)" fill="#647090">
             <path d="M0 0h18v18H0z"/>
         </g>
     </g>

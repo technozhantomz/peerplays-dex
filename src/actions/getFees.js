@@ -19,15 +19,18 @@ export const getFees = async () => {
     operations = operations.map(async (item) => {
         if('1' in item) {
             return {
-                fee: 'fee' in item[1] ? await setAssets({quantity: Number(item[1]['fee']), asset: '1.3.0'}) : '',
+                fee: 'fee' in item[1] ? await setAssets({
+                    quantity: Number(item[1]['fee']),
+                    asset: '1.3.0'
+                }) + " BTS" : '',
                 membership_lifetime_fee: 'membership_lifetime_fee' in item[1] ? await setAssets({
                     quantity: Number(item[1]['membership_lifetime_fee']),
                     asset: '1.3.0'
-                }) : '',
+                }) + " BTS" : '',
                 price_per_kbyte: 'price_per_kbyte' in item[1] ? await setAssets({
                     quantity: Number(item[1]['price_per_kbyte']),
                     asset: '1.3.0'
-                }) : '',
+                }) + " BTS" : '',
                 name: <span className="operation negative">{item['name']}</span>
             }
         } else {

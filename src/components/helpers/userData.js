@@ -1,9 +1,10 @@
 import React from "react";
-import {IconCross, IconMore} from "../../svg";
+import {IconCross} from "../../svg";
 import ActionsBtn from "./actionsBtn";
 import Link from "react-router-dom/es/Link";
 import {store} from "../../index";
-import {removeStorageItem, setStorage} from "../../actions/storage";
+import {removeStorageItem} from "../../actions/storage";
+import {dispatchSendModal} from "../../actions/forms/dispatchSendModal";
 
 const userWallets = [
     {
@@ -29,18 +30,36 @@ const userWallets = [
     }
 ];
 
-const logout = () => {
-    store.dispatch({type: 'REMOVE_ACCOUNT'});
+const logout = (history) => {
     removeStorageItem('account');
+    store.dispatch({type: 'REMOVE_ACCOUNT'});
+    history.push('/');
 };
 
-const UserData = ({data}) => (
+const closeDropdown = (e) => {
+
+    let node = e.target;
+
+    while(!node.classList.contains('open')){
+        if(node.tagName === 'BODY') break;
+        node = node.parentNode;
+    }
+
+    node.classList.remove('open');
+};
+
+const sendUserTokens = e => {
+    closeDropdown(e);
+    dispatchSendModal();
+};
+
+const UserData = ({data, history}) => (
     <div className="drop-user">
         <div className="drop-user__title">
-            <Link to={`/user/${data.name}`} className="drop-user__name">{data.name}</Link>
+            <Link to={`/user/${data.name}`} className="drop-user__name" onClick={closeDropdown}>{data.name}</Link>
             <ActionsBtn
                 actionsList={[
-                    <button onClick={logout}>Logout</button>
+                    <button onClick={() => logout(history)}>Logout</button>
                 ]}
             />
         </div>
@@ -53,7 +72,7 @@ const UserData = ({data}) => (
             ))}
         </div>
         <div className="drop-user__btn-wrapper">
-            <button className="btn-round btn-round--light-blue">Send funds</button>
+            <button className="btn-round btn-round--light-blue" onClick={sendUserTokens}>Send funds</button>
             <button className="btn-round btn-round--grey">Deposit</button>
         </div>
         <h3 className="drop-user__wallets-title">Switch account</h3>

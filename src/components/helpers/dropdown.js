@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {Component, Fragment} from "react";
 import * as ReactDOM from "react-dom";
 
 class Dropdown extends Component {
@@ -53,16 +53,16 @@ class Dropdown extends Component {
         let content = body;
 
         if(list.length){
-            content = <React.Fragment>
+            content = <Fragment>
                 {list.map((e, index) =>
                     <div key={index} className="dropdown__item" onClick={this.close}>{e}</div>)
                 }
-            </React.Fragment>
+            </Fragment>
         }
 
         return (
             <div className={`dropdown ${className ? className : ''} ${position ? position : ''}`}>
-                <button className="dropdown__btn-wrapper" onClick={this.open}>
+                <button className="dropdown__btn-wrapper" onClick={this.open} type="button">
                     {btn}
                 </button>
                 <div className="dropdown__body">

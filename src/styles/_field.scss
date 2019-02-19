@@ -1,0 +1,91 @@
+.field{
+  width: 100%;
+  position: relative;
+  display: block;
+  min-height: 5.6rem;
+  padding: .8rem 1.2rem .8rem 1.6rem;
+  box-sizing: border-box;
+  font-family: $secondary-font;
+  font-size: $fzLG;
+  font-weight: 500;
+  &.without-label{
+    .field{
+      &__input, &__text{
+        padding: .9rem 0;
+      }
+    }
+  }
+  &.with-bg{
+    background: $grey-light;
+  }
+  &.with-border{
+    border-bottom: 2px solid $dark-light;
+    &.error{
+      border-color: $negative;
+    }
+  }
+  &__label{
+    position: absolute;
+    top: 50%;
+    left: 1.6rem;
+    font-size: $fzLG;
+    color: $dark-light;
+    transform: translateY(-50%);
+    transition: $anim;
+    z-index: 0;
+    &.squeezed{
+      top: .8rem;
+      font-size: $fzSM;
+      transform: translateY(0);
+    }
+  }
+  &__text{
+    display: inline-block;
+  }
+  &__input, &__text{
+    padding: 1.8rem 0 0;
+  }
+  &__input{
+    width: 100%;
+    display: inline-block;
+    position: relative;
+    background: transparent;
+    border: 0;
+    font: 500 16px Roboto;
+    z-index: 1;
+    &:focus, &:active{
+      outline: 0;
+    }
+    &:focus, &:active, &:not(:placeholder-shown){
+      ~ .field__label{
+        top: .8rem;
+        font-size: $fzSM;
+        transform: translateY(0);
+      }
+    }
+    &:disabled{
+      color: $dark;
+    }
+  }
+  &__caret{
+    width: 1rem;
+    position: absolute;
+    top: 50%;
+    right: 1.9rem;
+    transition: $anim;
+    transform: translateY(-50%);
+  }
+  &__comment, &__error{
+    position: absolute;
+    top: 100%;
+    left: 0;
+    padding: .5rem 2rem;
+    font-size: $fzSM;
+  }
+  &__comment{
+    color: $dark-light;
+  }
+  &__error{
+    color: $negative;
+  }
+}

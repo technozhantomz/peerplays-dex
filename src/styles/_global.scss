@@ -61,12 +61,20 @@ a, a:hover {
   }
 }
 
+svg .mask{
+  opacity: 0.5;
+  fill: $icon;
+  transition: $anim;
+  &:hover{
+    opacity: 1;
+  }
+}
+
 .bold {
   font-weight: bold;
 }
 
-.tbd{
-  height: 100%;
+.tbd, .no-data{
   display: flex;
   align-items: center;
   justify-content: center;
@@ -75,4 +83,8 @@ a, a:hover {
   font-family: 'Montserrat', sans-serif;
   text-transform: uppercase;
   letter-spacing: -0.5px;
+}
+
+.tbd{
+  height: 100%;
 }

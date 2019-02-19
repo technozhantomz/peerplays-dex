@@ -24,7 +24,7 @@ export const getCommittee = async () => {
                 rank: index + 1,
                 name: committeeID.filter(name => name[1] === item.id)[0][0],
                 url: item.url.length ? <Link to={item.url} className="link">{item.url}</Link> : '',
-                total_votes: await setAssets({quantity: Number(item.total_votes), asset: '1.3.0'})
+                total_votes: await setAssets({quantity: Number(item.total_votes), asset: '1.3.0'}) + " BTS"
             }));
         // const reserved = committee.filter(item => active.indexOf(item) < 0);
         active = await Promise.all(active);

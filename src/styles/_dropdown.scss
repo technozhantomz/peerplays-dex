@@ -1,8 +1,10 @@
 .dropdown{
   position: relative;
+  font-family: $secondary-font;
   &__btn-wrapper{
     width: 100%;
     text-align: left;
+    display: flex;
   }
   &__body{
     min-width: 100%;
@@ -15,7 +17,7 @@
     background: $white;
     box-shadow: $shadow-bold;
     border-radius: 4px;
-    z-index: 1;
+    z-index: 2;
   }
   &__item{
     white-space: nowrap;
@@ -31,6 +33,7 @@
   .field{
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
+    margin-bottom: 0;
   }
 }
 
@@ -40,7 +43,7 @@
     bottom: 0;
     opacity: 1;
   }
-  .field{
+  &.dropdown .field{
     &__caret{
       transform: rotate(180deg);
     }
@@ -103,101 +106,3 @@
   }
 }
 
-.field{
-  width: 100%;
-  position: relative;
-  display: block;
-  min-height: 5.6rem;
-  padding: 2.6rem 1.2rem .8rem 1.6rem;
-  box-sizing: border-box;
-  font-size: $fzLG;
-  font-weight: 500;
-  &.with-bg{
-    background: $grey-light;
-  }
-  &.with-border{
-    border-bottom: 2px solid $dark-light;
-    &.error{
-      border-color: $negative;
-    }
-  }
-  &__label{
-    position: absolute;
-    top: 50%;
-    left: 1.6rem;
-    font-size: $fzLG;
-    color: $dark-light;
-    transform: translateY(-50%);
-    transition: $anim;
-    z-index: 0;
-    &.squeezed{
-      top: .8rem;
-      font-size: $fzSM;
-      transform: translateY(0);
-    }
-  }
-  &__text{
-    display: inline-block;
-  }
-  &__input{
-    width: 100%;
-    display: inline-block;
-    position: relative;
-    background: transparent;
-    border: 0;
-    font: 500 16px Roboto;
-    z-index: 1;
-    &:focus, &:active{
-      outline: 0;
-    }
-    &:focus, &:active, &:not(:placeholder-shown){
-      + .field__label{
-        top: .8rem;
-        font-size: $fzSM;
-        transform: translateY(0);
-      }
-    }
-    &:disabled{
-      color: $dark;
-    }
-  }
-  &__caret{
-    width: 1rem;
-    position: absolute;
-    top: 50%;
-    right: 1.9rem;
-    transition: $anim;
-    transform: translateY(-50%);
-  }
-  &__comment, &__error{
-    position: absolute;
-    top: 100%;
-    left: 0;
-    padding: .5rem 2rem;
-    font-size: $fzSM;
-  }
-  &__comment{
-    color: $dark-light;
-  }
-  &__error{
-    color: $negative;
-  }
-}
-
-form{
-  position: relative;
-  .field{
-    margin-bottom: 4rem;
-  }
-  &.loading{
-    &:after{
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 1;
-    }
-  }
-}

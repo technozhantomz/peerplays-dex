@@ -12,7 +12,7 @@
     width: 2.2rem;
     height: 1.2rem;
     position: relative;
-    border: 1.5px solid $positive;
+    border: 1.5px solid $dark-light;
     box-sizing: border-box;
     border-radius: 9px;
     transition: $anim;
@@ -20,11 +20,11 @@
       content: "";
       position: absolute;
       top: 50%;
-      right: 2px;
+      right: calc(100% - 9px);
       width: .7rem;
       height: .7rem;
       border-radius: 50%;
-      background: $positive;
+      background: $dark-light;
       transform: translateY(-50%);
       transition: $anim;
     }
@@ -36,10 +36,10 @@
   &--selected{
     .switch{
       &__icon{
-        border-color: $dark-light;
+        border-color: $positive;
         &:after{
-          background: $dark-light;
-          right: calc(100% - 9px);
+          background: $positive;
+          right: 2px;
         }
       }
     }

@@ -23,12 +23,13 @@
   &__menu-item{
     min-width: 12rem;
     position: relative;
-    padding: 1.8rem 2rem;
+    padding: 1.6rem 2rem;
     box-sizing: border-box;
     font-size: $fzSM + .1rem;
-    font-weight: 500;
     color: $dark-light;
+    font-weight: 600;
     letter-spacing: 1.16px;
+    line-height: 1;
     text-transform: uppercase;
     text-align: center;
     &:after{
@@ -38,29 +39,33 @@
       left: 0;
       width: 0;
       height: 2px;
-      background: $dark-light;
+      background: $blue-dark;
       transition: $anim / 2;
     }
-    &.active:after{
-      width: 100%;
+    &.active{
+      color: $blue;
+      &:after {
+        width: 100%;
+      }
     }
   }
   &__content{
     padding: 2.25rem 0;
-    .tbd{
+    .tbd, .no-data{
       min-height: calc(100vh - 265px);
     }
   }
 }
 
 .quantity-converter{
-  width: 21.6rem;
+  //min-width: 21.6rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-left: 3rem;
   &__summ{
     font-size: $fzLG;
+    //margin-left: auto;
   }
   .field{
     min-height: 0;
@@ -68,5 +73,20 @@
     font-weight: normal;
     color: $dark-light;
     padding: 0 4rem 0 2rem;
+  }
+}
+
+.quantity-wrapper{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4rem;
+  .dropdown{
+    min-width: 12.2rem;
+    width: fit-content;
+    margin-left: 3.7rem;
+  }
+  .field{
+    margin-bottom: 0;
   }
 }

@@ -2,8 +2,8 @@ import React from "react";
 import Translate from "react-translate-component";
 import Link from "react-router-dom/es/Link";
 
-const Table = ({tableHead, rows, link}) => (
-    <div className={`table ${link ? 'table--with-link' : ''}`}>
+const Table = ({className, tableHead, rows, link}) => (
+    <div className={`table${link ? ' table--with-link' : ''}${className ? ` ${className}` : ''}`}>
         <div className="table__header">
             {tableHead.map((el, id) => (
                 el.translateTag

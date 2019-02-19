@@ -7,7 +7,7 @@
         <mask id="moreMask" fill="#fff">
             <use xlink:href="#more"/>
         </mask>
-        <g class="mask" mask="url(#moreMask)" fill="#000" fill-opacity=".54">
+        <g class="mask" mask="url(#moreMask)" fill="#000">
             <path d="M0 0h24v24H0z"/>
         </g>
     </g>

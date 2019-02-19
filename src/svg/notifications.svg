@@ -7,7 +7,7 @@
         <mask id="notifMask" fill="#fff">
             <use xlink:href="#notif"/>
         </mask>
-        <g class="mask" mask="url(#notifMask)" fill="#000" fill-opacity=".54">
+        <g class="mask" mask="url(#notifMask)" fill="#000">
             <path d="M0 0h24v24H0z"/>
         </g>
     </g>

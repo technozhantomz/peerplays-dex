@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import {getWitnesses} from "../../actions/getWitnesses";
 import Table from "../helpers/table";
+import {Card} from "../helpers/card";
 
 const tableHead = [
     {
@@ -30,7 +31,7 @@ const tableHead = [
     {
         key: 'total_votes',
         translateTag: 'votes',
-        params: 'align-center fit-content content-padding'
+        params: 'align-right fit-content'
     },
     {
         key: 'signing_key',
@@ -54,6 +55,57 @@ class Witnesses extends Component {
 
         return (
             <div className="witnesses">
+                <div className="card__list">
+                    <Card mode="witnesses">
+                        <div className="card__title">
+                            Current Witness
+                        </div>
+                        <div className="card__content">
+                            delegate.freedom
+                        </div>
+                    </Card>
+                    <Card mode="witnesses">
+                        <div className="card__title">
+                            Active Witnesses
+                        </div>
+                        <div className="card__content">
+                            {active.length}
+                        </div>
+                    </Card>
+                    <Card mode="witnesses">
+                        <div className="card__title">
+                            Participation
+                        </div>
+                        <div className="card__content">
+                            98%
+                        </div>
+                    </Card>
+                    <Card mode="witnesses">
+                        <div className="card__title">
+                            Pay-per-block
+                        </div>
+                        <div className="card__content">
+                            1.00000 BTS
+                        </div>
+                    </Card>
+                    <Card mode="witnesses">
+                        <div className="card__title">
+                            Remaining budget
+                        </div>
+                        <div className="card__content">
+                            1.00000 BTS
+                        </div>
+                    </Card>
+                    <Card mode="witnesses">
+                        <div className="card__title">
+                            Next vote update
+                        </div>
+                        <div className="card__content">
+                            10 minutes
+                        </div>
+                    </Card>
+                </div>
+
                 <Table
                     tableHead={tableHead}
                     rows={active}

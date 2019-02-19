@@ -5,6 +5,9 @@
     justify-content: space-between;
     align-items: center;
     margin: 1.3rem .8rem 1.3rem 1.6rem;
+    &:not(:first-of-type){
+      margin-top: 7.2rem;
+    }
   }
   &__title{
     font-size: $fzLG;
@@ -21,13 +24,18 @@
       color: $dark-light;
     }
     .dropdown{
-      margin: 0 13px;
+      margin-left: 1.3rem;
+      &:last-child{
+        .field{
+          width: 9.5rem;
+        }
+      }
     }
     .field{
       width: 13.4rem;
-      padding-top: .8rem;
+      padding-top: 0;
+      padding-bottom: 0;
       min-height: fit-content;
-      border-radius: 0;
     }
     > .field{
       width: 9.5rem;
@@ -36,7 +44,78 @@
   .table{
     margin: 1.2rem 0 1.8rem;
   }
-  &__table{
-    margin-bottom: 7.2rem;
+  &__history.table{
+    margin-bottom: 10rem;
   }
+  &__new-item{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    > .field{
+      min-height: auto;
+      padding: 0 1.2rem 0 1.6rem;
+      border-radius: 4px;
+      &:nth-child(1){
+        flex: 1;
+      }
+      &:nth-child(2){
+        width: 6.4rem;
+        margin: 0 5rem 0 3.2rem;
+      }
+    }
+    > button{
+      width: 1.5rem;
+      margin-right: 2.5rem;
+    }
+  }
+}
+
+.save-changes{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: calc(100vw - 1.8rem);
+  height: 10rem;
+  background: $white;
+  border-top-left-radius: 2rem;
+  border-top-right-radius: 2rem;
+  opacity: 0;
+  transition: $anim;
+  box-shadow: $shadow-default;
+  transform: translate3d(0, 100%, 0);
+  z-index: 5;
+  &.shown{
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+  .container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  &__fee{
+    display: flex;
+    span{
+      &:last-child{
+        display: block;
+        margin-left: 2.4rem;
+        color: $dark-light;
+      }
+    }
+  }
+  &__btn-wrapper{
+    display: flex;
+    align-items: center;
+    button:first-child{
+      margin-right: 4rem;
+      color: $blue-dark;
+      &:hover{
+        color: $grey;
+      }
+    }
+  }
+  //button{
+  //  display: block;
+  //  margin: 0 1rem;
+  //}
 }

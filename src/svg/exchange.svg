@@ -6,7 +6,7 @@
     <mask id="exchangeMask" fill="#fff">
         <use xlink:href="#exchange"/>
     </mask>
-    <g class="mask" mask="url(#exchangeMask)" fill="#647090" opacity=".497">
+    <g class="mask" mask="url(#exchangeMask)" fill="#647090">
         <path d="M0 0h24v24H0z"/>
     </g>
 </g>

@@ -7,7 +7,7 @@
         <mask id="assetsMask" fill="#fff">
             <use xlink:href="#assets"/>
         </mask>
-        <g class="mask" mask="url(#assetsMask)" fill="#647090" opacity=".497">
+        <g class="mask" mask="url(#assetsMask)" fill="#647090">
             <path d="M0 0h24v24H0z"/>
         </g>
     </g>

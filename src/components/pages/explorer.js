@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {Component, Fragment} from "react";
 import Table from "../helpers/table";
 import {Card} from "../helpers/card";
 import {CardHeader} from "../helpers/cardHeader";
@@ -124,7 +124,7 @@ const tableRecentActivity = [
 class Explorer extends Component {
     render() {
         return (
-            <div>
+            <Fragment>
                 <div className="card__list">
                     <Card mode="explorer">
                         <div className="card__title">
@@ -190,7 +190,7 @@ class Explorer extends Component {
                         rows={tableRecentActivity}
                     />
                 </Card>
-            </div>
+            </Fragment>
         )
     }
 }

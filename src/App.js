@@ -1,15 +1,34 @@
-import React, { Component } from 'react';
+import React, {Component, Fragment} from 'react';
 import Header from "./components/layout/header";
 import Main from "./components/layout/main";
 import Overlay from "./components/helpers/overlay";
 import Menu from "./components/helpers/menu";
-import Modal from "./components/helpers/modal";
+import Modal from "./components/helpers/modal/modal";
 import NodeDisconnected from "./components/pages/nodeDisconnected";
 import {getStorage} from "./actions/storage";
-import {initFirstNode, pingNodes} from "./actions/nodes";
+import {dbApi, initFirstNode, pingNodes} from "./actions/nodes";
 import {getPassedTime} from "./actions/getPassedTime";
 import {formAccount} from "./actions/account/formAccount";
 import {setAccount} from "./dispatch/setAccount";
+import {ChainTypes} from "bitsharesjs";
+
+const getGlobalData = async (account) => {
+    let userData = false;
+
+    if(account.id){
+        userData = await formAccount(account.id, account.name);
+    }
+
+    const opTypes = ChainTypes.operations;
+    const globalProps = await dbApi('get_global_properties');
+    const feesParams = globalProps.parameters.current_fees.parameters;
+    const fees = {};
+    Object.keys(opTypes).forEach(el => {
+        const fee = feesParams.find(fee => fee[0] === opTypes[el]);
+        fees[el] = fee ? fee[1] : {};
+    });
+    console.log(fees);
+};
 
 class App extends Component{
     state = {
@@ -19,17 +38,27 @@ class App extends Component{
 
     componentDidMount(){
         initFirstNode().then(nodeData => {
-
             const connectEstablished = true;
-
-            this.setState({
-                connectEstablished,
-                nodeSelected: nodeData
-            });
 
             const account = getStorage('account');
 
-            if(account.id) formAccount(account.id, account.name).then(setAccount);
+            getGlobalData(account);
+
+            if(nodeData && account.id){
+                formAccount(account.id, account.name)
+                    .then(setAccount)
+                    .finally(() => {
+                        this.setState({
+                            connectEstablished,
+                            nodeSelected: nodeData
+                        })
+                    })
+            } else {
+                this.setState({
+                    connectEstablished,
+                    nodeSelected: nodeData
+                })
+            }
 
             const nodesList = getStorage('nodes');
             const pingInterval = 60 * 60 * 1000; // ping interval === 1 hour
@@ -49,14 +78,16 @@ class App extends Component{
         if(!connectEstablished) return 'Loading';
         if(!nodeSelected) return <NodeDisconnected />;
 
+        const history = this.props.history;
+
         return (
-            <React.Fragment>
-                <Header />
+            <Fragment>
+                <Header history={history} />
                 <Main />
                 <Overlay />
                 <Menu />
                 <Modal />
-            </React.Fragment>
+            </Fragment>
         )
     }
 }

@@ -1,11 +1,8 @@
 import React from 'react';
 
-const Avatar = ({userName, image}) => (
+const Avatar = ({userName = 'default'}) => (
     <div className="avatar">
-        {image
-            ? <img src={image} alt=""/>
-            : <span>{userName.substr(0, 1).toUpperCase()}</span>
-        }
+        <img src={`https://robohash.org/${userName}`} alt="user avatar" />
     </div>
 );
 

@@ -3,8 +3,8 @@ import {Caret} from "../../svg";
 import Translate from "react-translate-component";
 
 const SelectHeader = ({labelTag, text, className = ''}) => (
-    <div className={`field ${className}`}>
-        { labelTag && <Translate content={labelTag} className={`field__label${text ? ' squeezed' : ''}`} /> }
+    <div className={`field ${className}${!labelTag ? ' without-label' : ''}`}>
+        { labelTag && <Translate content={labelTag} className={`field__label${text || text === 0 ? ' squeezed' : ''}`} /> }
         <span className="field__text">
             {text}
         </span>

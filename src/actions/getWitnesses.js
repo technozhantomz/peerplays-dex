@@ -8,7 +8,7 @@ export const getWitnesses = async () => {
     let activeWitnesses = [],
         witnessesID = [];
 
-    activeWitnesses = await dbApi('get_global_properties').then(e => e['active_witnesses']);
+    activeWitnesses = await dbApi('get_global_properties').then(e => e.active_witnesses);
     witnessesID = await dbApi('lookup_witness_accounts', ['', 100]).then(e => e);
 
     return await dbApi('get_witnesses', [witnessesID.map(item => item[1])]).then(async e => {
@@ -27,7 +27,7 @@ export const getWitnesses = async () => {
                 url: item.url.length ? <Link to={item.url}><IconLink/></Link> : '',
                 name: witnessesID.filter(name => name[1] === item.id)[0][0],
                 signing_key: <Link to={item.signing_key}><IconLink/></Link>,
-                total_votes: await setAssets({quantity: Number(item.total_votes), asset: '1.3.0'})
+                total_votes: (await setAssets({quantity: Number(item.total_votes), asset: '1.3.0'})) + " BTS"
             }));
 
         active = await Promise.all(active);

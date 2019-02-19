@@ -6,6 +6,7 @@ import Witnesses from "./witnesses";
 import Committee from "./committee";
 import Fees from "./fees";
 import Explorer from "./explorer";
+import Assets from "./assets";
 
 const blockchainMenu = [
     {
@@ -15,7 +16,8 @@ const blockchainMenu = [
     },
     {
         link: '/assets',
-        tag: 'assets'
+        tag: 'assets',
+        component: Assets
     },
     {
         link: '/witnesses',

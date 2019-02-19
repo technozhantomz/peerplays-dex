@@ -1,0 +1,1 @@
+export const setPrecision = (amount, precision) => amount / (10 ** precision);

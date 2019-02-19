@@ -1,21 +1,14 @@
-import {defaultQuote} from "../../params/networkParams";
+import {formAssetsList} from "../assets/formAssetsList";
 import {dbApi} from "../nodes";
 
 export const formAccount = async (id, name, balances) => {
-    if(!balances) balances = await dbApi('get_full_accounts', [[name], false]).then(acc => acc[0][1].balances);
-
-    const assets = await Promise.all(balances.map(async asset => {
-        const data = await dbApi('get_assets', [[asset.asset_type]]).then(e => e[0]);
-        const tiker = await dbApi('get_ticker', [data.symbol, defaultQuote]);
+    const assets = await formAssetsList(name, balances);
+    const keys = await dbApi('get_account_by_name', [name]).then(acc => {
         return {
-            id: asset.asset_type,
-            symbol: data.symbol,
-            precision: data.precision,
-            quantity: Number(asset.balance),
-            usdPrice: tiker.latest,
-            dailyChange: tiker.percent_change
-        };
-    }));
-
-    return { id, name, assets };
+            active: acc.active.key_auths[0],
+            owner: acc.owner.key_auths[0],
+            memo: acc.options.memo_key
+        }
+    });
+    return { id, name, assets, keys };
 };
