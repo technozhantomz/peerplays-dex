@@ -115,7 +115,7 @@ const tableAssetsHead = [
     },
     {
         key: "valueUSD",
-        translateTag: "valueUSD",
+        translateTag: "valueWithToken",
         params: 'align-right fit-content'
     },
     {

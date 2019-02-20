@@ -32,7 +32,7 @@ const tableHead = [
     },
     {
         key: 'value',
-        translateTag: 'valueUSD',
+        translateTag: 'valueWithToken',
         translateParams: {
             token: defaultQuote
         },

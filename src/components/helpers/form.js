@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {getPassword} from "../../actions/forms";
+import {feeCalculator, getPassword} from "../../actions/forms";
 
 class Form extends Component{
     state ={
@@ -10,13 +10,14 @@ class Form extends Component{
 
     handleChange = (val, id) => {
         const data = {...this.state.data};
-        const {fees, feesAction} = this.props;
+        const feeCalc = feeCalculator[this.props.type];
         const errors = {};
 
         data[id] = val;
 
-        if(fees && feesAction){
-            const {feeErr, feeAmount} = feesAction(fees, data);
+
+        if(feeCalc){
+            const {feeErr, feeAmount} = feeCalc(data);
             if(feeErr) errors['quantity'] = feeErr;
             data['fee'] = feeAmount;
         }

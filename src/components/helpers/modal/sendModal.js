@@ -7,52 +7,48 @@ import {store} from '../../../index.js';
 import {removeModal} from "../../../dispatch/setModal";
 import {transfer} from "../../../actions/forms/index";
 import Textarea from "../textarea";
-import {ChainTypes} from "bitsharesjs";
-import {dbApi} from "../../../actions/nodes/index";
-import {getSpecificFee} from "../../../actions/dataFetching/index";
-import {calculateSendFee} from "../../../actions/forms";
 
 class SendModal extends Component {
 
     state = {
         defaultData: false,
-        fees: false,
         userTokens: false
     };
 
     componentDidMount(){
-        let defaultData = {...this.state.defaultData};
+        const {defaultFrom, defaultToken, password} = this.props;
         const userTokens = store.getState().account.assets;
-        const startAsset =  this.props.defaultToken || userTokens[0].symbol;
+        const startAsset =  defaultToken || userTokens[0].symbol;
 
-        defaultData.from = this.props.defaultFrom || '';
-        defaultData.password = this.props.password;
-        defaultData.quantityAsset = startAsset;
-        defaultData.fee = 0;
-        defaultData.feeAsset = startAsset;
+        const defaultData = {
+            from: defaultFrom || '',
+            password: password,
+            quantityAsset: startAsset,
+            fee: 0,
+            feeAsset: startAsset
+        };
 
-        getSpecificFee('transfer', false).then(fees => this.setState({fees, userTokens, defaultData}));
+        this.setState({userTokens, defaultData});
     }
 
     handleTransfer = () => removeModal();
 
     render(){
 
-        const {fees, defaultData, userTokens} = this.state;
+        const {defaultData, userTokens} = this.state;
 
         if(!userTokens) return <span />;
 
         return (
             <Fragment>
                 <div className="modal__header">
-                    <h2 className="modal__title">Send from</h2>
+                    <h2 className="modal__title">Send</h2>
                 </div>
                 <Form
-                    fees={fees}
-                    feesAction={calculateSendFee}
+                    type={'transfer'}
                     defaultData={defaultData}
-                    action={transfer}
                     requiredFields={['to', 'quantity']}
+                    action={transfer}
                     handleResult={this.handleTransfer}
                 >
                     {

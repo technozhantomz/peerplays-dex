@@ -4,4 +4,6 @@ export * from './authByLogin';
 export * from './updateAccount';
 export * from './getPassword';
 export * from './dispatchSendModal';
-export {calculateSendFee, calculateOrderFee} from './calculateFees';
+export * from './cancelOrder';
+export * from './feeCalculator';
+export * from './sellBuy';

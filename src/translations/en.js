@@ -7,14 +7,14 @@ export const en = {
         "available" : "Available",
         "priceUSD" : "Price (%(token)s)",
         "change" : "Change (24h)",
-        "valueUSD" : "Value (%(token)s)",
+        "valueWithToken" : "Value (%(token)s)",
+        "value" : "Value",
         "actions" : "Actions",
         "trade" : "Trade",
         "orderID" : "Order ID",
         "description" : "Description",
         "price" : "Price",
         "marketPrice" : "Market Price",
-        "value" : "Value",
         "hash": "#",
         "name": "Name",
         "url": "URL",
@@ -70,6 +70,10 @@ export const en = {
         "memoComment": "Only users with a memo key can read your memos",
         "fee": "Fee"
     },
+    "quickSellBuy": {
+        "sell": "Sell",
+        "buy": "Buy"
+    },
     "errors": {
         "sendYourself": "You can\'t transfer tokens for yourself",
         "noAcc": "Failed to find this account",
@@ -81,7 +85,8 @@ export const en = {
         "nullWeight": "Can\'t be null",
         "isNotEnough": "The total summ exceeds the amount on the account.",
         "accUsed": "Account is already in use.",
-        "keyUsed": "Key is already in use."
+        "keyUsed": "Key is already in use.",
+        "sameAsset": "Assets the same"
     },
     "exchange": {
         "title": "Exchange"

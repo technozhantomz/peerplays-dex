@@ -3,8 +3,7 @@ import Dropdown from "./dropdown";
 import SelectHeader from "./selectHeader";
 import Input from "./input";
 import Form from "./form";
-import {calculateSendFee, transfer} from "../../actions/forms";
-import {getSpecificFee} from "../../actions/dataFetching";
+import {transfer} from "../../actions/forms";
 import {store} from '../../index.js';
 import Textarea from "./textarea";
 
@@ -12,23 +11,25 @@ class SendForm extends Component {
     state = {
         sended: false,
         defaultData: false,
-        fees: false,
         userTokens: false
     };
 
     componentDidMount() {
-        let defaultData = {...this.state.defaultData};
+
         const user = store.getState().account;
         const userTokens = user.assets;
         const startAsset = userTokens[0].symbol;
 
-        defaultData.from = user.name;
-        // defaultData.to = 'ann-test';
-        // defaultData.quantity = 1;
-        defaultData.quantityAsset = startAsset;
-        defaultData.fee = 0;
+        const defaultData = {
+            from: user.name,
+            // to: 'ann-test',
+            // quantity: 1,
+            quantityAsset: startAsset,
+            fee: 0,
+            feeAsset: startAsset
+        };
 
-        getSpecificFee('transfer', false).then(fees => this.setState({fees, userTokens, defaultData}));
+        this.setState({userTokens, defaultData});
     }
 
     handleTransfer = (data) => {
@@ -37,27 +38,24 @@ class SendForm extends Component {
     };
 
     render() {
-        const {sended, fees, defaultData, userTokens} = this.state;
+        const {sended, defaultData, userTokens} = this.state;
 
         if (!defaultData) return <span/>;
 
         return (
             <div className="card__content">
                 <Form
-                    fees={fees}
-                    feesAction={calculateSendFee}
-                    defaultData={defaultData}
-                    action={transfer}
-                    requiredFields={['to', 'quantity']}
-                    handleResult={this.handleTransfer}
+                    type={'transfer'}
                     className="form__send"
+                    defaultData={defaultData}
+                    requiredFields={['to', 'quantity']}
+                    action={transfer}
+                    handleResult={this.handleTransfer}
                     needPassword
                 >
                     {
                         form => {
                             const {errors, data} = form.state;
-
-                            console.log(form.state);
 
                             return (
                                 <Fragment>

@@ -1,1 +1,3 @@
-export const setPrecision = (amount, precision) => amount / (10 ** precision);
+import {roundNum} from "../roundNum";
+
+export const setPrecision = (amount, precision) => roundNum(amount / (10 ** precision));
