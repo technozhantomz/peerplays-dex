@@ -1,9 +1,14 @@
-import React from 'react';
+import React, {Component, Fragment} from 'react';
+import {store} from '../../index';
 import {Cell, Pie, PieChart} from "recharts";
+import {getStorage} from "../../actions/storage";
+import {dbApi} from "../../actions/nodes";
+import {setAssets} from "../../actions/setAssets";
+import {getAssetById} from "../../actions/assets";
+import {getAccountData} from "../../actions/store";
 
-const data = [{name: 'Group A', value: 400}, {name: 'Group B', value: 300},
-    {name: 'Group C', value: 300}, {name: 'Group D', value: 200}];
-const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
+const COLORS =
+    ['#F44336', '#9C27B0', '#3F51B5', '#2196F3', '#4CAF50', '#FF9800', '#795548', '#607D8B', '#8BC34A', '#00BCD4'];
 
 const RADIAN = Math.PI / 180;
 const renderCustomizedLabel = ({cx, cy, midAngle, innerRadius, outerRadius, percent, index}) => {
@@ -18,38 +23,73 @@ const renderCustomizedLabel = ({cx, cy, midAngle, innerRadius, outerRadius, perc
     );
 };
 
-export const GraphMyAssets = () => (
-    <div className="card__content graph__pie">
-        <PieChart width={270} height={270} onMouseEnter={this.onPieEnter}>
-            <Pie data={data} dataKey='value' cx={135} cy={135} innerRadius={55} outerRadius={105}
-                 fill="#8884d8"
-                 labelLine={false}
-                 label={renderCustomizedLabel}
-                 animationDuration={800}
-            >
+const portfolioData = async () => {
+    const name = getAccountData().name;
+    let data = [], balancesLength = 0;
+
+    await dbApi('get_full_accounts', [[name], false]).then(async e => {
+        balancesLength = e[0][1].balances.length;
+
+        for (let i = 0; i < balancesLength; i++) {
+            data.push({
+                value: await setAssets({
+                    quantity: e[0][1].balances[i].balance,
+                    asset: e[0][1].balances[i].asset_type
+                }),
+                name: await getAssetById(e[0][1].balances[i].asset_type),
+                color: COLORS[i]
+            })
+        }
+    });
+
+    return data;
+};
+
+class GraphMyAssets extends Component {
+    state = {
+        pieData: false
+    };
+
+    componentDidMount() {
+        portfolioData().then(e => this.setState({pieData: e}));
+    }
+
+    render() {
+        const {pieData} = this.state;
+
+        return (
+            <div className="card__content graph__pie">
                 {
-                    data.map((entry, index) => <Cell fill={COLORS[index % COLORS.length]}
-                                                       key={index}/>)
+                    pieData &&
+                    <Fragment>
+                        <PieChart width={270} height={270} onMouseEnter={this.onPieEnter}>
+                            <Pie data={pieData} dataKey='value' cx={135} cy={135} innerRadius={55} outerRadius={105}
+                                 fill="#8884d8"
+                                 labelLine={false}
+                                 label={renderCustomizedLabel}
+                                 isAnimationActive={false}
+                            >
+                                {
+                                    pieData.map((item, index) => <Cell fill={item.color} key={index}/>)
+                                }
+                            </Pie>
+                        </PieChart>
+                        <div className="pie__dots">
+                            {
+                                pieData.map((item, index) =>
+                                    <div className="dot" key={item.name.symbol}>
+                                        <span className="circle" style={{backgroundColor: item.color}}/>
+                                        {item.name.symbol}
+                                    </div>
+                                )
+                            }
+                        </div>
+                    </Fragment>
                 }
-            </Pie>
-        </PieChart>
-        <div className="pie__dots">
-            <div className="dot">
-                <span className="circle"/>
-                Bitcoin
             </div>
-            <div className="dot">
-                <span className="circle"/>
-                Dollars
-            </div>
-            <div className="dot">
-                <span className="circle"/>
-                Ethereum
-            </div>
-            <div className="dot">
-                <span className="circle"/>
-                Euros
-            </div>
-        </div>
-    </div>
-);
+        )
+    }
+}
+
+export default GraphMyAssets;
+

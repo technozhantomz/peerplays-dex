@@ -26,7 +26,7 @@ export const SmallCardContent = ({}) => (
     <div>
         <CardHeader title={'BTS : ETH'}/>
         <div className="card__content small__content">
-            <div className="number small__content--positive">
+            <div className="number">
                 1000000,000000
             </div>
             <AreaChart width={193} height={60} data={data}>
@@ -36,7 +36,14 @@ export const SmallCardContent = ({}) => (
                         <stop offset="85%" stopColor="#2EBD41" stopOpacity={0}/>
                     </linearGradient>
                 </defs>
-                <Area type="monotone" dataKey="uv" stroke="#2EBD41" fillOpacity={1} fill="url(#colorUy)"/>
+                <Area
+                    type="monotone"
+                    dataKey="uv"
+                    stroke="#2EBD41"
+                    fillOpacity={1}
+                    fill="url(#colorUy)"
+                    isAnimationActive={false}
+                />
             </AreaChart>
             <div className="blocks">
                 <div className="block">
@@ -51,7 +58,7 @@ export const SmallCardContent = ({}) => (
                     <div className="block__title">
                         Chаnge
                     </div>
-                    <div className="block__number small__content--positive">
+                    <div className="block__number">
                         -0.71%
                     </div>
                 </div>

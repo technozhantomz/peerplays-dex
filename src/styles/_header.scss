@@ -25,6 +25,9 @@ header{
   &__user-data{
     display: flex;
     align-items: center;
+    > button{
+      margin-right: 2rem;
+    }
   }
   &__notifications{
     .dropdown__body{
@@ -36,7 +39,7 @@ header{
     align-items: center;
     &:hover{
       .avatar{
-        background-color: $blue;
+        background-color: $light;
       }
     }
   }
@@ -61,6 +64,13 @@ header{
   &__name{
     font-size: $fzXLG;
     color: #3C476C;
+  }
+  &__user-actions{
+    display: flex;
+    align-items: center;
+    > button{
+      margin-right: 0.5rem;
+    }
   }
   &__asset{
     display: flex;
@@ -126,10 +136,14 @@ header{
   justify-content: center;
   align-items: center;
   padding: 0;
-  background-color: $blue-dark;
+  background-color: $white;
   color: $white;
   border-radius: 50%;
   transition: $anim;
+  border: 1px solid rgba(60,71,108,0.18);
+  &--user {
+    margin-right: 2rem;
+  }
   img{
     width: 100%;
     height: 100%;

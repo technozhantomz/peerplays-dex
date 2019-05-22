@@ -7,6 +7,8 @@ import createHistory from 'history/createBrowserHistory'
 import {ChainConfig} from "bitsharesjs/node_modules/bitsharesjs-ws/cjs";
 
 import './styles/styles.scss';
+import "react-datepicker/dist/react-datepicker.css";
+
 import {initLocale} from "./actions/locale";
 import {initStore} from "./actions/store/initStore";
 import {initDB} from "./actions/iDB";
@@ -15,6 +17,7 @@ import App from './App'
 import {initSettings} from "./actions/settings";
 import {initCache} from "./actions/cacheOps";
 import {defaultChainParams, defaultNetwork, defaultToken} from "./params/networkParams";
+
 
 const history = createHistory();
 export const store = initStore(history);
@@ -32,12 +35,12 @@ const render = (Component) => {
         <AppContainer>
             <Provider store={store}>
                 <ConnectedRouter history={history}>
-                    <Component history={history} />
+                     <Component history={history}/>
                 </ConnectedRouter>
             </Provider>
         </AppContainer>,
         document.getElementById('root'),
-    )
+    );
 };
 
 render(App);

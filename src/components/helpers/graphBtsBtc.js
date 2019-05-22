@@ -47,7 +47,13 @@ export const GraphBtsBtc = () => (
                         <stop offset="85%" stopColor="#2EBD41" stopOpacity={0}/>
                     </linearGradient>
                 </defs>
-                <Area dataKey="uv" stroke="#2EBD41" fillOpacity={1} fill="url(#colorUy)"/>
+                <Area
+                    dataKey="uv"
+                    stroke="#2EBD41"
+                    fillOpacity={1}
+                    fill="url(#colorUy)"
+                    isAnimationActive={false}
+                />
             </AreaChart>
         </div>
     </div>

@@ -2,11 +2,12 @@ import React from 'react';
 import {NavLink, Route, Switch} from "react-router-dom";
 import Tbd from "./tbd";
 import Translate from "react-translate-component";
-import Witnesses from "./witnesses";
-import Committee from "./committee";
-import Fees from "./fees";
-import Explorer from "./explorer";
-import Assets from "./assets";
+import Witnesses from "./blockchain/witnesses";
+import Committee from "./blockchain/committee";
+import Fees from "./blockchain/fees";
+import Explorer from "./blockchain/explorer";
+import Assets from "./blockchain/assets";
+import Workers from "./blockchain/workers";
 
 const blockchainMenu = [
     {
@@ -28,6 +29,11 @@ const blockchainMenu = [
         link: '/committee',
         tag: 'committee',
         component: Committee
+    },
+    {
+        link: '/workers',
+        tag: 'workers',
+        component: Workers
     },
     {
         link: '/markets',
@@ -56,7 +62,8 @@ const Blockchain = () => (
                         className="page__menu-item"
                         exact
                     />
-                ))}
+                ))
+            }
         </div>
         <div className="page__content">
             <Switch>

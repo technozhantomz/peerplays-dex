@@ -1,11 +1,12 @@
 import React, {Component, Fragment} from 'react';
-import Dropdown from "./dropdown";
+import Dropdown from "./form/dropdown";
 import SelectHeader from "./selectHeader";
-import Input from "./input";
-import Form from "./form";
+import Input from "./form/input";
+import Form from "./form/form";
 import {transfer} from "../../actions/forms";
-import {store} from '../../index.js';
-import Textarea from "./textarea";
+import Textarea from "./form/textarea";
+import {defaultToken} from "../../params/networkParams";
+import {getAccountData} from "../../actions/store";
 
 class SendForm extends Component {
     state = {
@@ -16,14 +17,12 @@ class SendForm extends Component {
 
     componentDidMount() {
 
-        const user = store.getState().account;
+        const user = getAccountData();
         const userTokens = user.assets;
-        const startAsset = userTokens[0].symbol;
+        const startAsset = userTokens.length ? userTokens[0].symbol : defaultToken;
 
         const defaultData = {
             from: user.name,
-            // to: 'ann-test',
-            // quantity: 1,
             quantityAsset: startAsset,
             fee: 0,
             feeAsset: startAsset
@@ -62,103 +61,50 @@ class SendForm extends Component {
                                     <div className="input__row">
                                         <Input
                                             name="from"
-                                            labelTag="send.from"
-                                            className="with-bg"
                                             onChange={form.handleChange}
                                             error={errors}
                                             value={data}
                                             disabled
                                         />
-                                        {/*<Dropdown*/}
-                                        {/*btn={<SelectHeader*/}
-                                        {/*labelTag="dashboard.sendForm.from"*/}
-                                        {/*text="super.duper"*/}
-                                        {/*className="with-bg with-border"*/}
-                                        {/*/>}*/}
-                                        {/*list={[*/}
-                                        {/*0, 1, 2, 3, 4, 5*/}
-                                        {/*].map((e, id) => <button key={id} onClick={this.changeLock}>{e}</button>)}*/}
-                                        {/*/>*/}
                                         <Input
                                             name="quantity"
-                                            labelTag="send.quantity"
                                             type="number"
-                                            className="with-bg"
                                             onChange={form.handleChange}
                                             error={errors}
                                             value={data}
                                         />
-                                        {/*<Input*/}
-                                        {/*name="quantity"*/}
-                                        {/*className="with-bg with-border field__input"*/}
-                                        {/*labelTag="dashboard.sendForm.quantity"*/}
-                                        {/*value={{quantity: '1,000'}}*/}
-                                        {/*onChange={form.handleChange}*/}
-                                        {/*/>*/}
                                     </div>
                                     <div className="input__row">
                                         <Input
                                             name="to"
-                                            labelTag="send.to"
-                                            type="text"
-                                            className="with-bg"
                                             onChange={form.handleChange}
                                             error={errors}
                                             value={data}
                                         />
-                                        {/*<Dropdown*/}
-                                        {/*btn={<SelectHeader*/}
-                                        {/*text="To"*/}
-                                        {/*className="with-bg"*/}
-                                        {/*/>}*/}
-                                        {/*list={[*/}
-                                        {/*0, 1, 2, 3, 4, 5*/}
-                                        {/*].map((e, id) => <button key={id} onClick={this.changeLock}>{e}</button>)}*/}
-                                        {/*/>*/}
                                         <Dropdown
                                             btn={<SelectHeader
                                                 text={data.quantityAsset}
-                                                className="with-bg"
                                             />}
                                             list={userTokens.map(e => <button
                                                 onClick={() => form.handleChange(e.symbol, 'quantityAsset')}
                                                 type="button">{e.symbol}</button>)}
                                         />
-                                        {/*<Dropdown*/}
-                                        {/*btn={<SelectHeader*/}
-                                        {/*labelTag="dashboard.sendForm.currency"*/}
-                                        {/*text="BTS"*/}
-                                        {/*className="with-bg with-border currency"*/}
-                                        {/*/>}*/}
-                                        {/*list={[*/}
-                                        {/*0, 1, 2, 3, 4, 5*/}
-                                        {/*].map((e, id) => <button key={id} onClick={this.changeLock}>{e}</button>)}*/}
-                                        {/*/>*/}
                                     </div>
                                     <div className="input__row">
                                         <Textarea
                                             name="memo"
-                                            labelTag="send.memo"
-                                            className="with-bg memo"
+                                            comment={true}
+                                            className="memo"
                                             onChange={form.handleChange}
                                             error={errors}
                                             value={data}
                                         />
-                                        {/*<Input*/}
-                                        {/*name="memo"*/}
-                                        {/*className="with-bg memo"*/}
-                                        {/*value={{memo: 'Memo'}}*/}
-                                        {/*onChange={form.handleChange}*/}
-                                        {/*/>*/}
                                     </div>
                                     <div className="btn__row">
                                         <span>Fee: {data.fee} {data.quantityAsset}</span>
                                         {sended && <span className="clr--positive">Trx completed</span>}
                                         <button type="submit" className="btn-round btn-round--send">SEND</button>
                                     </div>
-                                    {/*<div className="btn__row">*/}
-                                    {/*<button className="btn-round btn-round--send">SEND</button>*/}
-                                    {/*</div>*/}
                                 </Fragment>
                             )
                         }

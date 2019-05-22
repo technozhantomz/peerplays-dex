@@ -5,9 +5,11 @@ import {setInstance} from "../../../dispatch/index";
 import {nodeInit} from "../../../actions/nodes/nodeInit";
 import {pingNodes} from "../../../actions/nodes/index";
 import Switcher from "../../helpers/switcher";
-import {editStorage, getStorage, setStorage} from "../../../actions/storage/index";
+import {editStorage, getStorage} from "../../../actions/storage/index";
 import Node from "../../helpers/node";
 import {defaultNodesList} from "../../../params/nodesList";
+import Translate from "react-translate-component";
+import RoundButton from "../../helpers/buttons/roundButton";
 
 class NodesSelect extends Component{
 
@@ -15,7 +17,7 @@ class NodesSelect extends Component{
         autoselect: getStorage('settings').nodeAutoselect
     };
 
-    setActive = (node) => nodeInit(node.url)
+    setActive = (node) => nodeInit(node.url, true)
         .then(({instance}) => {
             editStorage('nodes', {active: node.url});
             this.changeAutoSelect(false);
@@ -41,13 +43,25 @@ class NodesSelect extends Component{
 
         if(nodesList.length){
             const activeNode = nodesList.find(e => e.url === instance.url);
-            const availableNodes = nodesList.filter(e => e.url !== instance.url);
+            const availableNodes = nodesList.filter(e => e.url !== instance.url && e.connectTime);
+            const unavailableNodes = nodesList.filter(e => !e.connectTime);
+
             nodesAmount = nodesList.length;
             content = <Fragment>
-                <h2>Active Node</h2>
+                <Translate content="nodes.active" component="h2" />
                 <Node data={activeNode} />
-                <h2>Avaliable Nodes</h2>
-                { availableNodes.map((el, id) => <Node key={id} data={el} handleActivation={this.setActive} />) }
+                {availableNodes.length &&
+                    <Fragment>
+                        <Translate content="nodes.available" component="h2" />
+                        { availableNodes.map((el, id) => <Node key={id} data={el} handleActivation={this.setActive} />) }
+                    </Fragment>
+                }
+                {unavailableNodes.length &&
+                    <Fragment>
+                        <Translate content="nodes.unavailable" component="h2" />
+                        { unavailableNodes.map((el, id) => <Node key={id} data={el} handleActivation={this.setActive} />) }
+                    </Fragment>
+                }
             </Fragment>
         }
 
@@ -61,9 +75,9 @@ class NodesSelect extends Component{
                             selected={autoSelect}
                             handleChange={this.changeAutoSelect}
                         />
-                        <span className="nodes__amount">{nodesAmount} listed</span>
+                        <Translate content="nodes.listed" nodesAmount={nodesAmount} className="nodes__amount"/>
                     </div>
-                    <button className="btn btn--round" onClick={this.ping}>Ping</button>
+                    <RoundButton tag="ping" onClick={this.ping} />
                 </div>
                 {content}
             </div>

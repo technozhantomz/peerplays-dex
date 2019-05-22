@@ -8,6 +8,10 @@ export const nodeInit = async (url, actualNode = false) => {
     let instance = '';
 
     if(actualNode){
+        if(Apis.instance().chain_id) {
+            // await dbApi('cancel_all_subscriptions');
+            await Apis.instance().close();
+        }
         instance = Apis.instance(url, true);
     } else {
         instance = new Apis();

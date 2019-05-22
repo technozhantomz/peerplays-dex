@@ -36,8 +36,22 @@ export const GraphTrends = () => (
                         <stop offset="85%" stopColor="#FF28F1" stopOpacity={0}/>
                     </linearGradient>
                 </defs>
-                <Area type='monotone' dataKey='uv' fillOpacity={1} stroke='#FF28F1' fill="url(#colorPv)" />
-                <Area type='monotone' dataKey='pv' fillOpacity={1} stroke='#6B37DD' fill="url(#colorUv)" />
+                <Area
+                    type='monotone'
+                    dataKey='uv'
+                    fillOpacity={1}
+                    stroke='#FF28F1'
+                    fill="url(#colorPv)"
+                    isAnimationActive={false}
+                />
+                <Area
+                    type='monotone'
+                    dataKey='pv'
+                    fillOpacity={1}
+                    stroke='#6B37DD'
+                    fill="url(#colorUv)"
+                    isAnimationActive={false}
+                />
             </AreaChart>
         </div>
     </div>

@@ -22,5 +22,6 @@ COPY --from=builder /source/dist ./dist
 ARG DEPLOY_HOST=127.0.0.1
 ARG DEPLOY_PASS=password
 ARG DEPLOY_NAME=bitshares-dream
+ARG DEPLOY_PATH=/var/www
 
-RUN sshpass -p "$DEPLOY_PASS" rsync -e "ssh -o StrictHostKeyChecking=no" -avz --delete ./dist $DEPLOY_HOST:/var/www/$DEPLOY_NAME
+RUN sshpass -p "$DEPLOY_PASS" rsync -e "ssh -o StrictHostKeyChecking=no" -avz --delete ./dist $DEPLOY_HOST:$DEPLOY_PATH/$DEPLOY_NAME

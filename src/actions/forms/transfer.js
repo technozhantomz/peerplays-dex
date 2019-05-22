@@ -1,8 +1,9 @@
 import Aes from "bitsharesjs/es/ecc/src/aes";
-import {store} from '../../index';
-import {PrivateKey, TransactionHelper} from "bitsharesjs";
+import {TransactionHelper} from "bitsharesjs";
 import {dbApi} from "../nodes";
 import {trxBuilder} from "./trxBuilder";
+import {getStore} from "../store";
+import {getDefaultFee} from "./getDefaultFee";
 
 export const transfer = async (data, result) => {
 
@@ -18,32 +19,29 @@ export const transfer = async (data, result) => {
         return result;
     }
 
-    const userData = store.getState().account;
-    const asset = userData.assets.find(e => e.symbol === data.quantityAsset);
-    const from = userData.id;
+    const {loginData, accountData} = getStore();
+    const asset = accountData.assets.find(e => e.symbol === data.quantityAsset);
+    const from = accountData.id;
 
     const amount = {
         amount: data.quantity * (10 ** asset.precision),
         asset_id: asset.id
     };
-    const fee = {
-        amount: 0,
-        asset_id: asset.id
-    };
+
+    const fee = getDefaultFee();
 
     const trx = {
         type: 'transfer',
         params: { from, to: to.id, amount, fee }
     };
 
-    const login = userData.name;
     const password = data.password;
 
-    const activeKey = PrivateKey.fromSeed(login + 'active' + password);
+    const activeKey = loginData.formPrivateKey(password, 'active');
 
     if(data.memo){
 
-        const fromMemo = PrivateKey.fromSeed(login + 'memo' + password);
+        const fromMemo = loginData.formPrivateKey(password, 'memo');
         const toMemo = to.options.memo_key;
         const nonce = TransactionHelper.unique_nonce_uint64();
 

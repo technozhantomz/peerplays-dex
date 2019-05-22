@@ -8,16 +8,19 @@
   }
   &__body{
     min-width: 100%;
+    height: fit-content;
     position: absolute;
     left: 0;
-    bottom: 50%;
-    transform: scaleY(0);
+    top: 80%;
     opacity: 0;
     transition: $anim;
     background: $white;
     box-shadow: $shadow-bold;
     border-radius: 4px;
-    z-index: 2;
+    z-index: -1;
+    &.custom-scroll{
+      max-height: 20rem;
+    }
   }
   &__item{
     white-space: nowrap;
@@ -39,69 +42,68 @@
 
 .open{
   > .dropdown__body{
-    transform: scaleY(1) translateY(100%);
-    bottom: 0;
+    top: 100%;
     opacity: 1;
+    z-index: 2;
   }
   &.dropdown .field{
     &__caret{
-      transform: rotate(180deg);
+      transform: rotate(180deg) translateY(50%);
+    }
+    &__border{
+      width: 100%;
     }
   }
 }
 
 .top-right{
-  .dropdown__body{
-    bottom: 120%;
-    left: 120%;
+  > .dropdown__body{
+    top: 0;
+    left: 100%;
+    transform: translate(-90%, -10%);
   }
   &.open{
     > .dropdown__body{
-      transform: scaleY(1) translate(-100%, 100%);
-      bottom: 100%;
-      left: 100%;
+      transform: translate(-100%, 0);
     }
   }
 }
 
 .top-left{
-  .dropdown__body{
-    bottom: 120%;
-    left: -20%;
+  > .dropdown__body{
+    top: 0;
+    left: 0;
+    transform: translate(-10%, -10%);
   }
   &.open{
     > .dropdown__body{
-      transform: scaleY(1) translate(0, 100%);
-      bottom: 100%;
-      left: 0;
+      transform: translate(0);
     }
   }
 }
 
 .top-center{
-  .dropdown__body{
-    bottom: 120%;
+  > .dropdown__body{
+    top: 0;
     left: 50%;
+    transform: translate(-50%, -10%);
   }
   &.open{
     > .dropdown__body{
-      transform: scaleY(1) translate(-50%, 100%);
-      bottom: 100%;
-      left: 50%;
+      transform: translate(-50%, 0);
     }
   }
 }
 
 .bottom-right{
-  .dropdown__body{
-    bottom: 120%;
-    left: 100%;
+  > .dropdown__body{
+    transform: translate(-85%, -10%);
+    top: 150%;
+    left: 0;
   }
   &.open{
     > .dropdown__body{
-      transform: scaleY(1) translate(-100%, 100%);
-      bottom: 0;
-      left: 100%;
+      transform: translate(-95%, 0);
     }
   }
 }

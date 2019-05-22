@@ -1,20 +1,12 @@
-import {store} from "../../index";
 import {trxBuilder} from "./trxBuilder";
-import PrivateKey from "bitsharesjs/es/ecc/src/PrivateKey";
+import {getLoginData} from "../store";
 
-export const cancelOrder = async ({params, password}) => {
+export const cancelOrder = async ({trx, password}) => {
     const result = {
         success: false
     };
 
-    const trx = {
-        type: 'limit_order_cancel',
-        params
-    };
-
-    const login = store.getState().account.name;
-
-    const activeKey = PrivateKey.fromSeed(login + 'active' + password);
+    const activeKey = getLoginData().formPrivateKey(password, 'active');
     const trxResult = await trxBuilder([trx], [activeKey]);
 
     if(trxResult) result.success = true;

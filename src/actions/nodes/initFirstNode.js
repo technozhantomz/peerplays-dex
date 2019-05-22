@@ -29,7 +29,6 @@ export const initFirstNode = async () => {
     } else {
         for(let node of defaultNodesList){
             let initedInstance = await nodeInit(node.url, true);
-            console.log(initedInstance);
             if(initedInstance){
                 initedNode = {...node, ...initedInstance};
                 break
@@ -41,7 +40,7 @@ export const initFirstNode = async () => {
 
     actions.forEach(e => store.dispatch(e));
 
-    // setSocketCallBack(initedNode.instance);
+    setSocketCallBack(initedNode.instance);
 
     return initedNode;
 };

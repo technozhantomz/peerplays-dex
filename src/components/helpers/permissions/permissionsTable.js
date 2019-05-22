@@ -1,9 +1,9 @@
 import React, {Component, Fragment} from "react";
 import Table from "../table";
-import Dropdown from "../dropdown";
+import Dropdown from "../form/dropdown";
 import SelectHeader from "../selectHeader";
 import Translate from "react-translate-component";
-import ActionsBtn from "../actionsBtn";
+import ActionsBtn from "../buttons/actionsBtn";
 import AddPermission from "./addPermission";
 import PermissionTitle from "./permissionTitle";
 
@@ -155,7 +155,6 @@ class PermissionTable extends Component{
                         <Dropdown
                             btn={<SelectHeader
                                 text={tableType.tag}
-                                className="with-bg"
                             />}
                             list={typesList.map((e, id) => (
                                 <button key={id} onClick={() => this.changeHead(e)}>{e.tag}</button>

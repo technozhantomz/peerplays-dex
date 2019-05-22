@@ -30,9 +30,17 @@
     position: absolute;
     top: auto;
     left: 0;
+    z-index: 2;
     &:hover{
       cursor: pointer;
     }
+  }
+  &__partialFill{
+    height: 3.4rem;
+    position: absolute;
+    top: auto;
+    right: 0;
+    z-index: 1;
   }
   &--with-link{
     position: relative;
@@ -44,6 +52,15 @@
         }
       }
     }
+  }
+
+  &__title {
+    color: $grey-blue;
+    font-family: $secondary-font;
+    font-size: 15.65px;
+    font-weight: 600;
+    padding-left: 16px;
+    padding-top: 50px;
   }
 }
 
@@ -57,12 +74,19 @@
   &__on-hover{
     opacity: 0;
     transition: $anim;
-    button{
+    button:not(:first-child){
       margin-left: 1.6rem;
     }
     .mask{
       fill: $blue-dark;
       transition: $anim;
+    }
+  }
+  &__btn{
+    &--red{
+      .mask{
+        fill: $negative;
+      }
     }
   }
   .dropdown{
@@ -107,5 +131,41 @@
     color: $light;
     background-color: $positive;
     font-size: 10px;
+  }
+}
+
+.table{
+  &--exchange &{
+    &__header{
+      background: #F5F6FA;
+      > .table__cell{
+        color: rgba(60,71,108,0.5);
+        border-bottom: 0;
+      }
+    }
+    &__row:first-child{
+      border-top: 0;
+    }
+    &__cell{
+      padding: .8rem 3rem .8rem 1.6rem;
+      font-size: $fzSM;
+    }
+  }
+}
+
+.table__row {
+  .margins {
+    width: 120px;
+    &__actions {
+      display: none;
+    }
+  }
+  &:hover {
+    .margins {
+      &__actions {
+        display: flex;
+        justify-content: space-around;
+      }
+    }
   }
 }

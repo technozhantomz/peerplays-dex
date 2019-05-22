@@ -1,25 +1,11 @@
 import React from "react";
 import Translate from "react-translate-component";
 import Link from "react-router-dom/es/Link";
+import TableHeading from "./tableHeading";
 
-const Table = ({className, tableHead, rows, link}) => (
-    <div className={`table${link ? ' table--with-link' : ''}${className ? ` ${className}` : ''}`}>
-        <div className="table__header">
-            {tableHead.map((el, id) => (
-                el.translateTag
-                    ? <Translate
-                        key={`th-${id}`}
-                        content={`tableHead.${el.translateTag}`}
-                        component="div"
-                        className={`table__cell ${el.params ? el.params : ''}`}
-                        with={el.translateParams}
-                    />
-                    : <div
-                        key={`th-${id}`}
-                        className={`table__cell ${el.params ? el.params : ''}`}
-                    />
-            ))}
-        </div>
+const Table = ({className, tableHead, rows, link, onClick, partialFill}) => (
+    <div className={`table${link || onClick ? ' table--with-link' : ''}${className ? ` ${className}` : ''}`}>
+        <TableHeading tableHead={tableHead} />
         {rows.map((trItem, trId) => (
             <div key={`tr-${trId}`} className="table__row">
                 {tableHead.map((tdItem, tdId) => (
@@ -27,7 +13,20 @@ const Table = ({className, tableHead, rows, link}) => (
                         {trItem[tdItem.key]}
                     </div>
                 ))}
-                {link && <Link to={`${link.path}${trItem[link.key]}`} className="table__link" />}
+                {partialFill
+                && <div
+                    className="table__partialFill"
+                    style={{
+                        backgroundColor: partialFill.color,
+                        width: `${trItem[partialFill.percentKey]}%`
+                    }}
+                />
+                }
+                {link
+                    && <Link to={`${link.path}${trItem[link.key]}`} className="table__link" />
+                }
+                {onClick
+                    && <button onClick={() => onClick(trItem)} className="table__link" />}
             </div>
         ))}
     </div>

@@ -1,0 +1,119 @@
+.asset-stats {
+  &__content {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 0 3.2rem 3rem;
+    div {
+      min-width: 352px;
+      padding: 1rem;
+      color: #2A2E46;
+      font-family: $secondary-font;
+      font-size: 13.82px;
+      letter-spacing: 0.25px;
+      line-height: 20px;
+    }
+    .permissions__list {
+      display: flex;
+      align-items: center;
+      path {
+        stroke: #7FABBF;
+        stroke-width: 3px;
+      }
+      svg {
+        width: 48px;
+        margin-right: 1rem;
+      }
+    }
+  }
+  &__items {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: -2rem;
+    padding: 0 3.2rem 3rem;
+  }
+  &__item {
+    min-width: 17.4rem;
+    margin-top: 2rem;
+    margin-right: 2rem;
+    display: flex;
+    flex-direction: column;
+    span {
+      &:first-child {
+        color: $dark-light;
+        margin-bottom: 0.8rem;
+      }
+      &:last-child {
+        color: #3C476C;
+        font-size: $fzLG;
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+.asset-action {
+
+  &__rows {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 3rem;
+  }
+
+  &__content {
+    padding: 0 32px;
+
+    .btn__row {
+      margin: 25px 0;
+      display: flex;
+      align-content: center;
+      justify-content: space-between;
+      align-items: center;
+      color: $dark-light;
+      font-family: $secondary-font;
+      font-size: 11.85px;
+      letter-spacing: 0.4px;
+      line-height: 16px;
+
+      .btn-round--fund{
+        width: 128px !important;
+      }
+    }
+
+    .feedProducer {
+      width: 353px;
+    }
+
+    .forceSettlementPrice {
+      width: 255px;
+    }
+
+    .small {
+      width: 127px;
+    }
+  }
+
+  &__row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  &__quantity {
+    margin-left: 3rem;
+  }
+}
+
+.card {
+  &--action {
+    width: 50%;
+
+    &:first-child {
+      margin-right: 3rem;
+    }
+  }
+
+  &--action__big {
+    width: 100%;
+  }
+}

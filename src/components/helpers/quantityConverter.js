@@ -1,31 +1,36 @@
 import React, {Component} from "react";
-import Dropdown from "./dropdown";
+import Dropdown from "./form/dropdown";
 import SelectHeader from "./selectHeader";
 import {dbApi} from "../../actions/nodes";
 import {defaultQuote} from "../../params/networkParams";
-import {getAsset, setPrecision} from "../../actions/assets";
+import {formAssetData, getAsset, setPrecision} from "../../actions/assets";
+import {roundNum} from "../../actions/roundNum";
+import {Asset} from "../../classes";
+import {getFullAccount} from "../../actions/account";
 
-const formQuantity = async (list, assetSymbol = defaultQuote) => {
+export const formQuantity = async (list, assetSymbol = defaultQuote) => {
     let quantity = 0;
     return await Promise.all(list.map(async asset => {
         const price = assetSymbol === asset.symbol ? 1 : await dbApi('get_ticker', [assetSymbol, asset.symbol]).then(e => e.latest);
         quantity = quantity + (price * asset.amount);
-    })).then(() => quantity);
+    })).then(() => roundNum(quantity));
 };
 
-const formUserAssets = async (name) => {
-    const userAssets = await dbApi('get_full_accounts', [[name], false]).then(e => e[0][1].balances);
+export const formUserAssets = async (assetsList) => {
+
     const defaultQuoteData = {amount: 0, symbol: defaultQuote};
 
     let haveDefaultQuote = false;
 
-    let assets = await Promise.all(userAssets.map(async asset => {
-        const {precision, symbol} = await getAsset(asset.asset_type);
+    let assets = await Promise.all(assetsList.map(async el => {
+        const asset = await formAssetData(el);
+        
+        const symbol = asset.symbol;
+        const amount = asset.setPrecision();
+
         if(symbol === defaultQuote) haveDefaultQuote = true;
-        return {
-            amount: setPrecision(asset.balance, precision),
-            symbol
-        }
+
+        return { amount,  symbol };
     }));
 
     if(!haveDefaultQuote) assets.unshift(defaultQuoteData);
@@ -41,14 +46,22 @@ class QuantityConverter extends Component{
     };
 
     componentDidMount(){
-        formUserAssets(this.props.name).then(assetsList => formQuantity(assetsList).then(quantity => {
-            this.setState({assetsList, quantity});
-        }));
+        this.formData(this.props);
+    }
+
+    componentWillReceiveProps(props){
+        this.formData(props);
     }
 
     shouldComponentUpdate(nextProps, nextState){
         return nextProps.name !== this.props.name || nextState.quantity !== this.state.quantity;
     }
+
+    formData = (props) => formUserAssets(props.assets).then(assetsList => (
+        formQuantity(assetsList, assetsList[this.state.selectedAsset].symbol).then(quantity => {
+            this.setState({assetsList, quantity});
+        })
+    ));
 
     changeQuantity = (id) => {
         const selectedAsset = id;

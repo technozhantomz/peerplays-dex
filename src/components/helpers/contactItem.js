@@ -1,18 +1,19 @@
 import React from 'react';
 import Avatar from "./avatar";
+import {Link} from "react-router-dom";
 
-export const ContactItem = ({data, actions}) => (
+export const ContactItem = ({data, actions, handleClick = e => e.preventDefault}) => (
     <div className="contact">
         <Avatar userName={data.name}/>
         <div className="contact__content">
-            <div className="contact__data">
+            <Link to={`/user/${data.name}`} onClick={handleClick} className="contact__data">
                 <span className="contact__name">
                     {data.name}
                 </span>
                     <span className="contact__id">
                     {data.id}
                 </span>
-            </div>
+            </Link>
             {actions}
         </div>
     </div>

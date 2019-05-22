@@ -6,8 +6,10 @@ import Security from "./security";
 import Backup from "./backup";
 import Translate from "react-translate-component";
 import Tbd from "../tbd";
-import ActionsBtn from "../../helpers/actionsBtn";
+import ActionsBtn from "../../helpers/buttons/actionsBtn";
 import PageMenu from "../../helpers/pageMenu";
+import Membership from "./membership";
+import {connect} from "react-redux";
 
 const settingsMenu = [
     {
@@ -33,10 +35,15 @@ const settingsMenu = [
         link: '/backup',
         tag: 'reBackup',
         component: Backup
+    },
+    {
+        link: '/membership',
+        tag: 'membership',
+        component: Membership
     }
 ];
 
-const Settings = () => (
+const Settings = ({account}) => (
     <div className="container page">
         <div className="page__header-wrapper">
             <h1 className="page__title">Settings</h1>
@@ -48,8 +55,10 @@ const Settings = () => (
                 ]}
             />
         </div>
-        <PageMenu items={settingsMenu} link={'/settings'} path={'/settings'} />
+        <PageMenu items={account ? settingsMenu : settingsMenu.slice(0, settingsMenu.length - 1)} link={'/settings'} path={'/settings'} />
     </div>
 );
 
-export default Settings;
+const mapStateToProps = state => ({account: state.accountData});
+
+export default connect(mapStateToProps)(Settings);

@@ -1,6 +1,6 @@
 import {ChainTypes} from "bitsharesjs";
 import {dbApi} from "../nodes";
-import {getAsset, setPrecision} from "../assets";
+import {setPrecision} from "../assets";
 
 export const getSpecificFee = async (opName, convert = true) => {
     const opID = ChainTypes.operations[opName];

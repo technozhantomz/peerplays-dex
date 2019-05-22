@@ -3,11 +3,11 @@ import {defaultLocales} from "../../../params/defaultLocales";
 import {setLocale} from "../../../actions/locale/setLocale";
 import Switcher from "../../helpers/switcher";
 import {editStorage, getStorage} from "../../../actions/storage/index";
-import CheckBox from "../../helpers/checkbox";
+import CheckBox from "../../helpers/form/checkbox";
 import Translate from "react-translate-component";
-import Dropdown from "../../helpers/dropdown";
+import Dropdown from "../../helpers/form/dropdown";
 import SelectHeader from "../../helpers/selectHeader";
-import Input from "../../helpers/input";
+import Input from "../../helpers/form/input";
 
 class GeneralSettings extends Component {
 
@@ -71,11 +71,7 @@ class GeneralSettings extends Component {
             <div className="settings">
                 <Translate content="general.interface" component="h2" />
                 <Dropdown
-                    btn={<SelectHeader
-                        labelTag="general.language"
-                        text={activeLang}
-                        className="with-bg with-border"
-                    />}
+                    btn={<SelectHeader labelTag="general.language" text={activeLang} />}
                     list={localesList}
                 />
                 <Switcher
@@ -94,9 +90,7 @@ class GeneralSettings extends Component {
                 <Translate content="general.faucet" component="h2" />
                 <Input
                     name="faucet"
-                    labelTag="general.faucetURL"
-                    comment="general.faucetComment"
-                    className="with-bg with-border"
+                    comment={true}
                     value={formData}
                     disabled
                 />

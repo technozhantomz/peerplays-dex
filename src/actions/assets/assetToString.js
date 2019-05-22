@@ -1,9 +1,9 @@
 import {setPrecision} from "./setPrecision";
-import {getAsset} from "./getAsset";
+import {getAssetById} from "./getAssetById";
 import {amountToString} from "./amountToString";
 
 export const assetToString = async (asset) => {
-    const {precision, symbol} = await getAsset(asset.asset_id);
+    const {precision, symbol} = await getAssetById(asset.asset_id);
     const precisionedValue = setPrecision(asset.amount, precision);
     return amountToString(precisionedValue, symbol);
 };

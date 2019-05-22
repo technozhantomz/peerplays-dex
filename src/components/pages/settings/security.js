@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import Translate from "react-translate-component";
 import {editStorage, getStorage} from "../../../actions/storage/index";
-import Dropdown from "../../helpers/dropdown";
+import Dropdown from "../../helpers/form/dropdown";
 import SelectHeader from "../../helpers/selectHeader";
 import {deleteCookie, getCookie, setCookie} from "../../../actions/cookie";
 
@@ -37,11 +37,7 @@ class Security extends Component{
                 <div className="security__item">
                     <Translate content="security.lock" component="h2" />
                     <Dropdown
-                        btn={<SelectHeader
-                            labelTag="security.lockLabel"
-                            text={walletLock}
-                            className="with-bg with-border"
-                        />}
+                        btn={<SelectHeader labelTag="security.lockLabel" text={walletLock} />}
                         list={list.map((e, id) => <button key={id} onClick={this.changeLock}>{e}</button>)}
                     />
                 </div>

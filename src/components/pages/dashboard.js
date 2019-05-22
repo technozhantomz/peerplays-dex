@@ -2,19 +2,19 @@ import React, {Component} from 'react';
 import {CardHeader} from "../helpers/cardHeader";
 import {Card} from "../helpers/card";
 import {SmallCardContent} from "../helpers/smallCardContent";
-import Add from '@material-ui/icons/Add';
 import QuickSellBuy from "../helpers/quickSellBuy";
 import SendForm from "../helpers/sendForm";
 import {GraphTrends} from "../helpers/graphTrends";
 import {GraphBtsBtc} from "../helpers/graphBtsBtc";
-import {GraphMyAssets} from "../helpers/graphMyAssets";
 import Table from "../helpers/table";
 import MoreVertIcon from '@material-ui/icons/MoreVert';
-import {setModal} from "../../dispatch/setModal";
-import {MyAssetsModal} from "../helpers/myAssetsModal";
 import OpenOrders from "../helpers/openOrders";
 import NoData from "../helpers/noData";
-import {getStorage} from "../../actions/storage";
+import {getStorage} from "../../actions/storage/index";
+import GraphMyAssets from "../helpers/graphMyAssets";
+import TableMyAssets from "../helpers/tableMyAssets";
+import NeedToLogin from "../helpers/needToLogin";
+import {connect} from "react-redux";
 
 const tableActivityHead = [
     {
@@ -105,7 +105,7 @@ const tableAssetsHead = [
     },
     {
         key: "priceUSD",
-        translateTag: "priceUSD",
+        translateTag: "priceWithToken",
         params: 'fit-content'
     },
     {
@@ -156,7 +156,7 @@ class Dashboard extends Component {
 
     render() {
 
-        if(!getStorage('account').name) return <NoData tag={'empty.login'} />;
+        if(!this.props.account) return <NeedToLogin pageName={'dashboard'} />;
 
         return (
             <div className="container">
@@ -195,7 +195,7 @@ class Dashboard extends Component {
                         <GraphBtsBtc/>
                     </Card>
                     <Card mode="graph">
-                        <CardHeader title={'My Assets'}/>
+                        <CardHeader title={'My Portfolio'}/>
                         <GraphMyAssets/>
                     </Card>
                 </div>
@@ -236,11 +236,8 @@ class Dashboard extends Component {
                         </Card>
                     </span>
                     <Card mode="table">
-                        <CardHeader title={'Open Orders'}/>
-                        <Table
-                            tableHead={tableAssetsHead}
-                            rows={tableAssets}
-                        />
+                        <CardHeader title={'My Assets'}/>
+                        <TableMyAssets/>
                     </Card>
                 </div>
             </div>
@@ -248,4 +245,6 @@ class Dashboard extends Component {
     }
 }
 
-export default Dashboard;
+const mapStateToProps = (state) => ({account: state.accountData});
+
+export default connect(mapStateToProps)(Dashboard);

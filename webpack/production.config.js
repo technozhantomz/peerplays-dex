@@ -19,7 +19,7 @@ module.exports = merge(config, {
     module: {
         rules: [
             {
-                test: /\.scss$/,
+                test: /\.s?css$/,
                 use: extractSass.extract({
                     use: [
                         'css-loader',
@@ -42,6 +42,7 @@ module.exports = merge(config, {
             'process.env.NODE_ENV': JSON.stringify('production')
         }),
         new CopyWebpackPlugin([{ context: SOURCES, from: 'assets', to: DIST }]),
+        new CopyWebpackPlugin([{ context: SOURCES, from: 'charting_library', to: DIST }]),
         new optimize.ModuleConcatenationPlugin(),
         extractSass,
     ],

@@ -1,5 +1,5 @@
-export const getStorage = (item) => {
-    const data = window.localStorage.getItem(item);
+export const getStorage = (item, storageType = 'localStorage') => {
+    const data = window[storageType].getItem(item);
     let result = {};
 
     try{

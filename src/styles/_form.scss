@@ -11,4 +11,55 @@ form{
       z-index: 1;
     }
   }
+  .switch{
+    margin-bottom: 2.5rem;
+  }
+  .fee{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2rem;
+    span{
+      &:first-child{
+        color: $dark-light;
+        font-size: $fzSM;
+        margin-bottom: .3rem;
+      }
+      &:last-child{
+        color: $dark;
+        font-size: $fzLG;
+      }
+    }
+  }
+}
+
+.form{
+  &__row{
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    margin: 0 -0.8rem;
+    > .field, > .dropdown{
+      margin: 0 0.8rem;
+      flex: 1;
+    }
+  }
+  .info-block{
+    margin-bottom: 3.9rem;
+  }
+  &__hide-data{
+    color: $blue;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 3rem;
+  }
+}
+
+.switchers-group{
+  width: 33rem;
+  .switch{
+    justify-content: space-between;
+  }
+  .switch.right-sided .switch__icon{
+    margin-right: 0;
+  }
 }

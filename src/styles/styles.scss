@@ -9,11 +9,13 @@
 @import "header";
 @import "notifications";
 @import "page";
+@import "global-search";
 @import "modal";
 
 //components
 @import "card";
 @import "switch";
+@import "tabs";
 @import "tables";
 @import "myAssets";
 
@@ -23,12 +25,19 @@
 @import "field";
 @import "radio";
 @import "form";
+@import "upload";
 @import "widget";
 
 //pages
 @import "settings";
+@import "membership";
+@import "exchange";
 @import "security";
 @import "nodes";
 @import "backup";
 @import "permissions";
 @import "contact";
+@import "voting";
+@import "block";
+@import "asset";
+@import "deposit";

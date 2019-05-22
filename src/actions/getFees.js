@@ -31,14 +31,14 @@ export const getFees = async () => {
                     quantity: Number(item[1]['price_per_kbyte']),
                     asset: '1.3.0'
                 }) + " BTS" : '',
-                name: <span className="operation negative">{item['name']}</span>
+                name: <span className="operation positive">{item['name']}</span>
             }
         } else {
             return {
                 fee: '',
                 membership_lifetime_fee: '',
                 price_per_kbyte: '',
-                name: <span className="operation negative">{item['name']}</span>
+                name: <span className="operation positive">{item['name']}</span>
             }
         }
     });

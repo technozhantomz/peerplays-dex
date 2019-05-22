@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Input from "../input";
+import Input from "../form/input";
 import {dbApi} from "../../../actions/nodes";
 import {IconCross} from "../../../svg";
 
@@ -13,8 +13,6 @@ const checkKey = async (val, type, prevKeys) => {
 
     if(isKey){
         const findKey = await dbApi('get_key_references', [[val]]);
-
-        console.log(findKey);
 
         return findKey ? '' : 'noKey';
     }
@@ -85,14 +83,14 @@ class NewPermission extends Component{
             <div className="permissions__new-item">
                 <Input
                     name="key"
-                    className="with-bg"
+                    hideLabel={true}
                     onBlur={this.handleKey}
                     error={errors}
                     value={data}
                 />
                 <Input
                     name="weight"
-                    className="with-bg"
+                    hideLabel={true}
                     onChange={this.handleWeight}
                     error={errors}
                     value={data}

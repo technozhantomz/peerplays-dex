@@ -1,13 +1,14 @@
 import React from "react";
-import {getStorage} from "../storage";
 import {getPassword} from "./index";
-import {setModal} from "../../dispatch/setModal";
-import SendModal from "../../components/helpers/modal/sendModal";
+import SendModal from "../../components/helpers/modal/content/sendModal";
+import {setModal} from "../../dispatch/layoutDispatch";
+import {getAccountData} from "../store";
 
-export const dispatchSendModal = (defaultToken = '') => getPassword(password => setModal(
+export const dispatchSendModal = (defaultToken = '', defaultTo = '') => getPassword(password => setModal(
     <SendModal
         password={password}
-        defaultFrom={getStorage('account').name}
+        defaultFrom={getAccountData().name}
+        defaultTo={defaultTo}
         defaultToken={defaultToken}
     />
 ));

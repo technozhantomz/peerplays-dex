@@ -1,3 +1,6 @@
 export * from './getUserName';
 export * from './formAccount';
-export * from './passwordCheck';
+export * from './getFullAccount';
+export * from './checkActivity';
+export * from './setNewAccount';
+export * from './getStoragedAccount';

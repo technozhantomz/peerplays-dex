@@ -1,89 +1,55 @@
 import React, {Component} from 'react';
-import Translate from "react-translate-component";
-import Dropdown from "../../helpers/dropdown";
-import SelectHeader from "../../helpers/selectHeader";
+import {connect} from "react-redux";
+import {
+    backupBrain,
+    backupWallet,
+    restoreFromBin,
+    restoreFromBrain
+} from "../../../actions/wallet";
+import BackupItem from "../../helpers/backupItem";
+import {getStorage} from "../../../actions/storage";
+import {getStoragedAccount} from "../../../actions/account";
 
 const backupsList = [
     {
-        text: 'reBackup.backupWallet',
-        type: 'wallet'
+        type: 'wallet',
+        backupDate: 'backup_date',
+        action: backupWallet
     },
     {
-        text: 'reBackup.backupBrain',
-        type: 'brainkey'
+        type: 'brainkey',
+        backupDate: 'brainkey_backup_date',
+        action: backupBrain
     }
 ];
 
-const restoresList = [
+const restoreList = [
     {
-        text: 'reBackup.fromBin',
-        type: 'bin'
+        type: 'fromBin',
+        action: restoreFromBin
     },
     {
-        text: 'reBackup.fromPrivate',
-        type: 'private'
+        type: 'fromPrivate',
+        action: e => e.preventDefault
     },
     {
-        text: 'reBackup.fromBrain',
-        type: 'brain'
+        type: 'fromBrain',
+        action: restoreFromBrain
     }
 ];
 
 class Backup extends Component{
-
-    state = {
-        backup: backupsList[0],
-        restore: restoresList[0]
-    };
-
-    changeBackup = (elem) => {
-        this.setState({backup: elem});
-    };
-
-    changeRestore = (elem) => {
-        this.setState({restore: elem});
-    };
-
     render(){
-
-        const backupTranslate = "reBackup.backup";
-        const restoreTranslate = "reBackup.restore";
-
+        const isWallet = getStoragedAccount().type === 'wallet';
         return(
             <div className="backup">
-                <div className="backup__item">
-                    <Translate content={`${backupTranslate}.title`} component="h2" />
-                    <Dropdown
-                        btn={<SelectHeader
-                            labelTag={`${backupTranslate}.type`}
-                            text={<Translate content={this.state.backup.text} />}
-                            className="with-bg with-border"
-                        />}
-                        list={backupsList.map((e, id) => <Translate key={id} onClick={() => this.changeBackup(e)} content={e.text} component="button" />)}
-                        comment={<Translate content={`${backupTranslate}.comment`} lastBackup={'01/22/2019'} />}
-                    />
-                    <Translate content={`${backupTranslate}.needed`} className="backup__warning" />
-                    <Translate content={`${backupTranslate}.desc`} className="backup__desc" component="p" />
-                    <Translate content={`${backupTranslate}.title`} component="button" className="btn-round" />
-                </div>
-                <div className="backup__item">
-                    <Translate content={`${restoreTranslate}.title`} component="h2" />
-                    <Dropdown
-                        btn={<SelectHeader
-                            labelTag={`${restoreTranslate}.type`}
-                            text={<Translate content={this.state.restore.text} />}
-                            className="with-bg with-border"
-                        />}
-                        list={restoresList.map((e, id) => <Translate key={id} onClick={() => this.changeRestore(e)} content={e.text} component="button" />)}
-                    />
-                    <Translate content={`${restoreTranslate}.fileUpload`} component="button" className="btn-round btn-round--grey" />
-                    <Translate content={`${restoreTranslate}.desc`} className="backup__desc" component="p" />
-                    <Translate content={`${restoreTranslate}.title`} component="button" className="btn-round" />
-                </div>
-
+                { isWallet && <BackupItem type={'backup'} actionsList={backupsList} data={this.props.wallet} /> }
+                <BackupItem type={'restore'} actionsList={restoreList} />
             </div>
         )
     }
 }
 
-export default Backup;
+const mapStateToProps = state => ({wallet: state.loginData});
+
+export default connect(mapStateToProps)(Backup);

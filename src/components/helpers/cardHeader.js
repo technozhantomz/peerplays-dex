@@ -1,13 +1,12 @@
 import React from 'react';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import Translate from "react-translate-component";
 
 export const CardHeader = ({title, action}) => (
     <div className="card__header">
-        <div className="card__title">
-            {title}
-        </div>
-        <button className="card__button" onClick={action}>
+        <Translate component="div" className="card__title" content={title}/>
+        {action && <button className="card__button" onClick={action}>
             <MoreVertIcon/>
-        </button>
+        </button> }
     </div>
 );

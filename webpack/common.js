@@ -40,6 +40,11 @@ const config = {
                 use: ['babel-loader'],
             },
             {
+                test: /\.html$/,
+                exclude: /node_modules/,
+                use: ['html-loader'],
+            },
+            {
                 test: /\.svg$/i,
                 exclude: /node_modules/,
                 include: /svg/,
@@ -113,7 +118,7 @@ const config = {
 
     plugins: [
         new HtmlPlugin({
-            title: 'EOS Explorer',
+            title: 'Bitshares UI',
             template: 'index.html',
             hash: true,
             cache: true

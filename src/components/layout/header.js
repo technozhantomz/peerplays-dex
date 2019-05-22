@@ -1,20 +1,13 @@
 import React, {Fragment} from 'react';
 import {connect} from "react-redux";
-import {setModal} from "../../dispatch/setModal";
-import {store} from '../../index';
-import Dropdown from "../helpers/dropdown";
+import Dropdown from "../helpers/form/dropdown";
 import UserData from "../helpers/userData";
-import {IconNotify} from "../../svg";
-import Notifications from "../helpers/notifications";
+import {IconSearch} from "../../svg";
+import Notifications from "../helpers/notify/notifications";
 import Avatar from "../helpers/avatar";
-import LogIn from "../helpers/modal/logIn";
-
-const openMenu = () => {
-    [
-        {type: 'OPEN_MENU'},
-        {type: 'SET_OVERLAY', payload: 'MENU'},
-    ].forEach(e => store.dispatch(e))
-};
+import LogIn from "../helpers/modal/content/logIn";
+import {openMenu, openSearch, setModal} from "../../dispatch/layoutDispatch";
+import Button from "../helpers/buttons/button";
 
 const Header = ({account, history}) => (
     <header>
@@ -24,19 +17,11 @@ const Header = ({account, history}) => (
             <span></span>
         </button>
         <div className="header__user-data">
+            <button onClick={openSearch}><IconSearch /></button>
             {!account
-                ? <button
-                    onClick={() => setModal(<LogIn/>)}
-                >
-                    Log in
-                </button>
+                ? <Button tag="login" onClick={() => setModal(<LogIn/>)} />
                 : <Fragment>
-                    <Dropdown
-                        btn={<IconNotify />}
-                        body={<Notifications />}
-                        className="header__notifications"
-                        position="bottom-right"
-                    />
+                    <Notifications />
                     <Dropdown
                         btn={
                             <div className="header__user">
@@ -44,7 +29,7 @@ const Header = ({account, history}) => (
                                 <Avatar userName={account.name} />
                             </div>
                         }
-                        body={<UserData data={account} history={history} />}
+                        body={ <UserData data={account} history={history} /> }
                         position="top-right"
                     />
                 </Fragment>
@@ -53,6 +38,6 @@ const Header = ({account, history}) => (
     </header>
 );
 
-const mapStateToProps = (state) => ({account: state.account});
+const mapStateToProps = (state) => ({account: state.accountData});
 
 export default connect(mapStateToProps)(Header);

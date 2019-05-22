@@ -1,10 +1,12 @@
 import React, {Component, Fragment} from 'react';
-import Dropdown from "./dropdown";
+import Dropdown from "./form/dropdown";
 import SelectHeader from "./selectHeader";
-import Input from "./input";
+import Input from "./form/input";
 import {store} from '../../index.js';
-import Form from "./form";
+import Form from "./form/form";
 import {sellBuy} from "../../actions/forms";
+import {defaultQuote, defaultToken} from "../../params/networkParams";
+import {getAccountData} from "../../actions/store";
 
 class QuickSellBuy extends Component {
     state = {
@@ -14,11 +16,11 @@ class QuickSellBuy extends Component {
     };
 
     componentDidMount() {
-        const userTokens =  store.getState().account.assets;
+        const userTokens = getAccountData().assets;
 
         const defaultData = {
-            sellAsset: userTokens[0].symbol,
-            buyAsset: 'MYTEST',
+            sellAsset: userTokens.length ? userTokens[0].symbol : defaultToken,
+            buyAsset: defaultQuote,
             fee: 0
         };
 
@@ -27,7 +29,7 @@ class QuickSellBuy extends Component {
 
 
     handleTransfer = (data) => {
-        console.log(data);
+        // console.log(data);
         const context = this;
         this.setState({sended: true}, () => setTimeout(() => context.setState({sended: false}), 5000));
     };
@@ -57,8 +59,7 @@ class QuickSellBuy extends Component {
                                     <div className="input__row">
                                         <Input
                                             name="amount_to_sell"
-                                            labelTag="quickSellBuy.sell"
-                                            className="with-bg"
+                                            hideLabel={true}
                                             onChange={form.handleChange}
                                             error={errors}
                                             value={data}
@@ -66,7 +67,6 @@ class QuickSellBuy extends Component {
                                         <Dropdown
                                             btn={<SelectHeader
                                                 text={data.sellAsset}
-                                                className="with-bg"
                                                 error={errors['sellAsset']}
                                             />}
                                             list={userTokens.map(e => <button
@@ -77,8 +77,7 @@ class QuickSellBuy extends Component {
                                     <div className="input__row">
                                         <Input
                                             name="amount_to_receive"
-                                            labelTag="quickSellBuy.buy"
-                                            className="with-bg"
+                                            hideLabel={true}
                                             onChange={form.handleChange}
                                             error={errors}
                                             value={data}
@@ -86,7 +85,6 @@ class QuickSellBuy extends Component {
                                         <Dropdown
                                             btn={<SelectHeader
                                                 text={data.buyAsset}
-                                                className="with-bg"
                                                 error={errors['buyAsset']}
                                             />}
                                             list={userTokens.map(e => <button

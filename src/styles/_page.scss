@@ -13,6 +13,9 @@
   }
   &__user-title{
     margin-bottom: 1.8rem;
+    .avatar {
+      margin-right: 1.8rem;
+    }
   }
   &__title{
     font-size: $fzXLG;
@@ -52,7 +55,7 @@
   &__content{
     padding: 2.25rem 0;
     .tbd, .no-data{
-      min-height: calc(100vh - 265px);
+      min-height: calc(100vh - 275px);
     }
   }
 }
@@ -72,6 +75,7 @@
     font-size: $fzMD;
     font-weight: normal;
     color: $dark-light;
+    background-color: transparent;
     padding: 0 4rem 0 2rem;
   }
 }

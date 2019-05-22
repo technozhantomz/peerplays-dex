@@ -1,10 +1,16 @@
-import React from "react";
+import React, {Component} from "react";
+import Translate from "react-translate-component";
 import {IconCross} from "../../svg";
-import ActionsBtn from "./actionsBtn";
+import ActionsBtn from "./buttons/actionsBtn";
 import Link from "react-router-dom/es/Link";
 import {store} from "../../index";
 import {removeStorageItem} from "../../actions/storage";
 import {dispatchSendModal} from "../../actions/forms/dispatchSendModal";
+import UnlockProfile from "./unlockProfile";
+import Button from "./buttons/button";
+import RoundButton from "./buttons/roundButton";
+import {setModal} from "../../dispatch";
+import DepositModal from "./modal/content/depositModal";
 
 const userWallets = [
     {
@@ -30,66 +36,81 @@ const userWallets = [
     }
 ];
 
-const logout = (history) => {
-    removeStorageItem('account');
-    store.dispatch({type: 'REMOVE_ACCOUNT'});
-    history.push('/');
-};
+class UserData extends Component{
 
-const closeDropdown = (e) => {
+    logout = () => {
+        ['account', 'notifications'].forEach(type => {
+            removeStorageItem(type);
+            removeStorageItem(type, 'sessionStorage');
+            store.dispatch({type: `REMOVE_${type.toUpperCase()}`})
+        });
+    };
 
-    let node = e.target;
+    sendUserTokens = e => {
+        this.closeDropdown(e);
+        dispatchSendModal();
+    };
 
-    while(!node.classList.contains('open')){
-        if(node.tagName === 'BODY') break;
-        node = node.parentNode;
+    setDeposit = e => {
+        this.closeDropdown(e);
+        setModal(<DepositModal />);
     }
 
-    node.classList.remove('open');
-};
+    closeDropdown = (e) => {
+        let node = e.target;
 
-const sendUserTokens = e => {
-    closeDropdown(e);
-    dispatchSendModal();
-};
+        while(!node.classList.contains('open')){
+            if(node.tagName === 'BODY') break;
+            node = node.parentNode;
+        }
 
-const UserData = ({data, history}) => (
-    <div className="drop-user">
-        <div className="drop-user__title">
-            <Link to={`/user/${data.name}`} className="drop-user__name" onClick={closeDropdown}>{data.name}</Link>
-            <ActionsBtn
-                actionsList={[
-                    <button onClick={() => logout(history)}>Logout</button>
-                ]}
-            />
-        </div>
-        <div className="drop-user__assets">
-            {data.assets.map((el, id) => (
-                <div key={id} className="drop-user__asset">
-                    <span>{el.symbol}</span>
-                    <span>{el.quantity / (10 ** el.precision)}</span>
-                </div>
-            ))}
-        </div>
-        <div className="drop-user__btn-wrapper">
-            <button className="btn-round btn-round--light-blue" onClick={sendUserTokens}>Send funds</button>
-            <button className="btn-round btn-round--grey">Deposit</button>
-        </div>
-        <h3 className="drop-user__wallets-title">Switch account</h3>
-        <div className="drop-user__wallets">
-            {
-                userWallets.map((el, id) => (
-                    <div key={id} className="drop-user__wallet">
-                        <h4 className="drop-user__wallet-name">{el.name}</h4>
-                        <span className="drop-user__wallet-quantity">{el.asset.quantity} {el.asset.name}</span>
+        node.classList.remove('open');
+    };
+
+    render(){
+        const data = this.props.data;
+        return(
+            <div className="drop-user">
+                <div className="drop-user__title">
+                    <Link to="/assets/" className="drop-user__name" onClick={this.closeDropdown}>{data.name}</Link>
+                    <div className="drop-user__user-actions">
+                        <UnlockProfile closeDropdown={this.closeDropdown} />
+                        <ActionsBtn
+                            actionsList={[
+                                <Button tag="logout" onClick={this.logout} />
+                            ]}
+                        />
                     </div>
-                ))
-            }
-        </div>
-        <button className="btn-round btn-round--light-blue drop-user__add">
-            <IconCross />
-        </button>
-    </div>
-);
+                </div>
+                <div className="drop-user__assets">
+                    {data.assets.map((el, id) => (
+                        <div key={id} className="drop-user__asset">
+                            <span>{el.symbol}</span>
+                            <span>{el.setPrecision()}</span>
+                        </div>
+                    ))}
+                </div>
+                <div className="drop-user__btn-wrapper">
+                    <RoundButton tag="sendFunds" className="btn-round--light-blue" onClick={this.sendUserTokens} />
+                    <RoundButton tag="deposit" className="btn-round--grey" onClick={this.setDeposit} />
+                </div>
+                <Translate content="layout.switchAccount" component="h3" className="drop-user__wallets-title" />
+                <div className="drop-user__wallets">
+                    {
+                        userWallets.map((el, id) => (
+                            <div key={id} className="drop-user__wallet">
+                                <h4 className="drop-user__wallet-name">{el.name}</h4>
+                                <span className="drop-user__wallet-quantity">{el.asset.quantity} {el.asset.name}</span>
+                            </div>
+                        ))
+                    }
+                </div>
+                <button className="btn-round btn-round--light-blue drop-user__add">
+                    <IconCross />
+                </button>
+            </div>
+        )
+    }
+}
 
 export default UserData;

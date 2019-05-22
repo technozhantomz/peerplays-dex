@@ -2,19 +2,26 @@ export const en = {
     "global": {
         "tbd": "TBD"
     },
+    "layout": {
+        "notifications": "Notifications",
+        "notificationsSearch": "Start Typing",
+        "searchPlaceholder": "Search",
+        "switchAccount": "Switch Account",
+    },
     "tableHead": {
         "asset": "Asset",
-        "available" : "Available",
-        "priceUSD" : "Price (%(token)s)",
-        "change" : "Change (24h)",
-        "valueWithToken" : "Value (%(token)s)",
-        "value" : "Value",
-        "actions" : "Actions",
-        "trade" : "Trade",
-        "orderID" : "Order ID",
-        "description" : "Description",
-        "price" : "Price",
-        "marketPrice" : "Market Price",
+        "available": "Available",
+        "priceWithToken": "Price (%(token)s)",
+        "amountWithToken": "Amount (%(token)s)",
+        "change": "Change (24h)",
+        "valueWithToken": "Value (%(token)s)",
+        "value": "Value",
+        "actions": "Actions",
+        "trade": "Trade",
+        "orderID": "Order ID",
+        "description": "Description",
+        "price": "Price",
+        "marketPrice": "Market Price",
         "hash": "#",
         "name": "Name",
         "url": "URL",
@@ -40,12 +47,97 @@ export const en = {
         "details": "Details",
         "issuer": "Issuer",
         "supply": "Supply",
+        "maxSupply": "Max Supply",
         "balance": "Balance",
         "debt": "Debt",
         "collateral": "Collateral (%(token)s)",
         "ratio": "Ratio",
         "callPrice": "Call Price",
-        "total": "Total (%(token)s)"
+        "expiration": "Expiration",
+        "kill": "Kill",
+        "param": "%(param)s",
+        "total": "Total (%(token)s)",
+        "name_description": "Name / Description",
+        "duration": "Duration",
+        "funding": "Funding",
+        "daily_pay": "Daily Pay",
+        "remaining": "Remaining",
+        "status": "Status",
+        "bidder": "Bidder",
+        "bidPrice": "Call Price",
+        "included": "Included",
+        "publisher": "Publisher",
+        "settlementPrice": "Settlement price (%(token)s)",
+        "cer": "CER (%(token)s)",
+        "mcr": "MCR",
+        "mssr": "MSSR",
+        "assetType": "Asset Type"
+    },
+    "tableInfo": {
+        "account_create": {
+            "title": "Account Creation",
+            "description": "%(registrar)s registered the account %(user)s",
+        },
+        "send": {
+            "title": "Send",
+            "description": "%(sender)s send %(quantity)s to %(receiver)s",
+        },
+        "receive": {
+            "title": "Receive",
+            "description": "%(receiver)s received %(quantity)s from %(sender)s",
+        },
+        "limit_order_create": {
+            "title": "Create Order",
+            "description": "%(creator)s placed order #%(id)s at %(marketLink)s to buy %(buy)s for %(sell)s",
+        },
+        "limit_order_cancel": {
+            "title": "Cancel Order",
+            "description": "%(user)s cancelled order #%(id)s",
+        },
+        "fill_order": {
+            "title": "Order Filled",
+            "description": "%(user)s bought %(receives)s for %(pays)s at %(marketLink)s for order #%(id)s",
+        },
+        "account_update": {
+            "title": "Account Updated",
+            "description": "%(user)s updated account data",
+        },
+        "account_upgrade": {
+            "title": "Account Upgraded",
+            "description": "%(user)s upgraded account to lifetime member",
+        },
+        "worker_create": {
+            "title": "Worker Created",
+            "description": "%(user)s created a worker proposal with daily pay of %(dailyPay)s",
+        },
+        "proposal_create": {
+            "title": "Proposal Create",
+            "description": ""
+        },
+        "transfer": {
+            "title": "Transfer",
+            "description": ""
+        },
+        "asset_fund_fee_pool": {
+            "title": "Fund Asset Fee Pool",
+            "description": "%(from)s funded %(symbol)s fee pool with %(amount)s"
+        },
+        "account_whitelist": {
+            "title": "Account Whitelist",
+            "description": "%(issuer)s %(status)s the account %(listed)s"
+        },
+        "asset_create": {
+            "title": "Asset Create",
+            "description": "%(issuer)s created the asset %(assetName)s"
+        },
+        "asset_issue": {
+            "title": "Issue Asset",
+            "description": "%(issuer)s issued %(assetAmount)s to %(receiver)s"
+        },
+        "asset_update": {
+            "title": "Update Asset",
+            "description": "%(issuer)s updated asset %(asset)s"
+        }
     },
     "dashboard": {
         "title": "Dashboard",
@@ -57,39 +149,114 @@ export const en = {
             "BTS": "BTS"
         }
     },
-    "login": {
-        "accName": "Account Name",
-        "password": "Password",
-        "remember": "Remember me"
-    },
-    "send":{
-        "from": "From",
-        "to": "To",
-        "quantity": "Quantity",
-        "memo": "Memo",
-        "memoComment": "Only users with a memo key can read your memos",
-        "fee": "Fee"
-    },
     "quickSellBuy": {
         "sell": "Sell",
         "buy": "Buy"
     },
-    "errors": {
-        "sendYourself": "You can\'t transfer tokens for yourself",
-        "noAcc": "Failed to find this account",
-        "noKey": "Failed to find this key",
-        "wrongPass": "Password is wrong",
-        "required": "This field is required. Please, fill it!",
-        "isNan": "Amount is not a number. Please, enter the number.",
-        "isNull": "You can't send a null. Please, enter summ above null.",
-        "nullWeight": "Can\'t be null",
-        "isNotEnough": "The total summ exceeds the amount on the account.",
-        "accUsed": "Account is already in use.",
-        "keyUsed": "Key is already in use.",
-        "sameAsset": "Assets the same"
+    "block": {
+        "general": {
+            "title": "General info",
+            "type": "Type",
+            "precision": "Precision",
+            "issuer": "Issuer",
+            "backingAsset": "Backing asset",
+            "currentSupply": "Current supply",
+            "stealthSupply": "Stealth supply",
+            "maxFee": "Max market fee",
+            "maxSupply": "Max supply"
+        },
+        "permissions": {
+            "title": "Permissions",
+            "charge_market_fee": "Enable market fee",
+            "white_list": "Require holders to be white-listed",
+            "override_authority": "Issuer may transfer asset back to himself",
+            "transfer_restricted": "Issuer must approve all transfers",
+            "disable_confidential": "Disable force settling",
+            "disable_force_settle": "Allow issuer to force a global settling",
+            "global_settle": "Disable confidential transactions",
+            "witness_fed_asset": "Allow witnesses to provide feeds",
+            "committee_fed_asset": "Allow committee members to provide feeds"
+        },
+        "fee": {
+            "title": "Fee Pool",
+            "text": "The fee pool is used to pay fees in BTS by converting the fee in BTC to BTS. If the fee pool runs out of funds, fees may no longer be paid in BTC and will default to BTS. The core exchange rate is the price at which BTC are converted to BTS.",
+            "coreExchangeRate": "Core exchange rate (CER)",
+            "feePool": "Pool balance",
+            "unclaimedIssuerIncome": "Unclaimed issuer income"
+        },
+        "price": {
+            "title": "Price Feed",
+            "feedPrice": "Feed price (median of witness feeds)",
+            "feedLifetime": "Feed lifetime (hours)",
+            "minimumFeeds": "Minimum Feeds",
+            "maintenanceCollateralRatio": "Maintenance collateral ratio (MCR)",
+            "maximumShortSqueezeRatio": "Maximum short squeeze ratio (MSSR)"
+        },
+        "settlement": {
+            "title": "Settlement",
+            "text": "Unfortunately, this asset is in Global Settlement. During this time there is no delay in asset force settlements, which will be covered by the settlement funds at the fixed settlement price. Asset will be revived automatically if auto revive price (bids included) is greater than feed price or all debt is force settled (see Asset actions,  or click here to place a bid).",
+            "settlementPrice": "Settlement Price",
+            "settlementFunds": "Settlement Funds",
+            "settlementFundCollateralRatio": "Settlement Fund Collateral Ratio"
+        },
+        "priceFeedData": {
+            "title": "Price Feed Data"
+        },
+        "collateralBids": {
+            "title": "Collateral Bids"
+        },
+        "quickSellBuy": {
+            "title": "Quick Sell / Buy"
+        },
+        "myPortfolio": {
+            "title": "My Portfolio"
+        },
+        "openOrders": {
+            "title": "Open Orders"
+        },
+        "send": {
+            "title": "Send"
+        },
+        "fundTheFeePool": {
+            "title": "Fund The Fee Pool",
+            "text": "Anyone can add to the fee pool balance"
+        },
+        "claimFeePoolBalance": {
+            "title": "Claim fee pool balance",
+            "text": "The asset owner may withdraw funds from the fee pool"
+        },
+        "assetClaimFees": {
+            "title": "Claim asset fees",
+            "text": "The asset issuer may claim any accumulated fees here"
+        },
+        "assetUpdateIssuer": {
+            "title": "Update owner",
+            "text": "The asset owner may change the owner to another account"
+        },
+        "publishFeed": {
+            "title": "Publish Feed",
+            "text": "Approved feed producers may publish a new feed"
+        },
+        "bidCollateral": {
+            "title": "Bid Collateral",
+            "text": "Unfortunately, BTC is in Global Settlement. During this time it is possible to bid on the collateral in the Settlement Fund and the debt it covers. When the total outstanding debt is covered by bids, and the additional collateral of each bid plus its share from the settlement fund is greater than the MCR, the asset is automatically revived and a margin position is created for each bid. \n" +
+            "Bids will be included on revival sorted by their bid price until the whole debt is covered (last bid might be covered partially). Included bids will be converted into margin positions and receive the residual collateral such that the position reaches MCR from the settlement fund. Not included bids will be reimbursed. A bid can be removed by placing a zero collateral bid."
+        }
+
     },
     "exchange": {
-        "title": "Exchange"
+        "title": "Exchange",
+        "price": "Current Price",
+        "change": "Change (24h)",
+        "volume": "Volume (24h)",
+        "feed": "Feed Price",
+        "limit": "Call Limit",
+        "margin": "Margin Call",
+        "buy": "Buy",
+        "sell": "Sell",
+        "fee": "Fee:",
+        "marketFee": "Market Fee (%(percent)s%):",
+        "balance": "Balance:"
     },
     "assets": {
         "title": "My Assets"
@@ -111,12 +278,30 @@ export const en = {
         "markets": {
             "title": "Markets"
         },
+        "workers": {
+            "title": "Workers"
+        },
         "fees": {
             "title": "Fees"
         }
     },
+    "info": {
+        "title": "Info"
+    },
+    "actions": {
+        "title": "Actions"
+    },
     "voting": {
-        "title": "Voting"
+        "title": "Voting",
+        "workers": {
+            "title": "Workers"
+        },
+        "witnesses": {
+            "title": "Witnesses"
+        },
+        "committee": {
+            "title": "Committee"
+        }
     },
     "business": {
         "title": "Business"
@@ -138,9 +323,7 @@ export const en = {
         "theme": "Enable Dark Theme",
         "notifications": "Notifications",
         "transferNotifications": "Transfers to my account",
-        "faucet": "Faucet",
-        "faucetURL": "Faucet URL",
-        "faucetComment": " The faucet address is used to pay the registration fee for new users."
+        "faucet": "Faucet"
     },
     "wallet": {
         "title": "Wallet"
@@ -153,29 +336,52 @@ export const en = {
     },
     "nodes": {
         "title": "Nodes",
-        "autoSelect": "Select nodes automaticaly"
+        "autoSelect": "Select nodes automaticaly",
+        "listed": "%(nodesAmount)s listed",
+        "active": "Active Node",
+        "available": "Available Nodes",
+        "unavailable": "Unavailable Nodes",
+        "latency": "Latency",
+        "operator": "Operator"
+    },
+    "createdAssets": {
+        "title": "Created Assets",
+        "issued": "User Issued Asset",
+        "prediction": "Binary prediction market",
+        "smart": "SmartCoin"
     },
     "reBackup": {
         "title": "Backup & restore",
         "backup": {
             "title": "Backup",
-            "comment": "Last backup %(lastBackup)s",
-            "type": "Backup type",
-            "needed": "This local wallet needs a backup",
-            "desc": "Clicking on the button below will generate a backup file with a .bin extension. This file is encrypted with your wallet password, and contains all the private keys for your accounts. It can be used to restore your wallet, or move it to a different computer/browser."
+            "selectTitle": "Backup type",
+            "lastBackup": "Last backup %(lastBackup)s",
+            "needBackup": "Need to create backup",
+            "wallet": {
+                "text": "Create local wallet backup",
+                "desc": "Clicking on the button below will generate a backup file with a .bin extension. This file is encrypted with your wallet password, and contains all the private keys for your accounts. It can be used to restore your wallet, or move it to a different computer/browser."
+            },
+            "brainkey": {
+                "text": "Create brainkey backup",
+                "desc": "Clicking on the button below will decrypt brainkey and show it in modal window. It can be used to restore your wallet on a different computer/browser."
+            },
         },
         "restore": {
             "title": "Restore",
-            "type": "Restore type",
-            "needed": "This local wallet needs a backup",
-            "fileUpload": "Choose file",
-            "desc": "Please select your backup file in the dialog below. This is completely safe as the file is not uploaded anywhere and never leaves your browser."
+            "selectTitle": "Restore type",
+            "fromBin": {
+                "text": "Restore from a backup file (.bin)",
+                "desc": "Please select your backup file in the dialog below. This is completely safe as the file is not uploaded anywhere and never leaves your browser."
+            },
+            "fromPrivate": {
+                "text": "Import a private key",
+                "desc": "Clicking on the button below will decrypt brainkey and show it in modal window. It can be used to restore your wallet on a different computer/browser."
+            },
+            "fromBrain": {
+                "text": "Restore using a local wallet brainkey",
+                "desc": "Clicking on the button below will decrypt brainkey and show it in modal window. It can be used to restore your wallet on a different computer/browser."
+            },
         },
-        "backupWallet": "Create local wallet backup",
-        "backupBrain": "Create brainkey backup",
-        "fromBin": "Restore from a backup file (.bin)",
-        "fromPrivate": "Import a private key",
-        "fromBrain": "Restore using a local wallet brainkey"
     },
     "userAssets": {
         "title": "Assets"
@@ -213,9 +419,303 @@ export const en = {
             "subtitle": "Active permissions define the accounts that have permission to spend funds for this account."
         }
     },
-    "empty": {
+    "deposit": {
+        "title": "Deposit",
+        "address": "%(inputAsset)s sent to this address will show up as %(outputAsset)s: \n %(address)s",
+        "memo": "Memo required for proper routing to your account: \n %(memo)s",
+    },
+    "bridgeData": {
+        "warning": "Please, select gateway and asset",
+        "minDeposit": "Minimum Deposit: %(minDeposit)s",
+        "minDepositComment": "Send only %(inputAsset)s to deposit address. Sending less than %(minDeposit)s or any other currency to this address may result in the loss of your deposit.",
+        "assetToDeposit": "Asset to deposit:",
+        "assetToWithdraw": "Asset to withdraw:",
+        "assetToReceive": "You will receive:",
+        "intermediateAccount": "Intermediate account:",
+        "senderAccount": "Your account:",
+        "currentBalance": "Current balance:"
+    },
+    "withdraw": {
+        "title": "Withdraw"
+    },
+    "membership": {
+        "title": "Membership",
+        "upgradeTitle": "Upgrade for 80% Cashback",
+        "upgradeDesc": "Lifetime Members get 80% cashback on every transaction fee they pay and qualify to earn referral income from users they register with or refer to the network. A Lifetime Membership is just %(fee)s.",
+        "referralTitle": "Your referral link",
+        "referralDesc": "Give this to link to people you want to refer to BitShares: %(link)s/?r=%(name)s",
+        "allocationTitle": "Fee Allocation",
+        "allocationDesc": "Every time < %(name)s > pays a transaction fee, that fee is divided among several different accounts",
+        "network": "Network",
+        "reviewer": "Lifetime Reviewer",
+        "registrar": "Registrar",
+        "referrer": "Affiliate Referrer",
+        "expiration": "Membership Expiration",
+        "statistics": "Fee Statistics",
+        "totalFee": "Total Fees Paid",
+        "pendingTitle": "Pending Fees",
+        "pendingDesc": "Fees paid by < %(name)s > are divided among the network, referrers, and registrars once every maintenance interval (%(interval)s seconds). The next maintenance time is %(nextMaintenance)s.",
+        "vestingTitle": "Vesting Fees",
+        "vestingDesc": "Most fees are made available immediately, but fees over 100 BTS (such as those paid to upgrade your membership or register a premium account name) must vest for a total of 90 days."
+    },
+    "search": {
+        "users": "Users",
+        "blocks": "Blocks",
+        "tokens": "Tokens"
+    },
+    "exchangeForm": {
+        "price": "Price (%(token)s)",
+        "quantity": "Quantity (%(token)s)",
+        "total": "Total (%(token)s)"
+    },
+    "field": {
+        "labels": {
+            "login": "Login",
+            "publicName": "Public Name",
+            "brainkey": "Brainkey",
+            "accName": "Account Name",
+            "newLogin": "Public Account Name",
+            "password": "Password",
+            "passwordCheck": "Password Check",
+            "from": "From",
+            "to": "To",
+            "quantity": "Quantity",
+            "memo": "Memo",
+            "fee": "Fee",
+            "gateFee": "Gate Fee",
+            "newWorkerName": "Worker Name",
+            "dailyPay": "Daily Pay (BTS)",
+            "dateBegin": "Start Date",
+            "dateEnd": "End Date",
+            "website": "Website",
+            "vesting": "Salary Vesting Period (Days)",
+            "faucet": "Faucet URL",
+            "file": "Key File (%(fileSize)s)",
+            "asset": "Asset",
+            "gateway": "Gateway",
+            "withdrawAmount": "Amount to Withdraw",
+            "withdrawAddress": "Withdraw to Address",
+            "assetOwner": "Asset Owner",
+            "feedProducer": "Feed Producer",
+            "forceSettlementPrice": "Force Settlement Price",
+            "cer": "CER",
+            "mcr": "MCR",
+            "mssr": "MSSR",
+            "debt": "Debt (%(token)s)",
+            "collateral": "Collateral (%(token)s)",
+            "name": "Name",
+            "newAssetName": "Symbol",
+            "maxSupply": "Maximum Supply",
+            "decimal": "Decimal Places",
+            "exchangeQuote": "Quote Asset Amount",
+            "exchangeBase": "Base Asset Amount (%(asset)s)",
+            "description": "Description",
+            "shortName": "Short Name",
+            "pairingAsset": "Preferred Pairing (Symbol)",
+            "feedInMinutes": "Feed lifetime in minutes",
+            "minNumberOfFeeds": "Minimum number of feeds",
+            "forcedSettlementDelay": "Forced Settlement Delay (minutes)",
+            "forcedSettlementPercent": "Forced Settlement Percent",
+            "forcedSettlementMaxVolume": "Max Forced Settlement Volume (percent per hour)",
+            "backingAsset": "Backing Asset",
+            "marketFee": "Market Fee (%)",
+            "maxMarketFee": "Max Market Fee",
+            "issueAmount": "Issue Amount",
+            "condition": "Condition (max 60 characters)",
+            "resolutionDate": "Market resolution date"
+        },
+        "comments": {
+            "newLogin": "You can use letters, symbols, etc...",
+            "memo": "Only users with a memo key can read your memos",
+            "newWorkerName": "Be short and descriptive, e.g. \"Worker Purpose - Account Name\"",
+            "dailyPay": "The current best practice is to define a salary in USD/CNY, and commit to burning whatever surplus you receive as a result of the BTS price increasing. As long as your worker is active and has sufficient votes to be above the refund worker, you will receive this daily salary.",
+            "faucet": "The faucet address is used to pay the registration fee for new users.",
+            "withdrawAmount": "Minimum amount: %(minAmount)s",
+            "asset": "Asset",
+            "decimal": " Max. 8     (Cannot be changed)",
+            "exchangeQuote": " Price: %(number)s %(symbol)s",
+            "issueAmount": "Remain supply: %(remainToIssue)s %(symbol)s"
+        },
+        "radio": {
+            "cloud": "Cloud wallet (simple)",
+            "local": "Local wallet (advanced)"
+        },
+        "checkboxes": {
+            "remember": "Remember me"
+        },
+        "upload": {
+            "file": "Key File (%(fileSize)s)"
+        }
+    },
+    "errors": {
+        "sendYourself": "You can\'t transfer tokens for yourself",
+        "noAcc": "Failed to find this account",
+        "noKey": "Failed to find this key",
+        "wrongPass": "Password is wrong",
+        "required": "This field is required.",
+        "isNan": "Amount is not a number.",
+        "isNull": "You can't send a null.",
+        "isEmptyBalance": "You didn't have this tokens.",
+        "nullWeight": "Can\'t be null",
+        "isNotEnough": "The total summ exceeds the amount on the account.",
+        "accUsed": "Account is already in use.",
+        "assetUsed": "Asset is already in use.",
+        "keyUsed": "Key is already in use.",
+        "sameAsset": "Assets the same",
+        "wrongAsset": "Asset isn't valid",
+        "needSamePrecision": "That asset does not have the same precision",
+        "needPassword": "Please, enter password first",
+        "passwordsNotMatch": "Passwords not match",
+        "usedWorkerName": "Worker name is already in use.",
+        "beginFromToday": "Beginning date must start from today",
+        "wrongEndDate": "End date must be after beginning",
+        "accountIsNotExist": "Account is not exist",
+        "invalidFile": "Invalid backup file",
+        "decompressingError": "Error decompressing wallet",
+        "wrongBrain": "Didn't found accounts for this brainkey",
+        "wrongBrainLength": "Brainkey must contain 16 words",
+        "belowMinAmount": "Current amount is below minimum",
+        "addressIsNotValid": "Address is not valid",
+        "wrongDecimal": "Wrong decimal",
+        "conditionLength": "Condition is too long",
+        "resolutionError": "Select another date",
+        "remainIssueNotEnough": "Remain amount of supply isn't enough to issue",
+        "newAcc": {
+            "longer": "Account name should be longer",
+            "shorter": "Account name should be shorter",
+            "firstLetter": "Account name should start with a letter",
+            "noSpecials": "Account name should have only letters, digits, or dashes",
+            "oneDash": "Account name should have only one dash in a row",
+            "lastSymbol": "Account name should end with a letter or digit",
+            "notCheap": "This is a premium name which is not supported by this faucet. Please enter a regular name containing least one dash, a number or no vowels.",
+            "inUse": "Account is already in use."
+        },
+        "newAccSegment": {
+            "firstLetter": "Each account segment should start with a letter",
+            "noSpecials": "Each account segment should have only letters, digits, or dashes",
+            "oneDash": "Each account segment should have only one dash in a row",
+            "lastSymbol": "Each account segment should end with a letter or digit",
+        },
+        "newAsset": {
+            "empty": "Asset name should not be empty.",
+            "oneDot": "Asset name should have only one dot.",
+            "longer": "Asset name should be longer.",
+            "shorter": "Asset name should be shorter.",
+            "start": "Asset name should start with a letter",
+            "end": "Asset name should end with a letter or number",
+            "symbols": "Asset name should contain only letters numbers and perhaps a dot."
+        }
+    },
+    "tabs": {
+        "orderBook": "Order Book",
+        "history": "History",
+        "openOrders": "Open orders",
+        "orderHistory": "Order History",
+        "cloud": "Cloud Wallet",
+        "local": "Local Wallet",
+        "brain": "Brain Key",
+    },
+    "modal": {
+        "send": {
+            "title": "Send"
+        },
+        "newWorker": {
+            "title": "New Worker Proposal",
+            "warning": "Parameters cannot be changed once published."
+        },
+        "newContact": {
+            "title": "New Contact",
+            "warning": "User is not defined."
+        },
+        "showBrain": {
+            "title": "Your Brain Key"
+        },
+        "pairSelect": {
+            "title": "Select Pair",
+            "recent": "Recent Pairs"
+        },
+        "createUser": {
+            "title": "New Account",
+            "aboutLogin": "The account name you choose needs to be unique, as it will be registered publicly on the blockchain and will be your identifer for any transactions you make.",
+            "referrer": "Note that you'll create new account with reference provided by %(referrer)s"
+        },
+        "login": {
+            "title": "Log in"
+        },
+        "unlock": {
+            "title": "Unlock Profile for %(login)s"
+        },
+        "binRestore": {
+            "title": "Restore account from .bin file"
+        },
+        "brainRestore": {
+            "title": "Restore account from brainkey"
+        },
+        "warning": {
+            "title": "Warning",
+            "message": "For this operation you\'ll have to pay %(fee)s fee. Do you want to continue?"
+        },
+        "accounts": {
+            "title": "Account",
+            "subtitle": "Select what account to show the activity in the widget"
+        },
+        "newAssets": {
+            "title": "New Asset",
+            "smartCoin": "Smart Coin",
+            "predictionMarket": "Binary prediction market",
+            "exchangeRate": "Core Exchange Rate",
+            "exchangeRateSubtitle": "Make sure your core exchange rate is higher than the market price, otherwise people will buy your token from the market and drain your fee pool via implicit arbitrage. The core exchange rate should be updated regularly to reflect market pricing of your asset.",
+            "description": "Description",
+            "preferredPairing": "Preferred Market Pairing",
+            "permissions": "Permissions",
+            "permissionsSubtitle": "Makes features available but not activated (see flags below).\n\nAfter creation, you may remove permissions (but not add them).",
+            "flags": "Flags",
+            "flagsSubtitle": "Flags define which asset features are active or inactive. They can be switched on and off by the asset owner at any time.",
+            "smartCoinOptions": "SmartCoin Options",
+        },
+        "issueAsset": {
+            "title": "Issue Asset"
+        },
+        "deposit": {
+            "title": "Deposit %(asset)s"
+        },
+        "withdraw": {
+            "title": "Withdraw %(asset)s"
+        },
+    },
+    "buttons": {
+        "ping": "Ping",
+        "clear": "Clear List",
+        "sendFunds": "Send Funds",
+        "deposit": "Deposit",
+        "logout": "Logout",
+        "newWorker": "+ New Worker",
+        "newAsset": "+ New Asset",
+        "cancel": "Cancel",
+        "close": "Close",
+        "send": "Send",
+        "submit": "Submit",
+        "login": "Log In",
+        "create": "Create",
+        "publish": "Publish",
+        "copyBrain": "Copy Brain",
+        "select": "Select",
+        "continue": "Continue",
+        "createAccount": "Create an account",
+        "useAnother": "Use Another",
+        "upload": "Upload",
+        "unlock": "Unlock",
+        "buyMembership": "Buy Lifetime Subscription",
+        "withdraw": "Withdraw",
+        "showAdditionalData": "Show Additional Data",
+        "hideAdditionalData": "Hide Additional Data",
+        "newContact": "+ New Contact",
+    },
+    "emptyPage": {
         "default": "No data",
+        "empty": "Empty",
         "userOrders": "User haven't open any order",
-        "login": "Please, log in to see this page"
+        "login": "Please sign in to use the %(pageName)s or create a new account",
+        "withdraw": "No asset avaliable",
     }
 };

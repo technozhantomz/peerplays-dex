@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import NoData from "./noData";
 
-const dataFetch = (method, page) => ChildComponent => (
+const dataFetch = ({method, reset, page}) => ChildComponent => (
     class Wrapper extends Component{
         state = {
             loading: true,
@@ -12,9 +12,14 @@ const dataFetch = (method, page) => ChildComponent => (
             this.setData();
         }
 
+        componentWillReceiveProps(){
+            const context = this;
+            setTimeout(() => context.setData());
+        }
+
         setData = () => method(this).then(data => this.setState({loading: false, data}));
 
-        reset = () => this.setState({loading: true}, () => this.setData());
+        reset = () => reset ? reset(this) : this.setState({loading: true}, () => this.setData());
 
         render(){
 
@@ -25,9 +30,9 @@ const dataFetch = (method, page) => ChildComponent => (
                 !data
                 || (Array.isArray(data) && !data.length)
                 || !Object.values(data).length
-            ) return <NoData tag={page ? `empty.${page}` : 'empty.default'} />;
+            ) return <NoData tag={page ? `emptyPage.${page}` : 'emptyPage.default'} />;
 
-            return <ChildComponent data={data} {...this.props} reset={this.reset} />;
+            return <ChildComponent {...this.props} data={data} reset={this.reset} />;
         }
     }
 );

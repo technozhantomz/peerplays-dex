@@ -4,28 +4,40 @@
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: scaleY(0);
+  transform: translate(-50%, -47%);
   opacity: 0;
   z-index: -1;
   border-radius: 1rem;
   background: $white;
-  transition: $anim;
   box-shadow: $shadow-bold;
   font-family: $secondary-font;
+  box-sizing: border-box;
   &.open{
-    transform: scaleY(1) translate(-50%, -50%);
+    max-height: calc(100vh - 100px);
+    transform: translate(-50%, -50%);
     opacity: 1;
+    transition: $anim;
     z-index: 101;
   }
   &__header{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    //display: flex;
+    //justify-content: space-between;
+    //align-items: center;
     margin-bottom: 4.5rem;
   }
-  &__title{
-    font-family: $secondary-font;
-    font-size: $fzXLG;
+  &__warning{
+    display: flex;
+    align-items: center;
+    margin-top: -3rem;
+    margin-bottom: 1.8rem;
+    color: rgba(60,71,108,0.7);
+    font-size: $fzSM;
+    .mask{
+      fill: #75A4BA;
+    }
+    span{
+      margin-left: 1rem;
+    }
   }
   &__bottom{
     display: flex;
@@ -33,6 +45,9 @@
     align-items: center;
     margin-top: 6rem;
     margin-right: -2.5rem;
+  }
+  &__error{
+    color: $negative;
   }
   &__button{
     width: 11rem;
@@ -51,10 +66,29 @@
 }
 
 .modal{
-  .field{
+  .field, .dropdown--with-hint, .form__row{
     margin-bottom: 4rem;
+  }
+  .with-hint{
+    margin-bottom: 4rem !important;
+  }
+  .upload{
+    margin-bottom: 4.6rem;
+    margin-top: 1rem;
   }
   .quantity-wrapper .field{
     margin-bottom: 0;
+  }
+  .radio-group{
+    margin-bottom: 2rem;
+  }
+  .deposit{
+    min-height: 52rem;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-bottom: 2rem;
+    > div{
+      width: 100%;
+    }
   }
 }

@@ -33,8 +33,6 @@
     }
     .field{
       width: 13.4rem;
-      padding-top: 0;
-      padding-bottom: 0;
       min-height: fit-content;
     }
     > .field{
@@ -67,6 +65,15 @@
       width: 1.5rem;
       margin-right: 2.5rem;
     }
+  }
+  &__number {
+    padding-left: 1rem;
+    color: $dark-light;
+    font-family: $secondary-font;
+    font-size: 15.65px;
+    font-weight: 600;
+    letter-spacing: 0.15px;
+    line-height: 24px;
   }
 }
 

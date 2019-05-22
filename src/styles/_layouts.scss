@@ -1,6 +1,7 @@
 html{
   font-size: 10px;
   background-color: $light;
+  color: $dark;
 }
 
 #root{
@@ -11,9 +12,8 @@ html{
 
 main{
   flex: 1;
-  padding: 3.1rem 0;
   box-sizing: border-box;
-  > .tbd{
+  > .tbd, > .no-data{
     min-height: calc(100vh - 120px);
   }
 }
@@ -23,6 +23,8 @@ main{
   width: 100%;
   height: 100%;
   margin: 0 auto;
+  padding: 3.1rem 0;
+  box-sizing: border-box;
 }
 
 .menu{

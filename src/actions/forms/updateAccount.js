@@ -1,16 +1,21 @@
 import {trxBuilder} from "./trxBuilder";
-import {PrivateKey} from "bitsharesjs";
-import {getStorage} from "../storage";
+import {getStore} from "../store";
+import {getDefaultFee} from "./getDefaultFee";
 
-export const updateAccount = async (params, password) => {
+export const updateAccount = async (newData, password) => {
+
+    const {accountData, loginData} = getStore();
+
     const trx = {
         type: 'account_update',
-        params
+        params: {
+            ...newData,
+            account: accountData.id,
+            fee: getDefaultFee()
+        }
     };
 
-    const login = getStorage('account').name;
-
-    const activeKey = PrivateKey.fromSeed(login + 'owner' + password);
+    const activeKey = loginData.formPrivateKey(password, 'active');
 
     return await trxBuilder([trx], [activeKey]);
 };

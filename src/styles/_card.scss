@@ -3,6 +3,23 @@
   box-shadow: $shadow-default;
   border: 1px solid $border-color;
 
+  &__comment {
+    margin: 0 32px 32px 32px;
+    color: $dark-light;
+    font-family: $secondary-font;
+    font-size: $fzSM;
+    letter-spacing: 0.41px;
+    line-height: 16px;
+
+    &--negative {
+      margin: 0;
+      padding: 32px 24px;
+      color: white;
+      background-color: $red;
+      letter-spacing: 0.4px;
+    }
+  }
+
   &__header {
     height: 57px;
     display: flex;
@@ -42,6 +59,10 @@
     font-family: $primary-font;
     font-size: 12px;
     align-items: center;
+  }
+
+  &__footer {
+    height: 40px;
   }
 
   &--small {
@@ -151,17 +172,7 @@
 
 .card--graph {
   .dropdown {
-    height: 56px;
     width: 145px;
-
-    &__btn-wrapper {
-      .field {
-        padding: 0 0 0 2rem;
-        display: flex;
-        align-items: center;
-        border-radius: 4px;
-      }
-    }
   }
 }
 
@@ -405,4 +416,8 @@
     color: $blue;
     font-size: 15.8px;
   }
+}
+
+.fee-pool {
+  margin: 4rem 0;
 }

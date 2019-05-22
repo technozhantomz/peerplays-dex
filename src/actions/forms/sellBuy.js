@@ -1,35 +1,55 @@
 import {trxBuilder} from "./trxBuilder";
-import {PrivateKey} from "bitsharesjs";
 import {store} from '../../index.js';
+import {Asset} from "../../classes/asset";
+import {getStore} from "../store";
+import {getDefaultFee} from "./getDefaultFee";
 
 export const sellBuy = async (data, result) => {
+
+    // console.log(data);
+
     if (data.sellAsset === data.buyAsset) {
         result.errors['buyAsset'] = 'sameAsset';
         result.errors['sellAsset'] = 'sameAsset';
         return result;
     }
 
-    const userData = store.getState().account;
-    const sellAsset = userData.assets.find(e => e.symbol === data.sellAsset);
-    const buyAsset = userData.assets.find(e => e.symbol === data.buyAsset);
-    const seller = userData.id;
+    const {loginData, accountData} = getStore();
+    const seller = accountData.id;
+
+    const sell = {symbol: '', amount: 0};
+    const buy = {...sell};
+
+    if(data.type && data.type === 'sell') {
+        sell.symbol = data.buyAsset;
+        sell.amount = data.amount_to_receive;
+        buy.symbol = data.sellAsset;
+        buy.amount = data.amount_to_sell;
+    } else {
+        sell.symbol = data.sellAsset;
+        sell.amount = data.amount_to_sell;
+        buy.symbol = data.buyAsset;
+        buy.amount = data.amount_to_receive;
+    }
+
+    const sellAsset = await new Asset(sell).getDataBySymbol();
+    const buyAsset = await new Asset(buy).getDataBySymbol();
+
+    // console.log(sellAsset);
 
     const amount_to_sell = {
-        amount: data.amount_to_sell * (10 ** sellAsset.precision),
+        amount: Math.round(sellAsset.addPrecision()),
         asset_id: sellAsset.id
     };
 
     const min_to_receive = {
-        amount: data.amount_to_receive * (10 ** buyAsset.precision),
+        amount: Math.round(buyAsset.addPrecision()),
         asset_id: buyAsset.id
     };
 
-    const fee = {
-        amount: 0,
-        asset_id: sellAsset.id
-    };
+    const fee = getDefaultFee();
 
-    const time_point_sec = new Date(new Date().getTime() + 1000 * 60 * 60 * 24 * 365).toISOString();
+    const expiration = new Date(new Date().getTime() + 1000 * 60 * 60 * 24 * 365).toISOString();
 
     const trx = {
         type: 'limit_order_create',
@@ -38,23 +58,23 @@ export const sellBuy = async (data, result) => {
             seller,
             amount_to_sell,
             min_to_receive,
-            expiration: time_point_sec,
+            expiration,
             fill_or_kill: false,
             extensions: []
         }
     };
 
-    const login = userData.name;
-    const password = data.password;
+    // console.log(trx);
 
-    const activeKey = PrivateKey.fromSeed(login + 'active' + password);
-
+    const activeKey = loginData.formPrivateKey(data.password, 'active');
     const trxResult = await trxBuilder([trx], [activeKey]);
 
     if(trxResult){
         result.success = true;
         result.callbackData = trxResult;
     }
+
+    // console.log(trxResult);
 
     return result;
 };

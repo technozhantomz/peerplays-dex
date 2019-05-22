@@ -29,6 +29,23 @@
     display: flex;
     flex-direction: column;
   }
+  &__icon{
+    &.active, &.disabled{
+      .mask{
+        opacity: 1;
+      }
+    }
+    &.active{
+      .mask{
+        fill: $positive;
+      }
+    }
+    &.disabled{
+      .mask{
+        fill: $negative;
+      }
+    }
+  }
   &__group-title{
     font-size: $fzLG;
     margin-bottom: .4rem;

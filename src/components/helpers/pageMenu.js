@@ -3,7 +3,7 @@ import Tbd from "../pages/tbd";
 import {NavLink, Route, Switch} from "react-router-dom";
 import Translate from "react-translate-component";
 
-const PageMenu = ({items, link, path}) => (
+const PageMenu = ({items, link, path, data = {}}) => (
     <Fragment>
         <div className="page__menu">
             {items.map((el, id) => (
@@ -20,14 +20,17 @@ const PageMenu = ({items, link, path}) => (
         <div className="page__content">
             <Switch>
                 {
-                    items.map((el, id) => (
-                        <Route
-                            key={id}
-                            path={`${path}${el.link}`}
-                            component={el.component ? el.component : Tbd}
-                            exact
-                        />
-                    ))
+                    items.map((el, id) => {
+                        const Component = el.component ? el.component : Tbd;
+                        return (
+                            <Route
+                                key={id}
+                                path={`${path}${el.link}`}
+                                render={(props) => <Component data={data} {...props} />}
+                                exact
+                            />
+                        )
+                    })
                 }
             </Switch>
         </div>
