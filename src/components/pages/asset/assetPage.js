@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import AssetInfo from "./assetInfo";
 import PageMenu from "../../helpers/pageMenu";
 import AssetActions from "./assetActions";
-import AssetUpdate from "../../helpers/asset/assetUpdate";
+import AssetUpdate from "./assetUpdate";
 import {setPermissions} from "../../../actions/assets/setPermissions";
 import {dbApi} from "../../../actions/nodes";
 import {connect} from "react-redux";

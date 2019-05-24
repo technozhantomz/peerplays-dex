@@ -89,8 +89,8 @@ const createAsset = async (data, result) => {
 
     const common_options = {
         max_supply: maxSupply * precision,
-        market_fee_percent: marketFee * 100,
-        max_market_fee: maxMarketFee  * precision,
+        market_fee_percent: flagMarketFee ? marketFee * 100 : 0,
+        max_market_fee: flagMarketFee ? maxMarketFee  * precision : 0,
         issuer_permissions: formPermissions(permissions, smartCoin),
         flags: formPermissions({...flags, flagMarketFee}, smartCoin),
         core_exchange_rate,
@@ -117,7 +117,7 @@ const createAsset = async (data, result) => {
         issuer: accountData.id,
         symbol: newAssetName.toUpperCase(),
         precision: Number(decimal),
-        is_prediction_market: predictionMarket || false,
+        is_prediction_market: (smartCoin && predictionMarket) || false,
         common_options,
         bitasset_opts,
     };
@@ -222,23 +222,17 @@ class AddNewAsset extends Component{
                                     <div className="form__row">
                                         <ControlledInput
                                             name="newAssetName"
-                                            onChange={form.handleChange}
-                                            error={errors}
-                                            value={data}
+                                            formData={form}
                                             style={{ flex: 2 }}
                                         />
                                         <Input
                                             name="maxSupply"
-                                            onChange={form.handleChange}
-                                            error={errors}
-                                            value={data}
+                                            formData={form}
                                             style={{ flex: 3 }}
                                         />
                                         <Input
                                             name="decimal"
-                                            onChange={form.handleChange}
-                                            error={errors}
-                                            value={data}
+                                            formData={form}
                                             style={{ flex: 3 }}
                                             comment
                                         />
@@ -264,9 +258,7 @@ class AddNewAsset extends Component{
                                     <div className="form__row">
                                         <Input
                                             name="exchangeQuote"
-                                            onChange={form.handleChange}
-                                            error={errors}
-                                            value={data}
+                                            formData={form}
                                             commentParams={{
                                                 number: (data.exchangeQuote / data.exchangeBase).toFixed(data.decimal) || 0,
                                                 asset: data.newAssetName && `(${data.newAssetName})`,
@@ -277,9 +269,7 @@ class AddNewAsset extends Component{
                                         <Input
                                             name="exchangeBase"
                                             labelParams={{asset: data.backingAsset}}
-                                            onChange={form.handleChange}
-                                            error={errors}
-                                            value={data}
+                                            formData={form}
                                         />
                                     </div>
                                     <Button
@@ -292,16 +282,12 @@ class AddNewAsset extends Component{
                                         <TitleWrapper title={`${modalTag}.description`}/>
                                         <Input
                                             name="description"
-                                            onChange={form.handleChange}
-                                            error={errors}
-                                            value={data}
+                                            formData={form}
                                         />
                                         <div className="form__row">
                                             <Input
                                                 name="shortName"
-                                                onChange={form.handleChange}
-                                                error={errors}
-                                                value={data}
+                                                formData={form}
                                             />
                                             <FieldWithHint
                                                 name="pairingAsset"
@@ -314,16 +300,14 @@ class AddNewAsset extends Component{
                                             <div className="form__row">
                                                 <Input
                                                     name="condition"
-                                                    onChange={form.handleChange}
-                                                    error={errors}
-                                                    value={data}
+                                                    formData={form}
                                                 />
                                                 <DateField
                                                     name="resolutionDate"
                                                     selected={form.dateBegin}
                                                     onChange={form.handleChange}
-                                                    error={form.state.errors}
-                                                    value={form.state.data}
+                                                    error={errors}
+                                                    value={data}
                                                 />
                                             </div>
                                         }
@@ -333,37 +317,27 @@ class AddNewAsset extends Component{
                                             <Input
                                                 name="feedInMinutes"
                                                 type="number"
-                                                onChange={form.handleChange}
-                                                error={errors}
-                                                value={data}
+                                                formData={form}
                                             />
                                             <Input
                                                 name="minNumberOfFeeds"
                                                 type="number"
-                                                onChange={form.handleChange}
-                                                error={errors}
-                                                value={data}
+                                                formData={form}
                                             />
                                             <Input
                                                 name="forcedSettlementDelay"
                                                 type="number"
-                                                onChange={form.handleChange}
-                                                error={errors}
-                                                value={data}
+                                                formData={form}
                                             />
                                             <Input
                                                 name="forcedSettlementPercent"
                                                 type="number"
-                                                onChange={form.handleChange}
-                                                error={errors}
-                                                value={data}
+                                                formData={form}
                                             />
                                             <Input
                                                 name="forcedSettlementMaxVolume"
                                                 type="number"
-                                                onChange={form.handleChange}
-                                                error={errors}
-                                                value={data}
+                                                formData={form}
                                             />
                                             <FieldWithHint
                                                 name="backingAsset"
@@ -402,16 +376,12 @@ class AddNewAsset extends Component{
                                                 <Input
                                                     name="marketFee"
                                                     type="number"
-                                                    onChange={form.handleChange}
-                                                    error={errors}
-                                                    value={data}
+                                                    formData={form}
                                                 />
                                                 <Input
                                                     name="maxMarketFee"
                                                     type="number"
-                                                    onChange={form.handleChange}
-                                                    error={errors}
-                                                    value={data}
+                                                    formData={form}
                                                 />
                                             </div>
                                         }

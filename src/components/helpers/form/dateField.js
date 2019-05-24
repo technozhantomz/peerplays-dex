@@ -4,7 +4,7 @@ import FieldWrapper from "./fieldWrapper";
 
 class DateField extends Component{
     state = {
-        date: this.props.value[this.props.name]
+        date: this.props.value[this.props.name] || false
     };
 
     handleChange = (date) =>  this.setState({date}, () => this.props.onChange(date, this.props.name));

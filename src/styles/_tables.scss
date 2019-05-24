@@ -75,6 +75,7 @@
     opacity: 0;
     transition: $anim;
     button, a{
+      border-radius: 50px;
       &:not(:first-child){
         margin-left: 1.6rem;
       }

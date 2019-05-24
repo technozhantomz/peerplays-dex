@@ -9,7 +9,7 @@ import {GraphBtsBtc} from "../helpers/graphBtsBtc";
 import OpenOrders from "../helpers/openOrders";
 import GraphMyAssets from "../helpers/graphMyAssets";
 import TableMyAssets from "../helpers/tableMyAssets"
-import UserActivity from "../pages/user/UserActivity";
+import UserActivity from "../pages/user/userActivity";
 import NeedToLogin from "../helpers/needToLogin";
 import {connect} from "react-redux";
 

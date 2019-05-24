@@ -311,7 +311,19 @@ export const en = {
     "assetUpdate": {
         "title": "Update",
         "primarySettings": "Primary Settings",
-        "exchangeRate": "Core Exchange Rate"
+        "exchangeRate": "Core Exchange Rate",
+        "exchangeRateWarning": "Make sure your core exchange rate is higher than the market price, otherwise people will buy your token from the market and drain your fee pool via implicit arbitrage. The core exchange rate should be updated regularly to reflect market pricing of your asset.",
+        "description": "Description",
+        "permissions": "Permissions",
+        "permissionsWarning": "After creation, you may only remove a given permission, you cannot enable a permission that was disabled on creation.",
+        "flags": "Flags",
+        "smartOptions": "SmartCoin Options",
+        "feedProducers": "Feed Producers",
+        "whitelist": "Whitelist",
+        "whitelistAuthorities": "Whitelist Authorities",
+        "blacklistAuthorities": "Blacklist Authorities",
+        "whitelistMarket": "Whitelist Market",
+        "blacklistMarket": "Blacklist Market",
     },
     "voting": {
         "title": "Voting",

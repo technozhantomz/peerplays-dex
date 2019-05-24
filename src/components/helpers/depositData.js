@@ -1,10 +1,9 @@
-import React, {Fragment} from "react";
+import React from "react";
 import QRCode from 'qrcode-react';
 import InfoBlock from "./infoBlock";
 import Translate from "react-translate-component";
-import {IconWarning} from "../../svg";
-import {getAccountData} from "../../actions/store";
 import Link from "react-router-dom/es/Link";
+import WarningMessage from "./warningMessage";
 
 const DepositData = ({type, data, address, memo, user}) => {
 
@@ -21,13 +20,12 @@ const DepositData = ({type, data, address, memo, user}) => {
                 <div className="deposit__info">
                     <InfoBlock tag="deposit.address" data={{inputAsset, outputAsset, address: <b>{address}</b>}}/>
                     {isDeposit && memo && <InfoBlock tag="deposit.memo" data={{memo: <b>{memo}</b>}}/>}
-                    <div className="warning">
-                        <IconWarning/>
-                        <div className="warning__text-wrapper">
-                            <Translate content="bridgeData.minDeposit" with={{minDeposit}}/>
-                            <Translate content="bridgeData.minDepositComment" with={{inputAsset, minDeposit}}/>
-                        </div>
-                    </div>
+                    <WarningMessage
+                        titleTag="bridgeData.minDeposit"
+                        titleData={{minDeposit}}
+                        subtitleTag="bridgeData.minDepositComment"
+                        subtitleData={{inputAsset, minDeposit}}
+                    />
                 </div>
             }
             <div className="deposit-stats">

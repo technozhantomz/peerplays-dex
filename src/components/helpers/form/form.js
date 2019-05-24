@@ -94,7 +94,7 @@ class Form extends Component{
         return(
             <form
                 onSubmit={this.submit}
-                className={`${this.state.loading ? 'loading ' : ''}${className ? className : ''}`}
+                className={`form${this.state.loading ? ' loading' : ''}${className ? ` ${className}` : ''}`}
             >
                 {children(this)}
             </form>

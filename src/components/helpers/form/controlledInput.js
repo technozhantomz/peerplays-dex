@@ -3,16 +3,21 @@ import FieldWrapper from "./fieldWrapper";
 
 const ControlledInput = (props) => {
 
-    const {
+    let {
         id,
         name = '',
-        value,
         type = 'text',
         disabled = false,
-        onChange,
         onFocus,
-        onBlur
+        onBlur,
+        formData
     } = props;
+
+    let onChange = formData ? formData.handleChange : props.onChange;
+
+    if(disabled) onChange = '';
+
+    const value = formData ? formData.state.data : (props.value || {});
 
     return (
         <FieldWrapper {...props}>

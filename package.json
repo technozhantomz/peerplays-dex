@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "webpack-dev-server --https",
+    "start": "webpack-dev-server",
     "dev": "webpack-dev-server",
     "prod": "NODE_ENV=production webpack",
     "build": "webpack"
