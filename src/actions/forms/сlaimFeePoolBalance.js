@@ -7,7 +7,6 @@ export const claimFeePoolBalance = async (data, result) => {
     const {loginData, accountData} = getStore();
     const from = accountData.id;
     const asset = accountData.assets.find(e => e.symbol === data.quantityAsset);
-
     const asset_id = await formAssetData({symbol: data.mainAsset}).then(e => e.id);
 
     const trx = {
@@ -17,7 +16,7 @@ export const claimFeePoolBalance = async (data, result) => {
             issuer: from,
             asset_id,
             amount_to_claim: {
-                amount: asset.addPresion(false, data.quantityClaim),
+                amount: asset.addPrecision(false, data.quantityClaim),
                 asset_id: asset.id
             }
         }

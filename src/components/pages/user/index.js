@@ -102,4 +102,4 @@ class User extends Component{
 const mapStateToProps = (state) => ({account: state.pageData});
 const component = connect(mapStateToProps)(User);
 
-export default dataFetch({method: checkUser})(component);
+export default dataFetch({method: checkUser, disableNextProps: true})(component);

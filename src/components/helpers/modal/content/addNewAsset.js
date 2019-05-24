@@ -4,8 +4,7 @@ import Close from "../decoration/close";
 import Submit from "../decoration/submit";
 import Form from "../../form/form";
 import Input from "../../form/input";
-import {getBasicAsset, getGlobals, getStore} from "../../../../actions/store";
-import {roundNum} from "../../../../actions/roundNum";
+import {getGlobals, getStore} from "../../../../actions/store";
 import Switcher from "../../switcher";
 import TitleWrapper from "../../titleWrapper";
 import {additionalPermissions, defaultPermissions, permissionFlags} from "../../../../params/permissionsParams";
@@ -19,10 +18,17 @@ import {formAssetData} from "../../../../actions/assets";
 import DateField from "../../form/dateField";
 import {formDate} from "../../../../actions/formDate";
 import {clearLayout} from "../../../../dispatch";
+import ControlledInput from "../../form/controlledInput";
 
 const formPermissions = (permissionsObj, isSmartCoin) => {
     const list = isSmartCoin ? defaultPermissions.concat(additionalPermissions) : defaultPermissions;
     return list.reduce((acc, key) => acc + (permissionsObj[key] ? permissionFlags[key] : 0), 0);
+};
+
+const mutations = {
+    newAssetName: data => ({...data, newAssetName: data.newAssetName.toUpperCase()}),
+    pairingAsset: data => ({...data, pairingAsset: data.pairingAsset.toUpperCase()}),
+    backingAsset: data => ({...data, backingAsset: data.backingAsset.toUpperCase()})
 };
 
 const createAsset = async (data, result) => {
@@ -47,6 +53,7 @@ const createAsset = async (data, result) => {
         minNumberOfFeeds,
         backingAsset,
         permissions,
+        flagMarketFee,
         flags,
         password,
         condition,
@@ -85,7 +92,7 @@ const createAsset = async (data, result) => {
         market_fee_percent: marketFee * 100,
         max_market_fee: maxMarketFee  * precision,
         issuer_permissions: formPermissions(permissions, smartCoin),
-        flags: formPermissions(flags, smartCoin),
+        flags: formPermissions({...flags, flagMarketFee}, smartCoin),
         core_exchange_rate,
         whitelist_authorities: [],
         blacklist_authorities: [],
@@ -194,8 +201,6 @@ class AddNewAsset extends Component{
             smartFlags
         } = this.state;
 
-        console.log(smartPermissions);
-
         if(!defaultData) return <span />;
 
         return(
@@ -204,6 +209,7 @@ class AddNewAsset extends Component{
                 <Form
                     requiredFields={['newAssetName', 'maxSupply', 'decimal', 'exchangeQuote', 'exchangeBase']}
                     defaultData={defaultData}
+                    mutateData={mutations}
                     action={createAsset}
                     handleResult={this.handleResult}
                 >
@@ -214,7 +220,7 @@ class AddNewAsset extends Component{
                             return(
                                 <Fragment>
                                     <div className="form__row">
-                                        <Input
+                                        <ControlledInput
                                             name="newAssetName"
                                             onChange={form.handleChange}
                                             error={errors}
@@ -263,13 +269,14 @@ class AddNewAsset extends Component{
                                             value={data}
                                             commentParams={{
                                                 number: (data.exchangeQuote / data.exchangeBase).toFixed(data.decimal) || 0,
-                                                symbol: `${data.newAssetName || ''}/${data.pairingAsset}`
+                                                asset: data.newAssetName && `(${data.newAssetName})`,
+                                                symbol: `${data.newAssetName || ''}/${data.backingAsset}`
                                             }}
                                             comment
                                         />
                                         <Input
                                             name="exchangeBase"
-                                            labelParams={{asset: data.pairingAsset}}
+                                            labelParams={{asset: data.backingAsset}}
                                             onChange={form.handleChange}
                                             error={errors}
                                             value={data}

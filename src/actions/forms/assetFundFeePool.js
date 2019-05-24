@@ -13,7 +13,7 @@ export const assetFundFeePool = async (data, result) => {
             fee: getDefaultFee(),
             from_account: from,
             asset_id: asset.id,
-            amount: asset.addPresion(false, data.quantity)
+            amount: asset.addPrecision(false, data.quantity)
         }
     };
 

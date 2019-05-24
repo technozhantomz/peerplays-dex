@@ -24,7 +24,7 @@ const data = [
 
 export const SmallCardContent = ({}) => (
     <div>
-        <CardHeader title={'BTS : ETH'}/>
+        <CardHeader title={`block.smallCard.title`}/>
         <div className="card__content small__content">
             <div className="number">
                 1000000,000000

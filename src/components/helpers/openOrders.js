@@ -5,6 +5,7 @@ import {dbApi} from "../../actions/nodes";
 import {setAssets} from "../../actions/setAssets";
 import {getAssetById} from "../../actions/assets";
 import {getStoragedAccount} from "../../actions/account";
+import {getAccountData} from "../../actions/store";
 
 const COLORS = ['#41D83B', '#E2E2E2'];
 const COLORS2 = ['#9939CD', '#E2E2E2'];
@@ -36,7 +37,7 @@ const orderCalc = async (forSaleAmount, base, quote) => {
 };
 
 const orderData = async () => {
-    const name = getStoragedAccount().name;
+    const name = getAccountData().name;
     let zeroOrder = [], firstOrder = [];
 
     await dbApi('get_full_accounts', [[name], false]).then(async e => {

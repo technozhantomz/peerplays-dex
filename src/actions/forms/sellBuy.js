@@ -1,13 +1,9 @@
 import {trxBuilder} from "./trxBuilder";
-import {store} from '../../index.js';
 import {Asset} from "../../classes/asset";
 import {getStore} from "../store";
 import {getDefaultFee} from "./getDefaultFee";
 
 export const sellBuy = async (data, result) => {
-
-    // console.log(data);
-
     if (data.sellAsset === data.buyAsset) {
         result.errors['buyAsset'] = 'sameAsset';
         result.errors['sellAsset'] = 'sameAsset';
@@ -64,8 +60,6 @@ export const sellBuy = async (data, result) => {
         }
     };
 
-    // console.log(trx);
-
     const activeKey = loginData.formPrivateKey(data.password, 'active');
     const trxResult = await trxBuilder([trx], [activeKey]);
 
@@ -73,8 +67,6 @@ export const sellBuy = async (data, result) => {
         result.success = true;
         result.callbackData = trxResult;
     }
-
-    // console.log(trxResult);
 
     return result;
 };

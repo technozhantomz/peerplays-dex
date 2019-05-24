@@ -98,9 +98,6 @@ class BuyForm extends Component{
                 {
                     form => {
                         const {errors, data} = form.state;
-
-                        console.log(data);
-
                         return (
                             <Fragment>
                                 <ControlledInput

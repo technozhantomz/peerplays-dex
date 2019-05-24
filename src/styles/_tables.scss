@@ -74,8 +74,10 @@
   &__on-hover{
     opacity: 0;
     transition: $anim;
-    button:not(:first-child){
-      margin-left: 1.6rem;
+    button, a{
+      &:not(:first-child){
+        margin-left: 1.6rem;
+      }
     }
     .mask{
       fill: $blue-dark;

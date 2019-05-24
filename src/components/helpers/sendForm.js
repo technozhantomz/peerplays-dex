@@ -7,6 +7,13 @@ import {transfer} from "../../actions/forms";
 import Textarea from "./form/textarea";
 import {defaultToken} from "../../params/networkParams";
 import {getAccountData} from "../../actions/store";
+import FieldWithHint from "./form/fieldWithHint";
+
+const getSymbolsList = async (symbol) => (
+    getAccountData().contacts
+        .filter(item => item.type !== 2 && item.name.includes(symbol))
+        .map(item => item.name)
+);
 
 class SendForm extends Component {
     state = {
@@ -16,16 +23,17 @@ class SendForm extends Component {
     };
 
     componentDidMount() {
-
         const user = getAccountData();
         const userTokens = user.assets;
         const startAsset = userTokens.length ? userTokens[0].symbol : defaultToken;
+        const contacts = getAccountData().contacts.filter(item => item.type !== 2).map(item => item.name);
 
         const defaultData = {
             from: user.name,
             quantityAsset: startAsset,
             fee: 0,
-            feeAsset: startAsset
+            feeAsset: startAsset,
+            contacts: contacts || []
         };
 
         this.setState({userTokens, defaultData});
@@ -75,11 +83,13 @@ class SendForm extends Component {
                                         />
                                     </div>
                                     <div className="input__row">
-                                        <Input
+                                        <FieldWithHint
                                             name="to"
-                                            onChange={form.handleChange}
-                                            error={errors}
-                                            value={data}
+                                            method={getSymbolsList}
+                                            handleChange={form.handleChange}
+                                            errors={errors}
+                                            defaultHints={data.contacts}
+                                            className="with-hint"
                                         />
                                         <Dropdown
                                             btn={<SelectHeader

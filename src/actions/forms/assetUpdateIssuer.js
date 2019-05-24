@@ -11,7 +11,6 @@ export const assetUpdateIssuer = async (data, result) => {
     const asset_to_update = await formAssetData({symbol: data.mainAsset}).then(e => e.id);
 
     const new_issuer = await dbApi('get_account_by_name', [data.assetOwner]).then(e => e.id);
-    // console.log(asset);
 
     const trx = {
         type: 'asset_update_issuer',

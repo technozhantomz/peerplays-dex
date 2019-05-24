@@ -9,7 +9,7 @@ const handleData = async (context, val, id) => {
 
     data[id] = val;
 
-    if(mutateData) data = mutateData[id](data);
+    if(mutateData && mutateData[id]) data = mutateData[id](data);
 
     const errors = await checkErrors(data);
 

@@ -8,6 +8,7 @@ import WithdrawForm from "../../helpers/withdrawForm";
 import Translate from "react-translate-component";
 import NoData from "../../helpers/noData";
 import Close from "../../helpers/modal/decoration/close";
+import {clearLayout} from "../../../dispatch";
 
 class AssetWithdraw extends Component{
     state = {
@@ -72,7 +73,7 @@ class AssetWithdraw extends Component{
         });
     };
 
-    handleWithdraw = (data) => console.log(data);
+    handleWithdraw = () => clearLayout();
 
     render(){
 
@@ -87,7 +88,7 @@ class AssetWithdraw extends Component{
                 <NoData tag="emptyPage.withdraw" />
                 {isModal &&
                     <div className="modal__bottom">
-                        <Close/>
+                        <Close />
                     </div>
                 }
             </Fragment>

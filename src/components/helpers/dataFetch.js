@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import NoData from "./noData";
 
-const dataFetch = ({method, reset, page}) => ChildComponent => (
+const dataFetch = ({method, reset, page, disableNextProps}) => ChildComponent => (
     class Wrapper extends Component{
         state = {
             loading: true,
@@ -14,7 +14,7 @@ const dataFetch = ({method, reset, page}) => ChildComponent => (
 
         componentWillReceiveProps(){
             const context = this;
-            setTimeout(() => context.setData());
+            !disableNextProps && setTimeout(() => context.setData());
         }
 
         setData = () => method(this).then(data => this.setState({loading: false, data}));

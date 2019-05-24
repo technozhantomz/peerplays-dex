@@ -5,13 +5,10 @@ import {getStoragedAccount} from "../actions/account";
 
 class CloudAccount extends Account{
     checkPassword(password, account){
-
         if(!account) account = getAccountData();
 
         const login = account.name;
         const roles = ['active', 'owner', 'memo'];
-
-        // console.log(account);
 
         const keys = {
             active: account.active || account.keys.active,

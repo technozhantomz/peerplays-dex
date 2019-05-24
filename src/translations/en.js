@@ -241,8 +241,25 @@ export const en = {
             "title": "Bid Collateral",
             "text": "Unfortunately, BTC is in Global Settlement. During this time it is possible to bid on the collateral in the Settlement Fund and the debt it covers. When the total outstanding debt is covered by bids, and the additional collateral of each bid plus its share from the settlement fund is greater than the MCR, the asset is automatically revived and a margin position is created for each bid. \n" +
             "Bids will be included on revival sorted by their bid price until the whole debt is covered (last bid might be covered partially). Included bids will be converted into margin positions and receive the residual collateral such that the position reaches MCR from the settlement fund. Not included bids will be reimbursed. A bid can be removed by placing a zero collateral bid."
+        },
+        "smallCard": {
+            "title": "BTS : ETH"
+        },
+        "graph": {
+            "title": "%(token)s"
+        },
+        "trends": {
+            "title": "Trends"
+        },
+        "todayTradeVolume": {
+            "title": "Today Trade Volume"
+        },
+        "myActivity": {
+            "title": "My Activity"
+        },
+        "myAssets": {
+            "title": "My Assets"
         }
-
     },
     "exchange": {
         "title": "Exchange",
@@ -290,6 +307,11 @@ export const en = {
     },
     "actions": {
         "title": "Actions"
+    },
+    "assetUpdate": {
+        "title": "Update",
+        "primarySettings": "Primary Settings",
+        "exchangeRate": "Core Exchange Rate"
     },
     "voting": {
         "title": "Voting",
@@ -507,7 +529,7 @@ export const en = {
             "newAssetName": "Symbol",
             "maxSupply": "Maximum Supply",
             "decimal": "Decimal Places",
-            "exchangeQuote": "Quote Asset Amount",
+            "exchangeQuote": "Quote Asset Amount %(asset)s",
             "exchangeBase": "Base Asset Amount (%(asset)s)",
             "description": "Description",
             "shortName": "Short Name",

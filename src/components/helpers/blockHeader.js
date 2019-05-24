@@ -17,7 +17,6 @@ class BlockHeader extends Component{
     };
 
     componentDidMount(){
-        // console.log(this.props.data);
         this.getData(this.props.data);
     }
 

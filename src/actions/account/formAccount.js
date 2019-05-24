@@ -10,6 +10,7 @@ import {getPassword} from "../forms";
 import IssueAsset from "../../components/helpers/modal/content/issueAsset";
 import {setModal} from "../../dispatch";
 import {editStorage, getStorage} from "../storage";
+import Link from "react-router-dom/es/Link";
 
 const formMembershipData = async fullAcc => {
     const {account, lifetime_referrer_name, referrer_name, registrar_name, statistics} = fullAcc;
@@ -107,10 +108,7 @@ export const formAccount = async (data) => {
                 if(el.bitasset_data_id){
                     canBeIssued = false;
                     assetType = await dbApi('get_objects', [[el.bitasset_data_id]])
-                        .then(e => {
-                            console.log(e);
-                            return e[0].is_prediction_market ? 'prediction' : 'smart'
-                        });
+                        .then(e => e[0].is_prediction_market ? 'prediction' : 'smart');
                 }
 
                 const openIssueModal = () => getPassword(password => setModal(
@@ -126,7 +124,7 @@ export const formAccount = async (data) => {
                         {canBeIssued &&
                             <button onClick={openIssueModal} ><IconSend/></button>
                         }
-                        <button><IconCreate /></button>
+                        <Link to={`/asset/${asset.symbol}/update`}><IconCreate /></Link>
                     </div>
                 </div>;
 

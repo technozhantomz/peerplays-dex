@@ -75,8 +75,8 @@
   label:not(:last-child), .dropdown:not(:last-child) {
     margin-right: 3rem;
 
-    .field {
-      width: 328px;
+    .field, .with_hint {
+      width: 100%;
     }
   }
 

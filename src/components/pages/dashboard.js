@@ -6,157 +6,19 @@ import QuickSellBuy from "../helpers/quickSellBuy";
 import SendForm from "../helpers/sendForm";
 import {GraphTrends} from "../helpers/graphTrends";
 import {GraphBtsBtc} from "../helpers/graphBtsBtc";
-import Table from "../helpers/table";
-import MoreVertIcon from '@material-ui/icons/MoreVert';
 import OpenOrders from "../helpers/openOrders";
-import NoData from "../helpers/noData";
-import {getStorage} from "../../actions/storage/index";
 import GraphMyAssets from "../helpers/graphMyAssets";
-import TableMyAssets from "../helpers/tableMyAssets";
+import TableMyAssets from "../helpers/tableMyAssets"
+import UserActivity from "../pages/user/UserActivity";
 import NeedToLogin from "../helpers/needToLogin";
 import {connect} from "react-redux";
 
-const tableActivityHead = [
-    {
-        key: 'date',
-        translateTag: '',
-        params: 'fit-content'
-    },
-    {
-        key: 'transaction',
-        translateTag: '',
-        params: 'fit-content'
-    },
-    {
-        key: 'account',
-        translateTag: '',
-        params: 'align-right'
-    },
-    {
-        key: 'cost',
-        translateTag: '',
-        params: 'align-right fit-content'
-    },
-    {
-        key: 'receiver_name',
-        translateTag: '',
-        params: 'fit-content'
-    },
-    {
-        key: 'operation_id',
-        translateTag: '',
-        params: 'align-right'
-    },
-    {
-        key: 'fee',
-        translateTag: '',
-        params: 'align-right fit-content'
-    },
-    {
-        key: 'actions',
-        translateTag: '',
-        params: 'align-right fit-content'
-    }
-];
-
-const tableActivity = [
-    {
-        date: "06 Sep 2018",
-        transaction: <span className="operation negative">Cancel order</span>,
-        account: "bitshares.foundation",
-        cost: "999,999,98.888888",
-        receiver_name: "Receiver",
-        operation_id: "1.11.163493312",
-        fee: "Fee",
-        actions: <button className="table__button"><MoreVertIcon/></button>
-    },
-    {
-        date: "06 Sep 2018",
-        transaction: <span className="operation positive">TRANSFER</span>,
-        account: "bitshares.foundation",
-        cost: "999,999,98.888888",
-        receiver_name: "Receiver",
-        operation_id: "1.11.163493312",
-        fee: "Fee",
-        actions: <button className="table__button"><MoreVertIcon/></button>
-    },
-    {
-        date: "06 Sep 2018",
-        transaction: <span className="operation positive">TRANSFER</span>,
-        account: "bitshares.foundation",
-        cost: "999,999,98.888888",
-        receiver_name: "Receiver",
-        operation_id: "1.11.163493312",
-        fee: "Fee",
-        actions: <button className="table__button"><MoreVertIcon/></button>
-    },
-];
-
-const tableAssetsHead = [
-    {
-        key: "asset",
-        translateTag: "asset",
-        params: 'fit-content'
-    },
-    {
-        key: "available",
-        translateTag: "available",
-        params: 'align-right fit-content'
-    },
-    {
-        key: "priceUSD",
-        translateTag: "priceWithToken",
-        params: 'fit-content'
-    },
-    {
-        key: "change",
-        translateTag: "change",
-        params: 'align-center'
-    },
-    {
-        key: "valueUSD",
-        translateTag: "valueWithToken",
-        params: 'align-right fit-content'
-    },
-    {
-        key: "actions",
-        translateTag: "actions",
-        params: 'align-right fit-content'
-    }
-];
-
-const tableAssets = [
-    {
-        asset: "Asset Name",
-        available: "0.00000000",
-        priceUSD: "0.00000000",
-        change: "+0.00 %",
-        valueUSD: "26,635",
-        actions: <button className="table__button"><MoreVertIcon/></button>
-    },
-    {
-        asset: "Asset Name",
-        available: "0.00000000",
-        priceUSD: "0.00000000",
-        change: "+0.00 %",
-        valueUSD: "26,635",
-        actions: <button className="table__button"><MoreVertIcon/></button>
-    },
-    {
-        asset: "Asset Name",
-        available: "0.00000000",
-        priceUSD: "0.00000000",
-        change: "+0.00 %",
-        valueUSD: "26,635",
-        actions: <button className="table__button"><MoreVertIcon/></button>
-    }
-];
-
 class Dashboard extends Component {
-
     render() {
+        if (!this.props.account) return <NeedToLogin pageName={'dashboard'}/>;
 
-        if(!this.props.account) return <NeedToLogin pageName={'dashboard'} />;
+        let data = this.props.account;
+        data.history = this.props.account.history.slice(0, 10);
 
         return (
             <div className="container">
@@ -179,64 +41,59 @@ class Dashboard extends Component {
                     <Card mode="small">
                         <SmallCardContent/>
                     </Card>
-                    {/*<button className="plus">*/}
-                        {/*<Add/>*/}
-                    {/*</button>*/}
                 </div>
 
 
                 <div className="graphs">
                     <Card mode="graph">
-                        <CardHeader title={'Quick Sell / Buy'}/>
+                        <CardHeader title={`block.quickSellBuy.title`}/>
                         <QuickSellBuy/>
                     </Card>
                     <Card mode="graph">
-                        <CardHeader title={'BTC / BTS'}/>
+                        <CardHeader title={`block.graph.title`} additionalData={{token: "BTC / BTH"}}/>
                         <GraphBtsBtc/>
                     </Card>
                     <Card mode="graph">
-                        <CardHeader title={'My Portfolio'}/>
+                        <CardHeader title={`block.myPortfolio.title`}/>
                         <GraphMyAssets/>
                     </Card>
                 </div>
 
                 <div className="graphs">
                     <Card mode="widget">
-                        <CardHeader title={'Open Orders'}/>
+                        <CardHeader title={`block.openOrders.title`}/>
                         <div className="card__content">
                             <OpenOrders/>
                         </div>
                     </Card>
                     <Card mode="widget">
-                        <CardHeader title={'Send'}/>
+                        <CardHeader title={`block.send.title`}/>
                         <SendForm/>
                     </Card>
                 </div>
 
                 <div className="graphs">
                     <Card mode="widget">
-                        <CardHeader title={'Trends'}/>
+                        <CardHeader title={`block.trends.title`}/>
                         <GraphTrends/>
                     </Card>
                     <Card mode="widget">
-                        <CardHeader title={'Today Trade Volume'}/>
+                        <CardHeader title={`block.todayTradeVolume.title`}/>
                     </Card>
                 </div>
 
                 <div className="tables">
-                    <span className="table--without_header">
-                        <Card mode="table">
-                            {/*<CardHeader title={'My Activity'} action={() => setModal(<MyAssetsModal/>)}/>*/}
-                            <CardHeader title={'My Activity'}/>
-
-                            <Table
-                                tableHead={tableActivityHead}
-                                rows={tableActivity}
-                            />
-                        </Card>
-                    </span>
+                    {
+                        Boolean(data) &&
+                        <span className="table--without_header">
+                            <Card mode="table">
+                                <CardHeader title={`block.myActivity.title`}/>
+                                <UserActivity data={data}/>
+                            </Card>
+                        </span>
+                    }
                     <Card mode="table">
-                        <CardHeader title={'My Assets'}/>
+                        <CardHeader title={`block.myAssets.title`}/>
                         <TableMyAssets/>
                     </Card>
                 </div>

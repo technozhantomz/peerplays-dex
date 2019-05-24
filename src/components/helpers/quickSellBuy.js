@@ -7,6 +7,17 @@ import Form from "./form/form";
 import {sellBuy} from "../../actions/forms";
 import {defaultQuote, defaultToken} from "../../params/networkParams";
 import {getAccountData} from "../../actions/store";
+import {dbApi} from "../../actions/nodes";
+import FieldWithHint from "./form/fieldWithHint";
+
+const getAssetsList = async (symbol) => dbApi('list_assets', [symbol.toUpperCase(), 5])
+    .then(result => result.map(e => e.symbol));
+
+const getUserAssetsList = async (symbol) => (
+    getAccountData().assets
+        .filter(item.name.includes(symbol))
+        .map(item => item.name)
+);
 
 class QuickSellBuy extends Component {
     state = {
@@ -16,12 +27,14 @@ class QuickSellBuy extends Component {
     };
 
     componentDidMount() {
-        const userTokens = getAccountData().assets;
+        const userTokens = getAccountData().assets.map(e => e.symbol);
 
         const defaultData = {
-            sellAsset: userTokens.length ? userTokens[0].symbol : defaultToken,
+            sellAsset: userTokens.length ? userTokens[0] : defaultToken,
             buyAsset: defaultQuote,
-            fee: 0
+            fee: 0,
+            amount_to_sell: 0,
+            amount_to_receive: 0
         };
 
         this.setState({userTokens, defaultData});
@@ -29,7 +42,6 @@ class QuickSellBuy extends Component {
 
 
     handleTransfer = (data) => {
-        // console.log(data);
         const context = this;
         this.setState({sended: true}, () => setTimeout(() => context.setState({sended: false}), 5000));
     };
@@ -45,7 +57,7 @@ class QuickSellBuy extends Component {
                     type={'limit_order_create'}
                     className="form__sell-buy"
                     defaultData={defaultData}
-                    requiredFields={['amount_to_sell', 'amount_to_receive']}
+                    requiredFields={['amount_to_sell', 'amount_to_receive', 'asset_to_sell', 'asset_to_sell']}
                     action={sellBuy}
                     handleResult={this.handleTransfer}
                     needPassword
@@ -64,14 +76,13 @@ class QuickSellBuy extends Component {
                                             error={errors}
                                             value={data}
                                         />
-                                        <Dropdown
-                                            btn={<SelectHeader
-                                                text={data.sellAsset}
-                                                error={errors['sellAsset']}
-                                            />}
-                                            list={userTokens.map(e => <button
-                                                onClick={() => form.handleChange(e.symbol, 'sellAsset')}
-                                                type="button">{e.symbol}</button>)}
+                                        <FieldWithHint
+                                            name="asset_to_sell"
+                                            method={getUserAssetsList}
+                                            hideLabel={true}
+                                            handleChange={form.handleChange}
+                                            errors={errors}
+                                            defaultHints={userTokens}
                                         />
                                     </div>
                                     <div className="input__row">
@@ -82,22 +93,18 @@ class QuickSellBuy extends Component {
                                             error={errors}
                                             value={data}
                                         />
-                                        <Dropdown
-                                            btn={<SelectHeader
-                                                text={data.buyAsset}
-                                                error={errors['buyAsset']}
-                                            />}
-                                            list={userTokens.map(e => <button
-                                                onClick={() => form.handleChange(e.symbol, 'buyAsset')}
-                                                type="button">{e.symbol}</button>)}
+                                        <FieldWithHint
+                                            name="asset_to_receive"
+                                            method={getAssetsList}
+                                            hideLabel={true}
+                                            handleChange={form.handleChange}
+                                            defaultVal={data}
+                                            errors={errors}
                                         />
                                     </div>
                                     <div className="info__row">
                                         <span>Fee: {data.fee} {data.sellAsset}</span>
                                         {sended && <span className="clr--positive">Trx completed</span>}
-                                        {/*<span>0.00567 BTS</span>*/}
-                                        {/*<span>Market Fee (0.1%)</span>*/}
-                                        {/*<span>1.00000 BTS</span>*/}
                                     </div>
                                     <div className="btn__row">
                                         <button className="btn-round btn-round--buy" onClick={form.submit}>

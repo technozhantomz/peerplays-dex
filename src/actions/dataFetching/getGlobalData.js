@@ -275,8 +275,6 @@ export const getGlobalData = async () => {
     const lastBlockData = await dbApi('get_objects', [["2.1.0"]]).then(e => e[0]);
     const feesParams = globalProps.parameters.current_fees.parameters;
 
-    // console.log(opTypes);
-
     globalData.fees = {};
     Object.keys(opTypes).forEach(el => {
         const fee = feesParams.find(fee => fee[0] === opTypes[el]);

@@ -1,7 +1,6 @@
 import React from "react";
 import Table from "../../helpers/table";
 import dataFetch from "../../helpers/dataFetch";
-import {getUserHistory} from "../../../actions/dataFetching";
 import {formUserActivity} from "../../../actions/dataFetching/historyCallbacks";
 
 const tableHead = [
