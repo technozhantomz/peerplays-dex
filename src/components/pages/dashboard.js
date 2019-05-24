@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {connect} from "react-redux";
 import {CardHeader} from "../helpers/cardHeader";
 import {Card} from "../helpers/card";
 import {SmallCardContent} from "../helpers/smallCardContent";
@@ -9,9 +10,8 @@ import {GraphBtsBtc} from "../helpers/graphBtsBtc";
 import OpenOrders from "../helpers/openOrders";
 import GraphMyAssets from "../helpers/graphMyAssets";
 import TableMyAssets from "../helpers/tableMyAssets"
-import UserActivity from "../pages/user/userActivity";
 import NeedToLogin from "../helpers/needToLogin";
-import {connect} from "react-redux";
+import UserActivity from './user/userActivity'
 
 class Dashboard extends Component {
     render() {

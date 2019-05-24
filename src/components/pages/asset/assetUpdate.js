@@ -30,8 +30,11 @@ const getDefaultFormData = async context => {
         minimum_feeds
     } = smartData ? assetData.smartData.options : {};
 
-    const feedsList = smartData ? assetData.smartData.feeds : [];
+    const feedsList = smartData
+        ? assetData.smartData.feeds.map(el => el[0])
+        : [];
 
+    console.log(feedsList);
 
 
     const permissionsList = defaultPermissions.concat(additionalPermissions).filter(el => permissions.includes(el));

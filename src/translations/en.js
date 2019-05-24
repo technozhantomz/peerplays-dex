@@ -137,6 +137,18 @@ export const en = {
         "asset_update": {
             "title": "Update Asset",
             "description": "%(issuer)s updated asset %(asset)s"
+        },
+        "asset_claim_pool": {
+            "title": "Claim asset fee pool",
+            "description": "%(issuer)s claimed %(claimed)s from %(asset)s fee pool"
+        },
+        "asset_update_issuer": {
+            "title": "Update asset issuer",
+            "description": "%(issuer)s transferred rights for %(asset)s to %(newOwner)s"
+        },
+        "asset_update_feed_producers": {
+            "title": "Update asset feed producers",
+            "description": "%(issuer)s updated the feed producers for the asset %(asset)s"
         }
     },
     "dashboard": {

@@ -4,7 +4,7 @@ import {getGlobals} from "../store";
 import {getCache} from "../cacheOps";
 
 export const formAssetData = async data => {
-    const id = data.asset_type || data.asset_id;
+    const id = data.asset_type || data.asset_id || data.id;
     const symbol = data.symbol;
     const amount = data.balance || data.amount || 0;
 
