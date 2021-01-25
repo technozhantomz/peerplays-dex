@@ -1,4 +1,4 @@
-import {Aes, key, PublicKey} from "bitsharesjs";
+import {Aes, key, PublicKey} from "peerplaysjs-lib";
 import {compress} from "lzma";
 import {downloadFile} from "../downloadFile";
 import {getLoginData} from "../store";

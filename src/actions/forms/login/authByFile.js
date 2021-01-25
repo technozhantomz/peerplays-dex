@@ -1,4 +1,4 @@
-import {Aes, PrivateKey, PublicKey} from "bitsharesjs";
+import {Aes, PrivateKey, PublicKey} from "peerplaysjs-lib";
 import {decompress} from "lzma";
 import {walletToRedux} from "../../wallet/";
 

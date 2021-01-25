@@ -1,4 +1,4 @@
-import {PrivateKey, hash, key} from "bitsharesjs";
+import {PrivateKey, hash, key} from "peerplaysjs-lib";
 import {getUserName} from "../../account/index";
 import {generatePublic} from "../../keys";
 import {dbApi} from "../../nodes/index";

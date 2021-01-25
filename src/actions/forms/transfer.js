@@ -1,5 +1,5 @@
 import Aes from "bitsharesjs/es/ecc/src/aes";
-import {TransactionHelper} from "bitsharesjs";
+import {TransactionHelper} from "peerplaysjs-lib";
 import {dbApi} from "../nodes";
 import {trxBuilder} from "./trxBuilder";
 import {getStore} from "../store";

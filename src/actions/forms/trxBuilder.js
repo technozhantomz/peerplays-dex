@@ -1,4 +1,4 @@
-import {TransactionBuilder} from "bitsharesjs";
+import {TransactionBuilder} from "peerplaysjs-lib";
 
 export const trxBuilder = async (trx, keys) => {
     const tr = new TransactionBuilder();

@@ -1,4 +1,4 @@
-import {ChainTypes} from "bitsharesjs";
+import {ChainTypes} from "peerplaysjs-lib";
 import {formAccount} from "../account/formAccount";
 import {dbApi} from "../nodes";
 import {getStorage, setStorage} from "../storage";

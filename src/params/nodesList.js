@@ -3,13 +3,13 @@ import {testnetCheck} from "./networkParams";
 const testnetNodes = [
     {
         location: 'Northern America - U.S.A. - New York',
-        url: 'ws://bts-testnet-1.blckchnd.com/ws',
+        url: 'wss://elizabeth.peerplays.download/api',
         user: {
             name: 'Flash Infrastructure Worker ',
             status: 'Witness'
         }
     },
-    {
+   /* {
         location: 'Northern America - Canada',
         url: 'ws://bts-testnet-2.blckchnd.com/ws',
         user: {
@@ -87,7 +87,7 @@ const testnetNodes = [
             name: 'Flash Infrastructure Worker ',
             status: 'Witness'
         }
-    }
+    }*/
 ];
 
 const prodNodes = [{

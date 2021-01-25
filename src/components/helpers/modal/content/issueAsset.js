@@ -1,6 +1,6 @@
 import React, {Component, Fragment} from "react";
 import ModalTitle from "../decoration/modalTitle";
-import {TransactionHelper} from "bitsharesjs";
+import {TransactionHelper} from "peerplaysjs-lib";
 import Form from "../../form/form";
 import Close from "../decoration/close";
 import Submit from "../decoration/submit";

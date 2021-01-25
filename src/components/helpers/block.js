@@ -5,7 +5,7 @@ import dataFetch from "./dataFetch";
 import TransferItem from "./transferItem";
 import {transactionParser} from "../../actions/transactionParser";
 import Translate from "react-translate-component";
-import {ChainTypes} from "bitsharesjs";
+import {ChainTypes} from "peerplaysjs-lib";
 
 const getType = opNumber => {
     const operationsIndexes = Object.values(ChainTypes.operations);

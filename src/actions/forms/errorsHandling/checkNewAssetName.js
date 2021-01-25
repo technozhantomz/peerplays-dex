@@ -1,4 +1,4 @@
-import {ChainValidation, ChainStore} from "bitsharesjs";
+import {ChainValidation, ChainStore} from "peerplaysjs-lib";
 import {dbApi} from "../../nodes";
 
 const defaultErrorsTranslate = {

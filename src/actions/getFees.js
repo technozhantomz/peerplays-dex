@@ -1,6 +1,6 @@
 import React from "react";
 import {dbApi} from "./nodes";
-import {ChainTypes} from "bitsharesjs"
+import {ChainTypes} from "peerplaysjs-lib"
 import {setAssets} from "./setAssets";
 
 export const getFees = async () => {

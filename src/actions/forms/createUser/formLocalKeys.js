@@ -1,5 +1,5 @@
 import {dictionary} from "../../../params/dictionary";
-import {key} from "bitsharesjs";
+import {key} from "peerplaysjs-lib";
 import {cryptBrain, formWallet} from "../../wallet";
 import {getInstance} from "../../store";
 

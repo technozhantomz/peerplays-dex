@@ -10,6 +10,7 @@ import Submit from "../decoration/submit";
 const checkPassword = async (data, result) => {
 
     const {loginData, accountData} = getStore();
+    console.log(loginData)
 
     const checkPassword = loginData.checkPassword(data.password, accountData);
 

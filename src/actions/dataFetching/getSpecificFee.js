@@ -1,4 +1,4 @@
-import {ChainTypes} from "bitsharesjs";
+import {ChainTypes} from "peerplaysjs-lib";
 import {dbApi} from "../nodes";
 import {setPrecision} from "../assets";
 

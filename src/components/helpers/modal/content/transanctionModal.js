@@ -5,7 +5,7 @@ import Translate from "react-translate-component";
 import BlockHeader from "../../blockHeader";
 import {transactionParser} from "../../../../actions/transactionParser";
 import TransferItem from "../../transferItem";
-import {ChainTypes} from "bitsharesjs";
+import {ChainTypes} from "peerplaysjs-lib";
 import {clearLayout} from "../../../../dispatch/index";
 import Close from "../decoration/close";
 

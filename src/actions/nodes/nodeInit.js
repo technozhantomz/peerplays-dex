@@ -1,5 +1,5 @@
 import {getPassedTime} from "../getPassedTime";
-import {Apis} from "bitsharesjs-ws";
+import {Apis} from "peerplaysjs-lib";
 
 export const nodeInit = async (url, actualNode = false) => {
 

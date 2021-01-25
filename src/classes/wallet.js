@@ -1,7 +1,7 @@
 import {decryptHex, generatePublic, seedToHex} from "../actions/keys";
 import {addToDB, putToDB} from "../actions/iDB";
 import Account from "./account";
-import {PrivateKey, key, hash} from "bitsharesjs";
+import {PrivateKey, key, hash} from "peerplaysjs-lib";
 import {editStorage, getStorage} from "../actions/storage";
 import {getAccountData} from "../actions/store";
 import {getStoragedAccount} from "../actions/account";

@@ -3,7 +3,7 @@ import {removeModal} from "../../dispatch/setModal";
 import Input from "./input";
 import Form from "./form";
 import CheckBox from "./checkbox";
-import {PrivateKey} from "bitsharesjs";
+import {PrivateKey} from "peerplaysjs-lib";
 import {defaultToken} from "../../params/networkParams";
 import {dbApi} from "../../actions/nodes";
 import {setStorage} from "../../actions/storage";

@@ -1,4 +1,4 @@
-import {TransactionHelper} from "bitsharesjs";
+import {TransactionHelper} from "peerplaysjs-lib";
 import {setPrecision} from "../assets";
 import {store} from '../../index';
 

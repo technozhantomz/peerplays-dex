@@ -1,5 +1,5 @@
 import React from "react";
-import {ChainTypes} from "bitsharesjs";
+import {ChainTypes} from "peerplaysjs-lib";
 import {getUserName} from "../../account/getUserName";
 import {formAssetData} from "../../assets";
 import {dbApi} from "../../nodes";

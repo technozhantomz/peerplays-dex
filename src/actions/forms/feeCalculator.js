@@ -1,4 +1,4 @@
-import {TransactionHelper} from "bitsharesjs";
+import {TransactionHelper} from "peerplaysjs-lib";
 import {getAccountData, getBasicAsset, getFees, getStore} from "../store";
 import {Asset} from "../../classes";
 

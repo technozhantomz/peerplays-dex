@@ -1,4 +1,4 @@
-import {PrivateKey} from "bitsharesjs";
+import {PrivateKey} from "peerplaysjs-lib";
 import Account from "./account";
 import {getAccountData} from "../actions/store";
 import {getStoragedAccount} from "../actions/account";

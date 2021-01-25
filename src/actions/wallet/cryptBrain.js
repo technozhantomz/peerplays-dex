@@ -1,5 +1,5 @@
 import {generatePublic, seedToHex} from "../keys";
-import {hash} from "bitsharesjs";
+import {hash} from "peerplaysjs-lib";
 import PrivateKey from "bitsharesjs/es/ecc/src/PrivateKey";
 
 export const cryptBrain = (keyBuffer, brainkey, brainkey_sequence) => {

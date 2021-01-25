@@ -1,5 +1,5 @@
 import {dbApi} from "../../nodes";
-import {ChainValidation} from "bitsharesjs";
+import {ChainValidation} from "peerplaysjs-lib";
 
 export const checkNewLogin = async ({newLogin}) => {
     if(!newLogin) return false;
