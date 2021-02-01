@@ -1,5 +1,5 @@
 import {decryptHex, generatePublic, seedToHex} from "../actions/keys";
-import key from "bitsharesjs/es/ecc/src/KeyUtils";
+import key from "peerplaysjs-lib";
 import {addToDB, putToDB} from "../actions/iDB";
 
 export class User{

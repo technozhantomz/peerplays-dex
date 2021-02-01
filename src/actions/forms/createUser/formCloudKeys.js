@@ -1,4 +1,4 @@
-import PrivateKey from "bitsharesjs/es/ecc/src/PrivateKey";
+import {PrivateKey} from "peerplaysjs-lib";
 
 export const formCloudKeys = ({newLogin, password}) => {
     const keys = {};

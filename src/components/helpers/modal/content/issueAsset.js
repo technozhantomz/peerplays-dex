@@ -10,7 +10,7 @@ import Textarea from "../../form/textarea";
 import {getDefaultFee} from "../../../../actions/forms/getDefaultFee";
 import {getAccountData, getBasicAsset, getStore} from "../../../../actions/store";
 import {trxBuilder} from "../../../../actions/forms/trxBuilder";
-import Aes from "bitsharesjs/es/ecc/src/aes";
+import Aes from "peerplaysjs-lib";
 import {dbApi} from "../../../../actions/nodes";
 import {clearLayout} from "../../../../dispatch";
 

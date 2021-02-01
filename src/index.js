@@ -4,7 +4,7 @@ import {AppContainer} from 'react-hot-loader'
 import {Provider} from 'react-redux'
 import {ConnectedRouter} from "react-router-redux";
 import createHistory from 'history/createBrowserHistory'
-import {ChainConfig} from "bitsharesjs/node_modules/bitsharesjs-ws/cjs";
+import {ChainConfig} from "peerplaysjs-lib";
 
 import './styles/styles.scss';
 import "react-datepicker/dist/react-datepicker.css";
@@ -23,7 +23,7 @@ const history = createHistory();
 export const store = initStore(history);
 
 ChainConfig.setPrefix(defaultToken);
-ChainConfig.networks[defaultNetwork] = defaultChainParams;
+//ChainConfig.networks[defaultNetwork] = defaultChainParams;
 
 initCache();
 initSettings();

@@ -28,12 +28,12 @@ const CreateUser = () => {
                         <div className="modal__content">
                             <RadioGroup
                                 name="type"
-                                list={['cloud', 'local']}
+                                list={['cloud']}
                                 onChange={form.handleChange}
                             />
                             <Input
                                 name="newLogin"
-                                comment={true}
+                                comment={false}
                                 onChange={form.handleChange}
                                 error={form.state.errors}
                                 value={form.state.data}

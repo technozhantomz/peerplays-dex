@@ -1,5 +1,5 @@
-import PrivateKey from "bitsharesjs/es/ecc/src/PrivateKey";
-import Aes from "bitsharesjs/es/ecc/src/aes";
+import PrivateKey from "peerplaysjs-lib";
+import Aes from "peerplaysjs-lib";
 
 export const generatePublic = (data) => {
     if(typeof(data) !== 'object'){
