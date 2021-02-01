@@ -136,7 +136,7 @@ class Explorer extends Component {
                     </Card>
                     <Card mode="explorer">
                         <div className="card__title">
-                            Supply (BTS)
+                            Supply (TEST)
                         </div>
                         <div className="card__content">
                             2,456,345,676
@@ -168,7 +168,7 @@ class Explorer extends Component {
                     </Card>
                     <Card mode="explorer">
                         <div className="card__title">
-                            Stealth Supply (BTS)
+                            Stealth Supply (TEST)
                         </div>
                         <div className="card__content">
                             234,234

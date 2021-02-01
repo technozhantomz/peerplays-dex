@@ -85,7 +85,7 @@ class Witnesses extends Component {
                             Pay-per-block
                         </div>
                         <div className="card__content">
-                            1.00000 BTS
+                            1.00000 TEST
                         </div>
                     </Card>
                     <Card mode="witnesses">
@@ -93,7 +93,7 @@ class Witnesses extends Component {
                             Remaining budget
                         </div>
                         <div className="card__content">
-                            1.00000 BTS
+                            1.00000 TEST
                         </div>
                     </Card>
                     <Card mode="witnesses">

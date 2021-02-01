@@ -9,7 +9,7 @@ import ModalTitle from "../decoration/modalTitle";
 const LogIn = () => (
     <Fragment>
         <ModalTitle tag="login" />
-        <Tabs head={['cloud', 'local', 'brain']} headType="radioHead">
+        <Tabs head={['cloud']} headType="radioHead">
             <CloudLogin handleLogin={handleLogin} />
             <LocalLogin handleLogin={handleLogin} />
             <BrainLogin handleLogin={handleLogin} />

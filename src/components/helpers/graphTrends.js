@@ -22,7 +22,7 @@ export const GraphTrends = () => (
     <div className="card__content">
         <div className="graph__names">
             <div>BTC</div>
-            <div>BTS</div>
+            <div>TEST</div>
         </div>
         <div className="graph">
             <AreaChart width={640} height={236} data={data}>

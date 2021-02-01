@@ -158,7 +158,7 @@ export const en = {
             "quantity": "Quantity",
             "currency": "Currency",
             "to": "To",
-            "BTS": "BTS"
+            "TEST": "TEST"
         }
     },
     "quickSellBuy": {
@@ -191,7 +191,7 @@ export const en = {
         },
         "fee": {
             "title": "Fee Pool",
-            "text": "The fee pool is used to pay fees in BTS by converting the fee in BTC to BTS. If the fee pool runs out of funds, fees may no longer be paid in BTC and will default to BTS. The core exchange rate is the price at which BTC are converted to BTS.",
+            "text": "The fee pool is used to pay fees in TEST by converting the fee in BTC to TEST. If the fee pool runs out of funds, fees may no longer be paid in BTC and will default to TEST. The core exchange rate is the price at which BTC are converted to TEST.",
             "coreExchangeRate": "Core exchange rate (CER)",
             "feePool": "Pool balance",
             "unclaimedIssuerIncome": "Unclaimed issuer income"
@@ -255,7 +255,7 @@ export const en = {
             "Bids will be included on revival sorted by their bid price until the whole debt is covered (last bid might be covered partially). Included bids will be converted into margin positions and receive the residual collateral such that the position reaches MCR from the settlement fund. Not included bids will be reimbursed. A bid can be removed by placing a zero collateral bid."
         },
         "smallCard": {
-            "title": "BTS : ETH"
+            "title": "TEST : ETH"
         },
         "graph": {
             "title": "%(token)s"
@@ -502,7 +502,7 @@ export const en = {
         "pendingTitle": "Pending Fees",
         "pendingDesc": "Fees paid by < %(name)s > are divided among the network, referrers, and registrars once every maintenance interval (%(interval)s seconds). The next maintenance time is %(nextMaintenance)s.",
         "vestingTitle": "Vesting Fees",
-        "vestingDesc": "Most fees are made available immediately, but fees over 100 BTS (such as those paid to upgrade your membership or register a premium account name) must vest for a total of 90 days."
+        "vestingDesc": "Most fees are made available immediately, but fees over 100 TEST (such as those paid to upgrade your membership or register a premium account name) must vest for a total of 90 days."
     },
     "search": {
         "users": "Users",
@@ -530,7 +530,7 @@ export const en = {
             "fee": "Fee",
             "gateFee": "Gate Fee",
             "newWorkerName": "Worker Name",
-            "dailyPay": "Daily Pay (BTS)",
+            "dailyPay": "Daily Pay (TEST)",
             "dateBegin": "Start Date",
             "dateEnd": "End Date",
             "website": "Website",
@@ -574,7 +574,7 @@ export const en = {
             "newLogin": "You can use letters, symbols, etc...",
             "memo": "Only users with a memo key can read your memos",
             "newWorkerName": "Be short and descriptive, e.g. \"Worker Purpose - Account Name\"",
-            "dailyPay": "The current best practice is to define a salary in USD/CNY, and commit to burning whatever surplus you receive as a result of the BTS price increasing. As long as your worker is active and has sufficient votes to be above the refund worker, you will receive this daily salary.",
+            "dailyPay": "The current best practice is to define a salary in USD/CNY, and commit to burning whatever surplus you receive as a result of the TEST price increasing. As long as your worker is active and has sufficient votes to be above the refund worker, you will receive this daily salary.",
             "faucet": "The faucet address is used to pay the registration fee for new users.",
             "withdrawAmount": "Minimum amount: %(minAmount)s",
             "asset": "Asset",

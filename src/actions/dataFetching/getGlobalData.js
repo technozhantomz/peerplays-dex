@@ -252,15 +252,15 @@ export const getGlobalData = async () => {
 
     let notifications = getStorage('notifications');
 
-    let bridges = getStorage('bridges');
-    const bridgesPingInterval = 60 * 60 * 1000 * 24; // ping interval === 1 day
+    //let bridges = getStorage('bridges');
+    //const bridgesPingInterval = 60 * 60 * 1000 * 24; // ping interval === 1 day
 
     // getBridges().then(console.log);
 
-    if(!bridges.lastCheck || getPassedTime(bridges.lastCheck) > bridgesPingInterval) {
+    /*if(!bridges.lastCheck || getPassedTime(bridges.lastCheck) > bridgesPingInterval) {
         bridges = await getBridges();
         setStorage('bridges', bridges);
-    }
+    }*/
 
     if(!notifications.list) notifications = false;
 

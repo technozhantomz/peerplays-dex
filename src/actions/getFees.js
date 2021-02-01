@@ -22,15 +22,15 @@ export const getFees = async () => {
                 fee: 'fee' in item[1] ? await setAssets({
                     quantity: Number(item[1]['fee']),
                     asset: '1.3.0'
-                }) + " BTS" : '',
+                }) + " TEST" : '',
                 membership_lifetime_fee: 'membership_lifetime_fee' in item[1] ? await setAssets({
                     quantity: Number(item[1]['membership_lifetime_fee']),
                     asset: '1.3.0'
-                }) + " BTS" : '',
+                }) + " TEST" : '',
                 price_per_kbyte: 'price_per_kbyte' in item[1] ? await setAssets({
                     quantity: Number(item[1]['price_per_kbyte']),
                     asset: '1.3.0'
-                }) + " BTS" : '',
+                }) + " TEST" : '',
                 name: <span className="operation positive">{item['name']}</span>
             }
         } else {
