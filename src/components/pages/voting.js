@@ -49,14 +49,14 @@ const tableHeadWitnesses = [
 const tableHeadCommittee = tableHeadWitnesses.filter(elem => elem.translateTag !== 'lastBlock');
 
 const votingMenu = [
-    {
+    /*{
         link: '/',
         tag: 'workers',
         render: (account, voteList) => <VotingWorkers account={account} votes={voteList['worker_account']}
                                                       list="workers"/>
-    },
+    },*/
     {
-        link: '/witnesses',
+        link: '/',
         tag: 'witnesses',
         render: (account, voteList) => <VotingPage params="witness_account" tableHead={tableHeadWitnesses}
                                                    account={account} votes={voteList['witness_account']}
@@ -79,6 +79,10 @@ class Voting extends Component {
             new_options.votes = this.props.votes;
             updateAccount({new_options}, password).then(clearVotes)
         })
+    };
+
+    reset = () => {
+        clearVotes();
     };
 
     handleSave = () => getPassword(this.saveResult);

@@ -54,7 +54,7 @@ const helpFunction = async (key, votes, userArray) => {
 export const getInfoVoting = async (context) => {
     let witnesses = await getWitnesses();
     let committee = await getCommittee();
-    let workers = await getWorkers();
+    let workers = await getWitnesses();
 
     const account = context.props.account ? context.props.account : context.props.data;
 
