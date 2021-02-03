@@ -2,6 +2,7 @@
   "name": "bitshares",
   "version": "0.1.0",
   "private": true,
+  "homepage": ".",
   "scripts": {
     "start": "webpack-dev-server",
     "dev": "webpack-dev-server",
