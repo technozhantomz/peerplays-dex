@@ -1,5 +1,5 @@
 import {formKeys} from "./formKeys";
-import {testnetCheck} from "../../../params/networkParams";
+import {faucetUrl} from "../../../params/networkParams";
 import {formAccountData} from "./formAccountData";
 
 export const createUser = async (data, result) => {
@@ -16,9 +16,7 @@ export const createUser = async (data, result) => {
         referrer: data.referrer || null
     };
 
-    const userCreationURL = testnetCheck ? 'https://elizabeth-faucet.peerplays.download/api/v1/accounts' : 'https://elizabeth-faucet.peerplays.download/api/v1/accounts';
-
-    const newUserData = await fetch(userCreationURL, {
+    const newUserData = await fetch(faucetUrl, {
         method: 'POST',
         headers: {
             'Accept': 'application/json',

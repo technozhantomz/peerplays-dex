@@ -25,7 +25,7 @@ class PublishFeed extends Component {
 
         const {core_exchange_rate, settlement_price, forceSettlementPrice, mcr, mssr, cer, assetSP} = this.props.data;
 
-        let fees = getFees()['asset_update_issuer'];
+        let fees = getFees()['asset_update'];
         if (!fees.fee) fees = {fee: 100};
 
         const rawFee = fees.fee;

@@ -17,7 +17,7 @@ class BidCollateral extends Component {
         const userTokens = user.assets;
         const basicAsset = getBasicAsset();
 
-        let fees = getFees()['asset_update_issuer'];
+        let fees = getFees()['asset_update'];
         if (!fees.fee) fees = {fee: 100};
 
         const rawFee = fees.fee;
