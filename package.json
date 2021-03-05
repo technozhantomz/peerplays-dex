@@ -28,7 +28,7 @@
     "dexie": "^2.0.4",
     "history": "^4.7.2",
     "lzma": "2.1.6",
-    "peerplaysjs-lib": "^0.6.4",
+    "peerplaysjs-lib": "https://gitlab.com/PBSA/PeerplaysIO/tools-libs/peerplaysjs-lib.git#nft-lottery-babel-update",
     "postcss-loader": "^2.1.3",
     "qrcode-react": "^0.1.16",
     "react": "^16.2.0",
