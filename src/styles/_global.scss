@@ -1,0 +1,175 @@
+body{
+  margin: 0;
+  font-family: $primary-font;
+  font-size: $fzMD;
+  color: rgba(0,0,0,.87);
+  overflow-x: hidden;
+}
+
+.modal-open{
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  padding-right: -8.5px;
+}
+
+button{
+  background-color: transparent;
+  font-family: $primary-font;
+  font-size: $fzMD;
+  border: 0;
+  padding: 0;
+  transition: $anim/2;
+  &:hover{
+    cursor: pointer;
+  }
+  &:focus, &:active{
+    outline: 0;
+  }
+  &:disabled:hover{
+    cursor: default;
+  }
+}
+
+h1, h2, h3, h4, h5{
+  margin: 0;
+  font-family: $primary-font;
+  font-weight: 500;
+}
+
+a{
+  //color: $blue-dark;
+  text-decoration: none;
+  transition: $anim;
+  &:visited{
+    //color: $blue-dark;
+  }
+  &:hover{
+    //color: $blue;
+  }
+}
+
+.link {
+  color: $dark;
+  position: relative;
+  &:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 1px;
+    width: 100%;
+    background-color: $dark;
+    opacity: 0;
+    transition: $anim/2;
+  }
+  &:hover:after {
+    opacity: 1;
+  }
+}
+
+.clr{
+  &--negative{
+    color: $negative;
+  }
+  &--positive{
+    color: $positive;
+  }
+}
+
+svg .mask{
+  opacity: 0.5;
+  fill: $icon;
+  transition: $anim;
+  &:hover{
+    opacity: 1;
+  }
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.title{
+  margin-bottom: 2rem;
+  &__text{
+    font-family: $secondary-font;
+    font-size: $fzXLG;
+  };
+  &__subtitle{
+    color: $grey;
+    font-size: $fzSM;
+    padding-top: 1rem;
+  };
+}
+
+.tbd, .no-data{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $dark-light;
+  font-size: 6.1rem;
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+}
+
+.tbd{
+  height: 100%;
+}
+
+.login-needed{
+  text-align: center;
+  &__image{
+    margin-top: 10rem;
+  }
+  &__text{
+    width: 25.6rem;
+    display: block;
+    margin: 5rem auto 2.7rem;
+    line-height: 2.4rem;
+    color: #2A2E46;
+  }
+  .btn--round{
+    background-color: transparent;
+    border: 1px solid $blue;
+    color: $blue;
+    &:hover{
+      color: $white;
+    }
+  }
+}
+
+.info-block{
+  display: flex;
+  &__icon{
+    margin: 0 1.1rem 0 .5rem;
+    .mask{
+      opacity: 1;
+      &:hover{
+        opacity: 1;
+      }
+    }
+  }
+  &__text{
+    flex: 1;
+    margin-right: 4.1rem;
+    color: $dark-light;
+    font-size: $fzSM;
+    line-height: 1.6rem;
+  }
+}
+
+.warning{
+  display: flex;
+  margin-bottom: 4rem;
+  &__text-wrapper{
+    flex: 1;
+    margin-left: 1.2rem;
+    > span{
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+  }
+}

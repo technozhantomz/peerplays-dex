@@ -1,0 +1,44 @@
+.deposit{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 3.3rem;
+  > div{
+    width: 48%;
+  }
+  canvas{
+    margin-bottom: 2rem;
+  }
+  .info-block, .warning{
+    margin-bottom: 2rem;
+  }
+  .info-block{
+    &__text{
+      white-space: pre-line;
+      font-size: 1.4rem;
+      color: $dark;
+    }
+  }
+  .warning__text-wrapper span:first-child{
+    font-weight: bold;
+  }
+  form > .field, .form__row{
+    margin-bottom: 3.5rem;
+  }
+}
+
+.bridges > div{
+  margin-bottom: 3.5rem;
+}
+
+.deposit-stats{
+  padding: 2rem 3.5rem;
+  border-top: 1px solid $dark-light;
+  border-bottom: 1px solid $dark-light;
+  &__item{
+    display: flex;
+    justify-content: space-between;
+    &:not(:last-child){
+      margin-bottom: 0.3rem;
+    }
+  }
+}

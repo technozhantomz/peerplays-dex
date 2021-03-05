@@ -1,0 +1,14 @@
+<svg width="5" height="16" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+        <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"
+              id="more"/>
+    </defs>
+    <g transform="translate(-9.204 -4.027)" fill="none" fill-rule="evenodd">
+        <mask id="moreMask" fill="#fff">
+            <use xlink:href="#more"/>
+        </mask>
+        <g class="mask" mask="url(#moreMask)" fill="#000">
+            <path d="M0 0h24v24H0z"/>
+        </g>
+    </g>
+</svg>

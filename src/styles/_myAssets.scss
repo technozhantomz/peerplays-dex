@@ -1,0 +1,39 @@
+.my-assets {
+  font-family: $primary-font;
+
+  &__header {
+    color: $dark;
+    font-size: 20px;
+    font-weight: 500;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start !important;
+  }
+
+  .modal__bottom {
+    margin-top: 2rem;
+  }
+
+  &__description {
+    color: $grey;
+    font-size: 12px;
+    padding-top: 1rem;
+  }
+
+  &__accounts {
+    margin-top: 2.5rem;
+  }
+
+  .account-row {
+    display: flex;
+    width: 100%;
+    height: 48px;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__name {
+    color: $dark;
+    font-size: 16px;
+  }
+}

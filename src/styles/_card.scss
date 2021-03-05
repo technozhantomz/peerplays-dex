@@ -1,0 +1,422 @@
+.card {
+  border-radius: 20px;
+  box-shadow: $shadow-default;
+  border: 1px solid $border-color;
+
+  &__comment {
+    margin: 0 32px 32px 32px;
+    color: $dark-light;
+    font-family: $secondary-font;
+    font-size: $fzSM;
+    letter-spacing: 0.41px;
+    line-height: 16px;
+
+    &--negative {
+      margin: 0;
+      padding: 32px 24px;
+      color: white;
+      background-color: $red;
+      letter-spacing: 0.4px;
+    }
+  }
+
+  &__header {
+    height: 57px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__title {
+    color: rgba(0, 0, 0, 0.6);
+    font-family: $secondary-font;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.15px;
+    line-height: 24px;
+    margin-left: 32px;
+    text-transform: uppercase;
+  }
+
+  &__button {
+    height: 30px;
+    width: 30px;
+    margin-right: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    border-radius: 50px;
+    color: $button;
+  }
+
+  &__content {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    font-family: $primary-font;
+    font-size: 12px;
+    align-items: center;
+  }
+
+  &__footer {
+    height: 40px;
+  }
+
+  &--small {
+    margin-right: 21px;
+    height: 174px;
+    width: 193px;
+    border: none;
+
+    .card__header {
+      height: auto;
+      padding: 0.5rem 1.6rem 0 1.6rem;
+    }
+
+    .card__title {
+      font-family: $primary-font;
+      text-transform: uppercase;
+      margin-left: 0;
+      font-size: 14px;
+      letter-spacing: 0.25px;
+      line-height: 20px;
+    }
+
+    .card__button {
+      width: 24px;
+      margin-right: -10px;
+    }
+
+    .card__content {
+      //padding: 0 1.6rem 1.6rem;
+      display: block;
+      width: auto;
+    }
+  }
+
+  &--graph {
+    height: 352px;
+    width: 416px;
+  }
+
+  &--widget {
+    height: 352px;
+    width: 640px;
+  }
+
+  &--table {
+    margin-top: 25px;
+    height: auto;
+    font-family: $primary-font;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.87);
+    padding-bottom: 20px;
+    box-shadow: none;
+
+    .table__row:last-child .table__cell {
+      border-bottom: none;
+    }
+
+    .card__header {
+      border-bottom: 1px solid $border-color;
+    }
+  }
+
+  &--explorer {
+    box-shadow: none;
+    padding-right: 1rem;
+
+    .card__title {
+      font-size: 14px;
+      margin: 0;
+      font-family: $primary-font;
+      padding: 13px 16px;
+      letter-spacing: 0.25px;
+      line-height: 20px;
+    }
+
+    .card__content {
+      padding: 0 3.6rem 1.6rem 1.6rem;
+      display: block;
+      width: auto;
+      font-family: $primary-font;
+      font-size: 34px;
+    }
+  }
+
+  &--witnesses {
+    box-shadow: none;
+    padding-right: 1rem;
+
+    .card__title {
+      font-size: 14px;
+      margin: 0;
+      font-family: $primary-font;
+      padding: 13px 16px;
+      letter-spacing: 0.25px;
+      line-height: 20px;
+    }
+
+    .card__content {
+      padding: 0 6.6rem 1.6rem 1.6rem;
+      display: block;
+      width: auto;
+      font-family: $primary-font;
+      font-size: 20px;
+    }
+  }
+}
+
+.card--graph {
+  .dropdown {
+    width: 145px;
+  }
+}
+
+.graph__pie {
+  flex-direction: row;
+  justify-content: space-around;
+
+  .pie__dots {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-content: flex-start;
+    width: 100%;
+    margin-left: 20px;
+
+    .dot {
+      display: flex;
+      flex-direction: row;
+      padding: 7px 0;
+      align-items: center;
+
+      .circle {
+        width: 10px;
+        height: 10px;
+        background-color: #0ca3ef;
+        border-radius: 50%;
+        margin-right: 11px;
+      }
+    }
+  }
+}
+
+.graph__names {
+  width: 100%;
+  height: 44px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
+  padding-bottom: 10px;
+
+  div {
+    margin: 0 28px;
+    font-size: 17px;
+  }
+
+  div:first-child {
+    color: #6B37DD;
+  }
+
+  div:last-child {
+    color: #FF28F1;
+  }
+}
+
+.graph__dots {
+  width: 100%;
+  height: 44px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-content: center;
+  align-items: center;
+  padding-bottom: 20px;
+  color: rgba(0, 0, 0, 0.38);
+
+  div {
+    height: 24px;
+    width: 32px;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  .selected {
+    background-color: #4DA1FF;
+    color: white;
+    border-radius: 4px;
+  }
+}
+
+.small__content {
+  &--positive {
+    color: $positive;
+  }
+
+  &--negative {
+    color: $rose;
+  }
+
+  .number {
+    font-family: $secondary-font;
+    font-size: 19px;
+    font-weight: 600;
+    letter-spacing: 0.25px;
+    line-height: 27px;
+    padding: 0 1.6rem 0.6rem 1.6rem;
+  }
+
+  .blocks {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-left: 1.6rem;
+
+    .block {
+      &__title {
+        color: rgba(0, 0, 0, 0.6);
+        font-family: $primary-font;
+        font-size: 12px;
+        letter-spacing: 0.4px;
+        line-height: 16px;
+      }
+
+      &__number {
+        font-family: $secondary-font;
+        font-size: 13.82px;
+        font-weight: 600;
+        letter-spacing: 0.25px;
+        line-height: 20px;
+        margin-right: 1rem;
+      }
+
+      &:last-child {
+        margin-right: 0.5rem;
+      }
+    }
+  }
+}
+
+.card__list {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-bottom: 32px;
+  justify-content: space-between;
+
+  .card--small:last-child {
+    margin: 0;
+  }
+
+  .plus {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    color: $grey;
+    font-size: 24px;
+    border-radius: 50%;
+  }
+}
+
+.graphs {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4rem;
+}
+
+.bg-white {
+  background-color: $white;
+  color: $dark;
+}
+
+.bg-success, .bg-green {
+  background-color: $positive;
+  color: $light;
+}
+
+.bg-primary, .bg-blue {
+  background-color: $blue;
+  color: $light;
+}
+
+.bg-red, .bg-danger {
+  background-color: $negative;
+  color: $light;
+}
+
+.table__cell > button {
+  height: 30px;
+  width: 30px;
+  color: $button;
+  padding-right: -12px !important;
+}
+
+.card--table {
+  .table__cell:last-child {
+    padding-right: 12px;
+  }
+}
+
+.table--without_header {
+  .table__header {
+    display: none;
+  }
+}
+
+.pie {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+
+  &__info {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    font-size: 20px;
+    min-width: 70px;
+
+    .pie__percent {
+      font-size: 14px;
+      color: $dark-light;
+      font-weight: 600;
+    }
+
+    &--first {
+      left: 125px;
+      color: $positive;
+    }
+
+    &--second {
+      right: 115px;
+      color: $violet;
+    }
+  }
+
+  &__labels {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    font-family: $secondary-font;
+    color: $blue;
+    font-size: 15.8px;
+  }
+}
+
+.fee-pool {
+  margin: 4rem 0;
+}
