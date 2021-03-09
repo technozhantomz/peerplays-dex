@@ -5,16 +5,30 @@ include:
   - template: SAST.gitlab-ci.yml
   - template: Secret-Detection.gitlab-ci.yml
 
-# node docker image on which this would be run
-image: node:12
-
 stages:
   - test
 
 # builds app
 build:
+  # node docker image on which this would be run
+  image: node:12
   stage: test
   script:
     - npm install
   tags:
     - docker
+
+sonarcloud:
+  stage: test
+  image: alpine:latest
+  before_script:
+    - apt-get update
+    - apk add curl unzip
+  script:
+    - export SONAR_SCANNER_VERSION=4.4.0.2170
+    - export SONAR_SCANNER_HOME=$HOME/.sonar/sonar-scanner-$SONAR_SCANNER_VERSION-linux
+    - curl --create-dirs -sSLo $HOME/.sonar/sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-$SONAR_SCANNER_VERSION-linux.zip
+    - unzip -o $HOME/.sonar/sonar-scanner.zip -d $HOME/.sonar/
+    - export PATH=$SONAR_SCANNER_HOME/bin:$PATH
+    - export SONAR_SCANNER_OPTS="-server"
+
