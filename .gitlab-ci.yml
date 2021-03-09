@@ -22,7 +22,7 @@ sonarcloud:
   stage: test
   image: alpine:latest
   before_script:
-    - apt-get update
+    - apk update
     - apk add curl unzip
   script:
     - export SONAR_SCANNER_VERSION=4.4.0.2170
