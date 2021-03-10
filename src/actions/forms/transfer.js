@@ -1,5 +1,4 @@
-import Aes from "peerplaysjs-lib";
-import {TransactionHelper} from "peerplaysjs-lib";
+import {TransactionHelper, Aes} from "peerplaysjs-lib";
 import {dbApi} from "../nodes";
 import {trxBuilder} from "./trxBuilder";
 import {getStore} from "../store";
@@ -53,7 +52,7 @@ export const transfer = async (data, result) => {
                 activeKey,
                 toMemo,
                 nonce,
-                new Buffer(data.memo)
+                Buffer.from(data.memo)
             ),
         };
     }

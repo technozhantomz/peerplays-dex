@@ -69,7 +69,7 @@ class AssetClaimFees extends Component {
                                     />
                                     <div className="btn__row">
                                         <span>Fee: {data.fee} {data.quantityAsset}</span>
-                                        {sended && <span className="clr--positive">Trx completed</span>}
+                                        {sended && <span className="clr--positive">Transaction Completed</span>}
                                         <button type="submit" className="btn-round btn-round--fund">Claim</button>
                                     </div>
                                 </Fragment>
