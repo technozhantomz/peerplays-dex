@@ -1,5 +1,4 @@
-import PrivateKey from "peerplaysjs-lib";
-import Aes from "peerplaysjs-lib";
+import {PrivateKey, Aes} from "peerplaysjs-lib";
 
 export const generatePublic = (data) => {
     if(typeof(data) !== 'object'){

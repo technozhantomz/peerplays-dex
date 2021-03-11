@@ -1,10 +1,7 @@
-//globals
-
 @import "variables";
 @import "global";
 @import "btn";
 
-//layouts
 @import "layouts";
 @import "header";
 @import "notifications";
@@ -12,14 +9,12 @@
 @import "global-search";
 @import "modal";
 
-//components
 @import "card";
 @import "switch";
 @import "tabs";
 @import "tables";
 @import "myAssets";
 
-//inputs
 @import "checkbox";
 @import "dropdown";
 @import "field";
@@ -28,7 +23,6 @@
 @import "upload";
 @import "widget";
 
-//pages
 @import "settings";
 @import "membership";
 @import "exchange";

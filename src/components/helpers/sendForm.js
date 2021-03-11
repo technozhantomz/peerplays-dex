@@ -89,7 +89,6 @@ class SendForm extends Component {
                                             handleChange={form.handleChange}
                                             errors={errors}
                                             defaultHints={data.contacts}
-                                            className="with-hint"
                                         />
                                         <Dropdown
                                             btn={<SelectHeader
