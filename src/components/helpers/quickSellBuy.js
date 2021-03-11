@@ -94,7 +94,7 @@ class QuickSellBuy extends Component {
                                             value={data}
                                         />
                                         <FieldWithHint
-                                            name="asset_to_receive"
+                                            name="buyAsset"
                                             method={getAssetsList}
                                             hideLabel={true}
                                             handleChange={form.handleChange}
@@ -104,11 +104,11 @@ class QuickSellBuy extends Component {
                                     </div>
                                     <div className="info__row">
                                         <span>Fee: {data.fee} {data.sellAsset}</span>
-                                        {sended && <span className="clr--positive">Trx completed</span>}
+                                        {sended && <span className="clr--positive">Transaction Completed</span>}
                                     </div>
                                     <div className="btn__row">
                                         <button className="btn-round btn-round--buy" onClick={form.submit}>
-                                            Buy BTC
+                                            Buy
                                         </button>
                                     </div>
                                 </Fragment>

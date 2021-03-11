@@ -49,6 +49,7 @@ const CreateUser = () => {
                             <Input
                                 name="passwordCheck"
                                 type="password"
+                                className="modal__field"
                                 onChange={form.handleChange}
                                 error={form.state.errors}
                                 value={form.state.data}

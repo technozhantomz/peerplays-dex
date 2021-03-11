@@ -22,7 +22,7 @@ class Dashboard extends Component {
 
         return (
             <div className="container">
-                <div className="card__list">
+                <div className="card__list__none">
                     <Card mode="small">
                         <SmallCardContent/>
                     </Card>
@@ -44,10 +44,10 @@ class Dashboard extends Component {
                 </div>
 
 
-                <div className="graphs">
+                <div className="graphs_hidden">
                     <Card mode="graph">
-                        <CardHeader title={`block.quickSellBuy.title`}/>
-                        <QuickSellBuy/>
+                        <CardHeader title={`block.openOrders.title`}/>
+                        <OpenOrders/>
                     </Card>
                     <Card mode="graph">
                         <CardHeader title={`block.graph.title`} additionalData={{token: "BTC / BTH"}}/>
@@ -61,9 +61,9 @@ class Dashboard extends Component {
 
                 <div className="graphs">
                     <Card mode="widget">
-                        <CardHeader title={`block.openOrders.title`}/>
+                        <CardHeader title={`block.quickSellBuy.title`}/>
                         <div className="card__content">
-                            <OpenOrders/>
+                            <QuickSellBuy/>
                         </div>
                     </Card>
                     <Card mode="widget">
@@ -72,7 +72,7 @@ class Dashboard extends Component {
                     </Card>
                 </div>
 
-                <div className="graphs">
+                <div className="graphs_hidden">
                     <Card mode="widget">
                         <CardHeader title={`block.trends.title`}/>
                         <GraphTrends/>
