@@ -7,7 +7,7 @@ import BuyForm from "../helpers/exchange/buyForm";
 import HistoryBook from "../helpers/exchange/historyBook";
 import UserOrdersHistory from "../helpers/exchange/userOrdersHistory";
 import NoData from "../helpers/noData";
-import TradingViewWrapper from "../helpers/tradingViewWrapper";
+//import TradingViewWrapper from "../helpers/tradingViewWrapper";
 import {connect} from "react-redux";
 import {clearExchangeData, loadExchangeData} from "../../dispatch/exchangeData";
 import Translate from "react-translate-component";
@@ -55,7 +55,7 @@ class Exchange extends Component{
                         </Tabs>
                     </div>
                     <div className="exchange__center custom-scroll">
-                        <TradingViewWrapper pair={pair} />
+                        {/* <TradingViewWrapper pair={pair} /> */}
                         <div className="exchange__center-content">
                             <div className="exchange__content-primary">
                                 <Tabs head={['openOrders', 'orderHistory']}>

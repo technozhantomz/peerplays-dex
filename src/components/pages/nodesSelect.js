@@ -15,7 +15,7 @@ class NodesSelect extends Component{
         autoselect: getStorage('settings').nodeAutoselect
     };
 
-    setActive = (node) => nodeInit(node.url)
+    setActive = (node) => nodeInit(node.url, true)
         .then(({instance}) => {
             editStorage('nodes', {active: node.url});
             this.changeAutoSelect(false);

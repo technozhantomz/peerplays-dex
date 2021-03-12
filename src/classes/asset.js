@@ -28,7 +28,7 @@ export class Asset {
     }
     setPrecision(roundTo = false, amount = this.amount, precision = this.precision){
         const precisioned = amount / (10 ** precision);
-        return roundTo ? roundNum(precisioned) : precisioned;
+        return roundTo ? roundNum(precisioned, precision) : precisioned;
     }
     addPrecision(roundTo = false, amount = this.amount, precision = this.precision){
         const precisioned = amount * (10 ** precision);
