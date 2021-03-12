@@ -77,6 +77,10 @@ export const formAccount = async (data) => {
         fullAcc = await getFullAccount(data, true);
     }
 
+    if(fullAcc === false) {
+      return;
+    }
+
     const {account, balances, limit_orders, call_orders, votes} = fullAcc;
     const {id, name, active, owner, options} = account;
 

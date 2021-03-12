@@ -60,7 +60,7 @@ const CreateUser = () => {
                         </div>
                         <div className="modal__bottom">
                             <Close />
-                            <Submit tag="create" onClick={this.selectNewPair} />
+                            <Submit tag="create" />
                         </div>
                     </Fragment>
                 }

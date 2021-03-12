@@ -367,6 +367,7 @@ export const en = {
         "interface": "User Interface",
         "language": "Language",
         "theme": "Enable Dark Theme",
+        "mode": "Enable Advanced Mode",
         "notifications": "Notifications",
         "transferNotifications": "Transfers to my account",
         "faucet": "Faucet"

@@ -18,10 +18,11 @@ class GeneralSettings extends Component {
         },
         activeLang: '',
         darkTheme: true,
+        advancedMode: false
     };
 
     componentDidMount(){
-        const {language, darkTheme, notifications} = getStorage('settings');
+        const {language, darkTheme, advancedMode, notifications} = getStorage('settings');
 
         const formData = {
             faucet: 'https://faucet.bitshares.eu/onboarding',
@@ -31,6 +32,7 @@ class GeneralSettings extends Component {
         this.setState({
             activeLang: defaultLocales.find(e => e.type === language).title,
             darkTheme,
+            advancedMode,
             formData
         });
     }
@@ -55,15 +57,23 @@ class GeneralSettings extends Component {
 
     themeChange = (e) => {
         const id = 'darkTheme';
-        const val = e.target.checked;
+        const val = e;
         const changes = {[id]: val};
         editStorage('settings', changes);
         this.setState(changes);
     };
 
+    modeChange = (e) => {
+      const id = 'advancedMode';
+      const val = e;
+      const changes = {[id]: val};
+      editStorage('settings', changes);
+      this.setState(changes);
+  };
+
     render(){
 
-        const {formData, activeLang, darkTheme} = this.state;
+        const {formData, activeLang, advancedMode, darkTheme} = this.state;
 
         const localesList = defaultLocales.map((el, id) => <button key={id} onClick={() => this.changeLocale(el)}>{el.title}</button>);
 
@@ -79,6 +89,12 @@ class GeneralSettings extends Component {
                     label="general.theme"
                     selected={darkTheme}
                     handleChange={this.themeChange}
+                />
+                <Switcher
+                    id="modeSwitch"
+                    label="general.mode"
+                    selected={advancedMode}
+                    handleChange={this.modeChange}
                 />
                 <Translate content="general.notifications" component="h2" />
                 <CheckBox
