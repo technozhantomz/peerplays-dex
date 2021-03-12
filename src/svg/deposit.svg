@@ -1,0 +1,14 @@
+<svg width="20" height="19" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+        <path d="M12 3a5 5 0 1 0 .001 10.001A5 5 0 0 0 12 3zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6zm.408 1l-1.898.777v1.037l.793-.306V10h1.36V6h-.255zM2 9v11c0 1.103.897 2 2 2h16c1.103 0 2-.897 2-2V9h-2v11H4V9H2zm6 6l4 4 4-4H8z"
+              id="deposit"/>
+    </defs>
+    <g transform="translate(-2 -3)" fill="none" fill-rule="evenodd">
+        <mask id="depositMask" fill="#fff">
+            <use xlink:href="#deposit"/>
+        </mask>
+        <g class="mask" mask="url(#depositMask)" fill="#647090">
+            <path d="M0 0h24v24H0z"/>
+        </g>
+    </g>
+</svg>

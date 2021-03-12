@@ -1,0 +1,42 @@
+//fonts
+
+$primary-font: 'Open Sans', sans-serif;
+$secondary-font: 'Roboto', sans-serif;
+
+//font-size
+
+$fzSM: 1.2rem;
+$fzMD: 1.4rem;
+$fzLG: 1.6rem;
+$fzXLG: 2rem;
+
+//colors
+
+$white: #fff;
+$light: #fafafa;
+$grey-light: rgba(0,0,0,0.12);
+$grey: rgba(0,0,0,0.32);
+$dark-light: rgba(0,0,0,0.6);
+$dark: rgba(0,0,0,0.87);
+$blue: #34BAEB;
+$blue-dark: #009EE6;
+$blue-light: rgba(0,158,230,0.04);
+$grey-blue: #3C476C;
+$negative: #FF444A;
+$positive: #2EBD41;
+$violet: #9939CD;
+$rose: #FF0F4D;
+$red: #FF0050;
+
+$icon: #647090;
+
+$border-color: #e3e3e3;
+$button: #647090;
+
+//animation
+
+$anim: 0.3s;
+
+//shadow
+$shadow-default: 0 1px 1px 0 rgba(0,0,0,0.14), 0 2px 1px -1px rgba(0,0,0,0.12), 0 1px 3px 0 rgba(0,0,0,0.2);
+$shadow-bold: 0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12), 0 2px 4px -1px rgba(0,0,0,0.2);
