@@ -15,6 +15,11 @@ const Menu = (props) => (
         {
             menuList.map((el, id) => {
 
+                const advancedMode = getStorage('settings').advancedMode;
+                if(!advancedMode && (el.tag === 'blockchain' || el.tag === 'voting' || el.tag === 'business')) {
+                  return null;
+                }
+
                 let link = el.link;
 
                 if(el.tag === 'exchange') link = `${el.link}/${getStorage('exchanges').active}`;
