@@ -13,7 +13,7 @@ export const assetUpdateIssuer = async (data, result) => {
     const new_issuer = await dbApi('get_account_by_name', [data.assetOwner]).then(e => e.id);
 
     const trx = {
-        type: 'asset_update_issuer',
+        type: 'asset_update',
         params: {
             fee: getDefaultFee(),
             issuer,

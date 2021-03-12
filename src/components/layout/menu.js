@@ -5,14 +5,20 @@ import Translate from "react-translate-component";
 import {connect} from "react-redux";
 import {getStorage} from "../../actions/storage/index";
 import {clearLayout} from "../../dispatch/layoutDispatch";
+import Logo from '../../images/logo.png';
 
 const Menu = (props) => (
     <div className={`menu${props.menu ? ' open' : ''}`}>
         <div className="menu__logo-wrapper">
-            <img src={require('../../images/logo.png')} alt=""/>
+            <img src={Logo} alt=""/>
         </div>
         {
             menuList.map((el, id) => {
+
+                const advancedMode = getStorage('settings').advancedMode;
+                if(!advancedMode && (el.tag === 'blockchain' || el.tag === 'voting' || el.tag === 'business')) {
+                  return null;
+                }
 
                 let link = el.link;
 

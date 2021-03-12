@@ -1,5 +1,5 @@
 const {resolve} = require('path');
-const {DefinePlugin} = require('webpack');
+const {ProvidePlugin, ProgressPlugin} = require('webpack');
 const HtmlPlugin = require('html-webpack-plugin');
 
 const SOURCES = resolve(__dirname, '..', 'src');
@@ -25,6 +25,12 @@ const config = {
             'node_modules',
             SOURCES,
         ],
+        fallback: {
+          fs: false,
+          util: require.resolve("util/"),
+          stream: require.resolve("stream-browserify"),
+          path: require.resolve("path-browserify")
+        }
     },
 
     module: {
@@ -111,31 +117,47 @@ const config = {
                         }
                     ]
             },
-            { test: /\.(woff2?|svg)$/, loader: "url-loader?limit=10000", include: /fonts/, },
+            {
+              test: /\.(woff2?|svg)$/,
+              use: [
+                {
+                  loader: 'url-loader',
+                  options: {
+                    limit: 10000,
+                  },
+                },
+              ],
+              include: /fonts/,
+            },
             { test: /\.(ttf|eot)$/, loader: "file-loader", include: /fonts/, },
         ],
     },
 
     plugins: [
         new HtmlPlugin({
-            title: 'Bitshares UI',
+            title: 'Peerplays DEX',
             template: 'index.html',
             hash: true,
             cache: true
         }),
-        new DefinePlugin({
-            'process.env': {
-                NODE_ENV: JSON.stringify(process.env.NODE_ENV),
-            },
-        })
-    ],
-
-    node: {
-        console: true,
-        fs: 'empty',
-        net: 'empty',
-        tls: 'empty'
-    }
+        new ProvidePlugin({
+          process: 'process/browser',
+          Buffer: ['buffer', 'Buffer'],
+        }),
+        new ProgressPlugin({
+          activeModules: false,
+          entries: true,
+          handler(percentage, message, ...args) {
+            console.info(`${Math.round(percentage * 100, 1)}%`, message, ...args);
+          },
+          modules: true,
+          modulesCount: 5000,
+          profile: false,
+          dependencies: true,
+          dependenciesCount: 10000,
+          percentBy: null,
+        }),
+    ]
 };
 
 module.exports = {

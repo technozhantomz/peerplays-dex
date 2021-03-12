@@ -97,7 +97,6 @@ class SendModal extends Component {
                                                     handleChange={form.handleChange}
                                                     errors={errors}
                                                     defaultHints={data.contacts}
-                                                    className="with-hint"
                                                 />
                                         }
                                         <div className="quantity-wrapper">

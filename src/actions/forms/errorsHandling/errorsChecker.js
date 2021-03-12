@@ -3,6 +3,7 @@ import {checkNewWorker} from "./checkNewWorker";
 import {checkBeginDate, checkEndDate} from "./checkDates";
 import {checkNumber} from "./checkNumber";
 import {checkPassword} from "./checkPassword";
+import {checkConfirmPassword} from "./checkPassword";
 import {checkLogin} from "./checkLogin";
 import {checkBrainkey} from "./checkBrainkey";
 import {checkWithdrawAddress} from "./checkWithdrawAddress";
@@ -16,7 +17,8 @@ export const errorsChecker = {
     newLogin: checkNewLogin,
     login: checkLogin,
     to: checkLogin,
-    passwordCheck: checkPassword,
+    password: checkPassword,
+    passwordCheck: checkConfirmPassword,
     newWorkerName: checkNewWorker,
     dateBegin: checkBeginDate,
     dateEnd: checkEndDate,

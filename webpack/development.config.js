@@ -1,6 +1,7 @@
 const { resolve } = require('path')
 const { HotModuleReplacementPlugin } = require('webpack')
 const merge = require('webpack-merge')
+const path = require('path');
 
 const { config } = require('./common')
 
@@ -9,6 +10,7 @@ const DEV_DIST = resolve(__dirname, '..', 'dist')
 module.exports = merge(config, {
   profile: false,
   devtool: 'inline-source-map',
+  mode: 'development',
 
   output: {
     path: DEV_DIST,
@@ -20,11 +22,18 @@ module.exports = merge(config, {
   module: {
     rules: [
       {
-        test: /\.s?css$/,
+        test: /\.(scss|css)$/,
         use: [
           'style-loader',
           'css-loader',
-          'postcss-loader',
+          {
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                config: path.resolve(__dirname, '../postcss.config.js'),
+              },
+            },
+          },
           'sass-loader',
         ],
       },

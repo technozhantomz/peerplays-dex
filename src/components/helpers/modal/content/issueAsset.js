@@ -1,6 +1,6 @@
 import React, {Component, Fragment} from "react";
 import ModalTitle from "../decoration/modalTitle";
-import {TransactionHelper} from "peerplaysjs-lib";
+import {TransactionHelper, Aes} from "peerplaysjs-lib";
 import Form from "../../form/form";
 import Close from "../decoration/close";
 import Submit from "../decoration/submit";
@@ -10,7 +10,6 @@ import Textarea from "../../form/textarea";
 import {getDefaultFee} from "../../../../actions/forms/getDefaultFee";
 import {getAccountData, getBasicAsset, getStore} from "../../../../actions/store";
 import {trxBuilder} from "../../../../actions/forms/trxBuilder";
-import Aes from "peerplaysjs-lib";
 import {dbApi} from "../../../../actions/nodes";
 import {clearLayout} from "../../../../dispatch";
 
