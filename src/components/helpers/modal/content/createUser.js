@@ -49,6 +49,7 @@ const CreateUser = () => {
                             <Input
                                 name="passwordCheck"
                                 type="password"
+                                className="modal__field"
                                 onChange={form.handleChange}
                                 error={form.state.errors}
                                 value={form.state.data}
@@ -59,7 +60,7 @@ const CreateUser = () => {
                         </div>
                         <div className="modal__bottom">
                             <Close />
-                            <Submit tag="create" onClick={this.selectNewPair} />
+                            <Submit tag="create" />
                         </div>
                     </Fragment>
                 }

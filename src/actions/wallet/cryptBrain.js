@@ -1,6 +1,5 @@
 import {generatePublic, seedToHex} from "../keys";
-import {hash} from "peerplaysjs-lib";
-import PrivateKey from "peerplaysjs-lib";
+import {hash, PrivateKey} from "peerplaysjs-lib";
 
 export const cryptBrain = (keyBuffer, brainkey, brainkey_sequence) => {
     const private_key = PrivateKey.fromBuffer(hash.sha256(hash.sha512(brainkey + " " + brainkey_sequence)));

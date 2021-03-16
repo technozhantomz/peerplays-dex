@@ -1,4 +1,5 @@
 import {defaultNodesList} from "../../params/nodesList";
+import {testnetCheck} from "../../params/networkParams";
 import {setNodes} from "../../dispatch/setNodes";
 import {getStorage, removeStorageItem} from "../storage";
 import {setSocketCallBack} from "./setSocketCallback";
@@ -14,7 +15,7 @@ export const initFirstNode = async () => {
     //Checking local storage. If it has nodes list, then we get active node from there.
     //Else we check first node at nodes list at global variable
 
-    if(nodesList.list){
+    if(!testnetCheck && nodesList.list){
         const {active, list} = nodesList;
         const activeNode = list.find(e => e.url === active);
         const initedInstance = await nodeInit(activeNode.url, true).catch(() => false);

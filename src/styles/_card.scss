@@ -329,9 +329,20 @@
   }
 }
 
+.card__list__none {
+  display: none;
+}
+
 .graphs {
   width: 100%;
   display: flex;
+  justify-content: space-between;
+  margin-bottom: 4rem;
+}
+
+.graphs_hidden {
+  width: 100%;
+  display: none;
   justify-content: space-between;
   margin-bottom: 4rem;
 }

@@ -3,7 +3,7 @@ import {testnetCheck} from "./networkParams";
 const testnetNodes = [
     {
         location: 'Northern America - U.S.A. - New York',
-        url: 'wss://elizabeth.peerplays.download/api',
+        url: 'wss://irona.peerplays.download/api',
         user: {
             name: 'Flash Infrastructure Worker ',
             status: 'Witness'

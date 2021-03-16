@@ -14,8 +14,7 @@ export const nodeInit = async (url, actualNode = false) => {
         }
         instance = Apis.instance(url, true);
     } else {
-        instance = new Apis();
-        instance.connect(url, 1000);
+        instance = Apis.instance(url, true, 1000);
     }
 
     return instance.init_promise

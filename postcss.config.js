@@ -1,7 +1,11 @@
 module.exports = {
   map: false,
   plugins: {
-    'autoprefixer': {browsers: ['last 10 versions']},
+    'postcss-import': {},
+    'postcss-preset-env': {
+      browsers: 'last 10 versions',
+      stage: 0,
+    },
     'cssnano': {}
   }
 }
