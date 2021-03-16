@@ -25,7 +25,7 @@ class PublishFeed extends Component {
 
         const {core_exchange_rate, settlement_price, forceSettlementPrice, mcr, mssr, cer, assetSP} = this.props.data;
 
-        let fees = getFees()['asset_update_issuer'];
+        let fees = getFees()['asset_update'];
         if (!fees.fee) fees = {fee: 100};
 
         const rawFee = fees.fee;
@@ -129,7 +129,7 @@ class PublishFeed extends Component {
                                     </div>
                                     <div className="btn__row">
                                         <span>Fee: {data.fee} {data.quantityAsset}</span>
-                                        {sended && <span className="clr--positive">Trx completed</span>}
+                                        {sended && <span className="clr--positive">Transaction Completed</span>}
                                         <button type="submit" className="btn-round btn-round--fund">Publish</button>
                                     </div>
                                 </Fragment>

@@ -25,6 +25,7 @@ const CloudLogin = ({handleLogin}) => (
                     <Input
                         name="password"
                         type="password"
+                        className='modal__field'
                         onChange={form.handleChange}
                         error={form.state.errors}
                         value={form.state.data}

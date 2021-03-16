@@ -1,4 +1,4 @@
-import {PrivateKey} from "peerplaysjs-lib";
+import {PrivateKey, Login} from "peerplaysjs-lib";
 import Account from "./account";
 import {getAccountData} from "../actions/store";
 import {getStoragedAccount} from "../actions/account";
@@ -27,8 +27,10 @@ class CloudAccount extends Account{
 
         fromWif? console.log('Supplied priv key = '+fromWif.toWif()) : console.log('normal seed password ' + password);
 
+        const generatedKeys = Login.generateKeys(login, password, roles);
+
         for(let role of roles){
-            const privKey = fromWif ? fromWif : PrivateKey.fromSeed(login + role + password);
+            const privKey = fromWif ? fromWif : generatedKeys.privKeys[role];
             const pubKey = privKey.toPublicKey().toString();
             const key = role !== 'memo' ? keys[role].key_auths[0][0] : keys.memo.memo_key;
             console.log('pubkey generated = '+pubKey+' key = '+key);
@@ -48,7 +50,7 @@ class CloudAccount extends Account{
         try{ fromWif = PrivateKey.fromWif(password) }
         catch(e){ }
 
-        return fromWif ? fromWif : PrivateKey.fromSeed(getStoragedAccount().name + role + password);
+        return fromWif ? fromWif : Login.generateKeys(getStoragedAccount().name, password, [role]).privKeys[role];
     }
 }
 

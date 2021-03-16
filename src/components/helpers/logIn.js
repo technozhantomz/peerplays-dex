@@ -3,7 +3,7 @@ import {removeModal} from "../../dispatch/setModal";
 import Input from "./input";
 import Form from "./form";
 import CheckBox from "./checkbox";
-import {PrivateKey} from "peerplaysjs-lib";
+import {PrivateKey, Login} from "peerplaysjs-lib";
 import {defaultToken} from "../../params/networkParams";
 import {dbApi} from "../../actions/nodes";
 import {setStorage} from "../../actions/storage";
@@ -38,8 +38,10 @@ const auth = async ({login, password}) => {
     try{ fromWif = PrivateKey.fromWif(password) }
     catch(e){ }
 
+    const keys = Login.generateKeys(login, password, roles);
+
     for(let role of roles){
-        const privKey = fromWif ? fromWif : PrivateKey.fromSeed(login + role + password);
+        const privKey = fromWif ? fromWif : keys.privKeys[role];
         const pubKey = privKey.toPublicKey().toString(defaultToken);
         const key = role !== 'memo' ? accData[role].key_auths[0][0] : accData.options.memo_key;
 

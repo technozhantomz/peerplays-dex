@@ -89,7 +89,6 @@ class SendForm extends Component {
                                             handleChange={form.handleChange}
                                             errors={errors}
                                             defaultHints={data.contacts}
-                                            className="with-hint"
                                         />
                                         <Dropdown
                                             btn={<SelectHeader
@@ -112,7 +111,7 @@ class SendForm extends Component {
                                     </div>
                                     <div className="btn__row">
                                         <span>Fee: {data.fee} {data.quantityAsset}</span>
-                                        {sended && <span className="clr--positive">Trx completed</span>}
+                                        {sended && <span className="clr--positive">Transaction Completed</span>}
                                         <button type="submit" className="btn-round btn-round--send">SEND</button>
                                     </div>
                                 </Fragment>

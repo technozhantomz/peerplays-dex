@@ -3,7 +3,7 @@ import ReactDom from 'react-dom'
 import {AppContainer} from 'react-hot-loader'
 import {Provider} from 'react-redux'
 import {ConnectedRouter} from "react-router-redux";
-import createHistory from 'history/createBrowserHistory'
+import {createBrowserHistory} from 'history';
 import {ChainConfig} from "peerplaysjs-lib";
 
 import './styles/styles.scss';
@@ -19,7 +19,7 @@ import {initCache} from "./actions/cacheOps";
 import {defaultChainParams, defaultNetwork, defaultToken} from "./params/networkParams";
 
 
-const history = createHistory();
+const history = createBrowserHistory();
 export const store = initStore(history);
 
 ChainConfig.setPrefix(defaultToken);
