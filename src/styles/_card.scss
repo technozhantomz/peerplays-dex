@@ -1,4 +1,5 @@
 .card {
+  margin: 0 1rem;
   border-radius: 20px;
   box-shadow: $shadow-default;
   border: 1px solid $border-color;
@@ -329,9 +330,20 @@
   }
 }
 
+.card__list__none {
+  display: none;
+}
+
 .graphs {
   width: 100%;
   display: flex;
+  justify-content: space-between;
+  margin-bottom: 4rem;
+}
+
+.graphs_hidden {
+  width: 100%;
+  display: none;
   justify-content: space-between;
   margin-bottom: 4rem;
 }
@@ -418,5 +430,5 @@
 }
 
 .fee-pool {
-  margin: 4rem 0;
+  margin: 4rem 1rem;
 }

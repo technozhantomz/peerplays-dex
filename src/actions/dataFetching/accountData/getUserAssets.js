@@ -117,7 +117,17 @@ export const getUserAssets = async (context) => {
 
         const symbol = asset.symbol;
         const available = asset.setPrecision();
-        const {latest, percent_change} = await dbApi('get_ticker', [symbol, defaultQuote]);
+
+        let latest, percent_change;
+
+        if(symbol === defaultQuote) {
+          latest = 0;
+          percent_change = 0;
+        } else {
+          const tickerData = await dbApi('get_ticker', [symbol, defaultQuote]);
+          latest= tickerData.latest;
+          percent_change = tickerData.percent_change;
+        }
 
         const change = !percent_change || percent_change == 0 ? `0%` : percent_change > 0 ? `+${percent_change}%` : `-${percent_change}%`;
         const value = roundNum(available / latest);

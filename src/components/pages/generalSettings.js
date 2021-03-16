@@ -8,23 +8,26 @@ import Translate from "react-translate-component";
 import Dropdown from "../helpers/dropdown";
 import SelectHeader from "../helpers/selectHeader";
 import Input from "../helpers/input";
+import {faucetUrl} from "../../params/networkParams";
 
 class GeneralSettings extends Component {
 
     state = {
         formData: {
-            faucet: 'https://faucet.bitshares.eu/onboarding'
+            faucet: faucetUrl
         },
         activeLang: '',
         whiteTheme: true,
+        advancedMode: false,
         notifications: true,
     };
 
     componentDidMount(){
-        const {language, whiteTheme, notifications} = getStorage('settings');
+        const {language, whiteTheme, advancedMode, notifications} = getStorage('settings');
         this.setState({
             activeLang: defaultLocales.find(e => e.type === language).title,
             whiteTheme,
+            advancedMode,
             notifications
         });
     }
@@ -36,7 +39,8 @@ class GeneralSettings extends Component {
     };
 
     handleNotifications = (e) => this.handleChanges('notifications', e.target.checked);
-    changeAutoSelect = (e) => this.handleChanges('whiteTheme', e.target.checked);
+    changeAutoSelect = (e) => this.handleChanges('whiteTheme', e);
+    changeAdvancedMode = (e) => this.handleChanges('advancedMode', e);
 
     handleChanges = (name, val) => {
         const changes = {[name]: val};
@@ -46,7 +50,7 @@ class GeneralSettings extends Component {
 
     render(){
 
-        const {formData, activeLang, whiteTheme, notifications} = this.state;
+        const {formData, activeLang, whiteTheme, advancedMode, notifications} = this.state;
 
         const localesList = defaultLocales.map((el, id) => <button key={id} onClick={() => this.changeLocale(el)}>{el.title}</button>);
 
@@ -66,6 +70,12 @@ class GeneralSettings extends Component {
                     label="general.theme"
                     selected={whiteTheme}
                     handleChange={this.changeAutoSelect}
+                />
+                <Switcher
+                    id="modeSwitch"
+                    label="general.mode"
+                    selected={advancedMode}
+                    handleChange={this.changeAdvancedMode}
                 />
                 <Translate content="general.notifications" component="h2" />
                 <CheckBox

@@ -12,30 +12,6 @@ import RoundButton from "./buttons/roundButton";
 import {setModal} from "../../dispatch";
 import DepositModal from "./modal/content/depositModal";
 
-const userWallets = [
-    {
-        name: 'Account-Name',
-        asset: {
-            quantity: '23,234.345567',
-            name: 'bitUSD'
-        }
-    },
-    {
-        name: 'Account-Name',
-        asset: {
-            quantity: '23,234.345567',
-            name: 'bitUSD'
-        }
-    },
-    {
-        name: 'Account-Name',
-        asset: {
-            quantity: '23,234.345567',
-            name: 'bitUSD'
-        }
-    }
-];
-
 class UserData extends Component{
 
     logout = () => {
@@ -94,7 +70,7 @@ class UserData extends Component{
                     <RoundButton tag="sendFunds" className="btn-round--light-blue" onClick={this.sendUserTokens} />
                     <RoundButton tag="deposit" className="btn-round--grey" onClick={this.setDeposit} />
                 </div>
-                <Translate content="layout.switchAccount" component="h3" className="drop-user__wallets-title" />
+                {/* <Translate content="layout.switchAccount" component="h3" className="drop-user__wallets-title" />
                 <div className="drop-user__wallets">
                     {
                         userWallets.map((el, id) => (
@@ -107,7 +83,7 @@ class UserData extends Component{
                 </div>
                 <button className="btn-round btn-round--light-blue drop-user__add">
                     <IconCross />
-                </button>
+                </button> */}
             </div>
         )
     }

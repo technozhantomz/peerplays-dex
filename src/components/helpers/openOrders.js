@@ -41,7 +41,7 @@ const orderData = async () => {
     let zeroOrder = [], firstOrder = [];
 
     await dbApi('get_full_accounts', [[name], false]).then(async e => {
-        if (e[0][1].limit_orders.length) {
+        if (e[0][1].limit_orders.length > 1) {
             zeroOrder = await orderCalc(
                 e[0][1].limit_orders[0].for_sale,
                 e[0][1].limit_orders[0].sell_price.base,

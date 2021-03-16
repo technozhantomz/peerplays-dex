@@ -12,24 +12,26 @@ import {getBasicAsset} from "../../store";
 
 export const formUserActivity = context => {
     const user = context.props.data.id;
-    const history = context.props.data.history;
+    let history = context.props.data.history;
 
     if (!history.length) return [];
 
+    history = history.filter(el => el.op[0] >= 0 && el.op[0] <= 8 || el.op[0] === 34 || el.op[0] === 10 || el.op[0] === 11 || el.op[0] === 13 || el.op[0] === 14 || el.op[0] === 16);
+
     return Promise.all(history.map(async el => {
-        const fee = el.op[1].fee;
+      const fee = el.op[1].fee;
 
-        const time = await dbApi('get_block_header', [el.block_num]).then(block => formDate(block.timestamp));
-        const {type, info} = await formInfoColumn(user, el);
-        const feeAsset = await formAssetData(fee);
+      const time = await dbApi('get_block_header', [el.block_num]).then(block => formDate(block.timestamp));
+      const {type, info} = await formInfoColumn(user, el);
+      const feeAsset = await formAssetData(fee);
 
-        return {
-            id: el.id,
-            fee: feeAsset.toString(),
-            type,
-            info,
-            time
-        };
+      return {
+          id: el.id,
+          fee: feeAsset.toString(),
+          type,
+          info,
+          time
+      };
     }));
 };
 
@@ -46,10 +48,9 @@ const formInfoColumn = async (user, operation) => {
 };
 
 export const formTrxInfo = async (user, operation, notification = false) => {
-    const operationsIndexes = Object.values(ChainTypes.operations);
     const operationsNames = Object.keys(ChainTypes.operations);
 
-    let type = operationsNames[operationsIndexes.indexOf(operation.op[0])].toLowerCase();
+    let type = operationsNames[operation.op[0]].toLowerCase();
 
     const opData = operation.op[1];
     const opResult = operation.result[1];

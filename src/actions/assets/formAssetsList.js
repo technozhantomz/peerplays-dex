@@ -6,6 +6,18 @@ export const formAssetsList = async (name, balances) => {
 
     return await Promise.all(balances.map(async asset => {
         const data = await dbApi('get_assets', [[asset.asset_type]]).then(e => e[0]);
+
+        if(data.symbol === defaultQuote) {
+          return {
+            id: asset.asset_type,
+            symbol: data.symbol,
+            precision: data.precision,
+            quantity: Number(asset.balance),
+            usdPrice: 1,
+            dailyChange: 0
+          }
+        }
+
         const tiker = await dbApi('get_ticker', [data.symbol, defaultQuote]);
         return {
             id: asset.asset_type,

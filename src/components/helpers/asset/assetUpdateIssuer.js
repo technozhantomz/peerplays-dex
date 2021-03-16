@@ -23,7 +23,7 @@ class AssetUpdateIssuer extends Component {
         const userTokens = user.assets;
         const basicAsset = getBasicAsset();
 
-        let fees = getFees()['asset_update_issuer'];
+        let fees = getFees()['asset_update'];
         if (!fees.fee) fees = {fee: 100};
 
         const rawFee = fees.fee;
@@ -82,7 +82,7 @@ class AssetUpdateIssuer extends Component {
                                     />
                                     <div className="btn__row">
                                         <span>Fee: {data.fee} {data.quantityAsset}</span>
-                                        {sended && <span className="clr--positive">Trx completed</span>}
+                                        {sended && <span className="clr--positive">Transaction Completed</span>}
                                         <button type="submit" className="btn-round btn-round--fund">Change</button>
                                     </div>
                                 </Fragment>
