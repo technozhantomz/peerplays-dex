@@ -1,4 +1,5 @@
 .card {
+  margin: 0 1rem;
   border-radius: 20px;
   box-shadow: $shadow-default;
   border: 1px solid $border-color;
@@ -429,5 +430,5 @@
 }
 
 .fee-pool {
-  margin: 4rem 0;
+  margin: 4rem 1rem;
 }
