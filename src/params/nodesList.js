@@ -1,9 +1,10 @@
 import {testnetCheck} from "./networkParams";
+import Config from "./config";
 
 const testnetNodes = [
     {
         location: 'Northern America - U.S.A. - New York',
-        url: 'wss://irona.peerplays.download/api',
+        url: Config.blockchainEndpoints[0],
         user: {
             name: 'Flash Infrastructure Worker ',
             status: 'Witness'

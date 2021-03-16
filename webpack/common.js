@@ -1,9 +1,14 @@
 const {resolve} = require('path');
-const {ProvidePlugin, ProgressPlugin} = require('webpack');
+const {ProvidePlugin, ProgressPlugin, DefinePlugin} = require('webpack');
 const HtmlPlugin = require('html-webpack-plugin');
+const getClientEnvironment = require('./env');
 
 const SOURCES = resolve(__dirname, '..', 'src');
 const DIST = resolve(__dirname, '..', 'dist');
+
+const publicUrl = '';
+// Get environment variables to inject into our app.
+const env = getClientEnvironment(publicUrl);
 
 const config = {
 
@@ -134,6 +139,7 @@ const config = {
     },
 
     plugins: [
+        new DefinePlugin(env.stringified),
         new HtmlPlugin({
             title: 'Peerplays DEX',
             template: 'index.html',
