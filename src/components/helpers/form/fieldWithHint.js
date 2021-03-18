@@ -79,7 +79,7 @@ class FieldWithHint extends Component{
                     value={data}
                 />
                 <Caret className='field__caret'/>
-                { data[name] && errors[name] && <Translate content={`errors.${errors[name]}`} className="field__error" /> }
+                { data[name] && errors && errors[name] && <Translate content={`errors.${errors[name]}`} className="field__error" /> }
                 <div className="dropdown__body custom-scroll">
                     {hasHints && hints.map(e => (
                         <div key={e} className="dropdown__item">
