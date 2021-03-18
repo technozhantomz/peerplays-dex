@@ -12,6 +12,7 @@ import {checkIssueAmount} from "./checkIssueAmount";
 import {checkDecimal} from "./checkDecimal";
 import {checkCondition} from "./checkCondition";
 import {checkBackingAsset} from "./checkBackingAsset";
+import {checkAmountToSell, checkAmountToReceive} from './checkBalance';
 
 export const errorsChecker = {
     newLogin: checkNewLogin,
@@ -30,5 +31,7 @@ export const errorsChecker = {
     issueAmount: checkIssueAmount,
     decimal: checkDecimal,
     condition: checkCondition,
-    backingAsset: checkBackingAsset
+    backingAsset: checkBackingAsset,
+    amount_to_sell: checkAmountToSell,
+    amount_to_receive: checkAmountToReceive
 };

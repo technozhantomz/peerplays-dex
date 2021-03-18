@@ -10,7 +10,7 @@ class UserOrders extends Component{
         const {tableHead, rows} = this.props.data;
 
         return(
-            <div className="custom-scroll">
+            <div>
                 <Table
                     className="table--exchange"
                     tableHead={tableHead}
