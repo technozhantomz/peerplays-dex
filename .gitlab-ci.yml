@@ -7,16 +7,32 @@ include:
 
 stages:
   - test
+  - build
+  - deploy
 
 # builds app
 build:
   # node docker image on which this would be run
   image: node:12
-  stage: test
+  stage: build
   script:
+    - apt-get update && apt-get install build-essential nasm
     - npm install
+    - ./replace_vars.sh
+    - cp example.env .env
+    - npm run build
+  artifacts:
+    paths:
+      - dist/
   tags:
     - docker
+
+deploy:
+  stage: deploy
+  dependencies:
+    - build
+  script: 
+    - deploy $DEPLOY_DIR
 
 variables:
  SONAR_USER_HOME: "${CI_PROJECT_DIR}/.sonar"  # Defines the location of the analysis task cache
