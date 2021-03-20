@@ -18,7 +18,7 @@ build:
   script:
     - apt-get update && apt-get install build-essential nasm
     - npm install
-    - ./replace_vars.sh
+    - .ci/replace_vars.sh
     - cp example.env .env
     - npm run build
   artifacts:
@@ -33,6 +33,10 @@ deploy:
     - build
   script: 
     - deploy $DEPLOY_DIR
+  when:
+    manual
+  tags:
+    - ppdex
 
 variables:
  SONAR_USER_HOME: "${CI_PROJECT_DIR}/.sonar"  # Defines the location of the analysis task cache
