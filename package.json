@@ -4,7 +4,7 @@
   "private": true,
   "homepage": ".",
   "scripts": {
-    "start": "webpack serve --config webpack/development.config",
+    "start": "webpack serve --host 0.0.0.0 --config webpack/development.config",
     "dev": "webpack serve --config webpack/development.config",
     "prod": "webpack serve --config webpack/production.config",
     "build": "webpack"
