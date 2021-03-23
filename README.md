@@ -10,7 +10,7 @@ apt-get install build-essential nasm
 
 ## Installation
 
-Node v12+
+Node v14+
 ```
 npm install
 ```

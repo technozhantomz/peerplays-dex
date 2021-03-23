@@ -1,4 +1,4 @@
-FROM node:12 as build
+FROM node:14 as build
 
 RUN apt-get update && apt-get install build-essential nasm
 
