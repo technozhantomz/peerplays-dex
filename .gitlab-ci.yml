@@ -5,7 +5,7 @@ include:
   - template: SAST.gitlab-ci.yml
   - template: Secret-Detection.gitlab-ci.yml
   - template: Container-Scanning.gitlab-ci.yml
-  - template: DAST.gitlab-ci.yml.yml
+  - template: DAST.gitlab-ci.yml
 
 variables:
  SONAR_USER_HOME: "${CI_PROJECT_DIR}/.sonar"  # Defines the location of the analysis task cache
@@ -16,6 +16,7 @@ stages:
   - test
   - build
   - deploy
+  - dast
 
 # builds app
 build:
