@@ -6,7 +6,7 @@ export const checkLogin = ({login, to, from}) => {
 
     if(!toCheck) return false;
 
-    if(to === from)
+    if(to && to === from)
       return 'sameAccount';
 
     return dbApi('get_account_by_name', [toCheck])
