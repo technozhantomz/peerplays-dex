@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import Translate from "react-translate-component";
-import {IconCross} from "../../svg";
+import {Sidechains} from "../../params/networkParams";
 import ActionsBtn from "./buttons/actionsBtn";
 import Link from "react-router-dom/es/Link";
 import {store} from "../../index";
@@ -11,8 +11,26 @@ import Button from "./buttons/button";
 import RoundButton from "./buttons/roundButton";
 import {setModal} from "../../dispatch";
 import DepositModal from "./modal/content/depositModal";
+import { dispatchGenerateAddress } from '../../actions/forms/dispatchGenerateAddress';
 
 class UserData extends Component{
+    state = {
+      sidechainAddresses: {}
+    };
+
+    componentDidMount() {
+      const sidechainAddresses = {};
+      Sidechains.map((el) => {
+          if(this.props.sidechainAccounts) {
+              var acc = this.props.sidechainAccounts.find(({sidechain}) => sidechain == el.toLowerCase());
+              if(acc) {
+                  sidechainAddresses[el] = acc.deposit_address;
+              }
+          }
+      });
+
+      this.setState({sidechainAddresses});
+    }
 
     logout = () => {
         ['account', 'notifications'].forEach(type => {
@@ -26,6 +44,11 @@ class UserData extends Component{
         this.closeDropdown(e);
         dispatchSendModal();
     };
+
+    generateAddress = (e, sidechain) => {
+      this.closeDropdown(e);
+      dispatchGenerateAddress(sidechain);
+    }
 
     setDeposit = e => {
         this.closeDropdown(e);
@@ -44,7 +67,9 @@ class UserData extends Component{
     };
 
     render(){
-        const data = this.props.data;
+        const {data} = this.props;
+        const {sidechainAddresses} = this.state;
+
         return(
             <div className="drop-user">
                 <div className="drop-user__title">
@@ -69,6 +94,12 @@ class UserData extends Component{
                 <div className="drop-user__btn-wrapper">
                     <RoundButton tag="sendFunds" className="btn-round--light-blue" onClick={this.sendUserTokens} />
                     <RoundButton tag="deposit" className="btn-round--grey" onClick={this.setDeposit} />
+                </div>
+                <Translate content="layout.sidechainAccounts" component="h3" className="drop-user__wallets-title" />
+                <div className="drop-user__sidechain-address">
+                    {Sidechains.map((el) => (
+                        sidechainAddresses[el] != undefined ? <div><span>{el}</span><span> : </span><span>{sidechainAddresses[el]}</span></div> : <RoundButton key={el} tag={`generate${el}Address`} className="btn-round--light-blue" onClick={(e) => this.generateAddress(e, el)} />
+                    ))}
                 </div>
                 {/* <Translate content="layout.switchAccount" component="h3" className="drop-user__wallets-title" />
                 <div className="drop-user__wallets">

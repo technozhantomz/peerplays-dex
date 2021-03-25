@@ -7,6 +7,7 @@ export const en = {
         "notificationsSearch": "Start Typing",
         "searchPlaceholder": "Search",
         "switchAccount": "Switch Account",
+        "sidechainAccounts": "Sidechain Accounts"
     },
     "tableHead": {
         "asset": "Asset",
@@ -569,7 +570,10 @@ export const en = {
             "maxMarketFee": "Max Market Fee",
             "issueAmount": "Issue Amount",
             "condition": "Condition (max 60 characters)",
-            "resolutionDate": "Market resolution date"
+            "resolutionDate": "Market resolution date",
+            "depositPublicKey": "Deposit Public Key",
+            "withdrawPublicKey": "Withdraw Public Key",
+            "withdrawAddress": "Withdraw Address"
         },
         "comments": {
             "newLogin": "You can use letters, symbols, etc...",
@@ -730,12 +734,16 @@ export const en = {
         "withdraw": {
             "title": "Withdraw %(asset)s"
         },
+        "generateAddress": {
+          "title": "Generate %(sidechain)s Address"
+        }
     },
     "buttons": {
         "ping": "Ping",
         "clear": "Clear List",
         "sendFunds": "Send Funds",
         "deposit": "Deposit",
+        "generateBitcoinAddress": "Generate Bitcoin Address",
         "logout": "Logout",
         "newWorker": "+ New Worker",
         "newAsset": "+ New Asset",

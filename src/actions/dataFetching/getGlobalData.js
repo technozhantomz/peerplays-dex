@@ -10,6 +10,7 @@ import {getStoragedAccount} from "../account";
 import {bridgesList} from "../../params/bridgesApi";
 import {getPassedTime} from "../getPassedTime";
 import {defaultFetch} from "../defaultFetch";
+import { getSidechainAccounts } from '../account/getSidechainAccounts';
 
 const getCloudData = async data => ({
     loginData: new CloudAccount(),
@@ -265,7 +266,7 @@ export const getGlobalData = async () => {
     if(!notifications.list) notifications = false;
 
     let userData = false;
-
+    let sidechainAccounts = await getSidechainAccounts(account.id);
     if(account.type) userData = await fetchAccountData[account.type](account);
 
     const globalData = {};
@@ -284,5 +285,5 @@ export const getGlobalData = async () => {
     globalData.basicAsset = await new Asset({symbol: defaultToken}).getDataBySymbol();
     globalData.defaultAsset = await new Asset({symbol: defaultQuote}).getDataBySymbol();
 
-    return {userData, globalData, notifications, lastBlockData};
+    return {userData, globalData, notifications, lastBlockData, sidechainAccounts};
 };

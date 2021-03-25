@@ -12,6 +12,7 @@ import pageData from "./pageData";
 import loginData from "./loginData";
 import walletsList from "./walletsList";
 import maintenance from "./maintenance";
+import sidechainAccounts from "./sidechainAccounts";
 
 ///// create folders and exports to this file
 ///// example:
@@ -31,7 +32,8 @@ const app = combineReducers({
     instance,
     maintenance,
     layout,
-    votes
+    votes,
+    sidechainAccounts
 });
 
 ///// export simple variables example:
