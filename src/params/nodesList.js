@@ -3,115 +3,21 @@ import Config from "./config";
 
 const testnetNodes = [
     {
-        location: 'Northern America - U.S.A. - New York',
+        location: 'Global',
         url: Config.blockchainEndpoints[0],
         user: {
-            name: 'Flash Infrastructure Worker ',
+            name: 'Peerplays Witnesses',
             status: 'Witness'
         }
-    },
-   /* {
-        location: 'Northern America - Canada',
-        url: 'ws://bts-testnet-2.blckchnd.com/ws',
-        user: {
-            name: 'Flash Infrastructure Worker ',
-            status: 'Witness'
-        }
-    },
-    {
-        location: 'Northern America - U.S.A. - Chicago',
-        url: 'wss://node.testnet.bitshares.eu',
-        user: {
-            name: 'Flash Infrastructure Worker ',
-            status: 'Witness'
-        }
-    },{
-        location: 'Northern America - U.S.A. - Chicago',
-        url: 'wss://testnet-node.dynx.io',
-        user: {
-            name: 'Flash Infrastructure Worker ',
-            status: 'Witness'
-        }
-    },
-    {
-        location: 'Northern America - U.S.A. - Dallas',
-        url: 'wss://testnet.node.bitshares.ws',
-        user: {
-            name: 'Flash Infrastructure Worker ',
-            status: 'Witness'
-        }
-    },
-    {
-        location: 'Northern America - U.S.A. - Dallas',
-        url: 'wss://testnet.node.bitshares.ws',
-        user: {
-            name: 'Flash Infrastructure Worker ',
-            status: 'Witness'
-        }
-    },
-    {
-        location: 'Northern America - U.S.A. - Dallas',
-        url: 'wss://testnet.node.bitshares.ws',
-        user: {
-            name: 'Flash Infrastructure Worker ',
-            status: 'Witness'
-        }
-    },
-    {
-        location: 'Northern America - U.S.A. - Dallas',
-        url: 'wss://testnet.node.bitshares.ws',
-        user: {
-            name: 'Flash Infrastructure Worker ',
-            status: 'Witness'
-        }
-    },
-    {
-        location: 'Northern America - U.S.A. - Dallas',
-        url: 'wss://testnet.node.bitshares.ws',
-        user: {
-            name: 'Flash Infrastructure Worker ',
-            status: 'Witness'
-        }
-    },
-    {
-        location: 'Northern America - U.S.A. - Dallas',
-        url: 'wss://testnet.node.bitshares.ws',
-        user: {
-            name: 'Flash Infrastructure Worker ',
-            status: 'Witness'
-        }
-    },
-    {
-        location: 'Northern America - U.S.A. - Dallas',
-        url: 'wss://testnet.node.bitshares.ws',
-        user: {
-            name: 'Flash Infrastructure Worker ',
-            status: 'Witness'
-        }
-    }*/
+    }
 ];
 
-const prodNodes = [{
-        location: 'Northern America - U.S.A. - Dallas',
-        url: 'wss://bitshares.openledger.info/ws',
+const prodNodes = [
+        {
+        location: 'Global',
+        url: Config.blockchainEndpoints[0],
         user: {
-            name: 'Flash Infrastructure Worker ',
-            status: 'Witness'
-        }
-    },
-    {
-        location: 'Northern America - U.S.A. - Dallas',
-        url: 'wss://citadel.li/node',
-        user: {
-            name: 'Flash Infrastructure Worker ',
-            status: 'Witness'
-        }
-    },
-    {
-        location: 'Northern America - U.S.A. - Dallas',
-        url: 'wss://btsws.roelandp.nl/ws',
-        user: {
-            name: 'Flash Infrastructure Worker ',
+            name: 'Peerplays Witnesses',
             status: 'Witness'
         }
     }
