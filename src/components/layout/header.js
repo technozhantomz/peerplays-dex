@@ -9,7 +9,7 @@ import LogIn from "../helpers/modal/content/logIn";
 import {openMenu, openSearch, setModal} from "../../dispatch/layoutDispatch";
 import Button from "../helpers/buttons/button";
 
-const Header = ({account, history}) => (
+const Header = ({account, history, sidechainAccounts}) => (
     <header>
         <button className="header__burger" onClick={openMenu}>
             <span></span>
@@ -29,7 +29,7 @@ const Header = ({account, history}) => (
                                 <Avatar userName={account.name} />
                             </div>
                         }
-                        body={ <UserData data={account} history={history} /> }
+                        body={ <UserData data={account} history={history} sidechainAccounts={sidechainAccounts}/> }
                         position="top-right"
                     />
                 </Fragment>
@@ -38,6 +38,9 @@ const Header = ({account, history}) => (
     </header>
 );
 
-const mapStateToProps = (state) => ({account: state.accountData});
+const mapStateToProps = (state) => ({
+  account: state.accountData,
+  sidechainAccounts: state.sidechainAccounts
+});
 
 export default connect(mapStateToProps)(Header);

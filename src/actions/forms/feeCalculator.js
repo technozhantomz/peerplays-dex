@@ -132,6 +132,31 @@ const calculateWithdrawFee = data => {
     return result;
 };
 
+const calculateSidechainAddressAddFee = () => {
+  const result = {
+      feeErr: '',
+      feeAmount: getBasicAsset(),
+      errVariable: 'withdrawAddress'
+  };
+
+  const userData = getAccountData();
+  const basicAsset = getBasicAsset();
+
+  const userBasicAsset = userData.assets.find(el => el.symbol === basicAsset.symbol);
+
+  if(!userBasicAsset || userBasicAsset.setPrecision() <= 0){
+      result.feeErr = 'isNotEnough';
+      return result;
+  }
+
+  const fees = getFees().sidechain_address_add;
+  const defaultFee = basicAsset.setPrecision(true, fees.fee);
+
+  result.feeAmount = new Asset({...basicAsset, amount: defaultFee});
+
+  return result;
+};
+
 export const feeCalculator = {
     transfer: ({quantity, quantityAsset, memo}) => calculateFee('transfer', 'quantity', quantity, quantityAsset, memo),
     limit_order_create: ({amount_to_sell, sellAsset}) => calculateFee('limit_order_create', 'amount_to_sell', amount_to_sell, sellAsset),
@@ -140,4 +165,5 @@ export const feeCalculator = {
     asset_claim_pool: ({quantityClaim, quantityAsset}) => calculateFee('asset_claim_pool', 'quantity', quantityClaim, quantityAsset),
     asset_claim_fees: ({quantityAssetFees, quantityAsset}) => calculateFee('asset_claim_fees', 'quantity', quantityAssetFees, quantityAsset),
     asset_issue: ({issueAmount, assetSymbol, memo}) => calculateFee('asset_issue', 'issueAmount', issueAmount, assetSymbol, memo),
+    sidechain_address_add: calculateSidechainAddressAddFee
 };

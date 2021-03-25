@@ -8,7 +8,7 @@ import NodeDisconnected from "./components/pages/nodeDisconnected";
 import {getStorage, setStorage} from "./actions/storage";
 import {initFirstNode, pingNodes} from "./actions/nodes";
 import {getPassedTime} from "./actions/getPassedTime";
-import {setAccount} from "./dispatch/setAccount";
+import {setAccount, setSidechainAccounts} from "./dispatch/setAccount";
 import {getGlobalData} from "./actions/dataFetching/getGlobalData";
 import {setGlobals, setMaintenance} from "./dispatch";
 import {setNotifications} from "./dispatch/notificationsDispatch";
@@ -40,11 +40,12 @@ class App extends Component{
             }
 
             getGlobalData()
-                .then(({userData, globalData, notifications, lastBlockData}) => {
+                .then(({userData, globalData, notifications, lastBlockData, sidechainAccounts}) => {
                     if(userData) setAccount(userData);
                     if(globalData) setGlobals(globalData);
                     if(lastBlockData) setMaintenance(lastBlockData);
                     if(notifications) setNotifications(notifications);
+                    if(sidechainAccounts) setSidechainAccounts(sidechainAccounts);
                     console.timeEnd();
                 })
                 .then(() => {

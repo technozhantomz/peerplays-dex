@@ -7,6 +7,7 @@ export const defaultNetwork = 'Peerplays';
 export const defaultQuote = Config.defaultQuote;
 export const faucetUrl = Config.faucetUrl;
 export const defaultChainId = Config.defaultChainID;
+export const Sidechains = ['Bitcoin']
 
 export const defaultChainParams = {
     core_asset: defaultToken,

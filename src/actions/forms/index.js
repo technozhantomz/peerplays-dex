@@ -11,3 +11,4 @@ export * from './createUser';
 export * from './errorsHandling';
 export * from './login';
 export * from './defaultTrx';
+export * from './generateSidechainAddress';
