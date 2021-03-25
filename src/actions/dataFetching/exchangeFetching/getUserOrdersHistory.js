@@ -20,8 +20,9 @@ export const getUserOrdersHistory = (pair, account) => {
             const quotePrecision = quote.precision;
 
             history = history.filter(e => {
-                const prices = e.op[1].fill_price;
-                const orderAssets = [prices.base.asset_id, prices.quote.asset_id];
+                const pays = e.op[1].pays;
+                const receives = e.op[1].receives;
+                const orderAssets = [pays.asset_id, receives.asset_id];
                 return orderAssets.includes(baseID) && orderAssets.includes(quoteID);
             });
 
