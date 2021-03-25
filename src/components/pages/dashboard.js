@@ -12,8 +12,28 @@ import GraphMyAssets from "../helpers/graphMyAssets";
 import TableMyAssets from "../helpers/tableMyAssets"
 import NeedToLogin from "../helpers/needToLogin";
 import UserActivity from './user/userActivity'
+import { getStoragedAccount, formAccount } from '../../actions/account';
+import { setAccount } from '../../dispatch/setAccount';
+import CloudAccount from '../../classes/cloudAccount';
 
 class Dashboard extends Component {
+
+    update = async () => {
+      const account = getStoragedAccount();
+      let userData = false;
+
+      if(account.type) {
+        userData = await formAccount(account.name);
+      }
+
+      if(userData) {
+        setAccount({
+          loginData: new CloudAccount(),
+          accountData: userData
+        });
+      }
+    }
+
     render() {
         if (!this.props.account) return <NeedToLogin pageName={'dashboard'}/>;
 
@@ -63,12 +83,12 @@ class Dashboard extends Component {
                     <Card mode="widget">
                         <CardHeader title={`block.quickSellBuy.title`}/>
                         <div className="card__content">
-                            <QuickSellBuy/>
+                            <QuickSellBuy update={this.update}/>
                         </div>
                     </Card>
                     <Card mode="widget">
                         <CardHeader title={`block.send.title`}/>
-                        <SendForm/>
+                        <SendForm update={this.update}/>
                     </Card>
                 </div>
 
@@ -85,12 +105,10 @@ class Dashboard extends Component {
                 <div className="tables">
                     {
                         Boolean(data) &&
-                        <span className="table--without_header">
-                            <Card mode="table">
-                                <CardHeader title={`block.myActivity.title`}/>
-                                <UserActivity data={data}/>
-                            </Card>
-                        </span>
+                          <Card mode="table">
+                              <CardHeader title={`block.myActivity.title`}/>
+                              <UserActivity data={data}/>
+                          </Card>
                     }
                     <Card mode="table">
                         <CardHeader title={`block.myAssets.title`}/>
