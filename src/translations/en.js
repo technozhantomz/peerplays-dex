@@ -622,6 +622,7 @@ export const en = {
         "beginFromToday": "Beginning date must start from today",
         "wrongEndDate": "End date must be after beginning",
         "accountIsNotExist": "Account does not exist",
+        "sameAccount": "Cannot transfer to your account",
         "invalidFile": "Invalid backup file",
         "decompressingError": "Error decompressing wallet",
         "wrongBrain": "Didn't found accounts for this brainkey",
