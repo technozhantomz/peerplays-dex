@@ -9,8 +9,6 @@ import {dispatchSendModal} from "../../actions/forms/dispatchSendModal";
 import UnlockProfile from "./unlockProfile";
 import Button from "./buttons/button";
 import RoundButton from "./buttons/roundButton";
-import {setModal} from "../../dispatch";
-import DepositModal from "./modal/content/depositModal";
 import { dispatchGenerateAddress } from '../../actions/forms/dispatchGenerateAddress';
 
 class UserData extends Component{
@@ -48,11 +46,6 @@ class UserData extends Component{
     generateAddress = (e, sidechain) => {
       this.closeDropdown(e);
       dispatchGenerateAddress(sidechain);
-    }
-
-    setDeposit = e => {
-        this.closeDropdown(e);
-        setModal(<DepositModal />);
     }
 
     closeDropdown = (e) => {
@@ -93,12 +86,11 @@ class UserData extends Component{
                 </div>
                 <div className="drop-user__btn-wrapper">
                     <RoundButton tag="sendFunds" className="btn-round--light-blue" onClick={this.sendUserTokens} />
-                    <RoundButton tag="deposit" className="btn-round--grey" onClick={this.setDeposit} />
                 </div>
                 <Translate content="layout.sidechainAccounts" component="h3" className="drop-user__wallets-title" />
                 <div className="drop-user__sidechain-address">
                     {Sidechains.map((el) => (
-                        sidechainAddresses[el] != undefined ? <div><span>{el}</span><span> : </span><span>{sidechainAddresses[el]}</span></div> : <RoundButton key={el} tag={`generate${el}Address`} className="btn-round--light-blue" onClick={(e) => this.generateAddress(e, el)} />
+                        sidechainAddresses[el] != undefined ? <div key={el}><span>{el}</span><span> : </span><span>{sidechainAddresses[el]}</span></div> : <RoundButton key={el} tag={`generate${el}Address`} className="btn-round--light-blue" onClick={(e) => this.generateAddress(e, el)} />
                     ))}
                 </div>
                 {/* <Translate content="layout.switchAccount" component="h3" className="drop-user__wallets-title" />
