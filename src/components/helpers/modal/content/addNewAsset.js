@@ -101,17 +101,6 @@ const createAsset = async (data, result) => {
         description: descriptionObj && JSON.stringify(descriptionObj),
     };
 
-    const bitasset_opts = smartCoin
-        ? {
-            feed_lifetime_sec: feedInMinutes * 60,
-            minimum_feeds: minNumberOfFeeds,
-            force_settlement_delay_sec: forcedSettlementDelay  * 60,
-            force_settlement_offset_percent: forcedSettlementPercent * 100,
-            maximum_force_settlement_volume: forcedSettlementMaxVolume * 100,
-            short_backing_asset: await formAssetData({symbol: backingAsset}).then(e => e.id),
-        }
-        : false;
-
     const params = {
         fee: getDefaultFee(),
         issuer: accountData.id,
@@ -119,8 +108,18 @@ const createAsset = async (data, result) => {
         precision: Number(decimal),
         is_prediction_market: (smartCoin && predictionMarket) || false,
         common_options,
-        bitasset_opts,
     };
+
+    if(smartCoin) {
+        params.bitasset_opts = {
+            feed_lifetime_sec: feedInMinutes * 60,
+            minimum_feeds: minNumberOfFeeds,
+            force_settlement_delay_sec: forcedSettlementDelay  * 60,
+            force_settlement_offset_percent: forcedSettlementPercent * 100,
+            maximum_force_settlement_volume: forcedSettlementMaxVolume * 100,
+            short_backing_asset: await formAssetData({symbol: backingAsset}).then(e => e.id),
+        };
+    }
 
     const trx = { type: 'asset_create', params};
     const activeKey = loginData.formPrivateKey(password, 'owner');
