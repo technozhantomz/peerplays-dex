@@ -5,12 +5,10 @@ import {dispatchSendModal} from "../../forms/dispatchSendModal";
 import {defaultQuote} from "../../../params/networkParams";
 import {dbApi} from "../../nodes";
 import {IconBuy, IconDeposit, IconSend} from "../../../svg";
-import ActionsBtn from "../../../components/helpers/buttons/actionsBtn";
 import {getAccountData} from "../../store";
 import {setModal} from "../../../dispatch";
 import DepositModal from "../../../components/helpers/modal/content/depositModal";
 import WithdrawModal from "../../../components/helpers/modal/content/withdrawModal";
-import {setPassword} from "../../../dispatch/passwordDispatch";
 import {getPassword} from "../../forms";
 
 const basicTableHead = [
@@ -54,7 +52,6 @@ const basicTableHead = [
 const formActions = (asset, name, activeUser) => {
 
     let additionalActions = '';
-    let defaultActions = '';
 
     if(activeUser){
         additionalActions =
@@ -69,12 +66,6 @@ const formActions = (asset, name, activeUser) => {
                     <IconDeposit onClick={() => getPassword(password => setModal(<WithdrawModal asset={asset} password={password} />))} />
                 </button>
             </div>;
-
-        defaultActions = <ActionsBtn
-            actionsList={[
-                <button>Action</button>
-            ]}
-        />;
     } else {
         additionalActions =
             <div className="actions__on-hover">
@@ -90,7 +81,6 @@ const formActions = (asset, name, activeUser) => {
     return(
         <div className="actions__wrapper">
             {additionalActions}
-            {defaultActions}
         </div>
     );
 };

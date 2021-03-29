@@ -20,17 +20,23 @@ class Exchange extends Component{
 
     async componentDidMount(){
         this.setPair(this.props);
+        this.timerID = setInterval(() => this.setPair(this.props), 5000);
     }
 
     componentWillReceiveProps(newProps){
-        if(this.props.account.name !== newProps.account.name) this.setPair(newProps);
-
-        if(this.props.match.params.pair !== newProps.match.params.pair){
-            this.setState({isLoaded: false}, () => this.setPair(newProps));
+        if(this.props.account.name !== newProps.account.name) {
+          clearInterval(this.timerID);
+          this.timerID = setInterval(() => this.setPair(newProps), 5000);
+        } else if(this.props.match.params.pair !== newProps.match.params.pair) {
+          clearInterval(this.timerID);
+          this.timerID = setInterval(() => this.setPair(newProps), 5000);
         }
     }
 
-    componentWillUnmount(){ clearExchangeData() };
+    componentWillUnmount() {
+      clearExchangeData();
+      clearInterval(this.timerID);
+    };
 
     setPair = (props) => loadExchangeData(props.match.params.pair).then(() => this.setState({isLoaded: true}));
 

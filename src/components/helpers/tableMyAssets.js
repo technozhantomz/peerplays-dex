@@ -36,11 +36,6 @@ const tableAssetsHead = [
             token: defaultQuote
         },
         params: 'align-right fit-content'
-    },
-    {
-        key: "actions",
-        translateTag: "actions",
-        params: 'align-right fit-content'
     }
 ];
 
@@ -54,8 +49,7 @@ const getData = async () => {
             available: item.quantity / (10 ** item.precision),
             priceUSD: item.usdPrice,
             change: item.dailyChange === "0" ? item.dailyChange : item.dailyChange > 0 ? `+${item.dailyChange}` : `-${item.dailyChange}`,
-            valueUSD: Number((item.quantity / (10 ** item.precision) * item.usdPrice).toFixed(5)),
-            actions: <ActionsBtn/>
+            valueUSD: Number((item.quantity / (10 ** item.precision) * item.usdPrice).toFixed(5))
         })
 
     });
