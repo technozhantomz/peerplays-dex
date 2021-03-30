@@ -61,7 +61,7 @@ const getDefaultFormData = async context => {
             condition: condition,
             resolutionDate: expiry ? new Date(expiry) : false,
             smartCoin: smartData,
-            predictionMarket: assetData.smartData.is_prediction_market,
+            predictionMarket: assetData.smartData ? assetData.smartData.is_prediction_market : false,
             permissions: defPermissions,
             flagMarketFee: flags.includes('charge_market_fee'),
             flags: defaultFlags,
