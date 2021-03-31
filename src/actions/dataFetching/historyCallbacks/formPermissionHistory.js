@@ -1,8 +1,6 @@
 import {getUserName} from "../../account";
-import {Link} from "react-router-dom";
 import {assetToString} from "../../assets";
 import React from "react";
-import ActionsBtn from "../../../components/helpers/buttons/actionsBtn";
 import {dbApi} from "../../nodes";
 
 export const formPermissionHistory = history => Promise.all(history.map(async el => {
@@ -21,15 +19,6 @@ export const formPermissionHistory = history => Promise.all(history.map(async el
         type: <button className="operation positive">Account update</button>,
         desc: `${acc} updated their account data`,
         fee: await assetToString(fee),
-        time: timestamp,
-        actions: <div className="actions__wrapper">
-            <ActionsBtn
-                actionsList={[
-                    <button>Reset Settings</button>,
-                    <button>Body 2</button>,
-                    <button>Body 2</button>
-                ]}
-            />
-        </div>
+        time: timestamp
     };
 }));

@@ -16,7 +16,7 @@ import {initDB} from "./actions/iDB";
 import App from './App'
 import {initSettings} from "./actions/settings";
 import {initCache} from "./actions/cacheOps";
-import {defaultChainParams, defaultNetwork, defaultToken} from "./params/networkParams";
+import {defaultToken} from "./params/networkParams";
 
 
 const history = createBrowserHistory();

@@ -2,6 +2,7 @@ import * as ReactDOM from "react-dom";
 import React, {Component} from 'react'
 import ControlledInput from "./controlledInput";
 import {Caret} from "../../../svg";
+import Translate from "react-translate-component";
 
 class FieldWithHint extends Component{
     state = {
@@ -61,7 +62,7 @@ class FieldWithHint extends Component{
 
     render(){
 
-        const {name, hideLabel, labelParams, className} = this.props;
+        const {name, hideLabel, labelParams, className, errors} = this.props;
         const {data, hints} = this.state;
 
         const hasHints = !!hints.length;
@@ -78,6 +79,7 @@ class FieldWithHint extends Component{
                     value={data}
                 />
                 <Caret className='field__caret'/>
+                { data[name] && errors && errors[name] && <Translate content={`errors.${errors[name]}`} className="field__error" /> }
                 <div className="dropdown__body custom-scroll">
                     {hasHints && hints.map(e => (
                         <div key={e} className="dropdown__item">

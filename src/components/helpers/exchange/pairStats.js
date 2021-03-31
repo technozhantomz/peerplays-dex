@@ -1,12 +1,10 @@
 import React, {Component, Fragment} from 'react';
 import Translate from "react-translate-component";
-import {Caret, IconReload} from "../../../svg/index";
+import {Caret} from "../../../svg/index";
 import ChangePair from "../modal/content/changePair";
 import {setModal} from "../../../dispatch/layoutDispatch";
 
 class PairStats extends Component{
-
-    reload = () => this.props.update();
 
     changePair = () => {
         setModal(<ChangePair pair={this.props.pair} history={this.props.history} />)
@@ -50,9 +48,6 @@ class PairStats extends Component{
                             </div>
                         )
                     })}
-                    <button onClick={this.reload} className="pair-stats__update">
-                        <IconReload />
-                    </button>
                 </div>
             </Fragment>
         );

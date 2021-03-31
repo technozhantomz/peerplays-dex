@@ -1,10 +1,10 @@
 {
   "name": "peerplays-dex",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "homepage": ".",
   "scripts": {
-    "start": "webpack serve --config webpack/development.config",
+    "start": "webpack serve --host 0.0.0.0 --config webpack/development.config",
     "dev": "webpack serve --config webpack/development.config",
     "prod": "webpack serve --config webpack/production.config",
     "build": "webpack"
@@ -24,6 +24,7 @@
     "babel-runtime": "^6.26.0",
     "counterpart": "^0.18.6",
     "dexie": "^2.0.4",
+    "dotenv": "^8.2.0",
     "history": "^4.7.2",
     "lzma": "2.1.6",
     "path-browserify": "^1.0.1",

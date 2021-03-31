@@ -8,12 +8,13 @@ import Translate from "react-translate-component";
 import Dropdown from "../../helpers/form/dropdown";
 import SelectHeader from "../../helpers/selectHeader";
 import Input from "../../helpers/form/input";
+import {faucetUrl} from "../../../params/networkParams";
 
 class GeneralSettings extends Component {
 
     state = {
         formData: {
-            faucet: 'https://faucet.bitshares.eu/onboarding',
+            faucet: faucetUrl,
             notifications: true
         },
         activeLang: '',
@@ -25,7 +26,7 @@ class GeneralSettings extends Component {
         const {language, darkTheme, advancedMode, notifications} = getStorage('settings');
 
         const formData = {
-            faucet: 'https://faucet.bitshares.eu/onboarding',
+            faucet: faucetUrl,
             notifications
         };
 

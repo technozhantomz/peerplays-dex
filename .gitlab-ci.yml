@@ -4,17 +4,56 @@ include:
   - template: License-Scanning.gitlab-ci.yml
   - template: SAST.gitlab-ci.yml
   - template: Secret-Detection.gitlab-ci.yml
+  - template: Container-Scanning.gitlab-ci.yml
+  - template: DAST.gitlab-ci.yml
 
-# node docker image on which this would be run
-image: node:12
+variables:
+ SONAR_USER_HOME: "${CI_PROJECT_DIR}/.sonar"  # Defines the location of the analysis task cache
+ GIT_DEPTH: "0"  # Tells git to fetch all the branches of the project, required by the analysis task
+ DAST_WEBSITE: $DAST_WEBSITE
 
 stages:
   - test
+  - build
+  - deploy
+  - dast
 
 # builds app
 build:
-  stage: test
+  # node docker image on which this would be run
+  image: node:14
+  stage: build
   script:
+    - apt-get update && apt-get install build-essential nasm
     - npm install
+    - .ci/replace_vars.sh
+    - cp example.env .env
+    - npm run build
+  artifacts:
+    paths:
+      - dist/
   tags:
     - docker
+
+deploy:
+  stage: deploy
+  dependencies:
+    - build
+  script: 
+    - deploy $DEPLOY_DIR
+  when:
+    manual
+  tags:
+    - ppdex
+
+sonarcloud-check:
+ image:
+   name: sonarsource/sonar-scanner-cli:latest
+   entrypoint: [""]
+ cache:
+   key: "${CI_JOB_NAME}"
+   paths:
+     - .sonar/cache
+ script:
+   - sonar-scanner
+ when: manual

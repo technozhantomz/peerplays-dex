@@ -84,6 +84,7 @@ class SendModal extends Component {
                                                 <Input
                                                     id="modalSendTo"
                                                     name="to"
+                                                    className="mt-2"
                                                     type="text"
                                                     onChange={form.handleChange}
                                                     error={errors}
@@ -93,13 +94,14 @@ class SendModal extends Component {
                                                 :
                                                 <FieldWithHint
                                                     name="to"
+                                                    className="mt-2"
                                                     method={getSymbolsList}
                                                     handleChange={form.handleChange}
                                                     errors={errors}
                                                     defaultHints={data.contacts}
                                                 />
                                         }
-                                        <div className="quantity-wrapper">
+                                        <div className="quantity-wrapper mt-2">
                                             <Input
                                                 id="modalSendQuantity"
                                                 name="quantity"
@@ -126,7 +128,7 @@ class SendModal extends Component {
                                             error={errors}
                                             value={data}
                                         />
-                                        <div className="quantity-wrapper">
+                                        <div className="quantity-wrapper mt-2">
                                             <div>
                                                 Fee: {data.fee} {data.feeAsset}
                                             </div>
