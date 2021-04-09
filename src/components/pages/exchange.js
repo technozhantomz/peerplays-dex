@@ -25,9 +25,11 @@ class Exchange extends Component{
 
     componentWillReceiveProps(newProps){
         if(this.props.account.name !== newProps.account.name) {
+            this.setPair(newProps);
           clearInterval(this.timerID);
           this.timerID = setInterval(() => this.setPair(newProps), 5000);
         } else if(this.props.match.params.pair !== newProps.match.params.pair) {
+            this.setPair(newProps);
           clearInterval(this.timerID);
           this.timerID = setInterval(() => this.setPair(newProps), 5000);
         }
@@ -36,7 +38,7 @@ class Exchange extends Component{
     componentWillUnmount() {
       clearExchangeData();
       clearInterval(this.timerID);
-    };
+    }
 
     setPair = (props) => loadExchangeData(props.match.params.pair).then(() => this.setState({isLoaded: true}));
 
