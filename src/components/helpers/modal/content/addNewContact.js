@@ -13,10 +13,13 @@ import {updateAccount} from "../../../../dispatch/setAccount";
 
 const getSymbolsList = async (symbol) => dbApi('lookup_accounts', [symbol, 5])
     .then(result => {
+        const accountData = getAccountData();
+
+        result = result.filter(e => e[0].includes(symbol) && e[0] !== accountData.name);
+
         result = result.map(e => e[0]);
 
         const contactsList = getStorage('contacts');
-        const accountData = getAccountData();
         const oldData = contactsList[accountData.name] ? contactsList[accountData.name].map(e => e.name) : [];
 
         return result.filter(e => !oldData.includes(e));

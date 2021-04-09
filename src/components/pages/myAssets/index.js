@@ -8,7 +8,6 @@ import OpenOrders from "../user/openOrders";
 import UserActivity from "../user/userActivity";
 import UserMargins from "../user/userMargins";
 import NeedToLogin from "../../helpers/needToLogin";
-import AssetsDeposit from "./assetsDeposit";
 import AssetWithdraw from "./assetsWithdraw";
 
 const basicMenu = [
@@ -36,11 +35,6 @@ const basicMenu = [
         link: '/permissions',
         tag: 'permissions',
         component: AssetsPermissions
-    },
-    {
-        link: '/deposit',
-        tag: 'deposit',
-        component: AssetsDeposit
     },
     {
         link: '/withdraw',

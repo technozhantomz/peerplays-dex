@@ -30,13 +30,6 @@ const getDefaultFormData = async context => {
         minimum_feeds
     } = smartData ? assetData.smartData.options : {};
 
-    const feedsList = smartData
-        ? assetData.smartData.feeds.map(el => el[0])
-        : [];
-
-    console.log(feedsList);
-
-
     const permissionsList = defaultPermissions.concat(additionalPermissions).filter(el => permissions.includes(el));
 
     const defaultFlags = {};
@@ -77,8 +70,11 @@ const getDefaultFormData = async context => {
     };
 };
 
-const getSymbolsList = async (symbol) => dbApi('lookup_accounts', [symbol, 5])
-    .then(result => result.map(e => e[0]));
+const getAssetsList = async (assetSymbol) => dbApi('list_assets', ['', 100])
+    .then(result => {
+      result = result.filter(e => e.symbol !== assetSymbol);
+      return result.map(e => e.symbol);
+  });
 
 const updateAsset = async (data, result) => {
     console.log(data);
@@ -140,9 +136,10 @@ const AssetUpdate = ({data}) => {
                                     />
                                     <FieldWithHint
                                         name="pairingAsset"
-                                        method={getSymbolsList}
+                                        method={() => getAssetsList(data.symbol)}
                                         handleChange={form.handleChange}
                                         defaultVal={data}
+                                        readOnly
                                     />
                                 </div>
                                 {data['predictionMarket'] &&
@@ -190,9 +187,10 @@ const AssetUpdate = ({data}) => {
                                         />
                                         <FieldWithHint
                                             name="backingAsset"
-                                            method={getSymbolsList}
+                                            method={() => getAssetsList(data.symbol)}
                                             handleChange={form.handleChange}
                                             defaultVal={data}
+                                            readOnly
                                         />
                                 </AccordeonItem>
                             }

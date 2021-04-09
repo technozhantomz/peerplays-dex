@@ -10,7 +10,7 @@ import {getAccountData} from "../../actions/store";
 import {dbApi} from "../../actions/nodes";
 import FieldWithHint from "./form/fieldWithHint";
 
-const getAssetsList = async (symbol) => dbApi('list_assets', [symbol.toUpperCase(), 5])
+const getAssetsList = async () => dbApi('list_assets', ['', 100])
     .then(result => result.map(e => e.symbol));
 
 const getUserAssetsList = async (symbol) => (
@@ -75,6 +75,7 @@ class QuickSellBuy extends Component {
                                     <div className="input__row">
                                         <Input
                                             name="amount_to_sell"
+                                            type="number"
                                             hideLabel={true}
                                             onChange={form.handleChange}
                                             error={errors}
@@ -87,6 +88,7 @@ class QuickSellBuy extends Component {
                                             handleChange={form.handleChange}
                                             errors={errors}
                                             defaultHints={userTokens}
+                                            readOnly={true}
                                         />
                                     </div>
                                     <div className="input__row">
@@ -104,6 +106,7 @@ class QuickSellBuy extends Component {
                                             handleChange={form.handleChange}
                                             defaultVal={data}
                                             errors={errors}
+                                            readOnly={true}
                                         />
                                     </div>
                                     <div className="info__row">
