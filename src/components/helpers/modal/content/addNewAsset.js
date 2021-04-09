@@ -133,9 +133,8 @@ const createAsset = async (data, result) => {
     return result;
 };
 
-const getSymbolsList = async (symbol) => dbApi('lookup_accounts', [symbol, 5])
-    .then(result => result.map(e => e[0]));
-
+const getAssetsList = async () => dbApi('list_assets', ['', 100])
+    .then(result => result.map(e => e.symbol));
 class AddNewAsset extends Component{
     state = {
         defaultData: '',
@@ -290,9 +289,10 @@ class AddNewAsset extends Component{
                                             />
                                             <FieldWithHint
                                                 name="pairingAsset"
-                                                method={getSymbolsList}
+                                                method={getAssetsList}
                                                 handleChange={form.handleChange}
                                                 defaultVal={data}
+                                                readOnly
                                             />
                                         </div>
                                         {data['smartCoin'] && data['predictionMarket'] &&
@@ -340,9 +340,10 @@ class AddNewAsset extends Component{
                                             />
                                             <FieldWithHint
                                                 name="backingAsset"
-                                                method={getSymbolsList}
+                                                method={getAssetsList}
                                                 handleChange={form.handleChange}
                                                 defaultVal={data}
+                                                readOnly
                                             />
                                         </Fragment>
                                         }

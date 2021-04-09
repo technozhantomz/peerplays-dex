@@ -62,7 +62,7 @@ class FieldWithHint extends Component{
 
     render(){
 
-        const {name, hideLabel, labelParams, className, errors} = this.props;
+        const {name, hideLabel, labelParams, className, errors, readOnly} = this.props;
         const {data, hints} = this.state;
 
         const hasHints = !!hints.length;
@@ -77,6 +77,7 @@ class FieldWithHint extends Component{
                     onChange={this.handleChange}
                     onFocus={this.handleChange}
                     value={data}
+                    readOnly={readOnly}
                 />
                 <Caret className='field__caret'/>
                 { data[name] && errors && errors[name] && <Translate content={`errors.${errors[name]}`} className="field__error" /> }

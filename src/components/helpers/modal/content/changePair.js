@@ -79,6 +79,7 @@ class ChangePair extends Component{
                                 method={getSymbolsList}
                                 handleChange={this.handlePairChange}
                                 defaultVal={pair}
+                                readOnly
                             />
 
                             <button onClick={this.swipePair}>
@@ -91,6 +92,7 @@ class ChangePair extends Component{
                                 method={getSymbolsList}
                                 handleChange={this.handlePairChange}
                                 defaultVal={pair}
+                                readOnly
                             />
                         </div>
                     }
