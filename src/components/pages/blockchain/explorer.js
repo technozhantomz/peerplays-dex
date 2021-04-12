@@ -177,14 +177,14 @@ class Explorer extends Component {
                 </div>
 
                 <Card mode="table">
-                    <CardHeader title={'Recent Blocks'}/>
+                    <CardHeader title={'block.recentBlocks.title'}/>
                     <Table
                         tableHead={tableHeadRecentBlocks}
                         rows={tableRecentBlocks}
                     />
                 </Card>
                 <Card mode="table">
-                    <CardHeader title={'Recent Blocks'}/>
+                    <CardHeader title={'block.recentBlocks.title'}/>
                     <Table
                         tableHead={tableHeadRecentActivity}
                         rows={tableRecentActivity}
