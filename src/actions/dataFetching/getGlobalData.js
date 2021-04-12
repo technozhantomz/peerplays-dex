@@ -266,7 +266,9 @@ export const getGlobalData = async () => {
     if(!notifications.list) notifications = false;
 
     let userData = false;
-    let sidechainAccounts = await getSidechainAccounts(account.id);
+    let sidechainAccounts;
+
+    if(account && account.id) sidechainAccounts = await getSidechainAccounts(account.id);
     if(account.type) userData = await fetchAccountData[account.type](account);
 
     const globalData = {};
