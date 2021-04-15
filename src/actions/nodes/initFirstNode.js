@@ -6,6 +6,7 @@ import {setSocketCallBack} from "./setSocketCallback";
 import {setInstance} from "../../dispatch";
 import {nodeInit} from "./nodeInit";
 import {store} from '../../index';
+import {ChainStore} from 'peerplaysjs-lib';
 
 export const initFirstNode = async () => {
     const nodesList = getStorage('nodes');
@@ -36,6 +37,9 @@ export const initFirstNode = async () => {
             }
         }
     }
+
+    ChainStore.setDispatchFrequency(0);
+    ChainStore.init();
 
     actions.push(setInstance(initedNode.instance));
 

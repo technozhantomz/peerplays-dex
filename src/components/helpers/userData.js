@@ -36,6 +36,7 @@ class UserData extends Component{
             removeStorageItem(type, 'sessionStorage');
             store.dispatch({type: `REMOVE_${type.toUpperCase()}`})
         });
+        this.props.history.push('/');
     };
 
     sendUserTokens = e => {
