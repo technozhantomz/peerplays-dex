@@ -1,16 +1,43 @@
-import {ChainTypes} from "peerplaysjs-lib";
-import {formAccount} from "../account/formAccount";
-import {dbApi} from "../nodes";
-import {getStorage, setStorage} from "../storage";
+import {
+    ChainTypes,
+    ChainStore
+} from "peerplaysjs-lib";
+import {
+    formAccount
+} from "../account/formAccount";
+import {
+    dbApi
+} from "../nodes";
+import {
+    getStorage,
+    setStorage
+} from "../storage";
 import CloudAccount from "../../classes/cloudAccount";
-import {walletToRedux} from "../../actions/wallet";
-import {defaultQuote, defaultToken} from "../../params/networkParams";
-import {Asset} from "../../classes/asset";
-import {getStoragedAccount} from "../account";
-import {bridgesList} from "../../params/bridgesApi";
-import {getPassedTime} from "../getPassedTime";
-import {defaultFetch} from "../defaultFetch";
-import { getSidechainAccounts } from '../account/getSidechainAccounts';
+import {
+    walletToRedux
+} from "../../actions/wallet";
+import {
+    defaultQuote,
+    defaultToken
+} from "../../params/networkParams";
+import {
+    Asset
+} from "../../classes/asset";
+import {
+    getStoragedAccount
+} from "../account";
+import {
+    bridgesList
+} from "../../params/bridgesApi";
+import {
+    getPassedTime
+} from "../getPassedTime";
+import {
+    defaultFetch
+} from "../defaultFetch";
+import {
+    getSidechainAccounts
+} from '../account/getSidechainAccounts';
 
 const getCloudData = async data => ({
     loginData: new CloudAccount(),
@@ -145,7 +172,12 @@ const getBridges = async () => {
     const bridgesData = {};
 
     await Promise.all(bridgesList.map(async bridge => {
-        const {BASE, COINS_LIST, TRADING_PAIRS, ACTIVE_WALLETS} = bridge.api;
+        const {
+            BASE,
+            COINS_LIST,
+            TRADING_PAIRS,
+            ACTIVE_WALLETS
+        } = bridge.api;
 
         if (!COINS_LIST) return false;
 
@@ -166,7 +198,10 @@ const getBridges = async () => {
 
         if (TRADING_PAIRS) {
             const pairsList = await defaultFetch(BASE + TRADING_PAIRS).catch(console.error);
-            pairsList.length && pairsList.forEach(({inputCoinType, outputCoinType}) => pairs[inputCoinType] = outputCoinType);
+            pairsList.length && pairsList.forEach(({
+                inputCoinType,
+                outputCoinType
+            }) => pairs[inputCoinType] = outputCoinType);
         }
 
         bridgesData[bridge.name] = {
@@ -263,19 +298,21 @@ export const getGlobalData = async () => {
         setStorage('bridges', bridges);
     }*/
 
-    if(!notifications.list) notifications = false;
+    if (!notifications.list) notifications = false;
 
     let userData = false;
     let sidechainAccounts;
 
-    if(account && account.id) sidechainAccounts = await getSidechainAccounts(account.id);
-    if(account.type) userData = await fetchAccountData[account.type](account);
+    if (account && account.id) sidechainAccounts = await getSidechainAccounts(account.id);
+    if (account.type) userData = await fetchAccountData[account.type](account);
 
     const globalData = {};
 
     const opTypes = ChainTypes.operations;
     const globalProps = await dbApi('get_global_properties');
-    const lastBlockData = await dbApi('get_objects', [["2.1.0"]]).then(e => e[0]);
+    const lastBlockData = await dbApi('get_objects', [
+        ["2.1.0"]
+    ]).then(e => e[0]);
     const feesParams = globalProps.parameters.current_fees.parameters;
 
     globalData.fees = {};
@@ -284,8 +321,89 @@ export const getGlobalData = async () => {
         globalData.fees[el] = fee ? fee[1] : {};
     });
 
-    globalData.basicAsset = await new Asset({symbol: defaultToken}).getDataBySymbol();
-    globalData.defaultAsset = await new Asset({symbol: defaultQuote}).getDataBySymbol();
+    globalData.basicAsset = await new Asset({
+        symbol: defaultToken
+    }).getDataBySymbol();
+    globalData.defaultAsset = await new Asset({
+        symbol: defaultQuote
+    }).getDataBySymbol();
 
-    return {userData, globalData, notifications, lastBlockData, sidechainAccounts};
+    return {
+        userData,
+        globalData,
+        notifications,
+        lastBlockData,
+        sidechainAccounts
+    };
 };
+
+export const updateAllBlockchainData = async () => {
+    const objects = await dbApi('get_objects', [['2.1.0', '2.0.0', '1.3.0', '2.3.0']]);
+
+    let recentBlocks = ChainStore.getRecentBlocks();
+    const object210 = objects[0];
+    const object200 = objects[1];
+    const coreAsset = objects[2];
+    const dynamic = objects[3];
+
+    if (!object210 || !object200 || !coreAsset || recentBlocks.size < 1) {
+        return null;
+    }
+
+    if (coreAsset.dynamic_asset_data_id) {
+        let last_irreversible_block_num = object210.last_irreversible_block_num,
+            maxHeight = object210.head_block_number,
+            updateData = {
+                head_block_number: maxHeight,
+                last_irreversible_block_num: last_irreversible_block_num,
+                recently_missed_count: object210.recently_missed_count,
+                time: object210.time,
+                current_witness: object210.current_witness,
+                active_witnesses: object200.active_witnesses,
+                active_committee_members: object200.active_committee_members,
+                witness_budget: object210.witness_budget,
+                next_maintenance_time: object210.next_maintenance_time,
+                block_interval: object200.parameters.block_interval,
+                current_supply: dynamic.current_supply,
+                confidential_supply: dynamic.confidential_supply,
+                coreAsset: coreAsset,
+                latestFetchedBlocks: []
+            };
+
+        if (recentBlocks) {
+            recentBlocks = recentBlocks.toJS().sort((a,b) => a.id > b.id);
+
+            let blockTimes = [],
+                previousTime;
+
+            recentBlocks.forEach((block, index) => {
+                if (index > 0) {
+                    let delta = (previousTime - block.timestamp) / 1000;
+
+                    blockTimes.push([block.id, delta]);
+                }
+
+                previousTime = block.timestamp;
+            });
+
+            let avgTime = blockTimes.reduce((previous, current, idx, array) => {
+                return previous + current[1] / array.length;
+            }, 0);
+
+            updateData.avgTime = avgTime;
+            updateData.latestBlocks = recentBlocks.map(block => {
+                return {
+                    blockID: block.id,
+                    date: block.timestamp.toLocaleTimeString(),
+                    witness: block.witness_account_name,
+                    transaction: block.transactions.length
+                };
+            });
+
+            return updateData;
+        } else {
+            console.log('Not upd...');
+            return null;
+        }
+    };
+}

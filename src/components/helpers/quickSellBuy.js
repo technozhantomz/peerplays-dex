@@ -94,6 +94,7 @@ class QuickSellBuy extends Component {
                                     <div className="input__row">
                                         <Input
                                             name="amount_to_receive"
+                                            type="number"
                                             hideLabel={true}
                                             onChange={form.handleChange}
                                             error={errors}

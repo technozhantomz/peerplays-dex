@@ -7,7 +7,6 @@ import Committee from "./blockchain/committee";
 import Fees from "./blockchain/fees";
 import Explorer from "./blockchain/explorer";
 import Assets from "./blockchain/assets";
-import Workers from "./blockchain/workers";
 
 const blockchainMenu = [
     {
@@ -29,11 +28,6 @@ const blockchainMenu = [
         link: '/committee',
         tag: 'committee',
         component: Committee
-    },
-    {
-        link: '/workers',
-        tag: 'workers',
-        component: Workers
     },
     {
         link: '/markets',
