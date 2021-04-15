@@ -25,7 +25,7 @@ build:
   image: node:14.16.1-alpine3.13
   stage: build
   script:
-    - apk update && apk add g++ make nasm git
+    - apk update && apk add g++ make nasm git bash
     - npm install
     - .ci/replace_vars.sh
     - cp example.env .env
