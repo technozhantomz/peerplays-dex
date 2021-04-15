@@ -25,16 +25,7 @@ build:
   image: node:14.16.1-alpine3.13
   stage: build
   script:
-    - apk update && apk add \
-        g++ \
-        make \
-        nasm \
-        git \
-        libtool \
-        autoconf \
-        automake \
-        libpng-dev \
-        pkgconfig
+    - apk update && apk add g++ make nasm git libtool autoconf automake libpng-dev pkgconfig
     - npm install
     - .ci/replace_vars.sh
     - cp example.env .env
