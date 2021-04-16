@@ -615,7 +615,7 @@ export const en = {
         "accUsed": "Account is already in use.",
         "assetUsed": "Asset is already in use.",
         "keyUsed": "Key is already in use.",
-        "sameAsset": "Assets the same",
+        "sameAsset": "Same Assets not allowed",
         "wrongAsset": "Asset isn't valid",
         "needSamePrecision": "That asset does not have the same precision",
         "needPassword": "Please, enter password first",
