@@ -33,7 +33,9 @@ class SendForm extends Component {
             quantityAsset: startAsset,
             fee: 0,
             feeAsset: startAsset,
-            contacts: contacts || []
+            contacts: contacts || [],
+            quantity: 0,
+            memo: ''
         };
 
         this.setState({userTokens, defaultData});
@@ -44,7 +46,7 @@ class SendForm extends Component {
         this.setState({sended: true}, () => setTimeout(() => context.setState({sended: false}), 5000));
 
         if(this.props.update) {
-          this.props.update();
+            this.props.update();
         }
     };
 

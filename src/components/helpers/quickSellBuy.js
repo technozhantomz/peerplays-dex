@@ -1,8 +1,5 @@
 import React, {Component, Fragment} from 'react';
-import Dropdown from "./form/dropdown";
-import SelectHeader from "./selectHeader";
 import Input from "./form/input";
-import {store} from '../../index.js';
 import Form from "./form/form";
 import {sellBuy} from "../../actions/forms";
 import {defaultQuote, defaultToken} from "../../params/networkParams";
@@ -46,7 +43,7 @@ class QuickSellBuy extends Component {
         this.setState({sended: true}, () => setTimeout(() => context.setState({sended: false}), 5000));
 
         if(this.props.update) {
-          this.props.update();
+            this.props.update();
         }
     };
 
