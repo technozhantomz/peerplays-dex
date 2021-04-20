@@ -80,7 +80,10 @@ class Form extends Component{
                     this.setState({loading: false, errors: result.errors});
                     return;
                 }
-                this.setState({loading: false}, () => handleResult(result.callbackData));
+                this.setState({loading: false}, () => {
+                    handleResult(result.callbackData);
+                    this.setState({data: this.props.defaultData});
+                });
             });
         } else if(handleResult) {
             handleResult(this.state.data);

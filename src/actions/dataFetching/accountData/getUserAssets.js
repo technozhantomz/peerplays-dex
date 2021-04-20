@@ -7,7 +7,6 @@ import {dbApi} from "../../nodes";
 import {IconBuy, IconDeposit, IconSend} from "../../../svg";
 import {getAccountData} from "../../store";
 import {setModal} from "../../../dispatch";
-import DepositModal from "../../../components/helpers/modal/content/depositModal";
 import WithdrawModal from "../../../components/helpers/modal/content/withdrawModal";
 import {getPassword} from "../../forms";
 
@@ -59,9 +58,6 @@ const formActions = (asset, name, activeUser) => {
                 <button onClick={() => dispatchSendModal(asset)}>
                     <IconSend />
                 </button>
-                <button onClick={() => setModal(<DepositModal asset={asset} />)}>
-                    <IconBuy />
-                </button>
                 <button>
                     <IconDeposit onClick={() => getPassword(password => setModal(<WithdrawModal asset={asset} password={password} />))} />
                 </button>
@@ -71,9 +67,6 @@ const formActions = (asset, name, activeUser) => {
             <div className="actions__on-hover">
                 <button onClick={() => dispatchSendModal(asset, name)}>
                     <IconSend />
-                </button>
-                <button onClick={() => setModal(<DepositModal asset={asset} name={name} />)}>
-                    <IconBuy />
                 </button>
             </div>
     }
