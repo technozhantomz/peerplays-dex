@@ -1,6 +1,15 @@
-FROM node:14
+FROM node:14.16.1-alpine3.13
 
-RUN apt-get update && apt-get install build-essential nasm
+RUN apk update && apk add \
+    g++ \
+    make \
+    nasm \
+    git \
+    libtool \
+    autoconf \
+    automake \
+    libpng-dev \
+    pkgconfig
 
 WORKDIR /app
 COPY package*.json /app/

@@ -14,18 +14,18 @@ variables:
  DOCKER_DRIVER: overlay2
 
 stages:
-  - test
   - build
+  - test
   - deploy
   - dast
 
 # builds app
 build:
   # node docker image on which this would be run
-  image: node:14
+  image: node:14.16.1-alpine3.13
   stage: build
   script:
-    - apt-get update && apt-get install build-essential nasm
+    - apk update && apk add g++ make nasm git libtool autoconf automake libpng-dev pkgconfig
     - npm install
     - .ci/replace_vars.sh
     - cp example.env .env
