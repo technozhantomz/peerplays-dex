@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import Translate from "react-translate-component";
 import {connect} from "react-redux";
 import NeedToLogin from "../helpers/needToLogin";
 import PageMenu from "../helpers/pageMenu";
@@ -22,7 +23,7 @@ class Business extends Component{
         return(
             <div className="container page">
                 <div className="page__header-wrapper">
-                    <h1 className="page__title">Business</h1>
+                    <Translate component="h1" className="page__title" content="business.title"/>
                 </div>
                 <PageMenu items={basicMenu} link={`/business`} path={'/business'} data={userData} />
             </div>

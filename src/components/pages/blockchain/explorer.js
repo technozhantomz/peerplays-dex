@@ -2,6 +2,7 @@ import React, {Component, Fragment} from "react";
 import Table from "../../helpers/table";
 import {Card} from "../../helpers/card";
 import {CardHeader} from "../../helpers/cardHeader";
+import Translate from "react-translate-component";
 import { updateAllBlockchainData } from '../../../actions/dataFetching/getGlobalData';
 
 const tableHeadRecentBlocks = [
@@ -77,49 +78,37 @@ class Explorer extends Component {
             <Fragment>
                 <div className="card__list">
                     <Card mode="explorer">
-                        <div className="card__title">
-                            Current Block
-                        </div>
+                        <Translate className="card__title" content={"blockchain.blockchain.current_block"} component="div"/>
                         <div className="card__content">
                             {head_block_number}
                         </div>
                     </Card>
                     <Card mode="explorer">
-                        <div className="card__title">
-                            {`Supply (${coreAsset.symbol})`}
-                        </div>
+                        <Translate className="card__title" content={"blockchain.blockchain.supply"} with={{currency: coreAsset.symbol}} component="div"/>
                         <div className="card__content">
                             {current_supply}
                         </div>
                     </Card>
                     <Card mode="explorer">
-                        <div className="card__title">
-                            Active Witnesses
-                        </div>
+                        <Translate className="card__title" content={"blockchain.blockchain.active_witnesses"} component="div"/>
                         <div className="card__content">
                             {active_witnesses.length}
                         </div>
                     </Card>
                     <Card mode="explorer">
-                        <div className="card__title">
-                            Confrimation Time (Sec)
-                        </div>
+                        <Translate className="card__title" content={"blockchain.blockchain.confirmation_time"} component="div"/>
                         <div className="card__content">
                             {avgTime.toFixed(2)}
                         </div>
                     </Card>
                     <Card mode="explorer">
-                        <div className="card__title">
-                            Last Irreversible Block
-                        </div>
+                        <Translate className="card__title" content={"blockchain.blockchain.last_irreversible"} component="div"/>
                         <div className="card__content">
                             {last_irreversible_block_num}
                         </div>
                     </Card>
                     <Card mode="explorer">
-                        <div className="card__title">
-                            {`Stealth Supply (${coreAsset.symbol})`}
-                        </div>
+                        <Translate className="card__title" content={"blockchain.blockchain.stealth_supply"} with={{currency: coreAsset.symbol}} component="div"/>
                         <div className="card__content">
                             {confidential_supply}
                         </div>
