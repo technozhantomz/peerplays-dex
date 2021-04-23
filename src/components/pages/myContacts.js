@@ -6,7 +6,7 @@ import {ActionsPanel} from "../helpers/actionsPanel";
 import RoundButton from "../helpers/buttons/roundButton";
 import {setModal} from "../../dispatch/layoutDispatch";
 import AddNewContact from "../helpers/modal/content/addNewContact";
-import {getStorage} from "../../actions/storage";
+import {editStorage, getStorage} from "../../actions/storage";
 import {getAccountData, getGlobals} from "../../actions/store";
 import {connect} from "react-redux";
 import {updateAccount} from "../../dispatch/setAccount";
@@ -56,12 +56,14 @@ class MyContacts extends Component {
             contacts[contactIndex].type = type;
             accountData.contacts = contacts;
 
+            editStorage('contacts', {[accountData.name]: contacts});
             updateAccount(accountData);
             this.updateChangeLog(id, type);
         } else {
             contacts = contacts.filter(item => item.id !== id);
             accountData.contacts = contacts;
 
+            editStorage('contacts', {[accountData.name]: contacts});
             updateAccount(accountData);
         }
     };
@@ -77,22 +79,22 @@ class MyContacts extends Component {
     favouriteActions = (id) => <ActionsPanel
         hover={[
             this.buttons(id).remove,
-            this.buttons(id).toBlackList
+            this.props.account.membership.isLifetimeMember && this.buttons(id).toBlackList
         ]}
-        instant={[this.buttons(id).removeFavourite]}
+        instant={[this.props.account.membership.isLifetimeMember && this.buttons(id).removeFavourite]}
     />;
 
     generalActions = (id) => <ActionsPanel
         hover={[
             this.buttons(id).remove,
-            this.buttons(id).toBlackList
+            this.props.account.membership.isLifetimeMember && this.buttons(id).toBlackList
         ]}
-        instant={[this.buttons(id).toFavourite]}
+        instant={[this.props.account.membership.isLifetimeMember && this.buttons(id).toFavourite]}
     />;
 
     blackListActions = (id) => <ActionsPanel
         hover={[this.buttons(id).remove]}
-        instant={[this.buttons(id).removeBlackList]}
+        instant={[this.props.account.membership.isLifetimeMember && this.buttons(id).removeBlackList]}
     />;
 
     handleBlackList = () => this.setState({showBlackList: !this.state.showBlackList});
@@ -148,7 +150,7 @@ class MyContacts extends Component {
                         <div className="contacts__favourite">
                             <div className="title">Favorite CONTACTS</div>
                             {favList.map((item, index) => (
-                                <ContactItem data={item} actions={this.favouriteActions(item.id)} key={index}/>
+                                <ContactItem data={item} actions={this.favouriteActions(item.id)} key={index} />
                             ))}
                         </div>
                     }
@@ -157,7 +159,7 @@ class MyContacts extends Component {
                         <div>
                             <div className="title">CONTACTS</div>
                             {genList.map((item, index) => (
-                                <ContactItem data={item} actions={this.generalActions(item.id)} key={index}/>
+                                <ContactItem data={item} actions={this.generalActions(item.id)} key={index} />
                             ))}
                         </div>
                     }
@@ -166,7 +168,7 @@ class MyContacts extends Component {
                         <div>
                             <div className="title">Black List CONTACTS</div>
                             {blackList.map((item, index) => (
-                                <ContactItem data={item} actions={this.blackListActions(item.id)} key={index}/>
+                                <ContactItem data={item} actions={this.blackListActions(item.id)} key={index} />
                             ))}
                         </div>
                     }

@@ -15,7 +15,7 @@ export const updateAccount = async (newData, password) => {
         }
     };
 
-    const activeKey = loginData.formPrivateKey(password, 'active');
+    const activeKey = loginData.formPrivateKey(password, 'owner');
 
     return await trxBuilder([trx], [activeKey]);
 };

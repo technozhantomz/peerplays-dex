@@ -23,7 +23,7 @@ const Input = (props) => {
             <input
                 id={id ? id : name}
                 name={name}
-                defaultValue={value[name]}
+                value={value[name]}
                 type={type}
                 disabled={disabled}
                 onChange={e => onChange ? onChange(e.target.value, name) : e.preventDefault()}

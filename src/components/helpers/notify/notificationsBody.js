@@ -44,7 +44,7 @@ class NotificationsBody extends Component {
                     {
                         hasData
                             ? notifications.map((el, id) => <NotificationsItem key={id} data={el}/>)
-                            : <NoData tag={"emptyPage.empty"}/>
+                            : <NoData tag={"emptyPage.allRead"}/>
                     }
                 </div>
             </div>

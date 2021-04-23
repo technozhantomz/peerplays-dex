@@ -26,11 +26,6 @@ const CreateUser = () => {
                 {
                     form => <Fragment>
                         <div className="modal__content">
-                            <RadioGroup
-                                name="type"
-                                list={['cloud']}
-                                onChange={form.handleChange}
-                            />
                             <Input
                                 name="newLogin"
                                 comment={false}

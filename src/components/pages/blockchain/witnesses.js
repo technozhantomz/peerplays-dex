@@ -2,6 +2,7 @@ import React, {Component, Fragment} from "react";
 import {getWitnesses} from "../../../actions/getWitnesses";
 import Table from "../../helpers/table";
 import {Card} from "../../helpers/card";
+import { updateAllBlockchainData } from '../../../actions/dataFetching/getGlobalData';
 
 const tableHead = [
     {
@@ -48,6 +49,12 @@ class Witnesses extends Component {
     };
 
     componentDidMount() {
+        updateAllBlockchainData().then(data => this.setState({
+          blockchainData: data
+        }));
+        this.timerID = setInterval(() => updateAllBlockchainData().then(data => this.setState({
+            blockchainData: data
+          })), 3000);
         getWitnesses().then(e =>
             this.setState({
                 active: e
@@ -66,20 +73,17 @@ class Witnesses extends Component {
         );
     }
 
+    componentWillUnmount() {
+        clearInterval(this.timerID);
+    }
+
     render() {
-        const {active, pending} = this.state;
+        const {active, pending, blockchainData} = this.state;
+        const currentWitness = active && blockchainData ? active.find(e => e.id === blockchainData.current_witness) : {name: ''};
 
         return (
             <div className="witnesses">
                 <div className="card__list">
-                    <Card mode="witnesses">
-                        <div className="card__title">
-                            Current Witness
-                        </div>
-                        <div className="card__content">
-                            delegate.freedom
-                        </div>
-                    </Card>
                     <Card mode="witnesses">
                         <div className="card__title">
                             Active Witnesses
@@ -88,38 +92,38 @@ class Witnesses extends Component {
                             {active.length}
                         </div>
                     </Card>
-                    <Card mode="witnesses">
+                    {currentWitness && <Card mode="witnesses">
                         <div className="card__title">
-                            Participation
+                            Current Witness
                         </div>
                         <div className="card__content">
-                            98%
+                            {currentWitness.name}
                         </div>
-                    </Card>
-                    <Card mode="witnesses">
+                    </Card>}
+                    {currentWitness && <Card mode="witnesses">
                         <div className="card__title">
-                            Pay-per-block
+                            Total Missed
                         </div>
                         <div className="card__content">
-                            1.00000 TEST
+                            {currentWitness.total_missed}
                         </div>
-                    </Card>
-                    <Card mode="witnesses">
+                    </Card>}
+                    {blockchainData && <Card mode="witnesses">
                         <div className="card__title">
-                            Remaining budget
+                            {`Remaining budget (${blockchainData.coreAsset.symbol})`}
                         </div>
                         <div className="card__content">
-                            1.00000 TEST
+                            {blockchainData.witness_budget}
                         </div>
-                    </Card>
-                    <Card mode="witnesses">
+                    </Card>}
+                    {blockchainData && <Card mode="witnesses">
                         <div className="card__title">
                             Next vote update
                         </div>
                         <div className="card__content">
-                            10 minutes
+                            {new Date(blockchainData.next_maintenance_time).toLocaleString()}
                         </div>
-                    </Card>
+                    </Card>}
                 </div>
 
                 {

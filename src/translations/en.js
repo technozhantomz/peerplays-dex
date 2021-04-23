@@ -272,6 +272,9 @@ export const en = {
         },
         "myAssets": {
             "title": "My Assets"
+        },
+        "recentBlocks": {
+            "title": "Recent Blocks"
         }
     },
     "exchange": {
@@ -612,7 +615,7 @@ export const en = {
         "accUsed": "Account is already in use.",
         "assetUsed": "Asset is already in use.",
         "keyUsed": "Key is already in use.",
-        "sameAsset": "Assets the same",
+        "sameAsset": "Same Assets not allowed",
         "wrongAsset": "Asset isn't valid",
         "needSamePrecision": "That asset does not have the same precision",
         "needPassword": "Please, enter password first",
@@ -774,5 +777,6 @@ export const en = {
         "userOrders": "User haven't open any order",
         "login": "Please sign in to use the %(pageName)s or create a new account",
         "withdraw": "No asset avaliable",
+        "allRead": "All Read"
     }
 };

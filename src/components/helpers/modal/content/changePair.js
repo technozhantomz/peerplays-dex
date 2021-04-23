@@ -8,16 +8,16 @@ import SelectHeader from "../../selectHeader";
 import Close from "../decoration/close";
 import {clearLayout} from "../../../../dispatch/index";
 import ModalTitle from "../decoration/modalTitle";
-import Button from "../../buttons/button";
 import Translate from "react-translate-component";
 import ModalButton from "../../buttons/modalButton";
 
-const getSymbolsList = async (symbol) => dbApi('list_assets', [symbol.toUpperCase(), 10])
+const getSymbolsList = async () => dbApi('list_assets', ['', 100])
     .then(result => result.map(e => e.symbol));
 
 class ChangePair extends Component{
     state = {
         pair: false,
+        errors: false,
         selectedPair: '',
         recentPairs: []
     };
@@ -37,7 +37,15 @@ class ChangePair extends Component{
     handlePairChange = (val, name) => {
         const pair = this.state.pair;
         pair[name] = val;
-        this.setState({pair});
+        this.setState({pair, errors: false});
+
+        if(pair.quote === pair.base) {
+          this.setState({
+            errors: {
+              base: 'sameAsset'
+            }
+          });
+        }
     };
 
     swipePair = () => {
@@ -52,10 +60,13 @@ class ChangePair extends Component{
     };
 
     selectNewPair = () => {
+        if(this.state.errors) return;
+
         const {base, quote} = this.state.pair;
         const pair = `${quote}_${base}`;
         clearLayout();
         this.props.history.push(`/exchange/${pair}`);
+        window.location.reload();
     };
 
     selectOldPair = (selectedPair) => {
@@ -65,7 +76,7 @@ class ChangePair extends Component{
 
     render(){
 
-        const {pair, selectedPair, recentPairs} = this.state;
+        const {pair, selectedPair, recentPairs, errors} = this.state;
 
         return(
             <Fragment>
@@ -79,6 +90,8 @@ class ChangePair extends Component{
                                 method={getSymbolsList}
                                 handleChange={this.handlePairChange}
                                 defaultVal={pair}
+                                errors={errors}
+                                readOnly
                             />
 
                             <button onClick={this.swipePair}>
@@ -91,6 +104,8 @@ class ChangePair extends Component{
                                 method={getSymbolsList}
                                 handleChange={this.handlePairChange}
                                 defaultVal={pair}
+                                errors={errors}
+                                readOnly
                             />
                         </div>
                     }
