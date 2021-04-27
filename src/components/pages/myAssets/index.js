@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Translate from "react-translate-component";
 import AssetsPermissions from "./assetsPermissions";
 import PageMenu from "../../helpers/pageMenu";
 import QuantityConverter from "../../helpers/quantityConverter";
@@ -53,7 +54,7 @@ class MyAssets extends Component{
         return(
             <div className="container page">
                 <div className="page__user-title">
-                    <h1 className="page__title">My Assets</h1>
+                    <Translate className="page__title" component="h1" content={"assets.title"}/>
                     <QuantityConverter assets={userData.assets} />
                 </div>
                 <PageMenu items={basicMenu} link={`/assets`} path={'/assets'} data={userData} />

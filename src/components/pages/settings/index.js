@@ -1,12 +1,9 @@
 import React from 'react';
-import {NavLink, Route, Switch} from "react-router-dom";
 import GeneralSettings from "./generalSettings";
 import NodesSelect from "./nodesSelect";
 import Security from "./security";
 import Backup from "./backup";
 import Translate from "react-translate-component";
-import Tbd from "../tbd";
-import ActionsBtn from "../../helpers/buttons/actionsBtn";
 import PageMenu from "../../helpers/pageMenu";
 import Membership from "./membership";
 import {connect} from "react-redux";
@@ -46,14 +43,7 @@ const settingsMenu = [
 const Settings = ({account}) => (
     <div className="container page">
         <div className="page__header-wrapper">
-            <h1 className="page__title">Settings</h1>
-            <ActionsBtn
-                actionsList={[
-                    <button>Reset Settings</button>,
-                    <button>Body 2</button>,
-                    <button>Body 2</button>
-                ]}
-            />
+            <Translate content={'settings.title'} component="h1" className="page__title" />
         </div>
         <PageMenu items={account ? settingsMenu : settingsMenu.slice(0, settingsMenu.length - 1)} link={'/settings'} path={'/settings'} />
     </div>

@@ -43,7 +43,7 @@ const blockchainMenu = [
 const Blockchain = () => (
     <div className="container page">
         <div className="page__header-wrapper">
-            <h1 className="page__title">Blockchain</h1>
+            <Translate className="page__title" component="h1" content={"blockchain.title"}/>
         </div>
         <div className="page__menu">
             {

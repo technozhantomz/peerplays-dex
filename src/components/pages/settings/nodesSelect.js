@@ -39,7 +39,7 @@ class NodesSelect extends Component{
         const {nodesList, instance} = this.props;
         const autoSelect = this.state.autoselect;
         let nodesAmount = defaultNodesList.length;
-        let content = 'We still checking nodes connect time. Please, wait untill it\'s over' ;
+        let content = <Translate content="nodes.checking" /> ;
 
         if(nodesList.length){
             const activeNode = nodesList.find(e => e.url === instance.url);

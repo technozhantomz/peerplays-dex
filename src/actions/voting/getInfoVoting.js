@@ -2,6 +2,7 @@ import React from "react";
 import {dbApi} from "../nodes";
 import {getWitnesses} from "../getWitnesses";
 import {getCommittee} from "../getCommittee";
+import {getSON} from "../getSON";
 import {Link} from "react-router-dom";
 import {getWorkers} from "./getWorkers";
 import {Asset} from "../../classes";
@@ -54,6 +55,7 @@ const helpFunction = async (key, votes, userArray) => {
 export const getInfoVoting = async (context) => {
     let witnesses = await getWitnesses();
     let committee = await getCommittee();
+    let son = await getSON();
     let workers = await getWitnesses();
 
     const account = context.props.account ? context.props.account : context.props.data;
@@ -68,6 +70,7 @@ export const getInfoVoting = async (context) => {
     return {
         witness_account: await helpFunction('witness_account', votes, witnesses),
         committee_member_account: await helpFunction('committee_member_account', votes, committee),
+        son_account: await helpFunction('son_account', votes, son),
         worker_account: await helpFunction('worker_account', votes, workers),
         update_fee
     };

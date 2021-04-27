@@ -2,6 +2,7 @@ import {getUserName} from "../../account";
 import {assetToString} from "../../assets";
 import React from "react";
 import {dbApi} from "../../nodes";
+import Translate from "react-translate-component";
 
 export const formPermissionHistory = history => Promise.all(history.map(async el => {
     const {account, fee} = el.op[1];
@@ -12,12 +13,12 @@ export const formPermissionHistory = history => Promise.all(history.map(async el
         return [arr[2], arr[1], arr[3]].join(' ');
     });
 
-    const acc = await getUserName(account);
+    const user = await getUserName(account);
 
     return {
         id: el.id,
-        type: <button className="operation positive">Account update</button>,
-        desc: `${acc} updated their account data`,
+        type: <Translate content={"tableInfo.account_update.title"} component="a" className="operation positive"/>,
+        desc: <Translate content={"tableInfo.account_update.description"} with={{user}}/>,
         fee: await assetToString(fee),
         time: timestamp
     };

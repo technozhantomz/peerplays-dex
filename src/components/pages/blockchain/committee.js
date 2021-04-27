@@ -1,4 +1,5 @@
 import React, {Component, Fragment} from "react";
+import Translate from "react-translate-component";
 import Table from "../../helpers/table";
 import {getCommittee} from "../../../actions/getCommittee";
 
@@ -55,9 +56,7 @@ class Committee extends Component {
                 {
                     active &&
                     <Fragment>
-                        <div className="table__title">
-                            Active
-                        </div>
+                        <Translate className="table__title" component="div" content={"blockchain.witnesses.active"}/>
                         <Table
                             tableHead={tableHead}
                             rows={active}
@@ -68,9 +67,7 @@ class Committee extends Component {
                 {
                     pending &&
                     <Fragment>
-                        <div className="table__title">
-                            Pending
-                        </div>
+                        <Translate className="table__title" component="div" content={"blockchain.witnesses.pending"}/>
                         <Table
                             tableHead={tableHead}
                             rows={pending}
