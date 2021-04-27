@@ -92,8 +92,7 @@ class Voting extends Component {
             new_options.num_witness = this.props.votes.filter((vote) => parseInt(vote.split(':')[0]) === 1).length;
             new_options.num_committee = this.props.votes.filter((vote) => parseInt(vote.split(':')[0]) === 0).length;
             new_options.num_son = this.props.votes.filter((vote) => parseInt(vote.split(':')[0]) === 3).length;
-            new_options.extensions = [];
-            updateAccount({owner: e.owner, active: e.active, new_options, extensions: []}, password).then(clearVotes);
+            updateAccount({new_options, extensions: {value: {update_last_voting_time: true}}}, password).then(clearVotes);
         });
     };
 
