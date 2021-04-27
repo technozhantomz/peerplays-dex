@@ -35,7 +35,8 @@ class SendForm extends Component {
             feeAsset: startAsset,
             contacts: contacts || [],
             quantity: 0,
-            memo: ''
+            memo: '',
+            to: ''
         };
 
         this.setState({userTokens, defaultData});
@@ -48,6 +49,11 @@ class SendForm extends Component {
         if(this.props.update) {
             this.props.update();
         }
+
+        Array.from(document.querySelectorAll("input:not(:disabled):not([readonly]):not([type=hidden])" +
+        ",textarea:not(:disabled):not([readonly])")).forEach(
+            (input) => input.value = ""
+        );
     };
 
     render() {
@@ -95,6 +101,7 @@ class SendForm extends Component {
                                             handleChange={form.handleChange}
                                             errors={errors}
                                             defaultHints={data.contacts}
+                                            defaultVal = {data}
                                         />
                                         <Dropdown
                                             btn={<SelectHeader
