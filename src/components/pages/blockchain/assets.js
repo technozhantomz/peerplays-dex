@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import Table from "../../helpers/table";
 import {getAssets} from "../../../actions/getAssets";
 import {Radio} from "../../helpers/radio";
+import Translate from "react-translate-component";
 
 const tableHead = [
     {
@@ -23,15 +24,15 @@ const tableHead = [
 
 const radioGroup = [
     {
-        text: "Smart Coin",
+        text: <Translate content={"modal.newAssets.smartCoin"}/>,
         value: "smart"
     },
     {
-        text: "User Issued Assets",
+        text: <Translate content={"createdAssets.issued"}/>,
         value: "issued"
     },
     {
-        text: "Prediction market assets",
+        text: <Translate content={"createdAssets.prediction_assets"}/>,
         value: "prediction"
     }
 ];

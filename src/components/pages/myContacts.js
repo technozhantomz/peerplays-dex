@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Translate from "react-translate-component";
 import {ContactItem} from "../helpers/contactItem";
 import {IconBlackList, IconStar, IconTrash} from "../../svg";
 import Switcher from "../helpers/switcher";
@@ -127,7 +128,7 @@ class MyContacts extends Component {
         return (
             <div className="container page">
                 <div className="page__header-wrapper">
-                    <h1 className="page__title">My Contacts</h1>
+                    <Translate component="h1" className="page__title" content="contacts.myContacts"/>
                 </div>
                 <div className="contacts__info">
                     <div className="contacts__count">

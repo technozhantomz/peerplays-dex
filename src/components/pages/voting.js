@@ -68,7 +68,14 @@ const votingMenu = [
         render: (account, voteList) => <VotingPage params="committee_member_account" tableHead={tableHeadCommittee}
                                                    account={account} votes={voteList['committee_member_account']}
                                                    list="committee"/>
-    }
+    },
+    {
+      link: '/son',
+      tag: 'son',
+      render: (account, voteList) => <VotingPage params="son_account" tableHead={tableHeadCommittee}
+                                                 account={account} votes={voteList['son_account']}
+                                                 list="son"/>
+  }
 ];
 
 class Voting extends Component {
@@ -76,9 +83,17 @@ class Voting extends Component {
         let user = getAccountData();
         dbApi('get_account_by_name', [user.name]).then(e => {
             let new_options = e.options;
-            new_options.votes = this.props.votes;
-            updateAccount({new_options}, password).then(clearVotes)
-        })
+            new_options.votes = this.props.votes.sort((a,b) => {
+                const aSplit = a.split(':');
+                const bSplit = b.split(':');
+    
+                return parseInt(aSplit[1], 10) - parseInt(bSplit[1], 10);
+            });
+            new_options.num_witness = this.props.votes.filter((vote) => parseInt(vote.split(':')[0]) === 1).length;
+            new_options.num_committee = this.props.votes.filter((vote) => parseInt(vote.split(':')[0]) === 0).length;
+            new_options.num_son = this.props.votes.filter((vote) => parseInt(vote.split(':')[0]) === 3).length;
+            updateAccount({new_options, extensions: {value: {update_last_voting_time: true}}}, password).then(clearVotes);
+        });
     };
 
     reset = () => {
@@ -93,7 +108,7 @@ class Voting extends Component {
         return (
             <div className="container page">
                 <div className="page__header-wrapper">
-                    <h1 className="page__title">Voting</h1>
+                    <Translate className="page__title" component="h1" content="voting.title"/>
                 </div>
                 <div className="page__menu">
                     {
