@@ -20,6 +20,7 @@ export const transfer = async (data, result) => {
 
     const {loginData, accountData} = getStore();
     const asset = accountData.assets.find(e => e.symbol === data.quantityAsset);
+    const fromAccount = await dbApi('get_account_by_name',[accountData.name]);
     const from = accountData.id;
 
     const amount = {
@@ -39,20 +40,26 @@ export const transfer = async (data, result) => {
     const activeKey = loginData.formPrivateKey(password, 'active');
 
     if(data.memo){
+        let fromMemo;
 
-        const fromMemo = loginData.formPrivateKey(password, 'memo');
+        if(fromAccount.options.memo_key === fromAccount.active.key_auths[0][0]) {
+            fromMemo = loginData.formPrivateKey(password, 'active');
+        } else {
+            fromMemo = loginData.formPrivateKey(password, 'memo');
+        }
+
         const toMemo = to.options.memo_key;
         const nonce = TransactionHelper.unique_nonce_uint64();
 
-        trx.params['memo'] = {
-            from: fromMemo.toPublicKey().toString(),
+        trx.params.memo = {
+            from: fromMemo.toPublicKey().toPublicKeyString(),
             to: toMemo,
             nonce,
             message: Aes.encrypt_with_checksum(
-                activeKey,
+                fromMemo,
                 toMemo,
                 nonce,
-                Buffer.from(data.memo)
+                data.memo
             ),
         };
     }
