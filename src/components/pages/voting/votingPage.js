@@ -1,4 +1,5 @@
 import React, {Component, Fragment} from "react";
+import Translate from "react-translate-component";
 import {IconCheckBlue} from "../../../svg";
 import Table from "../../helpers/table";
 import {setVotes} from "../../../dispatch/votesDispatch";
@@ -70,9 +71,7 @@ class VotingPage extends Component {
                 {
                     active &&
                     <Fragment>
-                        <div className="table__title">
-                            Active
-                        </div>
+                        <Translate className="table__title" component="div" content={"blockchain.witnesses.active"}/>
                         <Table
                             tableHead={tableHead}
                             rows={active}
@@ -83,9 +82,7 @@ class VotingPage extends Component {
                 {
                     pending &&
                     <Fragment>
-                        <div className="table__title">
-                            Pending
-                        </div>
+                        <Translate className="table__title" component="div" content={"blockchain.witnesses.pending"}/>
                         <Table
                             tableHead={tableHead}
                             rows={pending}

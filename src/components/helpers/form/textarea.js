@@ -15,7 +15,7 @@ const Textarea = (props) => {
             <textarea
                 id={name}
                 name={name}
-                value={value[name]}
+                defaultValue={value[name]}
                 disabled={disabled}
                 onChange={e => onChange ? onChange(e.target.value, name) : e.preventDefault()}
                 placeholder=" "

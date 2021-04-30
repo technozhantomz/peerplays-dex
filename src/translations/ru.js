@@ -297,13 +297,25 @@ export const ru = {
     "blockchain": {
         "title": "Блокчейн",
         "blockchain": {
-            "title": "Блокчейн"
+            "title": "Блокчейн",
+            "current_block": "Текущий блок",
+            "supply": "Поставлять (%(currency)s)",
+            "active_witnesses": "Активные свидетели",
+            "confirmation_time": "Время подтверждения (секунды)",
+            "last_irreversible": "Последний необратимый блок",
+            "stealth_supply": "Незаметность (%(currency)s)"
         },
         "assets": {
             "title": "авуары"
         },
         "witnesses": {
-            "title": "свидетели"
+            "title": "свидетели",
+            "currentWitness": "Текущий свидетель",
+            "totalMissed": "Всего пропущено",
+            "remainingBudget": "Оставшийся бюджет (%(currency)s)",
+            "nextVoteUpdate": "Следующее обновление голосования",
+            "active": "Активный",
+            "pending": "В ожидании"
         },
         "committee": {
             "title": "комитет"
@@ -351,6 +363,9 @@ export const ru = {
         },
         "committee": {
             "title": "комитет"
+        },
+        "son": {
+            "title": "SON"
         }
     },
     "business": {
@@ -361,7 +376,8 @@ export const ru = {
     },
     "contacts": {
         "title": "Контакты",
-        "blacklistedSwitcher": "В чёрном списке"
+        "blacklistedSwitcher": "В чёрном списке",
+        "myContacts": "Мои контакты"
     },
     "help": {
         "title": "Справка"
@@ -393,11 +409,13 @@ export const ru = {
         "available": "Доступные узлы",
         "unavailable": "Недоступные узлы",
         "latency": "скрытое состояние",
-        "operator": "оператор"
+        "operator": "оператор",
+        "checking": "Мы все еще проверяем время подключения узлов. Пожалуйста, подожди, пока все не закончится"
     },
     "createdAssets": {
         "title": "Созданные активы",
         "issued": "Выданный пользователем актив",
+        "prediction_assets": "Прогнозирование рыночных активов",
         "prediction": "Рынок двоичного прогнозирования",
         "smart": "СмартКоин"
     },

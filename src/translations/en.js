@@ -297,13 +297,25 @@ export const en = {
     "blockchain": {
         "title": "Blockchain",
         "blockchain": {
-            "title": "Blockchain"
+            "title": "Blockchain",
+            "current_block": "Current Block",
+            "supply": "Supply (%(currency)s)",
+            "active_witnesses": "Active Witnesses",
+            "confirmation_time": "Confrimation Time (Sec)",
+            "last_irreversible": "Last Irreversible Block",
+            "stealth_supply": "Stealth Supply (%(currency)s)"
         },
         "assets": {
             "title": "Assets"
         },
         "witnesses": {
-            "title": "Witnesses"
+            "title": "Witnesses",
+            "currentWitness": "Current Witness",
+            "totalMissed": "Total Missed",
+            "remainingBudget": "Remaining Budget (%(currency)s)",
+            "nextVoteUpdate": "Next Vote Update",
+            "active": "Active",
+            "pending": "Pending"
         },
         "committee": {
             "title": "Committee"
@@ -351,6 +363,9 @@ export const en = {
         },
         "committee": {
             "title": "Committee"
+        },
+        "son": {
+          "title": "SON"
         }
     },
     "business": {
@@ -361,7 +376,8 @@ export const en = {
     },
     "contacts": {
         "title": "Contacts",
-        "blacklistedSwitcher": "Blacklisted"
+        "blacklistedSwitcher": "Blacklisted",
+        "myContacts": "My Contacts"
     },
     "help": {
         "title": "Help"
@@ -393,11 +409,13 @@ export const en = {
         "available": "Available Nodes",
         "unavailable": "Unavailable Nodes",
         "latency": "Latency",
-        "operator": "Operator"
+        "operator": "Operator",
+        "checking": "We are still checking nodes connect time. Please, wait untill it\'s over"
     },
     "createdAssets": {
         "title": "Created Assets",
         "issued": "User Issued Asset",
+        "prediction_assets": "Prediction Market Asset",
         "prediction": "Binary prediction market",
         "smart": "SmartCoin"
     },

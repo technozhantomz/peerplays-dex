@@ -20,6 +20,14 @@ class FieldWithHint extends Component{
         }
     }
 
+    componentDidUpdate(prevProps) {
+      if(prevProps.defaultVal && this.props.defaultVal && prevProps.defaultVal[prevProps.name] !== this.props.defaultVal[this.props.name]) {
+          const data = {};
+          data[this.props.name] = this.props.defaultVal[this.props.name];
+          this.setState({data});
+      }
+    }
+
     componentWillUnmount() { this.removeListener(); }
 
     handleChange = (val, name) => {

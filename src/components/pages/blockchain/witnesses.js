@@ -1,4 +1,5 @@
 import React, {Component, Fragment} from "react";
+import Translate from "react-translate-component";
 import {getWitnesses} from "../../../actions/getWitnesses";
 import Table from "../../helpers/table";
 import {Card} from "../../helpers/card";
@@ -85,41 +86,31 @@ class Witnesses extends Component {
             <div className="witnesses">
                 <div className="card__list">
                     <Card mode="witnesses">
-                        <div className="card__title">
-                            Active Witnesses
-                        </div>
+                        <Translate className="card__title" component="div" content={"blockchain.blockchain.active_witnesses"}/>
                         <div className="card__content">
                             {active.length}
                         </div>
                     </Card>
                     {currentWitness && <Card mode="witnesses">
-                        <div className="card__title">
-                            Current Witness
-                        </div>
+                        <Translate className="card__title" component="div" content={"blockchain.witnesses.currentWitness"}/>
                         <div className="card__content">
                             {currentWitness.name}
                         </div>
                     </Card>}
                     {currentWitness && <Card mode="witnesses">
-                        <div className="card__title">
-                            Total Missed
-                        </div>
+                        <Translate className="card__title" component="div" content={"blockchain.witnesses.totalMissed"}/>
                         <div className="card__content">
                             {currentWitness.total_missed}
                         </div>
                     </Card>}
                     {blockchainData && <Card mode="witnesses">
-                        <div className="card__title">
-                            {`Remaining budget (${blockchainData.coreAsset.symbol})`}
-                        </div>
+                        <Translate className="card__title" component="div" content={"blockchain.witnesses.remainingBudget"} with={{currency: blockchainData.coreAsset.symbol}}/>
                         <div className="card__content">
                             {blockchainData.witness_budget}
                         </div>
                     </Card>}
                     {blockchainData && <Card mode="witnesses">
-                        <div className="card__title">
-                            Next vote update
-                        </div>
+                        <Translate className="card__title" component="div" content={"blockchain.witnesses.nextVoteUpdate"}/>
                         <div className="card__content">
                             {new Date(blockchainData.next_maintenance_time).toLocaleString()}
                         </div>
@@ -129,9 +120,7 @@ class Witnesses extends Component {
                 {
                     active &&
                     <Fragment>
-                        <div className="table__title">
-                            Active
-                        </div>
+                        <Translate className="table__title" component="div" content={"blockchain.witnesses.active"}/>
                         <Table
                             tableHead={tableHead}
                             rows={active}
@@ -142,9 +131,7 @@ class Witnesses extends Component {
                 {
                     pending &&
                     <Fragment>
-                        <div className="table__title">
-                            Pending
-                        </div>
+                        <Translate className="table__title" component="div" content={"blockchain.witnesses.pending"}/>
                         <Table
                             tableHead={tableHead}
                             rows={pending}
