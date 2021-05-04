@@ -6,6 +6,7 @@ import TableHeading from "../tableHeading";
 import NoData from "../noData";
 import OrderBookTable from "./orderBookTable";
 import {updateExchangeFields} from "../../../dispatch/exchangeData";
+import ReactTooltip from 'react-tooltip';
 
 class OrderBook extends Component {
 
@@ -34,6 +35,7 @@ class OrderBook extends Component {
                                 key={el}
                                 className={`order-filters__type order-filters__type--${el}${el === type ? ' active' : ''}`}
                                 onClick={() => this.setState({type: el})}
+                                data-tip={el === 'all' ? 'Total Orders' : el === 'sell' ? 'Sell Orders' : 'Buy Orders'} 
                             >
                                 <span></span>
                                 <span></span>
@@ -41,6 +43,7 @@ class OrderBook extends Component {
                                 <span></span>
                             </button>
                         ))}
+                        <ReactTooltip place="right"/>
                     </div>
                     <div className="order-filters__threshold-wrapper">
                         <span className="order-filters__threshold">Threshold</span>
