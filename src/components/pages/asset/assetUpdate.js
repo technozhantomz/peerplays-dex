@@ -236,13 +236,13 @@ const AssetUpdate = ({data}) => {
                                     labelTag="block.permissions"
                                 />
                             </AccordeonItem>
-                            <AccordeonItem titleTag="assetUpdate.flags">
+                            {/* <AccordeonItem titleTag="assetUpdate.flags">
                                 <AccountUpdateList
                                     id="producers"
                                     type="user"
                                     itemsList={data.producers}
                                 />
-                            </AccordeonItem>
+                            </AccordeonItem> */}
                         </Fragment>
                     )
                 }
