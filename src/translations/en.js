@@ -42,6 +42,7 @@ export const en = {
         "memberFee": "Member Fee (bitUSD)",
         "blockID": "Block ID",
         "date": "Date",
+        "blockTimestamp": "Time",
         "witness": "Witness",
         "transaction": "Transaction",
         "user": "User",

@@ -13,7 +13,7 @@ const tableHeadRecentBlocks = [
     },
     {
         key: 'date',
-        translateTag: 'date',
+        translateTag: 'blockTimestamp',
         params: 'fit-content bold'
     },
     {
