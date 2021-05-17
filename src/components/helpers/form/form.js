@@ -36,11 +36,17 @@ class Form extends Component{
 
         e && e.preventDefault();
         const {errors, data} = this.state;
+        var contactregex = /[.]/g
 
         if(Object.keys(errors).length) return;
 
         if(this.state.data.quantity <= 0 && this.state.data.quantity !== ''){ 
             this.setState({errors: {quantity: "isZero"}});
+            return;
+        }
+        
+        if(contactregex.test(this.state.data.quantity)){
+            this.setState({errors: {quantity: "isDecimal"}});
             return;
         }
         
