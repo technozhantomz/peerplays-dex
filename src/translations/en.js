@@ -631,6 +631,7 @@ export const en = {
         "isEmptyBalance": "You don't have token to pay fee.",
         "nullWeight": "Can\'t be null",
         "isNotEnough": "Balance is not enough.",
+        "isZero": "Quantity should be greater then 0.",
         "accUsed": "Account is already in use.",
         "assetUsed": "Asset is already in use.",
         "keyUsed": "Key is already in use.",
