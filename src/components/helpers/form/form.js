@@ -36,7 +36,7 @@ class Form extends Component{
 
         e && e.preventDefault();
         const {errors, data} = this.state;
-        var contactregex = /[.]/g
+        var decimalRegex = /[.]/g
 
         if(Object.keys(errors).length) return;
 
@@ -45,7 +45,7 @@ class Form extends Component{
             return;
         }
         
-        if(contactregex.test(this.state.data.quantity)){
+        if(decimalRegex.test(this.state.data.quantity)){
             this.setState({errors: {quantity: "isDecimal"}});
             return;
         }
@@ -94,6 +94,7 @@ class Form extends Component{
                 this.setState({loading: false}, () => {
                     handleResult(result.callbackData);
                     this.setState({data: this.props.defaultData});
+                    this.form.reset();
                 });
             });
         } else if(handleResult) {
@@ -109,6 +110,7 @@ class Form extends Component{
             <form
                 onSubmit={this.submit}
                 className={`form${this.state.loading ? ' loading' : ''}${className ? ` ${className}` : ''}`}
+                ref={form => this.form = form}
             >
                 {children(this)}
             </form>
