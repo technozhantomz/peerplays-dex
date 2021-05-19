@@ -631,6 +631,8 @@ export const en = {
         "isEmptyBalance": "You don't have token to pay fee.",
         "nullWeight": "Can\'t be null",
         "isNotEnough": "Balance is not enough.",
+        "isZero": "Quantity should be greater then 0.",
+        "isDecimal": "Quantity should not be decimal.",
         "accUsed": "Account is already in use.",
         "assetUsed": "Asset is already in use.",
         "keyUsed": "Key is already in use.",
@@ -796,6 +798,7 @@ export const en = {
         "userOrders": "User haven't open any order",
         "login": "Please sign in to use the %(pageName)s or create a new account",
         "withdraw": "No asset avaliable",
-        "allRead": "All Read"
+        "allRead": "All Read",
+        "activity": "No Data"
     }
 };

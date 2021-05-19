@@ -83,6 +83,7 @@ class Form extends Component{
                 this.setState({loading: false}, () => {
                     handleResult(result.callbackData);
                     this.setState({data: this.props.defaultData});
+                    this.form.reset();
                 });
             });
         } else if(handleResult) {
@@ -98,6 +99,7 @@ class Form extends Component{
             <form
                 onSubmit={this.submit}
                 className={`form${this.state.loading ? ' loading' : ''}${className ? ` ${className}` : ''}`}
+                ref={form => this.form = form}
             >
                 {children(this)}
             </form>
