@@ -798,6 +798,7 @@ export const en = {
         "userOrders": "User haven't open any order",
         "login": "Please sign in to use the %(pageName)s or create a new account",
         "withdraw": "No asset avaliable",
-        "allRead": "All Read"
+        "allRead": "All Read",
+        "activity": "No Data"
     }
 };
