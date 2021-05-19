@@ -22,6 +22,7 @@ const getSymbolsList = async (symbol) => (
 class SendModal extends Component {
 
     state = {
+        sended: false,
         defaultData: false,
         userTokens: false
     };
@@ -47,9 +48,18 @@ class SendModal extends Component {
         this.setState({userTokens, defaultData});
     }
 
+    handleSend = (data) => {
+        this.setState({sended: true}, () => {
+        });
+
+        setTimeout(() => {
+            clearLayout()
+        }, 3000);
+    };
+
     render() {
 
-        const {defaultData, userTokens} = this.state;
+        const {defaultData, userTokens, sended} = this.state;
 
         if (!userTokens) return <span/>;
 
@@ -61,7 +71,7 @@ class SendModal extends Component {
                     defaultData={defaultData}
                     requiredFields={['to', 'quantity']}
                     action={transfer}
-                    handleResult={clearLayout}
+                    handleResult={this.handleSend}
                 >
                     {
                         form => {
@@ -142,6 +152,7 @@ class SendModal extends Component {
                                         </div>
                                     </div>
                                     <div className="modal__bottom">
+                                        {sended && <h3 className="clr--positive">Transaction Completed</h3>}
                                         <Close/>
                                         <Submit tag="send"/>
                                     </div>
