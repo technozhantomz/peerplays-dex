@@ -39,11 +39,6 @@ class Form extends Component{
 
         if(Object.keys(errors).length) return;
 
-        if(this.state.data.quantity <= 0 && this.state.data.quantity !== ''){ 
-            this.setState({errors: {quantity: "isZero"}});
-            return;
-        }
-        
         this.props.requiredFields && this.props.requiredFields
             .filter(el => !data[el])
             .forEach(el => errors[el] = 'required');
