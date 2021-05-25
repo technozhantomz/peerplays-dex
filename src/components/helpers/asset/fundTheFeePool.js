@@ -24,7 +24,7 @@ class FundTheFeePool extends Component {
             quantityAsset: basicAsset.symbol,
             fee: 0,
             feeAsset: basicAsset.symbol,
-            quantity: 0
+            quantity: 1
         };
 
         this.setState({userTokens, defaultData});
