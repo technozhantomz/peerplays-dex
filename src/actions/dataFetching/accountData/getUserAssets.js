@@ -59,7 +59,7 @@ const formActions = (asset, name, activeUser) => {
                     <IconSend />
                 </button>
                 <button>
-                    <IconDeposit onClick={() => getPassword(password => setModal(<WithdrawModal asset={asset} password={password} />))} />
+                    {/* <IconDeposit onClick={() => getPassword(password => setModal(<WithdrawModal asset={asset} password={password} />))} /> */}
                 </button>
             </div>;
     } else {
