@@ -6,18 +6,27 @@ import Form from "../form/form";
 import {getAccountData, getBasicAsset} from "../../../actions/store/index";
 import {assetFundFeePool} from "../../../actions/forms/assetFundFeePool";
 import {fetchAssetData} from "../../../actions/dataFetching";
+import { withRouter } from "react-router-dom";
 
 class FundTheFeePool extends Component {
     state = {
         sended: false,
         defaultData: false,
-        userTokens: false
+        userTokens: false,
+        isLoggedInUser: ''
     };
 
     componentDidMount() {
         const user = getAccountData();
         const userTokens = user.assets;
         const basicAsset = getBasicAsset();
+
+        if(!user){
+            this.setState({isLoggedInUser: true});
+            setTimeout(() => {
+                this.props.history.push("/");
+            }, 5000);
+        }
 
         const defaultData = {
             from: user.name,
@@ -40,7 +49,7 @@ class FundTheFeePool extends Component {
 
     render() {
         const title = this.props.title;
-        const {defaultData, sended} = this.state;
+        const {defaultData, sended, isLoggedInUser} = this.state;
 
         if (!defaultData) return <span/>;
 
@@ -77,12 +86,14 @@ class FundTheFeePool extends Component {
                                             error={errors}
                                             className="asset-action__quantity"
                                             onChange={form.handleChange}
+                                            disabled={isLoggedInUser}
                                         />
                                     </div>
                                     <div className="btn__row">
                                         <span>Fee: {data.fee} {data.quantityAsset}</span>
                                         {sended && <span className="clr--positive">Transaction Completed</span>}
-                                        <button type="submit" className="btn-round btn-round--fund">Fund</button>
+                                        {isLoggedInUser && <span className="clr--negative">Please Login/Sign in to perform actions.</span>}
+                                        <button type="submit" className="btn-round btn-round--fund" disabled={isLoggedInUser}>Fund</button>
                                     </div>
                                 </Fragment>
                             )
@@ -94,4 +105,4 @@ class FundTheFeePool extends Component {
     }
 }
 
-export default FundTheFeePool;
+export default withRouter(FundTheFeePool);
