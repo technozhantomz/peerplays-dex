@@ -44,6 +44,7 @@ class AssetPage extends Component {
             nextProps.account.name !== this.props.account.name ||
             nextProps.assetData.basicData.issuer !== this.props.assetData.basicData.issuer
         ) this.setMenu(nextProps);
+        this.props.reset();
     }
 
     componentWillUnmount(){
