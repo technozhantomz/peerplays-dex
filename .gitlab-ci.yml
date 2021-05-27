@@ -20,19 +20,26 @@ stages:
   - dast
 
 # builds app
-build:
+build_dev:
   # node docker image on which this would be run
   image: node:14.16.1-alpine3.13
   stage: build
   script:
     - apk update && apk add g++ make nasm git libtool autoconf automake libpng-dev pkgconfig
+    - echo "DEFAULT_TOKEN='$DEV_TOKEN'" >> .env
+    - echo "DEFAULT_QUOTE='$DEV_QUOTE'" >> .env
+    - echo "FAUCET_URL='$DEV_FAUCET'" >> .env
+    - echo "DEX_URL='$DEV_DEX_URL'" >> .env
+    - echo "DEFAULT_CHAIN_ID='$DEV_CHAIN_ID'" >> .env
+    - echo "BLOCKCHAIN_ENDPOINTS='$DEV_BLOCKCHAIN_ENDPOINTS'" >> .env
     - npm install
-    - .ci/replace_vars.sh
-    - cp example.env .env
     - npm run build
   artifacts:
     paths:
       - dist/
+    expire_in: 2 weeks
+  only:
+    - develop
   tags:
     - docker
 
@@ -49,16 +56,17 @@ docker_build:
     - docker build -f dev.Dockerfile -t $IMAGE .
     - docker push $IMAGE
 
-deploy:
+deployToDev:
   stage: deploy
   dependencies:
-    - build
+    - build_dev
   script: 
-    - deploy $DEPLOY_DIR
+    - rm -rf $DEV_DEPLOY_DIR/*
+    - cp -R dist/* $DEV_DEPLOY_DIR
   when:
     manual
   tags:
-    - ppdex
+    - dex1
 
 sonarcloud-check:
  image:
