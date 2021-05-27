@@ -227,12 +227,14 @@ class AddNewAsset extends Component{
                                             name="maxSupply"
                                             formData={form}
                                             style={{ flex: 3 }}
+                                            type="number"
                                         />
                                         <Input
                                             name="decimal"
                                             formData={form}
                                             style={{ flex: 3 }}
                                             comment
+                                            type="number"
                                         />
                                     </div>
                                     <Switcher
@@ -263,11 +265,13 @@ class AddNewAsset extends Component{
                                                 symbol: `${data.newAssetName || ''}/${data.backingAsset}`
                                             }}
                                             comment
+                                            type="number"
                                         />
                                         <Input
                                             name="exchangeBase"
                                             labelParams={{asset: data.backingAsset}}
                                             formData={form}
+                                            type="number"
                                         />
                                     </div>
                                     <Button
