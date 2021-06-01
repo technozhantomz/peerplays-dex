@@ -32,7 +32,8 @@ class WarningModal extends Component{
                     this.setState({loading:false,upgraded:true});
                         setTimeout(() => {
                         clearLayout();
-                    }, 5000);
+                        window.location.reload();
+                    }, 3000);
                 }})
             .catch(err => {
                 if(err.message.includes('Insufficient Balance')) this.setState({errors: 'isNotEnough', loading:false,hideModal:false})
