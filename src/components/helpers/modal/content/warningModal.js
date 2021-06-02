@@ -15,7 +15,11 @@ class WarningModal extends Component{
     handleMethod = () => {
         const {trx, password} = this.props;
         defaultTrx({trx, password})
-            .then(result => { if(result.success) clearLayout(); })
+            .then(result => { if(result.success){
+                // clearLayout();   
+                window.location.reload();
+            }
+        })
             .catch(err => {
                 if(err.message.includes('Insufficient Balance')) this.setState({errors: 'isNotEnough'})
             });
