@@ -36,12 +36,12 @@ const basicMenu = [
         link: '/permissions',
         tag: 'permissions',
         component: AssetsPermissions
-    },
-    {
-        link: '/withdraw',
-        tag: 'withdraw',
-        component: AssetWithdraw
     }
+    // {
+    //     link: '/withdraw',
+    //     tag: 'withdraw',
+    //     component: AssetWithdraw
+    // }
 ];
 
 class MyAssets extends Component{
