@@ -18,7 +18,7 @@ RUN npm install
 COPY ./ /app/
 RUN npm run build
 
-FROM nginx:1.19
+FROM nginx:mainline
 COPY ./.nginx/nginx.conf /etc/nginx/conf.d/default.conf
 RUN rm -rf /usr/share/nginx/html/*
 
