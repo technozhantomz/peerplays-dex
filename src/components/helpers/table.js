@@ -2,10 +2,12 @@ import React from "react";
 import Translate from "react-translate-component";
 import Link from "react-router-dom/es/Link";
 import TableHeading from "./tableHeading";
+import TableCard from '../helpers/cards';
 
 const Table = ({className, tableHead, rows, link, onClick, partialFill}) => (
     <div className={`table${link || onClick ? ' table--with-link' : ''}${className ? ` ${className}` : ''}`}>
-        <TableHeading tableHead={tableHead} />
+        <TableCard tableHead={tableHead} rows={rows}/>
+        {/* <TableHeading tableHead={tableHead} />
         {rows.map((trItem, trId) => (
             <div key={`tr-${trId}`} className="table__row">
                 {tableHead.map((tdItem, tdId) => (
@@ -28,7 +30,7 @@ const Table = ({className, tableHead, rows, link, onClick, partialFill}) => (
                 {onClick
                     && <button onClick={() => onClick(trItem)} className="table__link" />}
             </div>
-        ))}
+        ))} */}
     </div>
 );
 
