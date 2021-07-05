@@ -5,6 +5,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Divider from '@material-ui/core/Divider';
+import Translate from "react-translate-component";
 
 const useStyles = makeStyles({
   root: {
@@ -34,13 +35,24 @@ export default function TableCard({ className, tableHead, rows, link, onClick, p
             {tableHead.map((tdItem, tdId) => (
               <Typography component="div" className={classes.content}>
                
-               <Box fontWeight="fontWeightLight" m={1}>
-                table headings                                            
-              </Box>
+                  <Box fontWeight="fontWeightLight" m={1}>
+                      {tdItem.translateTag
+                        ? <Translate
+                            key={`th-${tdId}`}
+                            content={`tableHead.${tdItem.translateTag}`}
+                            component="div"
+                            className={`table__cell ${tdItem.params ? tdItem.params : ''}`}
+                            with={tdItem.translateParams}
+                        />
+                        : <div
+                            key={`th-${tdId}`}
+                            className={`table__cell ${tdItem.params ? tdItem.params : ''}`}
+                        />}
+                  </Box>
 
-                <Box key={`td-${tdId}`} fontWeight="fontWeightLight" m={1} className="typography">
-                  {trItem[tdItem.key]}
-                </Box>
+                  <Box key={`td-${tdId}`} fontWeight="fontWeightLight" m={1} className="typography">
+                    {trItem[tdItem.key]}
+                  </Box>
               </Typography>
             ))}
           </CardContent>
