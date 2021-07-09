@@ -4,6 +4,7 @@ import {IconCheckBlue} from "../../../svg";
 import Table from "../../helpers/table";
 import {setVotes} from "../../../dispatch/votesDispatch";
 import {getStore} from "../../../actions/store";
+import TableCard from "../../helpers/cards";
 
 class VotingPage extends Component {
     state = {
@@ -76,6 +77,7 @@ class VotingPage extends Component {
                             tableHead={tableHead}
                             rows={active}
                         />
+                        <TableCard rows={active} tableHead={tableHead}/>
                     </Fragment>
                 }
 
@@ -87,6 +89,7 @@ class VotingPage extends Component {
                             tableHead={tableHead}
                             rows={pending}
                         />
+                        <TableCard rows={pending} tableHead={tableHead}/>
                     </Fragment>
                 }
             </div>
