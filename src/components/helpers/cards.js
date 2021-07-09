@@ -1,63 +1,66 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Divider from '@material-ui/core/Divider';
 import Translate from "react-translate-component";
+import Grid from '@material-ui/core/Grid';
 
 const useStyles = makeStyles({
-  root: {
+  paper: {
+    // textAlign: 'center',
   },
-  title: {
+  tablehead: {
     fontSize: 14,
-    margin: '10px'
-
+    textAlign: 'left',
+    marginLeft: '40px'
   },
-  content: {
-    display: 'flex',
-    justifyContent: "space-around"
+  tabledata:{
+    fontSize: 14,
+    textAlign: 'left'
+  },
+  new:{
+    borderRadius:'10px',
+    border:'ridge',
+    marginTop:'2px'
   }
 });
 
 export default function TableCard({ className, tableHead, rows, link, onClick, partialFill }) {
   const classes = useStyles();
-  console.log(tableHead);
 
   return (
-    <Card>
-      <Card className={classes.root}>
-        <Divider component="h1" />
-        {rows.map((trItem, trId) => (
-
-          <CardContent key={`tr-${trId}`} >
-            {tableHead.map((tdItem, tdId) => (
-              <Typography component="div" className={classes.content}>
-               
-                  <Box fontWeight="fontWeightLight" m={1}>
-                      {tdItem.translateTag
+    <Card className="cardsTable">
+      {rows.map((trItem, trId) => (
+      <Grid key={`tr-${trId}`} style={{borderRadius:'10px',border:'ridge',marginTop:'2px'}}>
+        {tableHead.map((tdItem, tdId) => (
+        <Grid container className={classes.paper} key={`td-${tdId}`}>
+          <Grid item xs={6} sm={6}>
+              <Box component="div" className={classes.tablehead} fontWeight="fontWeightBold">
+              {tdItem.translateTag
                         ? <Translate
                             key={`th-${tdId}`}
                             content={`tableHead.${tdItem.translateTag}`}
                             component="div"
-                            className={`table__cell ${tdItem.params ? tdItem.params : ''}`}
                             with={tdItem.translateParams}
                         />
                         : <div
                             key={`th-${tdId}`}
-                            className={`table__cell ${tdItem.params ? tdItem.params : ''}`}
-                        />}
-                  </Box>
-
-                  <Box key={`td-${tdId}`} fontWeight="fontWeightLight" m={1} className="typography">
-                    {trItem[tdItem.key]}
-                  </Box>
+                            className={`tablecell ${tdItem.params ? tdItem.params : ''}`}
+                />}  
+              </Box>
+          </Grid>
+          <Grid item xs={6} sm={6} className="table__row">
+              <Typography component="div" className={classes.tabledata} key={`td-${tdId}`}>
+                {trItem[tdItem.key]}
               </Typography>
-            ))}
-          </CardContent>
+          </Grid>
+          <Divider component="h1" />
+        </Grid>
         ))}
-      </Card>
+      </Grid>
+      ))}
     </Card>
   );
 }
