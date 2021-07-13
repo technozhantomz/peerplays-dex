@@ -431,3 +431,18 @@
 .fee-pool {
   margin: 4rem 1rem;
 }
+
+@media(max-width:500px){
+  .witness__cards {
+    height: 130px;
+  }
+  .explorer__cards {
+    height: 130px;
+  }
+}
+
+@media(min-width:500px){
+  .explorer__cards {
+    height: 100px;
+  }
+}

@@ -22,6 +22,7 @@
   }
   &__menu{
     display: flex;
+    flex-wrap: wrap;
   }
   &__menu-item{
     min-width: 12rem;
