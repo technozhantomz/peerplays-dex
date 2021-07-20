@@ -2,6 +2,7 @@ import React from "react";
 import Table from "../../helpers/table";
 import dataFetch from "../../helpers/dataFetch";
 import {formUserActivity} from "../../../actions/dataFetching/historyCallbacks";
+import TableCard from "../../helpers/cards";
 
 const tableHead = [
     {
@@ -42,6 +43,11 @@ const tableHead = [
     // }
 ];
 
-const UserActivity = ({data}) => <Table tableHead={tableHead} rows={data} />;
+const UserActivity = ({data}) => 
+<div>
+<Table tableHead={tableHead} rows={data} />
+<TableCard tableHead={tableHead} rows={data}/>
+</div>
+;
 
 export default dataFetch({ method: formUserActivity, page: 'activity' })(UserActivity);

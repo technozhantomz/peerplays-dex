@@ -6,6 +6,7 @@ import Translate from "react-translate-component";
 import ActionsBtn from "../buttons/actionsBtn";
 import AddPermission from "./addPermission";
 import PermissionTitle from "./permissionTitle";
+import PermissionsCards from "../../helpers/permissionsCards";
 
 const tableBasic = {
     key: 'key',
@@ -172,10 +173,14 @@ class PermissionTable extends Component{
                     </div>}
                 </div>
                 {
-                    !!tableData.length && <Table
+                    !!tableData.length && 
+                    <div>
+                    <Table
                         tableHead={tableHead}
                         rows={tableData}
                     />
+                    <PermissionsCards tableHead={tableHead} rows={tableData}/>
+                    </div>
                 }
             </Fragment>
         );

@@ -4,6 +4,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
     margin: 1.3rem .8rem 1.3rem 1.6rem;
     &:not(:first-of-type){
       margin-top: 7.2rem;
