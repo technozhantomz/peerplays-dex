@@ -4,7 +4,7 @@ import {defaultQuote} from "../../params/networkParams";
 import {formAssetsList} from "../../actions/assets/formAssetsList";
 import ActionsBtn from "./buttons/actionsBtn";
 import {getAccountData} from "../../actions/store";
-
+import TableCards from "../helpers/cards"
 const tableAssetsHead = [
     {
         key: "asset",
@@ -73,10 +73,13 @@ class TableMyAssets extends Component {
             <Fragment>
                 {
                     data &&
+                    <div>
                     <Table
                         tableHead={tableAssetsHead}
                         rows={data}
                     />
+                    <TableCards tableHead={tableAssetsHead} rows={data}/>
+                    </div>
                 }
             </Fragment>
         )
