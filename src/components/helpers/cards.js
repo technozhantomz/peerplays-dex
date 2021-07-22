@@ -18,7 +18,7 @@ const useStyles = makeStyles({
     marginLeft: '40px'
   },
   tabledata: {
-    fontSize: 14,
+    fontSize: 12,
     textAlign: 'left'
   },
   new: {
