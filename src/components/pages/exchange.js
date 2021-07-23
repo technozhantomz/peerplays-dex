@@ -1,4 +1,4 @@
-import React, {Component, Fragment} from 'react';
+import React, { Component, Fragment } from 'react';
 import PairStats from "../helpers/exchange/pairStats";
 import Tabs from "../helpers/tabs/tabs";
 import OrderBook from "../helpers/exchange/orderBook";
@@ -8,95 +8,91 @@ import HistoryBook from "../helpers/exchange/historyBook";
 import UserOrdersHistory from "../helpers/exchange/userOrdersHistory";
 import NoData from "../helpers/noData";
 //import TradingViewWrapper from "../helpers/tradingViewWrapper";
-import {connect} from "react-redux";
-import {clearExchangeData, loadExchangeData} from "../../dispatch/exchangeData";
+import { connect } from "react-redux";
+import { clearExchangeData, loadExchangeData } from "../../dispatch/exchangeData";
 import Translate from "react-translate-component";
+import Grid from '@material-ui/core/Grid';
 
-class Exchange extends Component{
+class Exchange extends Component {
 
     state = {
         isLoaded: false
     };
 
-    async componentDidMount(){
+    async componentDidMount() {
         this.setPair(this.props);
         this.timerID = setInterval(() => this.setPair(this.props), 5000);
     }
 
-    componentWillReceiveProps(newProps){
-        if(this.props.account.name !== newProps.account.name) {
+    componentWillReceiveProps(newProps) {
+        if (this.props.account.name !== newProps.account.name) {
             this.setPair(newProps);
-          clearInterval(this.timerID);
-          this.timerID = setInterval(() => this.setPair(newProps), 5000);
-        } else if(this.props.match.params.pair !== newProps.match.params.pair) {
+            clearInterval(this.timerID);
+            this.timerID = setInterval(() => this.setPair(newProps), 5000);
+        } else if (this.props.match.params.pair !== newProps.match.params.pair) {
             this.setPair(newProps);
-          clearInterval(this.timerID);
-          this.timerID = setInterval(() => this.setPair(newProps), 5000);
+            clearInterval(this.timerID);
+            this.timerID = setInterval(() => this.setPair(newProps), 5000);
         }
     }
 
     componentWillUnmount() {
-      clearExchangeData();
-      clearInterval(this.timerID);
+        clearExchangeData();
+        clearInterval(this.timerID);
     }
 
-    setPair = (props) => loadExchangeData(props.match.params.pair).then(() => this.setState({isLoaded: true}));
+    setPair = (props) => loadExchangeData(props.match.params.pair).then(() => this.setState({ isLoaded: true }));
 
-    handleOrderClick = (data) => this.setState({buySellParams: data});
+    handleOrderClick = (data) => this.setState({ buySellParams: data });
 
-    render(){
+    render() {
 
         const { isLoaded } = this.state;
         const { pair, stats, orderBook, globalHistory, userBook, userHistory, fieldParams } = this.props.exchangeData;
 
-        if(!isLoaded) return <span>Loading...</span>;
-        if(isLoaded && !pair) return <NoData />;
+        if (!isLoaded) return <span>Loading...</span>;
+        if (isLoaded && !pair) return <NoData />;
 
-        return(
+        return (
             <Fragment>
                 <PairStats pair={pair} data={stats} history={this.props.history} />
-                <div className="exchange">
-                    <div className="exchange__left">
-                        <Tabs head={['orderBook', 'history']}>
-                            <OrderBook data={orderBook} handleRowClick={this.handleOrderClick} />
-                            <HistoryBook data={globalHistory} />
-                        </Tabs>
-                    </div>
-                    <div className="exchange__center custom-scroll">
-                        {/* <TradingViewWrapper pair={pair} /> */}
-                        <div className="exchange__center-content">
-                            <div className="exchange__content-primary">
-                                <Tabs head={['openOrders', 'orderHistory']}>
-                                    <UserOrders data={userBook} />
-                                    <UserOrdersHistory data={userHistory} />
+
+                <Grid container >
+                    <Grid item xs={12} sm={3}>
+                        <div className="exchangse">
+                            <div className="">
+                                <Tabs head={['orderBook', 'history']}>
+                                    <OrderBook data={orderBook} handleRowClick={this.handleOrderClick} />
+                                    <HistoryBook data={globalHistory} />
                                 </Tabs>
                             </div>
-                            <div className="exchange__content-secondary">
-                                <div className="exchange-form">
-                                    <Translate content="exchange.buy" className="exchange-form__title" component="div" />
-                                    <BuyForm
-                                        type="buy"
-                                        pair={pair}
-                                        defaultData={fieldParams}
-                                    />
-                                </div>
-                            </div>
-                            <div className="exchange__content-secondary">
-                                <div className="exchange-form">
-                                    <Translate content="exchange.sell" className="exchange-form__title" component="div" />
-                                    <BuyForm
-                                        type="sell"
-                                        pair={pair}
-                                        defaultData={fieldParams}
-                                    />
-                                </div>
-                            </div>
                         </div>
-                    </div>
-                    <div className="exchange__right empty">
-
-                    </div>
-                </div>
+                    </Grid>
+                    <Grid item xs={12} sm={3}>
+                        <div className="exchange__center custom-scroll">
+                            <Tabs head={['openOrders', 'orderHistory']}>
+                                <UserOrders data={userBook} />
+                                <UserOrdersHistory data={userHistory} />
+                            </Tabs>
+                        </div>
+                    </Grid>
+                    <Grid item xs={12} sm={3} style={{ padding: '10px 10px 10px 10px', borderStyle: 'groove' }}>
+                        <Translate content="exchange.buy" className="exchange-form__title" component="div" />
+                        <BuyForm
+                            type="buy"
+                            pair={pair}
+                            defaultData={fieldParams}
+                        />
+                    </Grid>
+                    <Grid item xs={12} sm={3} style={{ padding: '10px 10px 10px 10px', borderStyle: 'groove' }}>
+                        <Translate content="exchange.sell" className="exchange-form__title" component="div" />
+                        <BuyForm
+                            type="sell"
+                            pair={pair}
+                            defaultData={fieldParams}
+                        />
+                    </Grid>
+                </Grid>
             </Fragment>
         );
     }
