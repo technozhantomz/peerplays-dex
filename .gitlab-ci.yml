@@ -35,6 +35,8 @@ build_dev:
     - npm install
     - npm run build
   artifacts:
+    reports:
+      dast: gl-dast-report.json
     paths:
       - dist/
     expire_in: 2 weeks
