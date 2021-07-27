@@ -1,6 +1,8 @@
-import React, {Component} from 'react';
-import {getUserName} from "../../actions/account";
-import {formDate} from "../../actions/formDate";
+import React, { Component } from 'react';
+import { getUserName } from "../../actions/account";
+import { formDate } from "../../actions/formDate";
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
 
 const blockHeaderItems = ['date', 'witness', 'previous', 'transactions'];
 
@@ -11,37 +13,43 @@ const formData = async (info) => ({
     transactions: info.transactions.length
 });
 
-class BlockHeader extends Component{
+class BlockHeader extends Component {
     state = {
         data: ''
     };
 
-    componentDidMount(){
+    componentDidMount() {
         this.getData(this.props.data);
     }
 
-    componentWillReceiveProps(nextProps){
-        if(this.props.num !== nextProps.num) this.getData(nextProps.data);
+    componentWillReceiveProps(nextProps) {
+        if (this.props.num !== nextProps.num) this.getData(nextProps.data);
     }
 
-    getData = (data) => formData(data).then(data => this.setState({data}));
+    getData = (data) => formData(data).then(data => this.setState({ data }));
 
-    render(){
+    render() {
 
         let content = '';
 
-        if(this.state.data){
-            content = <div className="block-header__items">
+        if (this.state.data) {
+            content = <div>
                 {blockHeaderItems.map(elem => (
-                    <div key={elem} className="block-header__item">
-                        <span>{elem.charAt(0).toUpperCase()}{elem.substr(1,)}</span>
-                        <span>{this.state.data[elem]}</span>
+                    <div>
+                        <Grid container spacing={1} key={elem} className="blockHeader">
+                            <Grid item xs={12} sm={3} >
+                                <Typography variant="h6" >{elem.charAt(0).toUpperCase()}{elem.substr(1,)}</Typography>
+                            </Grid>
+                            <Grid item xs={12} sm={6} >
+                                <Typography style={{ fontSize: '12px' }}>{this.state.data[elem]}</Typography>
+                            </Grid>
+                        </Grid>
                     </div>
                 ))}
             </div>
         }
 
-        return(
+        return (
             <div className="block-header">
                 <h2 className="block-header__num">Block #{this.props.num}</h2>
                 {content}
