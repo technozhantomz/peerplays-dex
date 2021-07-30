@@ -35,13 +35,6 @@ build_dev:
     - npm install
     - npm run build
 
-    paths:
-      - dist/
-    expire_in: 2 weeks
-  only:
-    - develop
-  tags:
-    - docker
 
 docker_build:
   image: docker:stable
@@ -71,6 +64,12 @@ deployToDev:
   artifacts:
     reports:
       dast: gl-dast-report.json
+    paths:
+      - dist/
+    expire_in: 2 weeks
+  only:
+    - develop
+
 
 sonarcloud-check:
  image:
