@@ -34,9 +34,7 @@ build_dev:
     - echo "BLOCKCHAIN_ENDPOINTS='$DEV_BLOCKCHAIN_ENDPOINTS'" >> .env
     - npm install
     - npm run build
-  artifacts:
-    reports:
-      dast: gl-dast-report.json
+
     paths:
       - dist/
     expire_in: 2 weeks
@@ -69,6 +67,10 @@ deployToDev:
     manual
   tags:
     - dex1
+    
+  artifacts:
+    reports:
+      dast: gl-dast-report.json
 
 sonarcloud-check:
  image:
