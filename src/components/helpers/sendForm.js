@@ -44,6 +44,7 @@ class SendForm extends Component {
 
     handleTransfer = (data) => {
         const context = this;
+        window.location.reload();
         this.setState({sended: true}, () => setTimeout(() => context.setState({sended: false}), 5000));
 
         if(this.props.update) {
