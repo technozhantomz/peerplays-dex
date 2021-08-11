@@ -15,23 +15,9 @@ const settingsMenu = [
         component: GeneralSettings
     },
     {
-        link: '/wallet',
-        tag: 'wallet'
-    },
-    {
         link: '/security',
         tag: 'security',
         component: Security
-    },
-    {
-        link: '/nodes',
-        tag: 'nodes',
-        component: NodesSelect
-    },
-    {
-        link: '/backup',
-        tag: 'reBackup',
-        component: Backup
     },
     {
         link: '/membership',

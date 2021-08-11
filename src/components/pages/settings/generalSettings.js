@@ -86,12 +86,12 @@ class GeneralSettings extends Component {
                     btn={<SelectHeader labelTag="general.language" text={activeLang} />}
                     list={localesList}
                 />
-                <Switcher
+                {/* <Switcher
                     id="themeSwitch"
                     label="general.theme"
                     selected={darkTheme}
                     handleChange={this.themeChange}
-                />
+                /> */}
                 <Switcher
                     id="modeSwitch"
                     label="general.mode"
