@@ -32,11 +32,11 @@ const basicMenu = [
         tag: 'positions',
         component: UserMargins
     },
-    {
-        link: '/permissions',
-        tag: 'permissions',
-        component: AssetsPermissions
-    }
+    // {
+    //     link: '/permissions',
+    //     tag: 'permissions',
+    //     component: AssetsPermissions
+    // }
     // {
     //     link: '/withdraw',
     //     tag: 'withdraw',
