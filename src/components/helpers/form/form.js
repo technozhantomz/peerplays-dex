@@ -29,8 +29,21 @@ class Form extends Component{
         errors: {}
     };
 
-    handleChange = (val, id) => handleData(this, val, id)
-        .then((result) => this.setState(result));
+    handleChange = (val, id) =>  handleData(this, val, id)
+        .then((result) => this.validateAndSetState(this.form, result));
+
+    validateAndSetState = (form, result) => {
+        this.setState(state => {
+            Object.keys(result.data).map((keyValue) => {
+                if(result.data[keyValue] === form[keyValue].value){
+                    state.data[keyValue] = result.data[keyValue];
+                    state.errors[keyValue] = result.errors[keyValue];
+                }
+            });
+            return state
+        })        
+        
+    }
 
     submit = (e) => {
 
