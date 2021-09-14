@@ -37,6 +37,8 @@ class Form extends Component{
             Object.keys(result.data).map((keyValue) => {
                 if(result.data[keyValue] === form[keyValue].value){
                     state.data[keyValue] = result.data[keyValue];
+                }
+                if(state.errors[keyValue]){
                     state.errors[keyValue] = result.errors[keyValue];
                 }
             });
