@@ -34,13 +34,15 @@ class Form extends Component{
 
     validateAndSetState = (form, result) => {
         this.setState(state => {
+            state.errors = {};
             Object.keys(result.data).map((keyValue) => {
-                if(result.data[keyValue] === form[keyValue].value){
+                if(!form[keyValue] || result.data[keyValue] === form[keyValue].value){
                     state.data[keyValue] = result.data[keyValue];
+                    if(result.errors[keyValue]){
+                        state.errors[keyValue] = result.errors[keyValue];
+                    }
                 }
-                if(state.errors[keyValue]){
-                    state.errors[keyValue] = result.errors[keyValue];
-                }
+              
             });
             return state
         })        
