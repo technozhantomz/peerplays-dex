@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Table from "../table";
 import NoData from "../noData";
+import TableCards from "../../helpers/cards";
 
 class UserOrders extends Component{
     render(){
@@ -16,6 +17,7 @@ class UserOrders extends Component{
                     tableHead={tableHead}
                     rows={rows}
                 />
+                <TableCards tableHead={tableHead} rows={rows}/>
             </div>
         )
     }
