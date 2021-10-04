@@ -1,45 +1,78 @@
-import React from 'react';
-import { Button, Col, Row } from 'react-bootstrap';
+import { Card, CardActions, CardContent } from '@material-ui/core';
+import React, { useState } from 'react';
 import NumericInput from 'react-numeric-input';
 import { connect } from "react-redux";
-//Opening GPOS Balance
-//Deposit
-//New GPOS Balance
+import Translate from 'react-translate-component';
+import { getPassword, trxBuilder } from '../../../actions/forms';
+import { getStore } from '../../../actions/store';
 
+const VestGPOS = (props) => {
+	const { loginData, accountData } = getStore();
+	const [vestAmount, setVestAmount] = useState(0);
 
-const VestGPOS = (props) => (
-	<div className="card">
-		<div class="card-header">
-			Power Up
-		</div>
-		<div className="card-body">
-			<Row>
-				<Col>
-					<div className="card">
-						<div className="card-body">
-							Opening GPOS Balance: 215 TEST
-						</div>
-					</div>
-				</Col>
-			</Row>
-			<div className="m-3">
-				<h5 class="card-title">Deposit</h5>
-				<NumericInput mobile className="form-control" />
+	const SubmitGposVesting = () => {
+		const begin_timestamp = new Date().toISOString().replace('Z', '');
+
+		const trx = {
+			type: 'vesting_balance_create',
+			params: {
+				fee: {
+					amount: 0,
+					asset_id: props.data.symbol_id
+				},
+				creator: accountData.id,
+				owner: accountData.id,
+				amount: {
+					amount: vestAmount * (10 ** props.data.precision),
+					asset_id: props.data.symbol_id
+				},
+				asset_symbol: props.data.symbol,
+				policy: [
+					0, {
+						begin_timestamp,
+						vesting_cliff_seconds: 0,
+						vesting_duration_seconds: 0
+					}
+				],
+				balance_type: 'gpos'
+			}
+		};
+		getPassword(password => {
+			const activeKey = loginData.formPrivateKey(password, 'active');
+			trxBuilder([trx], [activeKey]);
+		});
+	}
+	return (
+		<Card mode="widget">
+			<div className="card__title">
+				Power Up
 			</div>
-
-			<div className="card">
-				<div className="card-body">
-					New GPOS Balance : 215 TEST
+			<CardContent>
+				<div style={{ marginBottom: 12 }}>
+					Opening GPOS Balance: <strong>{props.data.totalGpos} {props.data.symbol}</strong>
 				</div>
-			</div>
-		</div>
-		<div class="card-footer">
-			<div className="card">
-				<Button>Vest</Button>
-			</div>
-		</div>
-	</div>
-);
+				<Translate content='deposit.title' />
+				<NumericInput
+					style={{ color: "#f0f0f0" }}
+					mobile
+					type="number"
+					className="field__input form-control"
+					min={0}
+					max={accountData.assets[0].amount / (10 ** accountData.assets[0].precision)}
+					onChange={(value) => setVestAmount(value)}
+					value={vestAmount}
+				/>
+
+				<div style={{ marginTop: 12 }}>
+					New GPOS Balance: <strong>{props.data.totalGpos + parseFloat(vestAmount)} {props.data.symbol}</strong>
+				</div>
+			</CardContent>
+			<CardActions >
+				<button className="btn-round btn-round--buy" onClick={SubmitGposVesting}>Vest</button>
+			</CardActions>
+		</Card>
+	)
+};
 
 const mapStateToProps = state => ({ account: state.accountData });
 

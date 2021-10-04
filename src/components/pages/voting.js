@@ -9,16 +9,13 @@ import { getInfoVoting } from "../../actions/voting/getInfoVoting";
 import dataFetch from "../helpers/dataFetch";
 import SaveChangesCard from "../helpers/saveChangesCard";
 import { getPassword, updateAccount } from "../../actions/forms";
-import { getStorage } from "../../actions/storage";
 import { dbApi } from "../../actions/nodes";
 import { clearVotes } from "../../dispatch/votesDispatch";
 import { getAccountData } from "../../actions/store";
-import { Col, Row } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import VestGPOS from './voting/VestGPOS';
 import WithdrawGPOS from './voting/WithdrawGPOS';
-import { ChainStore } from 'peerplaysjs-lib';
 import { getAsset } from '../../actions/assets/getAsset';
+import { Grid } from '@material-ui/core';
 
 const tableHeadWitnesses = [
     {
@@ -98,6 +95,7 @@ class Voting extends Component {
             down: 0
         },
         symbol: '',
+        symbol_id: '',
     }
     componentDidMount() {
         this.getAssets();
@@ -109,9 +107,10 @@ class Voting extends Component {
                 this.setState({
                     totalGpos: gposInfo.account_vested_balance / (10 ** asset.precision),
                     availableGpos: gposInfo.allowed_withdraw_amount / (10 ** asset.precision),
-                    symbol: asset.symbol
+                    symbol: asset.symbol,
+                    symbol_id: gposInfo.award.asset_id,
+                    precision: asset.precision,
                 })
-                console.log('in', gposInfo, asset)
             });
 
         });
@@ -144,14 +143,16 @@ class Voting extends Component {
 
         return (
             <div className="container page">
-                <Row>
-                    <Col>
-                        <VestGPOS />
-                    </Col>
-                    <Col >
-                        <WithdrawGPOS data={this.state} />
-                    </Col>
-                </Row>
+                <div>
+                    <Grid container spacing={1}>
+                        <Grid item xs={12} sm={6}>
+                            <VestGPOS data={this.state} />
+                        </Grid>
+                        <Grid item xs={12} sm={6}>
+                            <WithdrawGPOS data={this.state} />
+                        </Grid>
+                    </Grid>
+                </div>
                 <div className="page__header-wrapper">
                     <Translate className="page__title" component="h1" content="voting.title" />
                 </div>
