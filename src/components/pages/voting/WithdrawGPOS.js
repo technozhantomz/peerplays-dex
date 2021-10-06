@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import NumericInput from 'react-numeric-input';
 import { connect } from "react-redux";
 import Translate from 'react-translate-component';
+import { getPassword } from '../../../actions/forms';
 import { getStore } from '../../../actions/store';
 
 const WithdrawGPOS = (props) => {
