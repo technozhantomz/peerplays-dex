@@ -49,7 +49,11 @@ const VestGPOS = (props) => {
 			</div>
 			<CardContent>
 				<div style={{ marginBottom: 12 }}>
-					Opening GPOS Balance: <strong>{props.data.totalGpos} {props.data.symbol}</strong>
+					<div style={{ display: "inline-block", width: "50%" }}>
+						<div style={{ background: "#f0f0f0", margin: 4, padding: 12 }}>
+							Opening GPOS Balance: <strong>{props.data.totalGpos} {props.data.symbol}</strong>
+						</div>
+					</div>
 				</div>
 				<Translate content='deposit.title' />
 				<NumericInput
