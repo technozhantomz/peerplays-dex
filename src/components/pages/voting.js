@@ -16,6 +16,8 @@ import VestGPOS from './voting/VestGPOS';
 import WithdrawGPOS from './voting/WithdrawGPOS';
 import { getAsset } from '../../actions/assets/getAsset';
 import { Grid } from '@material-ui/core';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
 
 const tableHeadWitnesses = [
     {
@@ -136,7 +138,13 @@ class Voting extends Component {
         clearVotes();
     };
 
-    handleSave = () => getPassword(this.saveResult);
+    handleSave = () => {
+        if (this.state.totalGpos > 0) {
+            getPassword(this.saveResult)
+        } else {
+            toast.error('You need to Vest some GPOS balance first')
+        }
+    };
 
     render() {
         if (!this.props.account) return <NeedToLogin tag={'empty.login'} />;
@@ -190,6 +198,7 @@ class Voting extends Component {
                     cancelFunc={this.reset}
                     saveFunc={this.handleSave}
                 />
+                <ToastContainer/>
             </div>
         )
     }
