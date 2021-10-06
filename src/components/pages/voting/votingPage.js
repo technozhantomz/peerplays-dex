@@ -30,7 +30,7 @@ class VotingPage extends Component {
         this.setState((state, props) => {
             let voteList = state.voteList;
             voteList.push(id);
-            setVotes([...getStore().votes, ...voteList]);
+            setVotes([...voteList]);
             return {
                 voteList,
                 active: this.formatVote(state.active, voteList),
@@ -42,7 +42,7 @@ class VotingPage extends Component {
     removeFromVote = (id) => {
         this.setState((state, props) => {
             let voteList = state.voteList.filter(item => item !== id);
-            setVotes([...getStore().votes, ...voteList]);
+            setVotes([...voteList]);
             return {
                 voteList,
                 active: this.formatVote(state.active, voteList),
