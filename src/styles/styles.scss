@@ -35,3 +35,11 @@
 @import "block";
 @import "asset";
 @import "deposit";
+
+@media(min-width:0px) and (max-width:768px){
+
+    .page__menu-item{
+        font-size: 1.2rem !important;
+        min-width:8rem !important
+    }
+}
