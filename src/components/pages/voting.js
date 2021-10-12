@@ -63,23 +63,23 @@ const votingMenu = [
     {
         link: '/',
         tag: 'witnesses',
-        render: (account, voteList) => <VotingPage params="witness_account" tableHead={tableHeadWitnesses}
+        render: (account, voteList, cancelVotes) => <VotingPage params="witness_account" tableHead={tableHeadWitnesses}
             account={account} votes={voteList['witness_account']}
-            list="witnesses" />
+            list="witnesses" cancelVotes={cancelVotes} />
     },
     {
         link: '/committee',
         tag: 'committee',
-        render: (account, voteList) => <VotingPage params="committee_member_account" tableHead={tableHeadCommittee}
+        render: (account, voteList, cancelVotes) => <VotingPage params="committee_member_account" tableHead={tableHeadCommittee}
             account={account} votes={voteList['committee_member_account']}
-            list="committee" />
+            list="committee" cancelVotes={cancelVotes} />
     },
     {
         link: '/son',
         tag: 'son',
-        render: (account, voteList) => <VotingPage params="son_account" tableHead={tableHeadCommittee}
+        render: (account, voteList, cancelVotes) => <VotingPage params="son_account" tableHead={tableHeadCommittee}
             account={account} votes={voteList['son_account']}
-            list="son" />
+            list="son" cancelVotes={cancelVotes} />
     }
 ];
 
@@ -98,6 +98,7 @@ class Voting extends Component {
         },
         symbol: '',
         symbol_id: '',
+        cancelVotes: false
     }
     componentDidMount() {
         this.getAssets();
@@ -135,7 +136,12 @@ class Voting extends Component {
     };
 
     reset = () => {
+        this.setState({ cancelVotes: true });
         clearVotes();
+
+        setTimeout(() => {
+            this.setState({ cancelVotes: false });
+        });
     };
 
     handleSave = () => {
@@ -185,7 +191,7 @@ class Voting extends Component {
                                 <Route
                                     key={id}
                                     path={`/voting${el.link}`}
-                                    render={() => el.render(this.props.account, this.props.data)}
+                                    render={() => el.render(this.props.account, this.props.data, this.state.cancelVotes)}
                                     exact
                                 />
                             ))
