@@ -63,6 +63,20 @@ class VotingPage extends Component {
         });
     }
 
+    componentWillReceiveProps() {
+        const { account, votes, cancelVotes } = this.props;
+        if (cancelVotes) {
+            let newList = getStore().votes;
+            let list = newList.length ? newList : account.votes.map(item => item.vote_id || item.vote_for);
+    
+            this.setState({
+                voteList: list,
+                active: this.formatVote(votes.filter(item => item.active), list),
+                pending: this.formatVote(votes.filter(item => !item.active), list)
+            });    
+        }
+    }
+
     render() {
         const {active, pending} = this.state;
         const {tableHead} = this.props;
