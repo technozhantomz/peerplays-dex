@@ -139,6 +139,10 @@ class Voting extends Component {
     };
 
     handleSave = () => {
+        let user = getAccountData();
+        if(user.assets[0].amount/100000 < 20){
+           return toast.error('Insufficient test balance.')
+        }
         if (this.state.totalGpos > 0) {
             getPassword(this.saveResult)
         } else {
