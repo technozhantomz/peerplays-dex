@@ -6,9 +6,10 @@ import {clearLayout} from "../../../../dispatch/index";
 import {getAccountData, getStore} from "../../../../actions/store/index";
 import ModalTitle from "../decoration/modalTitle";
 import Submit from "../decoration/submit";
+import {getGlobalData} from "../../../../actions/dataFetching/getGlobalData";
+import {setAccount} from "../../../../dispatch/setAccount";
 
 const checkPassword = async (data, result) => {
-
     const {loginData, accountData} = getStore();
 
     const checkPassword = loginData.checkPassword(data.password, accountData);
@@ -20,6 +21,15 @@ const checkPassword = async (data, result) => {
 
     result.success = true;
     result.callbackData = { password: data.password };
+    if(result.success = true){
+    setTimeout(()=>{
+        getGlobalData()
+        .then(({userData}) => {
+            if(userData) setAccount(userData);
+        })
+    },2000)
+         
+    }
 
     return result;
 };
