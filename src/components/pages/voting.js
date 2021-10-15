@@ -151,6 +151,7 @@ class Voting extends Component {
         }
         if (this.state.totalGpos > 0) {
             getPassword(this.saveResult)
+            
         } else {
             toast.error('You need to Vest some GPOS balance first')
         }
