@@ -46,7 +46,7 @@ const helpFunction = async (key, votes, userArray) => {
         .sort((prev, next) => next.total_votes - prev.total_votes)
         .map(user => ({
             ...user,
-            name: <Link to={`/user/${usersList[user[key]]}`} className="user__link">{usersList[user[key]]}</Link>,
+            name: <Link to={`/user/${usersList[user[key]]}`} className="user__link bold">{usersList[user[key]]}</Link>,
             total_votes: user.total_votes,
             vote: votesList.indexOf(user[key]) >= 0
         }));
