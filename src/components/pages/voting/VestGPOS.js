@@ -1,12 +1,13 @@
 import { Card, CardActions, CardContent } from '@material-ui/core';
 import React, { useState } from 'react';
 import NumericInput from 'react-numeric-input';
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 import Translate from 'react-translate-component';
 import { getPassword, trxBuilder } from '../../../actions/forms';
 import { getStore } from '../../../actions/store';
 
 const VestGPOS = (props) => {
+	const { symbol_id, precision, symbol, totalGpos, getAssets } = props;
 	const { loginData, accountData } = getStore();
 	const [vestAmount, setVestAmount] = useState(0);
 
@@ -18,15 +19,15 @@ const VestGPOS = (props) => {
 			params: {
 				fee: {
 					amount: 0,
-					asset_id: props.data.symbol_id
+					asset_id: symbol_id
 				},
 				creator: accountData.id,
 				owner: accountData.id,
 				amount: {
-					amount: vestAmount * (10 ** props.data.precision),
-					asset_id: props.data.symbol_id
+					amount: vestAmount * (10 ** precision),
+					asset_id: symbol_id
 				},
-				asset_symbol: props.data.symbol,
+				asset_symbol: symbol,
 				policy: [
 					0, {
 						begin_timestamp,
@@ -39,7 +40,10 @@ const VestGPOS = (props) => {
 		};
 		getPassword(password => {
 			const activeKey = loginData.formPrivateKey(password, 'active');
-			trxBuilder([trx], [activeKey]);
+			trxBuilder([trx], [activeKey]).then(() => {
+				getAssets();
+				setVestAmount(0);
+			});
 		});
 	}
 	return (
@@ -51,7 +55,7 @@ const VestGPOS = (props) => {
 				<div style={{ marginBottom: 12 }}>
 					<div style={{ display: "inline-block", width: "50%" }}>
 						<div style={{ background: "#f0f0f0", margin: 4, padding: 12 }}>
-							Opening GPOS Balance: <strong>{props.data.totalGpos} {props.data.symbol}</strong>
+							Opening GPOS Balance: <strong>{totalGpos} {symbol}</strong>
 						</div>
 					</div>
 				</div>
@@ -68,7 +72,7 @@ const VestGPOS = (props) => {
 				/>
 
 				<div style={{ marginTop: 12 }}>
-					New GPOS Balance: <strong>{props.data.totalGpos + parseFloat(vestAmount)} {props.data.symbol}</strong>
+					New GPOS Balance: <strong>{totalGpos + parseFloat(vestAmount)} {symbol}</strong>
 				</div>
 			</CardContent>
 			<CardActions >
@@ -78,6 +82,6 @@ const VestGPOS = (props) => {
 	)
 };
 
-const mapStateToProps = state => ({ account: state.accountData });
+//const mapStateToProps = state => ({ account: state.accountData });
 
-export default connect(mapStateToProps)(VestGPOS);
+export default VestGPOS;
