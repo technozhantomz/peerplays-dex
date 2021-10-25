@@ -17,10 +17,11 @@ class UserData extends Component{
     };
 
     componentDidMount() {
+      const {sidechainAccounts} = this.props.data;
       const sidechainAddresses = {};
       Sidechains.map((el) => {
-          if(this.props.sidechainAccounts) {
-              var acc = this.props.sidechainAccounts.find(({sidechain}) => sidechain == el.toLowerCase());
+          if(sidechainAccounts) {
+              var acc = sidechainAccounts.find(({sidechain}) => sidechain == el.toLowerCase());
               if(acc) {
                   sidechainAddresses[el] = acc.deposit_address;
               }

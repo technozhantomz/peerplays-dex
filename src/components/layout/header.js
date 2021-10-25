@@ -29,7 +29,7 @@ const Header = ({account, history, sidechainAccounts}) => (
                                 <Avatar userName={account.name} />
                             </div>
                         }
-                        body={ <UserData data={account} history={history} sidechainAccounts={sidechainAccounts}/> }
+                        body={ <UserData data={account} history={history}/> }
                         position="top-right"
                     />
                 </Fragment>
@@ -40,7 +40,6 @@ const Header = ({account, history, sidechainAccounts}) => (
 
 const mapStateToProps = (state) => ({
   account: state.accountData,
-  sidechainAccounts: state.sidechainAccounts
 });
 
 export default connect(mapStateToProps)(Header);
