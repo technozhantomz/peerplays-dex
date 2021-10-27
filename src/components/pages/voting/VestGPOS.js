@@ -55,7 +55,7 @@ const VestGPOS = (props) => {
 				<div style={{ marginBottom: 12 }}>
 					<div style={{ display: "inline-block", width: "50%" }}>
 						<div style={{ background: "#f0f0f0", margin: 4, padding: 12 }}>
-							Opening proof of stake Balance: <strong>{totalGpos} {symbol}</strong>
+							Opening GPOS Balance: <strong>{totalGpos} {symbol}</strong>
 						</div>
 					</div>
 				</div>

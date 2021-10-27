@@ -31,7 +31,7 @@ export const en = {
         "votes": "Votes",
         "key": "Key",
         "time": "Time",
-        "type": "Type",
+        "type": "Price (kbyte)",
         "info": "Info",
         "id": "ID",
         "fee": "Fee",
@@ -42,6 +42,7 @@ export const en = {
         "memberFee": "Member Fee (bitUSD)",
         "blockID": "Block ID",
         "date": "Date",
+        "blockTimestamp": "Time",
         "witness": "Witness",
         "transaction": "Transaction",
         "user": "User",
@@ -159,7 +160,7 @@ export const en = {
             "quantity": "Quantity",
             "currency": "Currency",
             "to": "To",
-            "USD": "USD"
+            "TEST": "TEST"
         }
     },
     "quickSellBuy": {
@@ -192,7 +193,7 @@ export const en = {
         },
         "fee": {
             "title": "Fee Pool",
-            "text": "The fee pool is used to pay fees in USD by converting the fee in BTC to USD. If the fee pool runs out of funds, fees may no longer be paid in BTC and will default to USD. The core exchange rate is the price at which BTC are converted to USD.",
+            "text": "The fee pool is used to pay fees in TEST by converting the fee in BTC to TEST. If the fee pool runs out of funds, fees may no longer be paid in BTC and will default to TEST. The core exchange rate is the price at which BTC are converted to TEST.",
             "coreExchangeRate": "Core exchange rate (CER)",
             "feePool": "Pool balance",
             "unclaimedIssuerIncome": "Unclaimed issuer income"
@@ -356,13 +357,13 @@ export const en = {
     "voting": {
         "title": "Voting",
         "workers": {
-            "title": "Workers-voting"
+            "title": "Workers"
         },
         "witnesses": {
-            "title": "Witnesses-voting"
+            "title": "Witnesses"
         },
         "committee": {
-            "title": "Committee-voting"
+            "title": "Committee"
         },
         "son": {
           "title": "SON"
@@ -512,7 +513,7 @@ export const en = {
         "upgradeTitle": "Upgrade for 80% Cashback",
         "upgradeDesc": "Lifetime Members get 80% cashback on every transaction fee they pay and qualify to earn referral income from users they register with or refer to the network. A Lifetime Membership is just %(fee)s.",
         "referralTitle": "Your referral link",
-        "referralDesc": "Give this to link to people you want to refer to commodity.LLC: %(link)s/?r=%(name)s",
+        "referralDesc": "Give this to link to people you want to refer to BitShares: %(link)s/?r=%(name)s",
         "allocationTitle": "Fee Allocation",
         "allocationDesc": "Every time < %(name)s > pays a transaction fee, that fee is divided among several different accounts",
         "network": "Network",
@@ -525,7 +526,7 @@ export const en = {
         "pendingTitle": "Pending Fees",
         "pendingDesc": "Fees paid by < %(name)s > are divided among the network, referrers, and registrars once every maintenance interval (%(interval)s seconds). The next maintenance time is %(nextMaintenance)s.",
         "vestingTitle": "Vesting Fees",
-        "vestingDesc": "Most fees are made available immediately, but fees over 100 USD (such as those paid to upgrade your membership or register a premium account name) must vest for a total of 90 days."
+        "vestingDesc": "Most fees are made available immediately, but fees over 100 TEST (such as those paid to upgrade your membership or register a premium account name) must vest for a total of 90 days."
     },
     "search": {
         "users": "Users",
@@ -600,7 +601,7 @@ export const en = {
             "newLogin": "You can use letters, symbols, etc...",
             "memo": "Only users with a memo key can read your memos",
             "newWorkerName": "Be short and descriptive, e.g. \"Worker Purpose - Account Name\"",
-            "dailyPay": "The current best practice is to define a salary in USD/CNY, and commit to burning whatever surplus you receive as a result of the USD price increasing. As long as your worker is active and has sufficient votes to be above the refund worker, you will receive this daily salary.",
+            "dailyPay": "The current best practice is to define a salary in USD/CNY, and commit to burning whatever surplus you receive as a result of the TEST price increasing. As long as your worker is active and has sufficient votes to be above the refund worker, you will receive this daily salary.",
             "faucet": "The faucet address is used to pay the registration fee for new users.",
             "withdrawAmount": "Minimum amount: %(minAmount)s",
             "asset": "Asset",
@@ -630,6 +631,8 @@ export const en = {
         "isEmptyBalance": "You don't have token to pay fee.",
         "nullWeight": "Can\'t be null",
         "isNotEnough": "Balance is not enough.",
+        "isZero": "Quantity should be greater then 0.",
+        "isDecimal": "Quantity should not be decimal.",
         "accUsed": "Account is already in use.",
         "assetUsed": "Asset is already in use.",
         "keyUsed": "Key is already in use.",
@@ -657,7 +660,7 @@ export const en = {
         "newAcc": {
             "longer": "Account name should be longer",
             "shorter": "Account name should be shorter",
-            "firstLetter": "Account name should start with lowercase (small) letter",
+            "firstLetter": "Account name should start with a letter",
             "noSpecials": "Account name should have only letters, digits, or dashes",
             "oneDash": "Account name should have only one dash in a row",
             "lastSymbol": "Account name should end with a letter or digit",
@@ -793,8 +796,9 @@ export const en = {
         "default": "No data",
         "empty": "Empty",
         "userOrders": "User haven't open any order",
-        "login": "Login to blockchain %(pageName)s or create a new account",
+        "login": "Please sign in to use the %(pageName)s or create a new account",
         "withdraw": "No asset avaliable",
-        "allRead": "All Read"
+        "allRead": "All Read",
+        "activity": "No Data"
     }
 };
