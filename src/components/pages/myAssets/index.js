@@ -32,16 +32,16 @@ const basicMenu = [
         tag: 'positions',
         component: UserMargins
     },
-    {
-        link: '/permissions',
-        tag: 'permissions',
-        component: AssetsPermissions
-    },
-    {
-        link: '/withdraw',
-        tag: 'withdraw',
-        component: AssetWithdraw
-    }
+    // {
+    //     link: '/permissions',
+    //     tag: 'permissions',
+    //     component: AssetsPermissions
+    // }
+    // {
+    //     link: '/withdraw',
+    //     tag: 'withdraw',
+    //     component: AssetWithdraw
+    // }
 ];
 
 class MyAssets extends Component{

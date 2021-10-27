@@ -25,7 +25,7 @@ const ControlledInput = (props) => {
             <input
                 id={id ? id : name}
                 name={name}
-                value={value[name] || ''}
+                defaultValue={value[name] || ''}
                 type={type}
                 disabled={disabled}
                 onFocus={e => onFocus ? onFocus(e.target.value, name) : e.preventDefault()}

@@ -83,6 +83,7 @@ class QuickSellBuy extends Component {
                                             error={errors}
                                             value={data}
                                         />
+                                        <div className="sellHint">
                                         <FieldWithHint
                                             name="asset_to_sell"
                                             method={getUserAssetsList}
@@ -92,6 +93,7 @@ class QuickSellBuy extends Component {
                                             defaultHints={userTokens}
                                             readOnly={true}
                                         />
+                                        </div>
                                     </div>
                                     <div className="input__row">
                                         <Input
@@ -102,6 +104,7 @@ class QuickSellBuy extends Component {
                                             error={errors}
                                             value={data}
                                         />
+                                        <div className="sellHint">
                                         <FieldWithHint
                                             name="buyAsset"
                                             method={getAssetsList}
@@ -111,6 +114,7 @@ class QuickSellBuy extends Component {
                                             errors={errors}
                                             readOnly={true}
                                         />
+                                        </div>
                                     </div>
                                     <div className="info__row">
                                         <span>Fee: {data.fee} {data.sellAsset}</span>

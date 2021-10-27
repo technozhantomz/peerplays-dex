@@ -5,6 +5,7 @@ import Translate from "react-translate-component";
 import Dropdown from "../../helpers/form/dropdown";
 import SelectHeader from "../../helpers/selectHeader";
 import Table from "../../helpers/table";
+import {getAccountData, getStore} from "../../../actions/store";
 
 const tableBasic = {
     key: 'key',
@@ -55,14 +56,26 @@ class UserPermissionTable extends Component{
         tableHead: false,
         tableType: typesList[0],
         tableData: [],
-        threshold: false
+        threshold: false,
+        isLoggedInUser: false
     };
 
-    componentDidMount(){ this.setTable(this.props) }
+    componentDidMount(){ 
+        this.checkLoggedUser();
+        this.setTable(this.props)
+     }
+
+    checkLoggedUser = () => {
+        const loggedInUserID = getAccountData().id;
+        const userID = getStore().pageData.id;
+
+        return loggedInUserID === userID ? this.setState({isLoggedInUser:true}) : false;
+    } 
 
     setTable = (props) => {
 
         const tableData = props.data.list;
+        const {isLoggedInUser} = this.state;
 
         if(props.type === 'memo') {
             this.setState({
@@ -74,11 +87,13 @@ class UserPermissionTable extends Component{
 
         const dataWithActions = tableData.map(el => {
             el.actions = <div className="actions__wrapper">
+               {isLoggedInUser && 
                 <ActionsBtn
                     actionsList={[
                         <button onClick={() => this.deleteKey(el.key)}>Delete</button>
                     ]}
                 />
+                }
             </div>;
             return el;
         });

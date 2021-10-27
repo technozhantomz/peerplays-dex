@@ -4,6 +4,8 @@ import {Card} from "../../helpers/card";
 import {CardHeader} from "../../helpers/cardHeader";
 import Translate from "react-translate-component";
 import { updateAllBlockchainData } from '../../../actions/dataFetching/getGlobalData';
+import Explorercards from '../../helpers/cards/explorercards';
+import TableCard from "../../helpers/cards";
 
 const tableHeadRecentBlocks = [
     {
@@ -13,7 +15,7 @@ const tableHeadRecentBlocks = [
     },
     {
         key: 'date',
-        translateTag: 'date',
+        translateTag: 'blockTimestamp',
         params: 'fit-content bold'
     },
     {
@@ -76,51 +78,15 @@ class Explorer extends Component {
         const {head_block_number, current_supply, active_witnesses, avgTime, last_irreversible_block_num, confidential_supply, latestBlocks, coreAsset} = this.state.data;
         return (
             <Fragment>
-                <div className="card__list">
-                    <Card mode="explorer">
-                        <Translate className="card__title" content={"blockchain.blockchain.current_block"} component="div"/>
-                        <div className="card__content">
-                            {head_block_number}
-                        </div>
-                    </Card>
-                    <Card mode="explorer">
-                        <Translate className="card__title" content={"blockchain.blockchain.supply"} with={{currency: coreAsset.symbol}} component="div"/>
-                        <div className="card__content">
-                            {current_supply}
-                        </div>
-                    </Card>
-                    <Card mode="explorer">
-                        <Translate className="card__title" content={"blockchain.blockchain.active_witnesses"} component="div"/>
-                        <div className="card__content">
-                            {active_witnesses.length}
-                        </div>
-                    </Card>
-                    <Card mode="explorer">
-                        <Translate className="card__title" content={"blockchain.blockchain.confirmation_time"} component="div"/>
-                        <div className="card__content">
-                            {avgTime.toFixed(2)}
-                        </div>
-                    </Card>
-                    <Card mode="explorer">
-                        <Translate className="card__title" content={"blockchain.blockchain.last_irreversible"} component="div"/>
-                        <div className="card__content">
-                            {last_irreversible_block_num}
-                        </div>
-                    </Card>
-                    <Card mode="explorer">
-                        <Translate className="card__title" content={"blockchain.blockchain.stealth_supply"} with={{currency: coreAsset.symbol}} component="div"/>
-                        <div className="card__content">
-                            {confidential_supply}
-                        </div>
-                    </Card>
-                </div>
-
+                <Explorercards head_block_number={head_block_number} current_supply={current_supply} coreAsset={coreAsset} active_witnesses={active_witnesses}
+                avgTime={avgTime} last_irreversible_block_num={last_irreversible_block_num} confidential_supply={confidential_supply}/>
                 <Card mode="table">
                     <CardHeader title={'block.recentBlocks.title'}/>
                     <Table
                         tableHead={tableHeadRecentBlocks}
                         rows={latestBlocks}
                     />
+                    <TableCard tableHead={tableHeadRecentBlocks} rows={latestBlocks}/>
                 </Card>
             </Fragment>
         )

@@ -41,10 +41,10 @@ class Security extends Component{
                         list={list.map((e, id) => <button key={id} onClick={this.changeLock}>{e}</button>)}
                     />
                 </div>
-                <div className="security__item">
+                {/* <div className="security__item">
                     <Translate content="security.password" component="h2" />
                     <Translate content="global.tbd" className="security__tbd" />
-                </div>
+                </div> */}
             </div>
         )
     }

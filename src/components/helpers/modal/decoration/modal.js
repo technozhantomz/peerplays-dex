@@ -1,9 +1,12 @@
 import React from 'react';
 import {connect} from "react-redux";
+import Grid from '@material-ui/core/Grid';
 
 const Modal = (props) => (
-    <div className={`modal${props.modal ? ' open custom-scroll' : ''}`}>
-        {props.modal}
+    <div>
+        <Grid item xs={12} className={`modal${props.modal ? ' open custom-scroll' : ''}`}>
+            {props.modal}
+        </Grid>
     </div>
 );
 

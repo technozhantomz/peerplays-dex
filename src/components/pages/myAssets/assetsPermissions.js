@@ -10,6 +10,7 @@ import {fetchPermissions} from "../../../actions/dataFetching/accountData/fetchP
 import PermissionTitle from "../../helpers/permissions/permissionTitle";
 import SaveChangesCard from "../../helpers/saveChangesCard";
 import {getAccountData} from "../../../actions/store";
+import TableCard from "../../helpers/cards";
 
 const tableHeadActivities = [
     {
@@ -205,6 +206,7 @@ class AssetsPermissions extends Component {
                             tableHead={tableHeadActivities}
                             rows={history}
                         />
+                        <TableCard tableHead={tableHeadActivities} rows={history}/>
                     </Fragment>
                 }
                 <SaveChangesCard

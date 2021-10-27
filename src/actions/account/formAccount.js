@@ -124,7 +124,7 @@ export const formAccount = async (data) => {
                 ));
 
                 const actions = <div className="actions__wrapper">
-                    <div className="actions__on-hover">
+                    <div className="actions__on-hover" style={{marginRight:'auto'}}>
                         {canBeIssued &&
                             <button onClick={openIssueModal} ><IconSend/></button>
                         }
