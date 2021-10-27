@@ -354,15 +354,15 @@ export const en = {
         "blacklistMarket": "Blacklist Market",
     },
     "voting": {
-        "title": "Voting",
+        "title": "Stake waighted Voting",
         "workers": {
-            "title": "Workers"
+            "title": "Workers-voting"
         },
         "witnesses": {
-            "title": "Witnesses"
+            "title": "Witnesses-voting"
         },
         "committee": {
-            "title": "Committee"
+            "title": "Committee-voting"
         },
         "son": {
           "title": "SON"
