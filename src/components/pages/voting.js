@@ -182,7 +182,7 @@ class Voting extends Component {
                                 key={id}
                                 content={`voting.${el.tag}.title`}
                                 component={NavLink}
-                                to={`/voting${el.link}`}
+                                to={`/voting1${el.link}`}
                                 className="page__menu-item"
                                 exact
                             />
