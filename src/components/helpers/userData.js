@@ -64,7 +64,7 @@ class UserData extends Component{
     render(){
         const {data} = this.props;
         const {sidechainAddresses} = this.state;
-
+        console.log(this);
         return(
             <div className="drop-user">
                 <div className="drop-user__title">

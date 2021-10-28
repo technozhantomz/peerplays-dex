@@ -84,7 +84,7 @@ export const formAccount = async (data) => {
 
     const {account, balances, limit_orders, call_orders, votes} = fullAcc;
     const {id, name, active, owner, options} = account;
-    const sidechainAccounts = await getSidechainAccounts(id);
+    let sidechainAccounts = await getSidechainAccounts(id);
     const assets = await Promise.all(balances.map(formAssetData));
     const history = await getUserHistory({userID: name});
     let contacts = getStorage('contacts')[account.name] ? getStorage('contacts')[account.name] : [];

@@ -40,12 +40,15 @@ class App extends Component{
             }
 
             getGlobalData()
-                .then(({userData, globalData, notifications, lastBlockData, sidechainAccounts}) => {
-                    if(userData) setAccount(userData);
+                .then(({userData, globalData, notifications, lastBlockData}) => {
+                    if(userData) {
+                        let sd = userData.accountData;
+                        setAccount(userData);
+                        setSidechainAccounts(sd.sidechainAccounts);
+                    } 
                     if(globalData) setGlobals(globalData);
                     if(lastBlockData) setMaintenance(lastBlockData);
                     if(notifications) setNotifications(notifications);
-                    if(sidechainAccounts) setSidechainAccounts(sidechainAccounts);
                     console.timeEnd();
                 })
                 .then(() => {
