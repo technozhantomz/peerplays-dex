@@ -29,7 +29,7 @@ const Header = ({account, history, sidechainAccounts}) => (
                                 <Avatar userName={account.name} />
                             </div>
                         }
-                        body={ <UserData data={account} history={history}/> }
+                        body={ <UserData history={history}/> }
                         position="top-right"
                     />
                 </Fragment>
