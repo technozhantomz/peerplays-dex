@@ -13,14 +13,15 @@ export const getWitnesses = async () => {
 
     return await dbApi('get_witnesses', [witnessesID.map(item => item[1])]).then(async e => {
         let allWitnesses = e
-            .map(async (item) => ({
+            .map(async (item) => {
+                return ({
                 ...item,
-                url: item.url.length ? <Link to={item.url}><IconLink/></Link> : '',
+                url: item.url.length ? <a href={item.url} target="_blank" className="link"><IconLink/></a> : '',
                 name: <Link to={`/user/${witnessesID.filter(name => name[1] === item.id)[0][0]}`}
                             className="user__link">{witnessesID.filter(name => name[1] === item.id)[0][0]}</Link>,
                 signing_key: <Link to={item.signing_key}><IconKey/></Link>,
                 total_votes: (await setAssets({quantity: Number(item.total_votes), asset: '1.3.0'}))
-            }));
+            })});
 
         allWitnesses = await Promise.all(allWitnesses);
 
