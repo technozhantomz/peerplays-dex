@@ -26,14 +26,17 @@ export const generateSidechainAddress = async (data, result) => {
             withdraw_address
         }
     };
-
-    const activeKey = loginData.formPrivateKey(data.password, 'active');
-    const trxResult = await trxBuilder([trx], [activeKey]);
-
-    if (trxResult) {
-        result.success = true;
-        result.callbackData = trxResult;
-        result.sidechainAccounts = await getSidechainAccounts(payer);
+    
+    try {
+        const activeKey = loginData.formPrivateKey(data.password, 'active');
+        const trxResult = await trxBuilder([trx], [activeKey]);   
+        if (trxResult) {
+            result.success = true;
+            result.callbackData = trxResult;
+            result.sidechainAccounts = await getSidechainAccounts(payer);
+        }
+    } catch (error) {
+        result.errors = "ERROR"
     }
 
     return result;
