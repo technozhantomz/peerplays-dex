@@ -1,100 +1,91 @@
-import React, {Component} from "react";
+import React from "react";
 import Translate from "react-translate-component";
-import {Sidechains} from "../../params/networkParams";
+import { connect } from "react-redux";
+import { Sidechains } from "../../params/networkParams";
 import ActionsBtn from "./buttons/actionsBtn";
 import Link from "react-router-dom/es/Link";
-import {store} from "../../index";
-import {removeStorageItem} from "../../actions/storage";
-import {dispatchSendModal} from "../../actions/forms/dispatchSendModal";
+import { store } from "../../index";
+import { removeStorageItem } from "../../actions/storage";
+import { dispatchSendModal } from "../../actions/forms/dispatchSendModal";
 import UnlockProfile from "./unlockProfile";
 import Button from "./buttons/button";
 import RoundButton from "./buttons/roundButton";
 import { dispatchGenerateAddress } from '../../actions/forms/dispatchGenerateAddress';
 
-class UserData extends Component{
-    state = {
-      sidechainAddresses: {}
-    };
 
-    componentDidMount() {
-      const sidechainAddresses = {};
-      Sidechains.map((el) => {
-          if(this.props.sidechainAccounts) {
-              var acc = this.props.sidechainAccounts.find(({sidechain}) => sidechain == el.toLowerCase());
-              if(acc) {
-                  sidechainAddresses[el] = acc.deposit_address;
-              }
-          }
-      });
+const UserData = (props) => {
 
-      this.setState({sidechainAddresses});
-    }
+    const { data, sidechainAccounts, history } = props;
+    const sidechainAddresses = {};
+    Sidechains.map((el) => {
+        if (sidechainAccounts) {
+            var acc = sidechainAccounts.find(({ sidechain }) => sidechain == el.toLowerCase());
+            if (acc) {
+                sidechainAddresses[el] = acc.deposit_address;
+            }
+        }
+    });
 
-    logout = () => {
+    const logout = () => {
         ['account', 'notifications'].forEach(type => {
             removeStorageItem(type);
             removeStorageItem(type, 'sessionStorage');
-            store.dispatch({type: `REMOVE_${type.toUpperCase()}`})
+            store.dispatch({ type: `REMOVE_${type.toUpperCase()}` })
         });
-        this.props.history.push('/');
+        store.dispatch({ type: 'SET_SIDECHAIN_ACCOUNTS', payload: false })
+        history.push('/');
     };
-
-    sendUserTokens = e => {
-        this.closeDropdown(e);
-        dispatchSendModal();
-    };
-
-    generateAddress = (e, sidechain) => {
-      this.closeDropdown(e);
-      dispatchGenerateAddress(sidechain);
-    }
-
-    closeDropdown = (e) => {
+    const closeDropdown = (e) => {
         let node = e.target;
 
-        while(!node.classList.contains('open')){
-            if(node.tagName === 'BODY') break;
+        while (!node.classList.contains('open')) {
+            if (node.tagName === 'BODY') break;
             node = node.parentNode;
         }
 
         node.classList.remove('open');
     };
+    const sendUserTokens = e => {
+        closeDropdown(e);
+        dispatchSendModal();
+    };
 
-    render(){
-        const {data} = this.props;
-        const {sidechainAddresses} = this.state;
+    const generateAddress = (e, sidechain) => {
+        closeDropdown(e);
+        dispatchGenerateAddress(sidechain);
+    }
 
-        return(
-            <div className="drop-user">
-                <div className="drop-user__title">
-                    <Link to="/assets/" className="drop-user__name" onClick={this.closeDropdown}>{data.name}</Link>
-                    <div className="drop-user__user-actions">
-                        <UnlockProfile closeDropdown={this.closeDropdown} />
-                        <ActionsBtn
-                            actionsList={[
-                                <Button tag="logout" onClick={this.logout} />
-                            ]}
-                        />
+    return (
+        <div className="drop-user">
+            <div className="drop-user__title">
+                <Link to="/assets/" className="drop-user__name" onClick={closeDropdown}>{data.name}</Link>
+                <div className="drop-user__user-actions">
+                    <UnlockProfile closeDropdown={closeDropdown} />
+                    <ActionsBtn
+                        actionsList={[
+                            <Button tag="logout" onClick={logout} />
+                        ]}
+                    />
+                </div>
+            </div>
+            <div className="drop-user__assets">
+                {data.assets.map((el, id) => (
+                    <div key={id} className="drop-user__asset">
+                        <span>{el.symbol}</span>
+                        <span>{el.setPrecision()}</span>
                     </div>
-                </div>
-                <div className="drop-user__assets">
-                    {data.assets.map((el, id) => (
-                        <div key={id} className="drop-user__asset">
-                            <span>{el.symbol}</span>
-                            <span>{el.setPrecision()}</span>
-                        </div>
-                    ))}
-                </div>
-                <div className="drop-user__btn-wrapper">
-                    <RoundButton tag="sendFunds" className="btn-round--light-blue" onClick={this.sendUserTokens} />
-                </div>
-                <Translate content="layout.sidechainAccounts" component="h3" className="drop-user__wallets-title" />
-                <div className="drop-user__sidechain-address">
-                    {Sidechains.map((el) => (
-                        sidechainAddresses[el] != undefined ? <div key={el}><span>{el}</span><span> : </span><span>{sidechainAddresses[el]}</span></div> : <RoundButton key={el} tag={`generate${el}Address`} className="btn-round--light-blue" onClick={(e) => this.generateAddress(e, el)} />
-                    ))}
-                </div>
-                {/* <Translate content="layout.switchAccount" component="h3" className="drop-user__wallets-title" />
+                ))}
+            </div>
+            <div className="drop-user__btn-wrapper">
+                <RoundButton tag="sendFunds" className="btn-round--light-blue" onClick={sendUserTokens} />
+            </div>
+            <Translate content="layout.sidechainAccounts" component="h3" className="drop-user__wallets-title" />
+            <div className="drop-user__sidechain-address">
+                {Sidechains.map((el) => (
+                    sidechainAddresses[el] != undefined ? <div key={el}><span>{el}</span><span> : </span><span>{sidechainAddresses[el]}</span></div> : <RoundButton key={el} tag={`generate${el}Address`} className="btn-round--light-blue" onClick={(e) => generateAddress(e, el)} />
+                ))}
+            </div>
+            {/* <Translate content="layout.switchAccount" component="h3" className="drop-user__wallets-title" />
                 <div className="drop-user__wallets">
                     {
                         userWallets.map((el, id) => (
@@ -108,9 +99,14 @@ class UserData extends Component{
                 <button className="btn-round btn-round--light-blue drop-user__add">
                     <IconCross />
                 </button> */}
-            </div>
-        )
-    }
+        </div>
+    )
 }
 
-export default UserData;
+const mapStateToProps = (state) => ({
+    data: state.accountData,
+    sidechainAccounts: state.sidechainAccounts
+});
+
+export default connect(mapStateToProps)(UserData);
+
