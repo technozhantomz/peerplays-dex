@@ -42,8 +42,6 @@ build_dev:
     expire_in: 2 weeks
   only:
     - feature/513-review-app
-  when:
-    manual
   tags:
     - docker
 
@@ -79,9 +77,7 @@ deploy_review:
     - feature/513-review-app
   tags:
     - qa-review
-  when:
-    manual
-
+ 
 deployToDev:
   stage: deploy
   dependencies:
