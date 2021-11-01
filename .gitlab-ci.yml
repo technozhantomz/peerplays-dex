@@ -64,8 +64,8 @@ deploy_review:
   dependencies:
     - build_dev
   script: 
-    - rm -rf $DEV_DEPLOY_DIR/*
-    - cp -R dist/* $DEV_DEPLOY_DIR
+    - sudo rm -rf $DEV_DEPLOY_DIR/*
+    - sudo cp -R dist/* $DEV_DEPLOY_DIR
   environment:
     name: review/$CI_COMMIT_REF_NAME
     url: https://$CI_ENVIRONMENT_SLUG.example.com
