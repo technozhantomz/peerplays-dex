@@ -1,12 +1,18 @@
-import React, {Fragment} from "react";
-import AssetDeposit from "../../../pages/myAssets/assetsDeposit";
+import React, { Component, Fragment } from 'react'
 import ModalTitle from "../decoration/modalTitle";
+import Form from "../../form/form";
+import Input from "../../form/input";
 
-const DepositModal = ({asset, name}) => (
-    <Fragment>
-        <ModalTitle tag="deposit" additionalData={{asset}} />
-        <AssetDeposit defaultAsset={asset} defaultUser={name} />
-    </Fragment>
-);
+class DepositModal extends Component {
+    render() {
+        const defaultData = false;
+        return (
+            <Fragment>
+                <ModalTitle tag="deposit"/>
+            </Fragment>
+            
+        )
+    }
+}
 
 export default DepositModal;

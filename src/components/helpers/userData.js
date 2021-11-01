@@ -10,6 +10,7 @@ import UnlockProfile from "./unlockProfile";
 import Button from "./buttons/button";
 import RoundButton from "./buttons/roundButton";
 import { dispatchGenerateAddress } from '../../actions/forms/dispatchGenerateAddress';
+import {dispatchDepositModal} from "../../actions/forms/dispatchDepositModal";
 
 class UserData extends Component{
     state = {
@@ -43,6 +44,11 @@ class UserData extends Component{
         this.closeDropdown(e);
         dispatchSendModal();
     };
+
+    depositTokens = e => {
+        this.closeDropdown(e);
+        dispatchDepositModal();
+    }
 
     generateAddress = (e, sidechain) => {
       this.closeDropdown(e);
@@ -87,6 +93,9 @@ class UserData extends Component{
                 </div>
                 <div className="drop-user__btn-wrapper">
                     <RoundButton tag="sendFunds" className="btn-round--light-blue" onClick={this.sendUserTokens} />
+                </div>
+                <div className="drop-user__btn-wrapper">
+                    <RoundButton tag="deposit" className="btn-round--light-blue" onClick={this.depositTokens} />
                 </div>
                 <Translate content="layout.sidechainAccounts" component="h3" className="drop-user__wallets-title" />
                 <div className="drop-user__sidechain-address">
