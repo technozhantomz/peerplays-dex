@@ -72,7 +72,7 @@ deploy_review:
   only: 
     - feature/513-review-app
   tags:
-    - docker
+    - qa-review
 
 deployToDev:
   stage: deploy
