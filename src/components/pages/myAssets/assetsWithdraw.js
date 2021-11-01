@@ -1,116 +1,80 @@
-import React, {Component, Fragment} from "react";
-import {getAccountData, getBasicAsset} from "../../../actions/store";
-import {testnetCheck} from "../../../params/networkParams";
+import React, { useEffect, useState, Fragment } from "react";
+import { getAccountData, getBasicAsset } from "../../../actions/store";
 import {getStorage} from "../../../actions/storage";
-import BridgeSelector from "../../helpers/bridgeSelector";
 import DepositData from "../../helpers/depositData";
 import WithdrawForm from "../../helpers/withdrawForm";
 import Translate from "react-translate-component";
 import NoData from "../../helpers/noData";
 import Close from "../../helpers/modal/decoration/close";
-import {clearLayout} from "../../../dispatch";
+import { clearLayout } from "../../../dispatch";
+import Dropdown from "../../helpers/form/dropdown";
+import SelectHeader from "../../helpers/selectHeader";
 
-class AssetWithdraw extends Component{
-    state = {
-        bridgesData: false,
-        bridgeData: ''
-    };
+function AssetWithdraw({ defaultAsset, password }) {
+    const [ coinParams, setCoinParams ] = useState({});
+    const [ defaultFormData, setDefaultFormData ] = useState({});
+    const [ userData, setUserData ] = useState({});
 
-    componentDidMount(){
-
-        const defaultAsset = this.props.defaultAsset;
+    useEffect(() => {
         const bridgesData = getStorage('bridges').bridgesData;
+        if (Object.keys(bridgesData).length === 0) return;
 
-        if(!bridgesData) return;
-
-        const userAssets = testnetCheck ? ['xbtsx.STH'.toUpperCase()] : getAccountData().assets.map(el => el.symbol);
-
-        for(let key in bridgesData){
-            const bridge = bridgesData[key];
-            let newWithdrawalList = !defaultAsset
-                ? bridge.withdrawalList
-                : bridge.withdrawalList.filter(el => {
-                    const defAsset = testnetCheck ? 'xbtsx.STH'.toUpperCase() : defaultAsset.toUpperCase();
-                    const {symbol, withdrawCoin} = bridge.coinsList[el];
-                    return [
-                        symbol.toUpperCase(),
-                        withdrawCoin.toUpperCase(),
-                        el.toUpperCase()
-                    ].includes(defAsset);
-                });
-
-            bridge.withdrawalList = newWithdrawalList.filter(el => userAssets.includes(bridge.coinsList[el].withdrawCoin));
-            if(!bridge.withdrawalList.length) delete bridgesData[key];
-        }
-
-        this.setState({bridgesData})
-    }
-
-    clearData = () => {
-        this.setState({coinParams: ''});
-    };
-
-
-    handleSelect = ({bridgeParams, coinParams}) => {
-        this.setState({coinParams: ''}, () => {
-            const defaultFormData = {
-                ...coinParams,
-                fee: getBasicAsset(),
-                bridgeName: bridgeParams.name,
-                baseApiUrl: bridgeParams.api.BASE,
-                password: this.props.password
-            };
-
-            const currentUser = getAccountData();
-            const userAsset = currentUser.assets.find(el => el.symbol === coinParams.withdrawCoin);
-
-            const userData = {
-                name: currentUser.name,
-                balance: userAsset ? userAsset.toString() : `0 ${coinParams.withdrawCoin}`
-            };
-
-            this.setState({coinParams, defaultFormData, userData});
+        const coinParams = bridgesData['Xbtsx'].coinsList['SmartHoldem'];
+        setCoinParams(coinParams);
+        setDefaultFormData({
+            ...coinParams,
+            fee: getBasicAsset(),
+            bridgeName: 'Xbtsx',
+            baseApiUrl: 'https://apis.xbts.io/api/v1',
+            password
         });
-    };
 
-    handleWithdraw = () => clearLayout();
+        const currentUser = getAccountData();
+        const userAsset = currentUser.assets.find(el => el.symbol === coinParams.withdrawCoin);
+        const userData = {
+            name: currentUser.name,
+            balance: userAsset ? userAsset.toString() : `0 ${coinParams.withdrawCoin}`
+        };
+        setUserData(userData);
+    }, []);
 
-    render(){
 
-        const {bridgesData, coinParams, userData, defaultFormData} = this.state;
-
-        if(!bridgesData) return <span />;
-
-        const isModal = Boolean(this.props.defaultAsset);
-
-        if(!Object.keys(bridgesData).length) return (
+    const isModal = !!defaultAsset;
+    const coinParamsIsValid = !!Object.keys(coinParams).length;
+    if (!coinParamsIsValid) {
+        return (
             <Fragment>
                 <NoData tag="emptyPage.withdraw" />
-                {isModal &&
+                {isModal && (
                     <div className="modal__bottom">
                         <Close />
                     </div>
-                }
+                )}
             </Fragment>
         );
+    }
 
-        const depositData = <DepositData data={coinParams} user={userData} />;
+    const depositData = <DepositData data={coinParams} user={userData} />;
 
-        return(
-            <div className="deposit">
-                <div>
-                    <BridgeSelector type="withdrawal" defaultData={bridgesData} handleSelect={this.handleSelect} clearData={this.clearData} />
-                    {coinParams &&
-                       <WithdrawForm defaultData={defaultFormData} handleResult={this.handleWithdraw} depositData={isModal && depositData} />
-                    }
-                </div>
-                {!coinParams
-                    ? <Translate content="bridgeData.warning" component="div" />
-                    : !isModal && depositData
+    return (
+        <div className="deposit">
+            <div>
+                <Dropdown
+                    btn={<SelectHeader labelTag="field.labels.asset" text={'SmartHoldem'}/>}
+                    list={[<button 
+                        key={0}
+                    >{'SmartHoldem'}</button>]}
+                />
+                {coinParamsIsValid &&
+                    <WithdrawForm defaultData={defaultFormData} handleResult={clearLayout} depositData={isModal && depositData} />
                 }
             </div>
-        )
-    }
+            {coinParamsIsValid
+                ? !isModal && depositData
+                : <Translate content="bridgeData.warning" component="div" />
+            }
+        </div>
+    );
 }
 
 export default AssetWithdraw;

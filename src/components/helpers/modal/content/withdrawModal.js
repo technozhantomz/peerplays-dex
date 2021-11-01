@@ -1,12 +1,12 @@
 import React from "react";
 import {Fragment} from "react";
 import ModalTitle from "../decoration/modalTitle";
-import AssetWithdrawDec from "../../../pages/myAssets/assetsWithdrawDec";
+import AssetWithdraw from "../../../pages/myAssets/assetsWithdraw";
 
 const WithdrawModal = ({asset, password}) => (
     <Fragment>
         <ModalTitle tag="withdraw" />
-        <AssetWithdrawDec defaultAsset={asset} password={password} />
+        <AssetWithdraw defaultAsset={asset} password={password} />
     </Fragment>
 );
 
