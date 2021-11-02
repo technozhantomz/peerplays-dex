@@ -75,11 +75,26 @@ deploy_review:
   environment:
     name: review/$CI_COMMIT_REF_NAME
     url: http://$APPS_DOMAIN
+    on_stop: stop_review
     #url: http://$CI_ENVIRONMENT_SLUG.$APPS_DOMAIN
   only: 
     - feature/513-review-app
   tags:
     - dex-deploy-review
+
+stop_review:
+  stage: deploy
+  script:
+    - echo "Remove review app"
+  environment:
+    name: review/$CI_COMMIT_REF_SLUG
+    action: stop
+  only: 
+    - feature/513-review-app
+  tags:
+    - dex-deploy-review
+  when:
+    manual
  
 deployToDev:
   stage: deploy
