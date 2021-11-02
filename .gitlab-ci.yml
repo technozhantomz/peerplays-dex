@@ -16,6 +16,7 @@ variables:
 stages:
   - build
   - test
+  - review
   - deploy
   - dast
 
@@ -62,14 +63,10 @@ docker_build:
 
 
 deploy_review:
-  stage: deploy
+  stage: review
   dependencies:
     - build_dev
   script: 
-    - whoami
-    - echo $DEV_DEPLOY_DIR
-    - pwd
-    - ls -ltr
     - rm -rf $QA_DEPLOY_DIR/*
     - cp -R dist/* $QA_DEPLOY_DIR
   environment:
@@ -83,18 +80,17 @@ deploy_review:
     - dex-deploy-review
 
 stop_review:
-  stage: deploy
+  stage: review
   script:
     - echo "Remove review app"
   environment:
-    name: review/$CI_COMMIT_REF_SLUG
+    name: review/$CI_COMMIT_REF_NAME
     action: stop
   only: 
     - feature/513-review-app
   tags:
     - dex-deploy-review
-  when:
-    manual
+  when: manual
  
 deployToDev:
   stage: deploy
