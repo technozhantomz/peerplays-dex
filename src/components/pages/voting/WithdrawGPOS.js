@@ -54,13 +54,13 @@ const WithdrawGPOS = (props) => {
 				<div style={{ marginBottom: 12 }}>
 					<div style={{ display: "inline-block", width: "50%" }}>
 						<div style={{ background: "#f0f0f0", margin: 4, padding: 12 }}>
-							Opening GPOS Balance: <strong>{totalGpos} {symbol}</strong>
+							Opening Power Vote Balance: <strong>{totalGpos} {symbol}</strong>
 						</div>
 					</div>
 					<div style={{ display: "inline-block", width: "50%" }}>
 
 						<div style={{ background: "#f0f0f0", margin: 4, padding: 12 }}>
-							Available GPOS Balance:<strong> {availableGpos} {symbol}</strong>
+							Available POWER Vote Balance:<strong> {availableGpos} {symbol}</strong>
 						</div>
 					</div>
 
@@ -79,7 +79,7 @@ const WithdrawGPOS = (props) => {
 				/>
 
 				<div style={{ marginTop: 12 }}>
-					New GPOS Balance: <strong>{totalGpos - parseFloat(withdrawAmount)} {symbol}</strong>
+					New POWER Balance: <strong>{totalGpos - parseFloat(withdrawAmount)} {symbol}</strong>
 				</div>
 			</CardContent>
 
