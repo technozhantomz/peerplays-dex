@@ -70,11 +70,11 @@ deploy_review:
     - echo $DEV_DEPLOY_DIR
     - pwd
     - ls -ltr
-    #- sudo rm -rf $DEV_DEPLOY_DIR/*
+    - sudo rm -rf $DEV_DEPLOY_DIR/*
     - cp -R dist/* $DEV_DEPLOY_DIR
   environment:
     name: review/$CI_COMMIT_REF_NAME
-    url: https://$CI_ENVIRONMENT_SLUG.example.com
+    url: http://$CI_ENVIRONMENT_SLUG.$APPS_DOMAIN
   only: 
     - feature/513-review-app
   tags:
