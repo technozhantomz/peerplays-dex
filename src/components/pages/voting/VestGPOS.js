@@ -64,7 +64,7 @@ const VestGPOS = (props) => {
 					style={{ color: "#f0f0f0" }}
 					mobile
 					type="number"
-					className="field__input form-control"
+					className="field__input form-control cpointer"
 					min={0}
 					max={accountData.assets[0].amount / (10 ** accountData.assets[0].precision)}
 					onChange={(value) => setVestAmount(value)}
