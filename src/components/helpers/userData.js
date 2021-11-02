@@ -72,7 +72,7 @@ const UserData = (props) => {
                 {data.assets.map((el, id) => (
                     <div key={id} className="drop-user__asset">
                         <span>{el.symbol}</span>
-                        <span>{el.setPrecision()}</span>
+                        <span>{el.precision}</span>
                     </div>
                 ))}
             </div>
