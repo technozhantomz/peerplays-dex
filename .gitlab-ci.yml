@@ -74,7 +74,8 @@ deploy_review:
     - cp -R dist/* $QA_DEPLOY_DIR
   environment:
     name: review/$CI_COMMIT_REF_NAME
-    url: http://$CI_ENVIRONMENT_SLUG.$APPS_DOMAIN
+    url: http://$APPS_DOMAIN
+    #url: http://$CI_ENVIRONMENT_SLUG.$APPS_DOMAIN
   only: 
     - feature/513-review-app
   tags:
