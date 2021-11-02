@@ -598,7 +598,7 @@ export const en = {
         },
         "comments": {
             "newLogin": "You can use letters, symbols, etc...",
-            "memo": "Only users with a memo key can read your memos",
+            "memo": "Entering DESTINATION country guarantees instant transaction",
             "newWorkerName": "Be short and descriptive, e.g. \"Worker Purpose - Account Name\"",
             "dailyPay": "The current best practice is to define a salary in USD/CNY, and commit to burning whatever surplus you receive as a result of the USD price increasing. As long as your worker is active and has sufficient votes to be above the refund worker, you will receive this daily salary.",
             "faucet": "The faucet address is used to pay the registration fee for new users.",
