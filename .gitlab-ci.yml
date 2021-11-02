@@ -68,7 +68,8 @@ deploy_review:
   script: 
     - whoami
     - echo $DEV_DEPLOY_DIR
-    - printenv
+    - pwd
+    - ls -ltr
     #- sudo rm -rf $DEV_DEPLOY_DIR/*
     - cp -R dist/* $DEV_DEPLOY_DIR
   environment:
