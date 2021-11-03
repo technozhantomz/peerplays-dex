@@ -10,7 +10,7 @@ include:
 variables:
  SONAR_USER_HOME: "${CI_PROJECT_DIR}/.sonar"  # Defines the location of the analysis task cache
  GIT_DEPTH: "0"  # Tells git to fetch all the branches of the project, required by the analysis task
- DAST_WEBSITE: http://$APPS_DOMAIN
+ DAST_WEBSITE: $DAST_WEBSITE
  DOCKER_DRIVER: overlay2
 
 stages:
@@ -42,7 +42,7 @@ build_dev:
       - dist/
     expire_in: 2 weeks
   only:
-    - feature/513-review-app
+    - branches
   tags:
     - docker
 
@@ -58,8 +58,6 @@ docker_build:
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
     - docker build -f dev.Dockerfile -t $IMAGE .
     - docker push $IMAGE
-  when:
-    manual
 
 
 deploy_review:
@@ -75,7 +73,9 @@ deploy_review:
     on_stop: stop_review
     #url: http://$CI_ENVIRONMENT_SLUG.$APPS_DOMAIN
   only: 
-    - feature/513-review-app
+    - branches
+  except:
+    - develop
   tags:
     - dex-deploy-review
 
@@ -87,23 +87,12 @@ stop_review:
     name: review/$CI_COMMIT_REF_NAME
     action: stop
   only: 
-    - feature/513-review-app
+    - branches
+  except:
+    - develop
   tags:
     - dex-deploy-review
   when: manual
-
-# dast:
-#   stage: dast
-#   variables: 
-#     DAST_AUTH_URL: https://$CI_ENVIRONMENT_SLUG.$APPS_DOMAIN
-#     DAST_PASSWORD_FIELD: 'password'
-#     DAST_USERNAME: 'dast-tester123'
-#     DAST_USERNAME_FIELD: 'username'
-#     DAST_PASSWORD: 
-#   only: 
-#     - feature/513-review-app
-  
-
 
 deployToDev:
   stage: deploy
