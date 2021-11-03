@@ -91,7 +91,17 @@ stop_review:
   tags:
     - dex-deploy-review
   when: manual
- 
+
+dast:
+  stage: dast
+  variables: 
+    DAST_AUTH_URL: http://$APPS_DOMAIN
+    DAST_PASSWORD_FIELD: 'password'
+    DAST_USERNAME: 'dast-tester123'
+    DAST_USERNAME_FIELD: 'username'
+    DAST_PASSWORD: 'kBi3uwtzJWxej39'
+
+
 deployToDev:
   stage: deploy
   dependencies:
