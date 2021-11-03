@@ -714,7 +714,8 @@ export const en = {
         "createUser": {
             "title": "New Account",
             "aboutLogin": "The account name you choose needs to be unique, as it will be registered publicly on the blockchain and will be your identifer for any transactions you make.",
-            "referrer": "Note that you'll create new account with reference provided by %(referrer)s"
+            "referrer": "Note that you'll create new account with reference provided by %(referrer)s",
+            "referrerError": "There is no account with %(referrer)s name"
         },
         "login": {
             "title": "Log in"

@@ -28,7 +28,9 @@ class Form extends Component{
         data: this.props.defaultData || {},
         errors: {}
     };
-
+    componentDidUpdate(prevProps, prevState) {
+        this.state.data = this.props.defaultData || {}
+    }
     handleChange = (val, id) =>  handleData(this, val, id)
         .then((result) => this.validateAndSetState(this.form, result));
 
