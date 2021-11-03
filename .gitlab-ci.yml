@@ -71,7 +71,7 @@ deploy_review:
     name: review/$CI_COMMIT_REF_NAME
     url: http://$CI_ENVIRONMENT_SLUG.$APPS_DOMAIN
     on_stop: stop_review_app
-    auto_stop_in: 1 hour
+    auto_stop_in: 1 week
   only: 
     - branches
   except:
