@@ -70,7 +70,7 @@ deploy_review:
   environment:
     name: review/$CI_COMMIT_REF_NAME
     url: http://$CI_ENVIRONMENT_SLUG.$APPS_DOMAIN
-    on_stop: stop_review
+    on_stop: stop_review_app
     #url: http://$CI_ENVIRONMENT_SLUG.$APPS_DOMAIN
   only: 
     - branches
@@ -79,12 +79,11 @@ deploy_review:
   tags:
     - dex-deploy-review
 
-stop_review:
+stop_review_app:
   stage: review
-  script:
-    - echo "Remove review app"
+  script: stop-review-app
   environment:
-    name: review/$CI_COMMIT_REF_NAME
+    name: review/$CI_COMMIT_REF_SLUG
     action: stop
   only: 
     - branches
