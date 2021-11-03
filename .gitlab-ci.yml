@@ -92,16 +92,16 @@ stop_review:
     - dex-deploy-review
   when: manual
 
-dast:
-  stage: dast
-  variables: 
-    DAST_AUTH_URL: https://$CI_ENVIRONMENT_SLUG.$APPS_DOMAIN
-    DAST_PASSWORD_FIELD: 'password'
-    DAST_USERNAME: 'dast-tester123'
-    DAST_USERNAME_FIELD: 'username'
-    DAST_PASSWORD: 'kBi3uwtzJWxej39'
-  only: 
-    - feature/513-review-app
+# dast:
+#   stage: dast
+#   variables: 
+#     DAST_AUTH_URL: https://$CI_ENVIRONMENT_SLUG.$APPS_DOMAIN
+#     DAST_PASSWORD_FIELD: 'password'
+#     DAST_USERNAME: 'dast-tester123'
+#     DAST_USERNAME_FIELD: 'username'
+#     DAST_PASSWORD: 
+#   only: 
+#     - feature/513-review-app
   
 
 
