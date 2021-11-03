@@ -15,6 +15,12 @@ const getSymbolsList = async (symbol) => (
         .map(item => item.name)
 );
 
+const getUserAssetsList = async (symbol) => (
+    getAccountData().assets
+        .filter(item?item.name.includes(symbol):[])
+        .map(item => item.name)
+);
+
 class SendForm extends Component {
     state = {
         sended: false,
@@ -104,14 +110,26 @@ class SendForm extends Component {
                                             defaultHints={data.contacts}
                                             defaultVal = {data}
                                         />
-                                        <Dropdown
+                                        <div className="sellHint">
+                                        <FieldWithHint
+                                            name="quantityAsset"
+                                            method={getUserAssetsList}
+                                            hideLabel={true}
+                                            handleChange={form.handleChange}
+                                            errors={errors}
+                                            defaultHints={userTokens}
+                                            defaultVal = {data.quantityAsset}
+                                            readOnly={true}
+                                        />
+                                        </div>
+                                        {/* <Dropdown
                                             btn={<SelectHeader
                                                 text={data.quantityAsset}
                                             />}
-                                            list={userTokens.map(e => <button
+                                            list={userTokens.map(e => <span 
                                                 onClick={() => form.handleChange(e.symbol, 'quantityAsset')}
-                                                type="button">{e.symbol}</button>)}
-                                        />
+                                                type="button">{e.symbol}</span>)}
+                                        /> */}
                                     </div>
                                     <div className="input__row">
                                         <Textarea
