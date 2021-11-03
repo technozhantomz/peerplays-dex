@@ -65,8 +65,8 @@ deploy_review:
   dependencies:
     - build_dev
   script: 
-    - if "$QA_DEPLOY_DIR"; then rm -rf $QA_DEPLOY_DIR/*; else exit 1; fi
-    - if "$QA_DEPLOY_DIR"; then cp -R dist/* $QA_DEPLOY_DIR; else exit 1; fi 
+    - if [ -d "$QA_DEPLOY_DIR" ]; then rm -rf $QA_DEPLOY_DIR/*; else exit 1; fi
+    - if [ -d "$QA_DEPLOY_DIR" ]; then cp -R dist/* $QA_DEPLOY_DIR; else exit 1; fi 
   environment:
     name: review/$CI_COMMIT_REF_NAME
     url: http://$CI_ENVIRONMENT_SLUG.$APPS_DOMAIN
