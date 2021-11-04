@@ -90,6 +90,7 @@ class BuyForm extends Component{
                 type="limit_order_create"
                 defaultData={defaultData}
                 requiredFields={['amount_to_sell', 'amount_to_receive']}
+                requiredQuantity = {['amount_to_receive']}
                 mutateData={mutations}
                 action={sellBuy}
                 handleResult={this.resetForm}
@@ -109,7 +110,7 @@ class BuyForm extends Component{
                                     className="with-border"
                                     onChange={form.handleChange}
                                     value={data}
-                                    error={errors}
+                                    error={errors} 
                                 />
                                 <ControlledInput
                                     id={`${type}-receive`}
