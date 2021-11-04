@@ -187,10 +187,8 @@ const Voting = (props) => {
                         votingMenu.map((el, id) => (
                             <Route
                                 key={id}
-                                content={`voting.${el.tag}.title`}
-                                component={NavLink}
-                                to={`/voting1${el.link}`}
-                                className="page__menu-item"
+                                path={`/voting${el.link}`}
+                                render={() => el.render(account, props.data, cancelVotes, { setNewVotes, newVotes })}
                                 exact
                             />
                         ))

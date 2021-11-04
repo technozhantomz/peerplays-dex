@@ -12,7 +12,7 @@ const getAssetsList = async () => dbApi('list_assets', ['', 100])
 
 const getUserAssetsList = async (symbol) => (
     getAccountData().assets
-        .filter(item.name.includes(symbol))
+        .filter(item?item.name.includes(symbol):[])
         .map(item => item.name)
 );
 
@@ -41,15 +41,15 @@ class QuickSellBuy extends Component {
     handleTransfer = (data) => {
         const context = this;
         this.setState({sended: true}, () => setTimeout(() => context.setState({sended: false}), 5000));
-
+        window.location.reload();
         if(this.props.update) {
             this.props.update();
         }
-
         Array.from(document.querySelectorAll("input:not(:disabled):not([readonly]):not([type=hidden])" +
         ",textarea:not(:disabled):not([readonly])")).forEach(
             (input) => input.value = ""
         );
+        
     };
 
     render() {
@@ -71,7 +71,7 @@ class QuickSellBuy extends Component {
                     {
                         form => {
                             const {errors, data} = form.state;
-
+                                {console.log("userTokens",userTokens)}
                             return (
                                 <Fragment>
                                     <div className="input__row">
@@ -81,7 +81,7 @@ class QuickSellBuy extends Component {
                                             hideLabel={true}
                                             onChange={form.handleChange}
                                             error={errors}
-                                            value={data}
+                                            defaultVal={data}
                                         />
                                         <div className="sellHint">
                                         <FieldWithHint
@@ -102,7 +102,7 @@ class QuickSellBuy extends Component {
                                             hideLabel={true}
                                             onChange={form.handleChange}
                                             error={errors}
-                                            value={data}
+                                            defaultVal={data}
                                         />
                                         <div className="sellHint">
                                         <FieldWithHint
