@@ -65,13 +65,13 @@ deploy_review:
   dependencies:
     - build_dev
   script: 
-    - rm -rf $QA_DEPLOY_DIR/*
-    - cp -R dist/* $QA_DEPLOY_DIR
+    - if [ -d "$QA_DEPLOY_DIR" ]; then rm -rf $QA_DEPLOY_DIR/*; else exit 1; fi
+    - if [ -d "$QA_DEPLOY_DIR" ]; then cp -R dist/* $QA_DEPLOY_DIR; else exit 1; fi 
   environment:
     name: review/$CI_COMMIT_REF_NAME
     url: http://$CI_ENVIRONMENT_SLUG.$APPS_DOMAIN
-    on_stop: stop_review
-    #url: http://$CI_ENVIRONMENT_SLUG.$APPS_DOMAIN
+    on_stop: stop_review_app
+    auto_stop_in: 1 week
   only: 
     - branches
   except:
@@ -79,10 +79,9 @@ deploy_review:
   tags:
     - dex-deploy-review
 
-stop_review:
+stop_review_app:
   stage: review
-  script:
-    - echo "Remove review app"
+  script: stop-review-app
   environment:
     name: review/$CI_COMMIT_REF_NAME
     action: stop
