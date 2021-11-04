@@ -110,26 +110,15 @@ class SendForm extends Component {
                                             defaultHints={data.contacts}
                                             defaultVal = {data}
                                         />
-                                        <div className="sellHint">
                                         <FieldWithHint
                                             name="quantityAsset"
                                             method={getUserAssetsList}
                                             hideLabel={true}
                                             handleChange={form.handleChange}
                                             errors={errors}
-                                            defaultHints={userTokens}
-                                            defaultVal = {data.quantityAsset}
+                                            defaultVal = {data}
                                             readOnly={true}
                                         />
-                                        </div>
-                                        {/* <Dropdown
-                                            btn={<SelectHeader
-                                                text={data.quantityAsset}
-                                            />}
-                                            list={userTokens.map(e => <span 
-                                                onClick={() => form.handleChange(e.symbol, 'quantityAsset')}
-                                                type="button">{e.symbol}</span>)}
-                                        /> */}
                                     </div>
                                     <div className="input__row">
                                         <Textarea
