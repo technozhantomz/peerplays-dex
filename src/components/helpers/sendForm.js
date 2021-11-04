@@ -15,6 +15,12 @@ const getSymbolsList = async (symbol) => (
         .map(item => item.name)
 );
 
+const getUserAssetsList = async (symbol) => (
+    getAccountData().assets
+        .filter(item?item.name.includes(symbol):[])
+        .map(item => item.name)
+);
+
 class SendForm extends Component {
     state = {
         sended: false,
@@ -104,13 +110,14 @@ class SendForm extends Component {
                                             defaultHints={data.contacts}
                                             defaultVal = {data}
                                         />
-                                        <Dropdown
-                                            btn={<SelectHeader
-                                                text={data.quantityAsset}
-                                            />}
-                                            list={userTokens.map(e => <button
-                                                onClick={() => form.handleChange(e.symbol, 'quantityAsset')}
-                                                type="button">{e.symbol}</button>)}
+                                        <FieldWithHint
+                                            name="quantityAsset"
+                                            method={getUserAssetsList}
+                                            hideLabel={true}
+                                            handleChange={form.handleChange}
+                                            errors={errors}
+                                            defaultVal = {data}
+                                            readOnly={true}
                                         />
                                     </div>
                                     <div className="input__row">
