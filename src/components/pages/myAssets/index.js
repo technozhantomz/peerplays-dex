@@ -10,6 +10,7 @@ import UserActivity from "../user/userActivity";
 import UserMargins from "../user/userMargins";
 import NeedToLogin from "../../helpers/needToLogin";
 import AssetWithdraw from "./assetsWithdraw";
+import AssetDeposit from './assetsDeposit';
 
 const basicMenu = [
     {
@@ -37,11 +38,16 @@ const basicMenu = [
     //     tag: 'permissions',
     //     component: AssetsPermissions
     // }
-    // {
-    //     link: '/withdraw',
-    //     tag: 'withdraw',
-    //     component: AssetWithdraw
-    // }
+    {
+        link: '/withdraw',
+        tag: 'withdraw',
+        component: AssetWithdraw
+    },
+    {
+        link: '/deposit',
+        tag: 'deposit',
+        component: AssetDeposit
+    }
 ];
 
 class MyAssets extends Component{
