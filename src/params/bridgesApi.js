@@ -96,26 +96,26 @@ const xbtsxAPIs = {
 };
 
 export const bridgesList = [
-    {
-        name: 'Block Trades',
-        api: blockTradesAPIs
-    },
-    {
-        name: 'Open Ledger',
-        api: openledgerAPIs
-    },
-    {
-        name: 'Rudex',
-        api: rudexAPIs
-    },
-    {
-        name: 'Bitspark',
-        api: bitsparkAPIs
-    },
-    {
-        name: 'Crypto Bridge',
-        api: cryptoBridgeAPIs
-    },
+    // {
+    //     name: 'Block Trades',
+    //     api: blockTradesAPIs
+    // },
+    // {
+    //     name: 'Open Ledger',
+    //     api: openledgerAPIs
+    // },
+    // {
+    //     name: 'Rudex',
+    //     api: rudexAPIs
+    // },
+    // {
+    //     name: 'Bitspark',
+    //     api: bitsparkAPIs
+    // },
+    // {
+    //     name: 'Crypto Bridge',
+    //     api: cryptoBridgeAPIs
+    // },
     // {
     //     name: 'Widechain',
     //     api: widechainAPIs
@@ -124,10 +124,10 @@ export const bridgesList = [
     //     name: 'Citadel',
     //     api: citadelAPIs
     // },
-    {
-        name: 'Gdex',
-        api: gdex2APIs
-    },
+    // {
+    //     name: 'Gdex',
+    //     api: gdex2APIs
+    // },
     // {
     //     name: 'Gdex (old)',
     //     api: gdexAPIs
