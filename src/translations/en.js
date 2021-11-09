@@ -254,7 +254,7 @@ export const en = {
         "bidCollateral": {
             "title": "Bid Collateral",
             "text": "Unfortunately, BTC is in Global Settlement. During this time it is possible to bid on the collateral in the Settlement Fund and the debt it covers. When the total outstanding debt is covered by bids, and the additional collateral of each bid plus its share from the settlement fund is greater than the MCR, the asset is automatically revived and a margin position is created for each bid. \n" +
-            "Bids will be included on revival sorted by their bid price until the whole debt is covered (last bid might be covered partially). Included bids will be converted into margin positions and receive the residual collateral such that the position reaches MCR from the settlement fund. Not included bids will be reimbursed. A bid can be removed by placing a zero collateral bid."
+                "Bids will be included on revival sorted by their bid price until the whole debt is covered (last bid might be covered partially). Included bids will be converted into margin positions and receive the residual collateral such that the position reaches MCR from the settlement fund. Not included bids will be reimbursed. A bid can be removed by placing a zero collateral bid."
         },
         "smallCard": {
             "title": "TEST : ETH"
@@ -366,8 +366,22 @@ export const en = {
             "title": "Committee"
         },
         "son": {
-          "title": "SON"
-        }
+            "title": "SON"
+        },
+        "performance": {
+            "title": "Voting Performance",
+            "max": "Max Rewards",
+            "great": "Great Rewards",
+            "good": "Good Rewards",
+            "ok": "OK Rewards",
+            "low": "Low Rewards",
+            "lower": "Lower Rewards",
+            "crit": "Critical Low",
+            "none": "No Rewards"
+        },
+        "percent": "Qualified Reward %",
+        "potential": "Estimated Rake Reward %",
+        "next_vote": "Next vote update"
     },
     "business": {
         "title": "Business"
@@ -760,7 +774,7 @@ export const en = {
             "title": "Withdraw %(asset)s"
         },
         "generateAddress": {
-          "title": "Generate %(sidechain)s Address"
+            "title": "Generate %(sidechain)s Address"
         }
     },
     "buttons": {
