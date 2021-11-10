@@ -107,7 +107,7 @@ const calculateWithdrawFee = data => {
     }
 
     const userBasicAsset = userData.assets.find(el => el.symbol === basicAsset.symbol);
-    const basicAssetAmount  = userBasicAsset ? userBasicAsset.toPrecision() : 0;
+    const basicAssetAmount  = userBasicAsset ? userBasicAsset.amount.toPrecision() : 0;
 
     if(!userBasicAsset || userBasicAsset.setPrecision() <= 0){
         result.feeErr = 'isNotEnough';
@@ -125,7 +125,7 @@ const calculateWithdrawFee = data => {
 
     result.feeAmount = new Asset({...basicAsset, amount: defaultFee + memoCost});
 
-    if(basicAssetAmount < result.feeAmount.toPrecision() + val){
+    if(basicAssetAmount < result.feeAmount.amount.toPrecision() + val){
         result.feeErr = 'isNotEnough';
     }
 
