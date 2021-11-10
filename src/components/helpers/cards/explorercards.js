@@ -17,6 +17,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2),
     textAlign: 'center',
   },
+
 }));
 
 export default function Explorercards(props) {
@@ -25,7 +26,7 @@ export default function Explorercards(props) {
   return (
     <div className={classes.root}>
       <Grid container spacing={3}>
-        <Grid item xs={6} sm={2}>
+        <Grid item xs={6} md={2}>
           <Card className="explorer__cards">
             <CardContent className={classes.paper}>
               <Typography component="h5" variant="h4">
@@ -37,7 +38,7 @@ export default function Explorercards(props) {
             </CardContent>
           </Card>
         </Grid>
-        <Grid item xs={6} sm={2}>
+        <Grid item xs={6} md={2}>
           <Card className="explorer__cards">
             <CardContent className={classes.paper}>
               <Typography component="h5" variant="h4">
@@ -49,7 +50,7 @@ export default function Explorercards(props) {
             </CardContent>
           </Card>
         </Grid>
-        <Grid item xs={6} sm={2}>
+        <Grid item xs={6} md={2}>
           <Card className="explorer__cards">
             <CardContent className={classes.paper}>
               <Typography component="h5" variant="h4">
@@ -61,7 +62,7 @@ export default function Explorercards(props) {
             </CardContent>
           </Card>
         </Grid>
-        <Grid item xs={6} sm={2}>
+        <Grid item xs={6} md={2}>
           <Card className="explorer__cards">
             <CardContent className={classes.paper}>
               <Typography component="h5" variant="h4">
@@ -73,7 +74,7 @@ export default function Explorercards(props) {
             </CardContent>
           </Card>
         </Grid>
-        <Grid item xs={6} sm={2}>
+        <Grid item xs={6} md={2}>
           <Card className="explorer__cards">
             <CardContent className={classes.paper}>
               <Typography component="h5" variant="h4">
@@ -85,7 +86,7 @@ export default function Explorercards(props) {
             </CardContent>
           </Card>
         </Grid>
-        <Grid item xs={6} sm={2}>
+        <Grid item xs={6} md={2}>
           <Card className="explorer__cards">
             <CardContent className={classes.paper}>
               <Typography component="h5" variant="h4">
