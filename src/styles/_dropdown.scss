@@ -32,6 +32,17 @@
         background: $grey-light;
       }
     }
+    & > span{
+      display: block;
+      padding: 1rem 1.5rem;
+      text-align: left;
+      font-family: Open Sans,sans-serif;
+      font-size: 1.4rem;
+      transition: .15s;
+      &:hover{
+        background: $grey-light;
+      }
+    }
   }
   .field{
     border-top-left-radius: 4px;

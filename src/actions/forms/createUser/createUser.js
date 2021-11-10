@@ -27,6 +27,7 @@ export const createUser = async (data, result) => {
 
     if(newUserData.account){
         result.success = true;
+        window.location.reload(true);
         result.callbackData = await formAccountData[type](newUserData.account, additionalData);
     }
 

@@ -8,6 +8,11 @@ import {removeModal} from "../../../dispatch/setModal";
 import {transfer} from "../../../actions/forms/index";
 import Textarea from "../textarea";
 
+const getUserAssetsList = async (symbol) => (
+    getAccountData().assets
+        .filter(item?item.name.includes(symbol):[])
+        .map(item => item.name)
+);
 class SendModal extends Component {
 
     state = {
@@ -87,12 +92,14 @@ class SendModal extends Component {
                                                 error={errors}
                                                 value={data}
                                             />
-                                            <Dropdown
-                                                btn={<SelectHeader
-                                                    text={data.quantityAsset}
-                                                    className="with-bg"
-                                                />}
-                                                list={userTokens.map(e => <button onClick={() => form.handleChange(e.symbol, 'quantityAsset')} type="button">{e.symbol}</button>)}
+                                            <FieldWithHint
+                                                name="quantityAsset"
+                                                method={getUserAssetsList}
+                                                hideLabel={true}
+                                                handleChange={form.handleChange}
+                                                errors={errors}
+                                                defaultVal = {data}
+                                                readOnly={true}
                                             />
                                         </div>
                                         <Textarea
