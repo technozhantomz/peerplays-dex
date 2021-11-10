@@ -31,6 +31,7 @@ const CloudLogin = ({handleLogin}) => (
                         value={form.state.data}
                     />
                     <CheckBox
+                        name="remember"
                         id="remember"
                         labelTag="field.checkboxes.remember"
                         value={form.state.data}

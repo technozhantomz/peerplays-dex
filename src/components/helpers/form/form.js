@@ -36,7 +36,7 @@ class Form extends Component{
         this.setState(state => {
             state.errors = {};
             Object.keys(result.data).map((keyValue) => {
-                if (!form[keyValue] || result.data[keyValue] === form[keyValue].value) {
+                if (!form[keyValue] || result.data[keyValue] === form[keyValue].value || result.data[keyValue] === form[keyValue].checked) {
                     state.data[keyValue] = result.data[keyValue];
                     if (result.errors[keyValue]) {
                         state.errors[keyValue] = result.errors[keyValue];
