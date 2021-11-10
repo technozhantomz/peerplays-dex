@@ -291,7 +291,7 @@ const Voting = (props) => {
                     ))
                 }
             </div>
-            <div className="page__content">
+            <div className="page__content voting__content">
                 <Switch>
                     {
                         votingMenu.map((el, id) => (
