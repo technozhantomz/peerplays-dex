@@ -1,40 +1,41 @@
-import React, {Component, Fragment} from "react";
+import React, { Component, Fragment } from "react";
 import Form from "../../form/form";
 import Input from "../../form/input";
 import Close from "../decoration/close";
-import {clearLayout} from "../../../../dispatch/index";
-import {getAccountData, getStore} from "../../../../actions/store/index";
+import { clearLayout } from "../../../../dispatch/index";
+import { getAccountData, getStore } from "../../../../actions/store/index";
 import ModalTitle from "../decoration/modalTitle";
 import Submit from "../decoration/submit";
-import {getGlobalData} from "../../../../actions/dataFetching/getGlobalData";
-import {setAccount} from "../../../../dispatch/setAccount";
+import { getGlobalData } from "../../../../actions/dataFetching/getGlobalData";
 
 const checkPassword = async (data, result) => {
-    const {loginData, accountData} = getStore();
+    const { loginData, accountData } = getStore();
 
     const checkPassword = loginData.checkPassword(data.password, accountData);
 
-    if(!checkPassword){
+    if (!checkPassword) {
         result.errors.password = 'wrongPass';
         return result;
     }
 
     result.success = true;
     result.callbackData = { password: data.password };
-    if(result.success = true){
-    setTimeout(()=>{
-        getGlobalData()
-        .then(({userData}) => {
-            if(userData) setAccount(userData);
-        })
-    },2000)
-         
+    if (result.success = true) {
+        setTimeout(() => {
+            getGlobalData()
+                .then(({ userData }) => {
+                    if (userData) {
+                        userData.loginData.savePassword(data.password);
+                    } 
+                })
+        }, 2000)
+
     }
 
     return result;
 };
 
-class PasswordCheck extends Component{
+class PasswordCheck extends Component {
 
     state = {
         login: getAccountData().name
@@ -45,10 +46,10 @@ class PasswordCheck extends Component{
         this.props.callback && this.props.callback(data.password);
     };
 
-    render(){
-        return(
+    render() {
+        return (
             <Fragment>
-                <ModalTitle tag="unlock" additionalData={{login: this.state.login}} />
+                <ModalTitle tag="unlock" additionalData={{ login: this.state.login }} />
                 <Form requiredFields={['password']} action={checkPassword} handleResult={this.handleResult}>
                     {
                         form => <Fragment>
