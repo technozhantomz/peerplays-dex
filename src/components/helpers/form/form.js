@@ -39,6 +39,7 @@ class Form extends Component {
                     }
                 }
             });
+            state.data['amount_to_sell'] = state.data.price * state.data.amount_to_receive
             return state
         });
     }
