@@ -39,7 +39,6 @@ const basicMenu = [
     //     tag: 'permissions',
     //     component: AssetsPermissions
     // }
-<<<<<<< HEAD
     {
         link: '/withdraw',
         tag: 'withdraw',
@@ -49,12 +48,6 @@ const basicMenu = [
     //     link: '/deposit',
     //     tag: 'deposit',
     //     component: AssetDeposit
-=======
-    // {
-    //     link: '/withdraw',
-    //     tag: 'withdraw',
-    //     component: AssetWithdraw
->>>>>>> parent of f86b489 (#423 fix bridge data missing and display withdraw and deplosit pages)
     // }
 ];
 
