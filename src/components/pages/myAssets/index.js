@@ -10,11 +10,8 @@ import UserActivity from "../user/userActivity";
 import UserMargins from "../user/userMargins";
 import NeedToLogin from "../../helpers/needToLogin";
 import AssetWithdraw from "./assetsWithdraw";
-<<<<<<< HEAD
 import AssetDeposit from './assetsDeposit';
 import SendForm from '../../helpers/sendForm';
-=======
->>>>>>> parent of f86b489 (#423 fix bridge data missing and display withdraw and deplosit pages)
 
 const basicMenu = [
     {
