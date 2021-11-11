@@ -11,6 +11,7 @@ import UserMargins from "../user/userMargins";
 import NeedToLogin from "../../helpers/needToLogin";
 import AssetWithdraw from "./assetsWithdraw";
 import AssetDeposit from './assetsDeposit';
+import SendForm from '../../helpers/sendForm';
 
 const basicMenu = [
     {
@@ -41,13 +42,13 @@ const basicMenu = [
     {
         link: '/withdraw',
         tag: 'withdraw',
-        component: AssetWithdraw
+        component: SendForm
     },
-    {
-        link: '/deposit',
-        tag: 'deposit',
-        component: AssetDeposit
-    }
+    // {
+    //     link: '/deposit',
+    //     tag: 'deposit',
+    //     component: AssetDeposit
+    // }
 ];
 
 class MyAssets extends Component{
