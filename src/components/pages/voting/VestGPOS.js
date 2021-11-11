@@ -72,7 +72,7 @@ const VestGPOS = (props) => {
 				/>
 
 				<div style={{ marginTop: 12 }}>
-					New GPOS Balance: <strong>{totalGpos + parseFloat(vestAmount)} {symbol}</strong>
+					New GPOS Balance: <strong>{totalGpos + vestAmount?parseFloat(vestAmount):0} {symbol}</strong>
 				</div>
 			</CardContent>
 			<CardActions >
