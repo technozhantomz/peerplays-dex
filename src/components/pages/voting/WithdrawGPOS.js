@@ -79,7 +79,7 @@ const WithdrawGPOS = (props) => {
 				/>
 
 				<div style={{ marginTop: 12 }}>
-					New GPOS Balance: <strong>{totalGpos - parseFloat(withdrawAmount)} {symbol}</strong>
+					New GPOS Balance: <strong>{totalGpos - withdrawAmount?parseFloat(withdrawAmount):0} {symbol}</strong>
 				</div>
 			</CardContent>
 

@@ -229,7 +229,7 @@ const Voting = (props) => {
             <div>
                 <Grid container spacing={1}>
                     <Grid item xs={12} sm={6}>
-                        <VestGPOS symbol_id={symbol_id} symbol={Symbol} precision={precision} totalGpos={totalGpos} getAssets={getAssets} />
+                        <VestGPOS symbol_id={symbol_id} symbol={symbol} precision={precision} totalGpos={totalGpos} getAssets={getAssets} />
                     </Grid>
                     <Grid item xs={12} sm={6}>
                         <WithdrawGPOS symbol_id={symbol_id} symbol={symbol} precision={precision} totalGpos={totalGpos} availableGpos={availableGpos} getAssets={getAssets} />
