@@ -177,3 +177,11 @@ svg .mask{
 .mt-2{
   margin-top: 2.2rem;
 }
+
+@media(max-width:320px){
+  .login-needed{
+    &__image{
+      margin-top: 1rem;
+    }
+  }
+}
