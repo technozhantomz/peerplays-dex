@@ -5,7 +5,6 @@ import {getStore} from "../store";
 import {getDefaultFee} from "./getDefaultFee";
 
 export const transfer = async (data, result) => {
-console.log("call trasfer")
     if(data.to === data.from){
         result.errors['to'] = 'sendYourself';
         return result;
