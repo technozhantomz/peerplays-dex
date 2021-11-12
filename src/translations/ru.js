@@ -115,6 +115,10 @@ export const ru = {
             "title": "Предложение Создать",
             "description": ""
         },
+        "balance_claim": {
+            "title": "требование баланса",
+            "description": ""
+        },
         "transfer": {
             "title": "Перевод",
             "description": ""

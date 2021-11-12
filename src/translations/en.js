@@ -116,6 +116,10 @@ export const en = {
             "title": "Proposal Create",
             "description": ""
         },
+        "balance_claim": {
+            "title": "Balance claim",
+            "description": ""
+        },
         "transfer": {
             "title": "Transfer",
             "description": ""
