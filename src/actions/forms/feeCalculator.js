@@ -19,7 +19,7 @@ const calculateFee = (type, errVariable, quantity, assetName, memo) => {
         result.feeErr = 'isNan';
         return result;
     } else if(Number(val) <= 0){
-        result.feeErr = 'isNull';
+        result.feeErr = 'isZero';
         return result;
     }
 
