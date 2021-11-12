@@ -3,11 +3,11 @@ import {getAccountData} from "../../store";
 export const checkAmountToSell = ({type, buyAsset, sellAsset, amount_to_receive, amount_to_sell}) => {
 
     if(!type && !amount_to_sell) {
-      return false;
+      return 'required';
     } else {
       if(!type) {
         const userAsset = getAccountData().assets.find(el => el.symbol === sellAsset);
-        return amount_to_sell <= 0 ? 'required' : userAsset && userAsset.setPrecision() >= amount_to_sell ? false : 'isNotEnough';
+        return amount_to_sell <= 0 ? 'isZero' : userAsset && userAsset.setPrecision() >= amount_to_sell ? false : 'isNotEnough';
       } else if(type === 'sell') {
         const userAsset = getAccountData().assets.find(el => el.symbol === buyAsset);
         return userAsset && userAsset.setPrecision() >= amount_to_receive ? false : 'isNotEnough';
