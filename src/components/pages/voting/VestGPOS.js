@@ -12,7 +12,7 @@ const VestGPOS = (props) => {
 	const [vestAmount, setVestAmount] = useState(0);
 
 	const SubmitGposVesting = () => {
-		const begin_timestamp = new Date().toISOString().replace('Z', '');
+    const begin_timestamp = new Date().toISOString().replace('Z', '');
 
 		const trx = {
 			type: 'vesting_balance_create',
@@ -70,13 +70,15 @@ const VestGPOS = (props) => {
 					onChange={(value) => setVestAmount(value)}
 					value={vestAmount}
 				/>
-
+				<div style={{ marginTop: 12, color: "#ff444a",display:(vestAmount == null || vestAmount == 0)?"block":"none"  }}>
+				     This field is required and not zero
+				</div>
 				<div style={{ marginTop: 12 }}>
 					New GPOS Balance: <strong>{totalGpos + vestAmount?parseFloat(vestAmount):0} {symbol}</strong>
 				</div>
 			</CardContent>
 			<CardActions >
-				<button className="btn-round btn-round--buy" onClick={SubmitGposVesting}>Vest</button>
+				<button className="btn-round btn-round--buy" onClick={()=> (vestAmount == null || vestAmount == 0)?"":SubmitGposVesting()}>Vest</button>
 			</CardActions>
 		</Card>
 	)
