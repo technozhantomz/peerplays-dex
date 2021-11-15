@@ -63,7 +63,6 @@ class TableMyAssets extends Component {
     };
 
     componentDidMount() {
-        console.log('ghasem')
         getData().then(e => this.setState({data: e}));
     }
 
