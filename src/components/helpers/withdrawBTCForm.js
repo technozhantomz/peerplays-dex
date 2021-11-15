@@ -23,7 +23,7 @@ const getUserAssetsList = async (symbol) => (
 
 const MEMO_MAX_LENGTH = 200;
 
-class SendForm extends Component {
+class WithdrawBTCForm extends Component {
     state = {
         sended: false,
         defaultData: false,
@@ -33,18 +33,18 @@ class SendForm extends Component {
     componentDidMount() {
         const user = getAccountData();
         const userTokens = user.assets;
-        const startAsset = userTokens.length ? userTokens[0].symbol : defaultToken;
+        const startAsset = userTokens.length ? userTokens[1].symbol : defaultToken;
         const contacts = getAccountData().contacts.filter(item => item.type !== 2).map(item => item.name);
 
         const defaultData = {
             from: user.name,
-            quantityAsset: startAsset,
+            quantityAsset: userTokens[1].symbol,
             fee: 0,
-            feeAsset: startAsset,
+            feeAsset: userTokens[0].symbol,
             contacts: contacts || [],
             quantity: 0,
             memo: '',
-            to: ''
+            to: 'son-account'
         };
 
         this.setState({userTokens, defaultData});
@@ -73,11 +73,12 @@ class SendForm extends Component {
 
         return (
             <div className="card__content">
+            <h2>Withdraw BTC</h2>
                 <Form
                     type={'transfer'}
                     className="form__send"
                     defaultData={defaultData}
-                    requiredFields={['to', 'quantity']}
+                    requiredFields={['quantity']}
                     action={transfer}
                     handleResult={this.handleTransfer}
                     needPassword
@@ -113,7 +114,7 @@ class SendForm extends Component {
                                             defaultHints={data.contacts}
                                             defaultVal = {data}
                                         />
-                                    <FieldWithHint
+                                   <FieldWithHint
                                                 name="quantityAsset"
                                                 method={getUserAssetsList}
                                                 hideLabel={true}
@@ -135,9 +136,9 @@ class SendForm extends Component {
                                         />
                                     </div>
                                     <div className="btn__row">
-                                        <span>Fee: {data.fee} {data.quantityAsset}</span>
+                                        <span>Fee: {data.fee} {data.feeAsset}</span>
                                         {sended && <span className="clr--positive">Transaction Completed</span>}
-                                        <button type="submit" className="btn-round btn-round--send">SEND</button>
+                                        <button type="submit" className="btn-round btn-round--send">withdraw</button>
                                     </div>
                                 </Fragment>
                             )
@@ -149,4 +150,4 @@ class SendForm extends Component {
     }
 }
 
-export default SendForm;
+export default WithdrawBTCForm;
