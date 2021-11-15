@@ -22,12 +22,10 @@ const checkPassword = async (data, result) => {
     result.callbackData = { password: data.password };
     if (result.success = true) {
         setTimeout(() => {
-            getGlobalData()
-                .then(({ userData }) => {
-                    if (userData) {
-                        userData.loginData.savePassword(data.password);
-                    } 
-                })
+            const globalData = getGlobalData();
+            if(globalData.hasOwnProperty('userData')) {
+                globalData.userData.loginData.savePassword(data.password);
+            }
         }, 2000)
 
     }
