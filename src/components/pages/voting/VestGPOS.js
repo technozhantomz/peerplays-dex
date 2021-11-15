@@ -12,8 +12,7 @@ const VestGPOS = (props) => {
 	const [vestAmount, setVestAmount] = useState(0);
 
 	const SubmitGposVesting = () => {
-    const begin_timestamp = new Date().toISOString().replace('Z', '');
-
+		const begin_timestamp = new Date().toISOString().replace('Z', '');
 		const trx = {
 			type: 'vesting_balance_create',
 			params: {
@@ -45,7 +44,7 @@ const VestGPOS = (props) => {
 				setVestAmount(0);
 			});
 		});
-	}
+	};
 	return (
 		<Card mode="widget">
 			<div className="card__title">
@@ -66,6 +65,7 @@ const VestGPOS = (props) => {
 					type="number"
 					className="field__input form-control cpointer"
 					min={0}
+					precision={accountData.assets[0].precision}
 					max={accountData.assets[0].amount / (10 ** accountData.assets[0].precision)}
 					onChange={(value) => setVestAmount(value)}
 					value={vestAmount}
