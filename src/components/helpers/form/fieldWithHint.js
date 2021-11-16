@@ -92,7 +92,7 @@ class FieldWithHint extends Component{
                 <div className="dropdown__body custom-scroll">
                     {hasHints && hints.map(e => (
                         <div key={e} className="dropdown__item">
-                            <span onClick={() => this.setNewVal(e)}>{e}</span>
+                            <span  className="cpointer" onClick={() => this.setNewVal(e)}>{e}</span>
                         </div>
                     ))}
                 </div>
