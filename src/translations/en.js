@@ -286,7 +286,7 @@ export const en = {
         "title": "Exchange",
         "price": "Current Price",
         "change": "Change (24h)",
-        "volume": "Volume (24h)",
+        "value": "Value (24h)",
         "feed": "Feed Price",
         "limit": "Call Limit",
         "margin": "Margin Call",
