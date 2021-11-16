@@ -10,10 +10,10 @@ const VestGPOS = (props) => {
 	const { symbol_id, precision, symbol, totalGpos, getAssets } = props;
 	const { loginData, accountData } = getStore();
 	const [vestAmount, setVestAmount] = useState(0);
+	const accBalance = accountData.assets[0].amount / (10 ** accountData.assets[0].precision);
 
 	const SubmitGposVesting = () => {
-    const begin_timestamp = new Date().toISOString().replace('Z', '');
-
+		const begin_timestamp = new Date().toISOString().replace('Z', '');
 		const trx = {
 			type: 'vesting_balance_create',
 			params: {
@@ -45,7 +45,7 @@ const VestGPOS = (props) => {
 				setVestAmount(0);
 			});
 		});
-	}
+	};
 	return (
 		<Card mode="widget">
 			<div className="card__title">
@@ -66,19 +66,28 @@ const VestGPOS = (props) => {
 					type="number"
 					className="field__input form-control cpointer"
 					min={0}
-					max={accountData.assets[0].amount / (10 ** accountData.assets[0].precision)}
+					step={(component, direction) => {
+    					// for values smaller than 1 the step is 0.1
+						// for values greater than 1 the step is 1
+						return component.state.value < 1 ? 0.1 : 1
+					}}
+					precision={accountData.assets[0].precision}
+					max={accBalance}
 					onChange={(value) => setVestAmount(value)}
 					value={vestAmount}
 				/>
 				<div style={{ marginTop: 12, color: "#ff444a",display:(vestAmount == null || vestAmount == 0)?"block":"none"  }}>
 				     This field is required and not zero
 				</div>
+				<div style={{ marginTop: 12, color: "#ff444a",display:(vestAmount == null || vestAmount > accBalance)?"block":"none"  }}>
+					 Value cannot exceed {accBalance}
+				</div>
 				<div style={{ marginTop: 12 }}>
 					New GPOS Balance: <strong>{totalGpos + vestAmount?parseFloat(vestAmount):0} {symbol}</strong>
 				</div>
 			</CardContent>
 			<CardActions >
-				<button className="btn-round btn-round--buy" onClick={()=> (vestAmount == null || vestAmount == 0)?"":SubmitGposVesting()}>Vest</button>
+				<button className="btn-round btn-round--buy" onClick={()=> (vestAmount == null || vestAmount == 0 || vestAmount > accBalance)?"":SubmitGposVesting()}>Vest</button>
 			</CardActions>
 		</Card>
 	)
