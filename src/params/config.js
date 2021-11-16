@@ -1,11 +1,12 @@
-const isDev = process.env.NODE_ENV === 'development';
+const isDev = process.env.NODE_ENV === 'production';
 const {
   DEFAULT_TOKEN,
   DEFAULT_QUOTE,
   FAUCET_URL,
   DEX_URL,
   DEFAULT_CHAIN_ID,
-  BLOCKCHAIN_ENDPOINTS,
+  BLOCKCHAIN_USE_MAINNET
+  //BLOCKCHAIN_ENDPOINTS,
 } = process.env;
 
 /**
