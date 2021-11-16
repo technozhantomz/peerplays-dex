@@ -16,8 +16,11 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     padding: theme.spacing(2),
     textAlign: 'center',
-  },
-
+    '& div': {
+      fontSize: '1.75rem',
+      overflowWrap: 'break-word' 
+    }
+  }
 }));
 
 export default function Explorercards(props) {

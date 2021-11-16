@@ -8,9 +8,10 @@ class FieldWithHint extends Component{
     state = {
         data: {},
         hints: [],
-        timeout: false
+        timeout: false,
+        dropdown:false,
     };
-
+     
     componentDidMount(){
         const {defaultVal, name} = this.props;
         const data = {};
@@ -18,6 +19,7 @@ class FieldWithHint extends Component{
             data[name] = defaultVal[name];
             this.setState({data});
         }
+        
     }
 
     componentDidUpdate(prevProps) {
@@ -31,6 +33,11 @@ class FieldWithHint extends Component{
     componentWillUnmount() { this.removeListener(); }
 
     handleChange = (val, name) => {
+        this.state.dropdown = !this.state.dropdown
+        if(this.state.dropdown){
+          this.close();
+         return;
+        }
         let {data, timeout} = this.state;
         data[name] = val;
 
@@ -84,15 +91,16 @@ class FieldWithHint extends Component{
                     hideLabel={hideLabel}
                     onChange={this.handleChange}
                     onFocus={this.handleChange}
+                    onClick={this.handleChange}
                     value={data}
                     readOnly={readOnly}
                 />
-                <Caret className='field__caret'/>
+                <Caret className='field__caret' />
                 { data[name] && errors && errors[name] && <Translate content={`errors.${errors[name]}`} className="field__error" /> }
                 <div className="dropdown__body custom-scroll">
                     {hasHints && hints.map(e => (
                         <div key={e} className="dropdown__item">
-                            <span onClick={() => this.setNewVal(e)}>{e}</span>
+                            <span  className="cpointer" onClick={() => this.setNewVal(e)}>{e}</span>
                         </div>
                     ))}
                 </div>

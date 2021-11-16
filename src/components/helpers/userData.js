@@ -32,6 +32,8 @@ const UserData = (props) => {
             removeStorageItem(type, 'sessionStorage');
             store.dispatch({ type: `REMOVE_${type.toUpperCase()}` })
         });
+        removeStorageItem('referrer');
+        removeStorageItem('referrer', 'sessionStorage');
         store.dispatch({ type: 'SET_SIDECHAIN_ACCOUNTS', payload: false })
         history.push('/');
     };

@@ -15,7 +15,7 @@ import { getAccountData } from "../../actions/store";
 import VestGPOS from './voting/VestGPOS';
 import WithdrawGPOS from './voting/WithdrawGPOS';
 import { getAsset } from '../../actions/assets/getAsset';
-import { Grid, Card, CardContent } from '@material-ui/core';
+import { Grid, Card, CardContent, makeStyles } from '@material-ui/core';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
 
@@ -83,6 +83,14 @@ const votingMenu = [
     }
 ];
 
+const useStyles = makeStyles((theme) => ({
+    toastify: {
+        '& .Toastify__toast-icon': {
+            padding: '8px',
+        },
+    },
+}));
+
 const Voting = (props) => {
     const { account, votes, maintenance } = props;
     const [totalGpos, setTotalGpos] = useState(0);
@@ -97,6 +105,8 @@ const Voting = (props) => {
     const [cancelVotes, setCancelVotes] = useState(false);
     const [newVotes, setNewVotes] = useState(props.account.votes.map(el => el.vote_id));
     const [gposSubPeriodStr, setGposSubPeriodStr] = useState('Calculating')
+
+    const classes = useStyles();
 
     const trimNum = (num, digits) => {
         // Early return if NaN
@@ -311,7 +321,7 @@ const Voting = (props) => {
                 cancelFunc={reset}
                 saveFunc={handleSave}
             />
-            <ToastContainer />
+            <ToastContainer className={classes.toastify}/>
         </div>
     )
 }
