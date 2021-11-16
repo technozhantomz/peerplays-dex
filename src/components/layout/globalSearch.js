@@ -18,12 +18,13 @@ class GlobalSearch extends Component{
     };
 
     componentWillReceiveProps(nextProps){
+        this.setState({searchType:searchTypes[0]})
         if(this.props.open === nextProps.open) return;
         blockContent(nextProps.open);
     }
 
     changeSearchType = searchType => this.getResult(searchType, this.state.value);
-    handleSearch = value => this.getResult(this.state.searchType, value);
+    handleSearch = value => this.getResult(this.state.searchType, value.trim());
     getResult = (searchType, value) => {
         if(!value) return this.setState({result: [], value, searchType});
         searchFuncs[searchType](value).then(result => this.setState({searchType, result, value}));

@@ -8,11 +8,13 @@ const Textarea = (props) => {
         value,
         disabled = false,
         onChange,
+        maxLength,
     } = props;
 
     return (
         <FieldWrapper {...props}>
             <textarea
+                maxLength={maxLength}
                 id={name}
                 name={name}
                 defaultValue={value[name]}

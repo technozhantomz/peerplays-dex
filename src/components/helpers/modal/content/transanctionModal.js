@@ -47,7 +47,7 @@ class TransactionModal extends Component {
                 </div>
                 <div className="operation__block">
                     <div className="header">
-                        <div className="number">#{this.props.data.opNum}</div>
+                        {!!(this.props.data.opNum) && <div className="number">#{this.props.data.opNum}</div>}
                         {this.props.data.type}
                     </div>
                     {

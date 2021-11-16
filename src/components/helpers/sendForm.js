@@ -15,6 +15,14 @@ const getSymbolsList = async (symbol) => (
         .map(item => item.name)
 );
 
+const getUserAssetsList = async (symbol) => (
+    getAccountData().assets
+        .filter(item?item.name.includes(symbol):[])
+        .map(item => item.name)
+);
+
+const MEMO_MAX_LENGTH = 200;
+
 class SendForm extends Component {
     state = {
         sended: false,
@@ -43,6 +51,7 @@ class SendForm extends Component {
     }
 
     handleTransfer = (data) => {
+        console.log("handleresult")
         const context = this;
         window.location.reload();
         this.setState({sended: true}, () => setTimeout(() => context.setState({sended: false}), 5000));
@@ -104,17 +113,19 @@ class SendForm extends Component {
                                             defaultHints={data.contacts}
                                             defaultVal = {data}
                                         />
-                                        <Dropdown
-                                            btn={<SelectHeader
-                                                text={data.quantityAsset}
-                                            />}
-                                            list={userTokens.map(e => <button
-                                                onClick={() => form.handleChange(e.symbol, 'quantityAsset')}
-                                                type="button">{e.symbol}</button>)}
-                                        />
+                                    <Dropdown
+                                                btn={<SelectHeader
+                                                    text={data.quantityAsset}
+                                                    className="with-bg"
+                                                />}
+                                                list={userTokens.map(e => <button
+                                                    onClick={() => form.handleChange(e.symbol, 'quantityAsset')}
+                                                    type="button">{e.symbol}</button>)}
+                                            />
                                     </div>
                                     <div className="input__row">
                                         <Textarea
+                                            maxLength={MEMO_MAX_LENGTH}
                                             name="memo"
                                             comment={true}
                                             className="memo"

@@ -32,6 +32,8 @@ const UserData = (props) => {
             removeStorageItem(type, 'sessionStorage');
             store.dispatch({ type: `REMOVE_${type.toUpperCase()}` })
         });
+        removeStorageItem('referrer');
+        removeStorageItem('referrer', 'sessionStorage');
         store.dispatch({ type: 'SET_SIDECHAIN_ACCOUNTS', payload: false })
         history.push('/');
     };
@@ -72,7 +74,7 @@ const UserData = (props) => {
                 {data.assets.map((el, id) => (
                     <div key={id} className="drop-user__asset">
                         <span>{el.symbol}</span>
-                        <span>{el.setPrecision()}</span>
+                        <span>{el.amount / (10 ** el.precision) }</span>
                     </div>
                 ))}
             </div>
