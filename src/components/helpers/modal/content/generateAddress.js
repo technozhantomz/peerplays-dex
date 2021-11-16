@@ -43,7 +43,8 @@ class GenerateAddress extends Component {
     });
 
     setTimeout(() => {
-        clearLayout()
+        clearLayout();
+        window.location.reload();
     }, 5000);
 };
 
