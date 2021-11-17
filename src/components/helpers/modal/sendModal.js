@@ -10,9 +10,10 @@ import Textarea from "../textarea";
 
 const getUserAssetsList = async (symbol) => (
     getAccountData().assets
-        .filter(item?item.name.includes(symbol):[])
-        .map(item => item.name)
+        .filter(item => item ? item.symbol : [])
+        .map(item => item.symbol)
 );
+
 class SendModal extends Component {
 
     state = {

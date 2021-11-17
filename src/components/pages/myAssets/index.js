@@ -11,7 +11,7 @@ import UserMargins from "../user/userMargins";
 import NeedToLogin from "../../helpers/needToLogin";
 import AssetWithdraw from "./assetsWithdraw";
 import AssetDeposit from './assetsDeposit';
-import SendForm from '../../helpers/sendForm';
+import WithdrawBTCForm from '../../helpers/withdrawBTCForm';
 
 const basicMenu = [
     {
@@ -42,7 +42,7 @@ const basicMenu = [
     {
         link: '/withdraw',
         tag: 'withdraw',
-        component: SendForm
+        component: WithdrawBTCForm
     },
     // {
     //     link: '/deposit',
