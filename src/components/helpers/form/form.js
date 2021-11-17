@@ -43,11 +43,15 @@ class Form extends Component {
         });
     }
 
-    submit = (e) => {
+    
 
+
+    submit = (e) => {
         e && e.preventDefault();
         const { errors, data } = this.state;
         if (Object.keys(errors).length) return;
+        
+        this.setState({ loading: true });
 
         this.props.requiredFields && this.props.requiredFields
             .filter(el => !data[el])

@@ -236,6 +236,9 @@ const Voting = (props) => {
     if (!account) return <NeedToLogin tag={'empty.login'} />;
     return (
         <div className="container page">
+              <div className="page__header-wrapper">
+            <Translate className="page__title" component="h1" content={"voting.title"}/>
+        </div>
             <div>
                 <Grid container spacing={1}>
                     <Grid item xs={12} sm={6}>
