@@ -306,7 +306,7 @@ export const en = {
             "current_block": "Current Block",
             "supply": "Supply (%(currency)s)",
             "active_witnesses": "Active Witnesses",
-            "confirmation_time": "Confrimation Time (Sec)",
+            "confirmation_time": "Confirmation Time (Sec)",
             "last_irreversible": "Last Irreversible Block",
             "stealth_supply": "Stealth Supply (%(currency)s)"
         },
