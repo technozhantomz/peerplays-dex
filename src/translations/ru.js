@@ -72,7 +72,8 @@ export const ru = {
         "cer": "CER (%(token)s)",
         "mcr": "MCR",
         "mssr": "MSSR",
-        "assetType": "Тип активов"
+        "assetType": "Тип активов",
+        "blockTimestamp":"Время"
     },
     "tableInfo": {
         "account_create": {
