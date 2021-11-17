@@ -55,6 +55,9 @@ class Exchange extends Component {
 
         return (
             <Fragment>
+                <div className="page__header-wrapper">
+            <Translate className="page__title" component="h1" content={"exchange.title"}/>
+        </div>
                 <PairStats pair={pair} data={stats} history={this.props.history} />
 
                 <Grid container >
