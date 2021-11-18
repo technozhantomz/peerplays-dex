@@ -71,7 +71,6 @@ class QuickSellBuy extends Component {
                     {
                         form => {
                             const {errors, data} = form.state;
-                                {console.log("userTokens",userTokens)}
                             return (
                                 <Fragment>
                                     <div className="input__row">
