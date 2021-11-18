@@ -73,7 +73,7 @@ const UserAssets = ({assets}) => {
         <Table
             tableHead={tableHead}
             rows={newAssets}
-            link={{
+            link={{ 
                 path: '/asset/',
                 key: 'asset'
             }}
