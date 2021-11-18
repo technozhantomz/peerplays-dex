@@ -61,13 +61,14 @@ const VestGPOS = (props) => {
 				</div>
 				<Translate content='deposit.title' />
 				<NumericInput
+					strict={true}
 					style={{ color: "#f0f0f0" }}
 					mobile
 					type="number"
 					className="field__input form-control cpointer"
 					min={0}
 					step={(component, direction) => {
-    					// for values smaller than 1 the step is 0.1
+						// for values smaller than 1 the step is 0.1
 						// for values greater than 1 the step is 1
 						return component.state.value < 1 ? 0.1 : 1
 					}}
@@ -76,18 +77,18 @@ const VestGPOS = (props) => {
 					onChange={(value) => setVestAmount(value)}
 					value={vestAmount}
 				/>
-				<div style={{ marginTop: 12, color: "#ff444a",display:(vestAmount == null || vestAmount == 0)?"block":"none"  }}>
-				     This field is required and not zero
+				<div style={{ marginTop: 12, color: "#ff444a", display: (vestAmount == null || vestAmount == 0) ? "block" : "none" }}>
+					This field is required and not zero
 				</div>
-				<div style={{ marginTop: 12, color: "#ff444a",display:(vestAmount == null || vestAmount > accBalance)?"block":"none"  }}>
-					 Value cannot exceed {accBalance}
+				<div style={{ marginTop: 12, color: "#ff444a", display: (vestAmount == null || vestAmount > accBalance) ? "block" : "none" }}>
+					Value cannot exceed {accBalance}
 				</div>
 				<div style={{ marginTop: 12 }}>
-					New GPOS Balance: <strong>{totalGpos + vestAmount?parseFloat(vestAmount):0} {symbol}</strong>
+					New GPOS Balance: <strong>{totalGpos + vestAmount} {symbol}</strong>
 				</div>
 			</CardContent>
 			<CardActions >
-				<button className="btn-round btn-round--buy" onClick={()=> (vestAmount == null || vestAmount == 0 || vestAmount > accBalance)?"":SubmitGposVesting()}>Vest</button>
+				<button className="btn-round btn-round--buy" onClick={() => (vestAmount == null || vestAmount == 0 || vestAmount > accBalance) ? "" : SubmitGposVesting()}>Vest</button>
 			</CardActions>
 		</Card>
 	)
