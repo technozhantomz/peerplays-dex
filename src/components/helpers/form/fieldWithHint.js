@@ -99,6 +99,7 @@ class FieldWithHint extends Component{
                 { data[name] && errors && errors[name] && <Translate content={`errors.${errors[name]}`} className="field__error" /> }
                 <div className="dropdown__body custom-scroll">
                     {hasHints && hints.map(e => (
+                        data[name] != e && 
                         <div key={e} className="dropdown__item">
                             <span  className="cpointer" onClick={() => this.setNewVal(e)}>{e}</span>
                         </div>
