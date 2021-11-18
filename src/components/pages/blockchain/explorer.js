@@ -78,8 +78,15 @@ class Explorer extends Component {
         const {head_block_number, current_supply, active_witnesses, avgTime, last_irreversible_block_num, confidential_supply, latestBlocks, coreAsset} = this.state.data;
         return (
             <Fragment>
-                <Explorercards head_block_number={head_block_number} current_supply={current_supply} coreAsset={coreAsset} active_witnesses={active_witnesses}
-                avgTime={avgTime} last_irreversible_block_num={last_irreversible_block_num} confidential_supply={confidential_supply}/>
+                <Explorercards 
+                    head_block_number={head_block_number} 
+                    current_supply={current_supply / (10 ** coreAsset.precision)} 
+                    coreAsset={coreAsset} 
+                    active_witnesses={active_witnesses}
+                    avgTime={avgTime} 
+                    last_irreversible_block_num={last_irreversible_block_num} 
+                    confidential_supply={confidential_supply}
+                />
                 <Card mode="table">
                     <CardHeader title={'block.recentBlocks.title'}/>
                     <Table
