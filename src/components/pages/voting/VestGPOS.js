@@ -61,7 +61,7 @@ const VestGPOS = (props) => {
 				</div>
 				<Translate content='deposit.title' />
 				<NumericInput
-					style={{ color: "#f0f0f0" }}
+					style={{ color: "#f0f0f0",height:"100%" }}
 					mobile
 					type="number"
 					className="field__input form-control cpointer"

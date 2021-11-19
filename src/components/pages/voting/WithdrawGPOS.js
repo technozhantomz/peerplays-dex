@@ -73,7 +73,7 @@ const WithdrawGPOS = (props) => {
 					type="number"
 					className="field__input form-control cpointer"
 					min={0}
-					max={availableGpos / (10 ** accountData.assets[0].precision)}
+					max={accountData.assets[0].amount / (10 ** accountData.assets[0].precision)}
 					onChange={(value) => setWithdrawAmount(value)}
 					value={withdrawAmount}
 				/>
