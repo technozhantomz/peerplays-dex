@@ -50,7 +50,7 @@ export const getPairStats = async ({quote, base}) => {
         change: {
             val: roundNum(ticker.percent_change) || 0
         },
-        volume: {
+        value: {
             val: roundNum(ticker.quote_volume),
             asset: quote.symbol
         }

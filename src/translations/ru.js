@@ -72,7 +72,8 @@ export const ru = {
         "cer": "CER (%(token)s)",
         "mcr": "MCR",
         "mssr": "MSSR",
-        "assetType": "Тип активов"
+        "assetType": "Тип активов",
+        "blockTimestamp":"Время"
     },
     "tableInfo": {
         "account_create": {
@@ -113,6 +114,10 @@ export const ru = {
         },
         "proposal_create": {
             "title": "Предложение Создать",
+            "description": ""
+        },
+        "balance_claim": {
+            "title": "требование баланса",
             "description": ""
         },
         "transfer": {
@@ -281,7 +286,7 @@ export const ru = {
         "title": "обмен",
         "price": "Текущая цена",
         "change": "Изменение (24h)",
-        "volume": "Объем (24h)",
+        "value": "Ценить (24h)",
         "feed": "Цена корма",
         "limit": "Лимит вызова",
         "margin": "Маржинальный вызов",
@@ -707,7 +712,7 @@ export const ru = {
         },
         "pairSelect": {
             "title": "Выбрать пару",
-            "недавние": "Недавние пары"
+            "recent": "Недавние пары"
         },
         "createUser": {
             "title": "Новая учетная запись",

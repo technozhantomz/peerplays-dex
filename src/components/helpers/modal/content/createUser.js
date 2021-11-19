@@ -14,7 +14,7 @@ import { dbApi } from "../../../../actions/nodes";
 const CreateUser = () => {
     const referrer = getStorage('referrer', 'sessionStorage').name;
     const [referrerName, setReferrerName] = useState(referrer);
-    useEffect(() => {
+    useEffect(() => {     
         dbApi('get_account_by_name', [referrer]).then(referrerAccount => {
             if (!referrerAccount) {
                 setReferrerName("");
@@ -56,12 +56,13 @@ const CreateUser = () => {
                                 error={form.state.errors}
                                 value={form.state.data}
                             />
-                            {referrerName != "" ? (
+                            
+                            {referrer && ( referrerName != "" ? (
                                 <InfoBlock tag="modal.createUser.referrer" data={{ referrer: referrerName }} />
                             ) : (
                                 <InfoBlock tag="modal.createUser.referrerError" data={{ referrer }} />
                             )
-                            }
+                            )}
                         </div>
                         <div className="modal__bottom">
                             <Close />

@@ -24,7 +24,7 @@ class GlobalSearch extends Component{
     }
 
     changeSearchType = searchType => this.getResult(searchType, this.state.value);
-    handleSearch = value => this.getResult(this.state.searchType, value);
+    handleSearch = value => this.getResult(this.state.searchType, value.trim());
     getResult = (searchType, value) => {
         if(!value) return this.setState({result: [], value, searchType});
         searchFuncs[searchType](value).then(result => this.setState({searchType, result, value}));
@@ -42,15 +42,17 @@ class GlobalSearch extends Component{
                 </div>
                 <div className="global-search__filter">
                     <Dropdown
-                        btn={ <SelectHeader text={<Translate content={`search.${this.state.searchType}`} />} /> }
-                        list={searchTypes.map((searchType, id) => (
-                            <Translate
-                                key={id}
-                                component="button"
-                                content={`search.${searchType}`}
-                                onClick={() => this.changeSearchType(searchType)}
-                            />
-                        ))}
+                        btn={<SelectHeader text={<Translate content={`search.${this.state.searchType}`}/>}/>}
+                        list={searchTypes.map((searchType, id) => {
+                                if (this.state.searchType !== searchType)
+                                    return <Translate
+                                        key={id}
+                                        component="button"
+                                        content={`search.${searchType}`}
+                                        onClick={() => this.changeSearchType(searchType)}
+                                    />
+                            }
+                        )}
                     />
                 </div>
                 <div className="global-search__result custom-scroll">

@@ -116,6 +116,10 @@ export const en = {
             "title": "Proposal Create",
             "description": ""
         },
+        "balance_claim": {
+            "title": "Balance claim",
+            "description": ""
+        },
         "transfer": {
             "title": "Transfer",
             "description": ""
@@ -282,7 +286,7 @@ export const en = {
         "title": "Exchange",
         "price": "Current Price",
         "change": "Change (24h)",
-        "volume": "Volume (24h)",
+        "value": "Value (24h)",
         "feed": "Feed Price",
         "limit": "Call Limit",
         "margin": "Margin Call",
@@ -302,7 +306,7 @@ export const en = {
             "current_block": "Current Block",
             "supply": "Supply (%(currency)s)",
             "active_witnesses": "Active Witnesses",
-            "confirmation_time": "Confrimation Time (Sec)",
+            "confirmation_time": "Confirmation Time (Sec)",
             "last_irreversible": "Last Irreversible Block",
             "stealth_supply": "Stealth Supply (%(currency)s)"
         },

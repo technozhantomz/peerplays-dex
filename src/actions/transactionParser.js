@@ -9,6 +9,7 @@ export const transactionParser = async (operation) => {
 
     for (let key in operation) {
         if (key === 'extensions') continue;
+        if(key === 'memo') continue;
 
         let item = operation[key];
         if (!item) continue;

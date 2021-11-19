@@ -39,7 +39,6 @@ class Form extends Component {
                     }
                 }
             });
-            state.data['amount_to_sell'] = state.data.price * state.data.amount_to_receive
             return state
         });
     }
@@ -60,7 +59,6 @@ class Form extends Component {
         this.props.requiredQuantity && this.props.requiredQuantity
             .filter(el => !data[el])
             .forEach(el => errors[el] = 'requiredQuantity')
-        console.log(errors)
         if (Object.keys(errors).length) {
             this.setState({ errors });
             return;

@@ -10,6 +10,8 @@ import UserActivity from "../user/userActivity";
 import UserMargins from "../user/userMargins";
 import NeedToLogin from "../../helpers/needToLogin";
 import AssetWithdraw from "./assetsWithdraw";
+import AssetDeposit from './assetsDeposit';
+import WithdrawBTCForm from '../../helpers/withdrawBTCForm';
 
 const basicMenu = [
     {
@@ -37,10 +39,15 @@ const basicMenu = [
     //     tag: 'permissions',
     //     component: AssetsPermissions
     // }
+    {
+        link: '/withdraw',
+        tag: 'withdraw',
+        component: WithdrawBTCForm
+    },
     // {
-    //     link: '/withdraw',
-    //     tag: 'withdraw',
-    //     component: AssetWithdraw
+    //     link: '/deposit',
+    //     tag: 'deposit',
+    //     component: AssetDeposit
     // }
 ];
 

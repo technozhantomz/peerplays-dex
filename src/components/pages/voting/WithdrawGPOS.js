@@ -1,49 +1,44 @@
 import { Card, CardActions, CardContent } from '@material-ui/core';
 import React, { useState } from 'react';
 import NumericInput from 'react-numeric-input';
-import { connect } from "react-redux";
 import Translate from 'react-translate-component';
+import { getPassword, trxBuilder } from '../../../actions/forms';
+import { dbApi } from '../../../actions/nodes';
 import { getStore } from '../../../actions/store';
 
 const WithdrawGPOS = (props) => {
 	const { loginData, accountData } = getStore();
 	const { symbol_id, precision, symbol, totalGpos, availableGpos, getAssets } = props;
 	const [withdrawAmount, setWithdrawAmount] = useState(0);
-
-
 	const SubmitGposWithdrawal = () => {
 		const begin_timestamp = new Date().toISOString().replace('Z', '');
-
-		const trx = {
-			type: 'vesting_balance_withdraw',
-			params: {
-				fee: {
-					amount: 0,
-					asset_id: symbol_id
-				},
-				creator: accountData.id,
-				owner: accountData.id,
-				amount: {
-					amount: withdrawAmount * (10 ** precision),
-					asset_id: symbol_id
-				},
-				asset_symbol: symbol,
-				policy: [
-					0, {
-						begin_timestamp,
-						vesting_cliff_seconds: 0,
-						vesting_duration_seconds: 0
-					}
-				],
-				balance_type: 'gpos'
-			}
-		};
-		getPassword(password => {
-			const activeKey = loginData.formPrivateKey(password, 'active');
-			trxBuilder([trx], [activeKey]);
-			getAssets();
-			setWithdrawAmount(0);
-		});
+		dbApi('get_vesting_balances', [
+			accountData.id
+		]).then((balances) => {
+			const gposBalances = balances.filter(balance => balance.balance_type == 'gpos'); 
+			const trx = {
+				type: 'vesting_balance_withdraw',
+				params: {
+					fee: {
+						amount: 0,
+						asset_id: symbol_id
+					},
+					vesting_balance: gposBalances[0].id,
+					owner: accountData.id,
+					amount: {
+						amount: withdrawAmount * (10 ** precision),
+						asset_id: symbol_id
+					},
+				}
+			};
+			getPassword(password => {
+				const activeKey = loginData.formPrivateKey(password, 'active');
+				trxBuilder([trx], [activeKey]).then(() => {
+					getAssets();
+					setWithdrawAmount(0);
+				});
+			});
+		})
 	}
 	return (
 		<Card mode="widget">
@@ -68,6 +63,7 @@ const WithdrawGPOS = (props) => {
 
 				<Translate content='withdraw.title' />
 				<NumericInput
+					strict={true}
 					style={{ color: "#f0f0f0" }}
 					mobile
 					type="number"
@@ -79,7 +75,7 @@ const WithdrawGPOS = (props) => {
 				/>
 
 				<div style={{ marginTop: 12 }}>
-					New GPOS Balance: <strong>{totalGpos - withdrawAmount?parseFloat(withdrawAmount):0} {symbol}</strong>
+					New GPOS Balance: <strong>{totalGpos - withdrawAmount} {symbol}</strong>
 				</div>
 			</CardContent>
 
