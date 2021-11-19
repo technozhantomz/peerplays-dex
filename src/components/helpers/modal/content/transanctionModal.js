@@ -17,20 +17,20 @@ const getType = opNumber => {
 };
 
 const fetchFunc = async (context) => {
-    const {blockNum, opNum} = context.props;
+    const {blockNum, trxNum} = context.props;
     const dataBlock = await dbApi('get_block', [blockNum]).then(e => e);
 
-    const type = getType(dataBlock.transactions[opNum].operations[0][0]);
+    const type = getType(dataBlock.transactions[trxNum].operations[0][0]);
 
     const basicTag = `tableInfo.${type}`;
-    const info = await transactionParser(dataBlock.transactions[opNum].operations[0][1]).then(e => e);
+    const info = await transactionParser(dataBlock.transactions[trxNum].operations[0][1]).then(e => e);
 
     return {
         dataBlock,
         type: <Translate content={`${basicTag}.title`} component="div" className="operation positive"/>,
         info,
         blockNum,
-        opNum
+        trxNum
     }
 };
 
@@ -47,7 +47,7 @@ class TransactionModal extends Component {
                 </div>
                 <div className="operation__block">
                     <div className="header">
-                        {!!(this.props.data.opNum) && <div className="number">#{this.props.data.opNum}</div>}
+                        {!!(this.props.data.trxNum) && <div className="number">#{this.props.data.trxNum}</div>}
                         {this.props.data.type}
                     </div>
                     {

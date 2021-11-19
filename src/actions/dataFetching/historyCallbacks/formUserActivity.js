@@ -41,7 +41,7 @@ const formInfoColumn = async (user, operation) => {
     return {
         type: <Translate content={`${basicTag}.title`} component="a"
                          onClick={() => setModal(<TransactionModal user={user} blockNum={operation.block_num}
-                                                                   opNum={operation.op_in_trx}/>)}
+                                                                   trxNum={operation.trx_in_block}/>)}
                          className="operation positive"/>,
         info: <Translate content={`${basicTag}.description`} with={data}/>
     };
