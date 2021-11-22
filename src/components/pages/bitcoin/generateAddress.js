@@ -107,8 +107,8 @@ import { IconClipboardCopy } from "../../../svg";
 // export default GenerateAddress;
 
 const GenerateAddress = (props) => {
-    const {loginData, accountData, sidechain} = props;
-    const [sidechainAccount, setSidechainAccount] = useState({});
+    const {loginData, accountData, sidechain, sidechainAccount} = props;
+    
     const [formData, setSidechainData] = useState({
         sidechain: sidechain,
         depositPublicKey: '',
@@ -118,20 +118,7 @@ const GenerateAddress = (props) => {
         fee: 0
     });
 
-    useEffect(() => {
-        accountData.sidechainAccounts.filter(act => {(act.sidechain == sidechain) ? setSidechainAccount(act) : ""});  
-        // if(sidechainAccount){
-        //     setSidechainData({
-        //         sidechain: sidechain,
-        //         depositPublicKey: sidechainAccount.deposit_public_key,
-        //         password: '',
-        //         withdrawPublicKey: sidechainAccount.withdraw_public_key,
-        //         withdrawAddress: sidechainAccount.withdraw_address,
-        //         fee: 0
-        //     });   
-        // }
-        
-    });
+   
    
     const copyToClip = (txt) => {
         navigator.clipboard.writeText(txt);

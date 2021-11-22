@@ -9,9 +9,6 @@ import OpenOrders from "../user/openOrders";
 import UserActivity from "../user/userActivity";
 import UserMargins from "../user/userMargins";
 import NeedToLogin from "../../helpers/needToLogin";
-import AssetWithdraw from "./assetsWithdraw";
-import AssetDeposit from './assetsDeposit';
-import WithdrawBTCForm from '../../helpers/withdrawBTCForm';
 import {formAccount} from "../../../actions/account/formAccount";
 
 const basicMenu = [
