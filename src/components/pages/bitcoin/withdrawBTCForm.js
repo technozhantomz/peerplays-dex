@@ -1,13 +1,24 @@
-import React, {useState} from 'react';
-import NumericInput from 'react-numeric-input';
+import React, {useState, useEffect} from 'react';
+import Input from "../../helpers/form/input";
 import { getPassword, trxBuilder } from '../../../actions/forms';
 import {dbApi} from "../../../actions/nodes";
+import { useFormInput } from './formInput';
 
 const WithdrawBTCForm = (props) => {
     const {loginData, accountData} = props;
 	const [sent, setSent] = useState(false);
-	const [withdrawAmount, setWithdrawAmount] = useState(0);
-    const accBalance = accountData.assets[1].amount / (10 ** accountData.assets[1].precision);
+	const withdrawAmount = useFormInput(0);
+	const [accBalance, setAccbalance] = useState(0);
+	const [fee, setFee] = useState({amount: 0, symbol: accountData.assets[0].symbol});
+	const [precision, setPrecision] = useState(accountData.assets[0].precision)
+	const [errors, setErrors] = useState(''); 
+
+	useEffect(() => {
+		if(accountData.assets[1]){
+			setAccbalance(accountData.assets[1].amount / (10 ** accountData.assets[1].precision));
+			setPrecision(accountData.assets[1].precision);
+		}
+	})
 
     const getSonAccount = async () => { 
         const sonAccount = await dbApi('get_account_by_name', ["son-account"]).then(e => e);
@@ -15,6 +26,7 @@ const WithdrawBTCForm = (props) => {
     };
 
     const SubmitWithDraw = async () => {
+		setErrors('');
         const sonAccount = await getSonAccount();
 		const trx = {
 			type: 'transfer',
@@ -26,7 +38,7 @@ const WithdrawBTCForm = (props) => {
                 from: accountData.id,
                 to: sonAccount.id,
                 amount: {
-					amount: withdrawAmount,
+					amount: withdrawAmount.value,
 					asset_id: accountData.assets[1].id
 				}
 			}
@@ -35,43 +47,37 @@ const WithdrawBTCForm = (props) => {
 	};
 
 	const ProccesWithdraw = async (trx, password) => {
-		const activeKey = loginData.formPrivateKey(password, 'active');
-		const trxResult = await trxBuilder([trx], [activeKey]);
-		if(trxResult){
-			setSent(true);
-			setTimeout(() => {
-				setwithdrawAmount(0);
-				setSent(false);
-			}, 5000);
-		}			
+		try {
+			const activeKey = loginData.formPrivateKey(password, 'active');
+			const trxResult = await trxBuilder([trx], [activeKey]);
+			if(trxResult){
+				setSent(true);
+				setTimeout(() => {
+					withdrawAmount.value = 0;
+					setSent(false);
+				}, 5000);
+			}	
+		} catch (error) {
+			setErrors('ERROR');
+		}	
 	};
 
     return(
-		<div>
-			<div>
-				<NumericInput
-					strict={true}
-					style={{ color: "#f0f0f0" }}
-					mobile
-					type="number"
-					className="field__input form-control cpointer"
-					min={0}
-					step={0.01}
-					precision={accountData.assets[1].precision}
-					max={accBalance}
-					onChange={(value) => setWithdrawAmount(value)}
-					value={withdrawAmount}
-				/>
-				<div style={{ marginTop: 12, color: "#ff444a", display: (withdrawAmount == null || withdrawAmount == 0) ? "block" : "none" }}>
-					This field is required and not zero
+		<div className="card__content card__content--widget">
+			<div className="form form__send">
+				<div className="input__row">
+					<Input name="withdrawAmount" type="number" className="modal__field"	{...withdrawAmount}/>
 				</div>
-				<div style={{ marginTop: 12, color: "#ff444a", display: (withdrawAmount == null || withdrawAmount > accBalance) ? "block" : "none" }}>
-					Value cannot exceed {accBalance}
+				<div className="info__row">
+					<span>Fee: {fee.amount} {fee.symbol}</span>
+					{sent && <span className="clr--positive">Transaction Completed</span>}
+					{errors === 'ERROR' && <span className="clr--negative">Something went wrong!! Try again. </span>}
+					{(withdrawAmount.value == 0) && <span className="clr--negative">This field is required and not zero.</span>}
+					{(withdrawAmount.value > accBalance) && <span className="clr--negative">Value cannot exceed {accBalance}.</span>}
 				</div>
-				{sent && <span className="clr--positive">Transaction Completed</span>}
-			</div>	
-			<div>
-				<button className="btn-round btn-round--buy" onClick={() => (withdrawAmount == null || withdrawAmount == 0 || withdrawAmount > accBalance) ? "" : SubmitWithDraw()}>Withdraw</button>
+				<div className="btn__row">
+					<button className="btn-round btn-round--buy" onClick={() => (withdrawAmount.value == 0 || withdrawAmount.value > accBalance) ? "" : SubmitWithDraw()}>Withdraw</button>
+				</div>
 			</div>
 		</div>
     )

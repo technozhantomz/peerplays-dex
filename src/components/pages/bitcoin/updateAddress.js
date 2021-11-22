@@ -1,49 +1,77 @@
 import React, {useState, useEffect} from "react";
-//import { Input } from "@material-ui/core";
-import Form from "../../helpers/form/form";
 import Input from "../../helpers/form/input";
-import { IconClipboardCopy } from "../../../svg";
+import { IconClipboardCheck, IconClipboardCopy } from "../../../svg";
+import { getPassword } from "../../../actions/forms";
+import {useFormInput} from './formInput';
+import {clearLayout} from "../../../dispatch/index";
+import { updateSidechainAddress } from "../../../actions/forms/updateSidechainAddress";
 
 const UpdateAddress = (props) => {
     const {loginData, accountData, sidechain, sidechainAccount} = props;
-    const [formData, setSidechainData] = useState({
-        sidechain: sidechain,
-        depositPublicKey: sidechainAccount.deposit_public_key,
-        password: '',
-        withdrawPublicKey: sidechainAccount.withdraw_public_key,
-        withdrawAddress: sidechainAccount.withdraw_address,
-        fee: 0
-    });
-   
+    const withdrawPublicKey = useFormInput(sidechainAccount.withdraw_public_key);
+    const withdrawAddress = useFormInput(sidechainAccount.withdraw_address);
+    const [copyed, setCopyed] = useState(false);
+    const [fee, setFee] = useState({amount: 0, symbol: accountData.assets[0].symbol});
+    const [required, setRequired] = useState(false);
+    const [updated, setUpdated] = useState(false);
+    const [errors, setErrors] = useState('');    
+      
     const copyToClip = (txt) => {
         navigator.clipboard.writeText(txt);
+        setCopyed(true);
+        setTimeout(() => {
+            setCopyed(false);
+        }, 5000);
     }
+
+    const handleAddressUpdated = (data) => {
+        setUpdated(true);
+        setTimeout(() => {
+            clearLayout();
+            setUpdated(false);
+            // window.location.reload();
+        }, 5000);
+    };
 
     const SubmitUpdateAddress = () => {
-
-    }
+        getPassword(password => updateSidechainAddress({
+            password,
+            fee: fee,
+            sidechainAddressId: sidechainAccount.id,
+            sidechain,
+            depositPublicKey: sidechainAccount.deposit_public_key,
+            depositAddress: sidechainAccount.deposit_address,
+            depositAddressData: sidechainAccount.deposit_address_data,
+            withdrawPublicKey: withdrawPublicKey.value,
+            withdrawAddress: withdrawAddress.value
+        }).then((result) => {result.success ? handleAddressUpdated(result) : setErrors(result.errors);}));
+    };
     
     return(
-        <div>
-            <div>
-                <span>Deposit Address: {sidechainAccount.deposit_address}</span>
-                <IconClipboardCopy onClick={copyToClip(sidechainAccount.deposit_address)}/>
+        <div className="card__content card__content--widget">
+            <div className="form form form__send">
+                <div className="input__row">
+                    <span>Deposit Address: {sidechainAccount.deposit_address}</span>
+                    <button onClick={() => copyToClip(sidechainAccount.deposit_address)}>{copyed ? <IconClipboardCheck/> : <IconClipboardCopy />}</button>
+                </div>
+                <hr/>  
             </div>
-            <hr/>
-            <div>
-                <Input
-                    name="withdrawPublicKey"
-                    className="modal__field"
-                    defaultValue={formData.withdrawPublicKey}
-                    value={formData.withdrawPublicKey}
-                />
-                <Input
-                    name="withdrawAddress"
-                    className="modal__field"
-                    defaultValue={formData.withdrawAddress}
-                    value={formData.withdrawAddress}
-                />
-                <button className="btn-round btn-round--buy" onClick={() => (formData.withdrawAddress !== sidechainAccount.withdraw_address || formData.withdrawPublicKey !== sidechainAccount.withdraw_public_key ) ? "" : SubmitUpdateAddress()}>Update</button>
+            <div className="form form form__send">
+                <div className="input__row">
+                    <Input name="withdrawPublicKey" className="modal__field" {...withdrawPublicKey}/>
+                </div>
+                <div className="input__row">
+                    <Input name="withdrawAddress" className="modal__field" {...withdrawAddress}/>
+                </div>
+                <div className="info__row">
+                    <span>Fee: {fee.amount} {fee.symbol}</span>
+                    {/* {required && <span>All fields are required</span>} */}
+                    {errors === "ERROR" && <span className="clr--negative">Something went wrong!! Try again.</span>}
+                    {updated && <span className="clr--positive">Sidechain address has been updated.</span>}
+                </div>
+                <div className="btn__row">
+                    <button className="btn-round btn-round--buy" onClick={() => SubmitUpdateAddress()}>Update</button>
+                </div>
             </div>
         </div>
     )

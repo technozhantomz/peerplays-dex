@@ -398,6 +398,12 @@ export const en = {
         "withdraw": {
             "title": "Withdraw BTC"
         },
+        "generateAddress": {
+            "title": "Generate Bitcoin Address"
+        },
+        "updateAddress": {
+            "title": "Update Bitcoin Address"
+        }
     },
     "contacts": {
         "title": "Contacts",

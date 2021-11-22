@@ -10,11 +10,13 @@ import { getStore } from "../../../actions/store";
 
 function BitcoinTransactions() {
     const { loginData, accountData } = getStore();
-    const [sidechainAccount, setSidechainAccount] = useState({});
+    const [sidechainAccount, setSidechainAccount] = useState();
     const [sidechain, setSidechain] = useState('bitcoin');
 
     useEffect(() => {
-        accountData.sidechainAccounts.filter(act => {(act.sidechain == sidechain) ? setSidechainAccount(act) : ""});  
+        if(accountData.sidechainAccounts){
+            accountData.sidechainAccounts.filter(act => {(act.sidechain == sidechain) ? setSidechainAccount(act) : ""});  
+        }
     });
 
     return(
@@ -27,35 +29,36 @@ function BitcoinTransactions() {
                         <Grid item xs={12} sm={6}>
                             <div className="graphs">
                                 <Card mode="widget">
-                                    {/* <CardHeader title={`block.quickSellBuy.title`} /> */}
+                                    <CardHeader title={sidechainAccount ? `bitcoin.updateAddress.title` : 'bitcoin.generateAddress.title'} />
                                     <div className="card__content"> 
-                                        {/* TODO: check if use already has BTC sidechain set up */}
-                                        {/* if they do then show there deposit key and update withdraw address form */}
-                                        {/* else show generate address form */}
-                                        {sidechainAccount.id && <UpdateAddress 
-                                            accountData={accountData} 
-                                            sidechainAccount={sidechainAccount}
-                                            oginData={loginData}
-                                            sidechain={sidechain}
-                                        />}
-                                        {!sidechainAccount.id && <GenerateAddress
-                                            accountData={accountData} 
-                                            sidechainAccount={sidechainAccount}
-                                            oginData={loginData}
-                                            sidechain={sidechain}
-                                        />}
+                                        {sidechainAccount ? 
+                                            <UpdateAddress 
+                                                accountData={accountData} 
+                                                sidechainAccount={sidechainAccount}
+                                                oginData={loginData}
+                                                sidechain={sidechain}/> 
+
+                                        :
+                                            <GenerateAddress
+                                                accountData={accountData} 
+                                                oginData={loginData}
+                                                sidechain={sidechain}/>
+
+                                        }
                                     </div>
                                 </Card>
                             </div>
                         </Grid>
-                        <Grid item xs={12} sm={6}>
-                            <div className="graphs">
-                                <Card mode="widget">
-                                    <CardHeader title={`bitcoin.withdraw.title`} />
-                                    <WithdrawBTCForm accountData={accountData} loginData={loginData}/>
-                                </Card>
-                            </div>
-                        </Grid>
+                        {sidechainAccount &&
+                            <Grid item xs={12} sm={6}>
+                                <div className="graphs">
+                                    <Card mode="widget">
+                                        <CardHeader title={`bitcoin.withdraw.title`} />
+                                        <WithdrawBTCForm accountData={accountData} loginData={loginData}/>
+                                    </Card>
+                                </div>
+                            </Grid>
+                        }
                     </Grid>
                 </div>
         </div>
