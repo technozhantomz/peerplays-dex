@@ -5,6 +5,7 @@ import {getPassword} from "../../../actions/forms";
 import {useFormInput} from './formInput';
 import {clearLayout} from "../../../dispatch/index";
 import {updateSidechainAddress} from "../../../actions/forms/updateSidechainAddress";
+import {updateAccount} from '../../../dispatch/setAccount';
 
 const UpdateAddress = (props) => {
     const {loginData, accountData, sidechain, sidechainAccount} = props;
@@ -30,7 +31,7 @@ const UpdateAddress = (props) => {
             console.log(trx);  
             Object.keys(trx.operations.map((op) => {
                 console.log(op[1]);
-                setSidechainAccounts([op[1]]);
+                updateAccount([op[1]]);
             }))
         }))
         setUpdated(true);
@@ -53,7 +54,7 @@ const UpdateAddress = (props) => {
             withdrawPublicKey: withdrawPublicKey.value,
             withdrawAddress: withdrawAddress.value
         }).then((result) => {
-            result.success ? handleAddressUpdated(result) : setErrors(result.errors);
+            result.success ? handleAddressUpdated(result.callbackData) : setErrors(result.errors);
         }));
     };
     

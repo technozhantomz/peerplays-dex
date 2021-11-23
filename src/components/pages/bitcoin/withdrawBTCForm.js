@@ -31,10 +31,7 @@ const WithdrawBTCForm = (props) => {
 		const trx = {
 			type: 'transfer',
 			params: {
-				fee: {
-					amount: 0, //get sone withdral fee 
-					asset_id: accountData.assets[1].id
-				},
+				fee,
                 from: accountData.id,
                 to: sonAccount.id,
                 amount: {

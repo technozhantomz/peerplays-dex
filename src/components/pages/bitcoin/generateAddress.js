@@ -42,7 +42,7 @@ const GenerateAddress = (props) => {
             withdrawAddress: withdrawAddress.value,
             fee: fee
         }).then((result) => {
-            result.success ? handleAddressGenerated(result) : setErrors(result.errors);
+            result.success ? handleAddressGenerated(result.callbackData) : setErrors(result.errors);
         }));
     };
 

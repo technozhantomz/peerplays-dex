@@ -29,7 +29,7 @@ export const updateSidechainAddress = async (data) => {
             sidechain_address_account: payer,
             sidechain,
             deposit_public_key: '',
-            deposit_address: '',
+            deposit_address: null,
             deposit_address_data: '',
             withdraw_public_key,
             withdraw_address
