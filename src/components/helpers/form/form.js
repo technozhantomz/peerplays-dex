@@ -60,7 +60,7 @@ class Form extends Component {
             .filter(el => !data[el])
             .forEach(el => errors[el] = 'requiredQuantity')
         if (Object.keys(errors).length) {
-            this.setState({ errors });
+            this.setState({ loading: false, errors});
             return;
         }
 
@@ -115,6 +115,7 @@ class Form extends Component {
                 onSubmit={this.submit}
                 className={`form${this.state.loading ? ' loading' : ''}${className ? ` ${className}` : ''}`}
                 ref={form => this.form = form}
+                noValidate
             >
                 {children(this)}
             </form>
