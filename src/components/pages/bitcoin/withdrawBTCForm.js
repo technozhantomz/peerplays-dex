@@ -63,7 +63,7 @@ const WithdrawBTCForm = (props) => {
 	};
 
     return(
-		<div className="card__content card__content--widget">
+		<div className="card__content">
 			<div className="form form__send">
 				<div className="input__row">
 					<Input name="withdrawAmount" type="number" className="modal__field"	{...withdrawAmount}/>

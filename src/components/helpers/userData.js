@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import Translate from "react-translate-component";
 import { connect } from "react-redux";
 import { Sidechains } from "../../params/networkParams";
@@ -11,11 +11,12 @@ import UnlockProfile from "./unlockProfile";
 import Button from "./buttons/button";
 import RoundButton from "./buttons/roundButton";
 import { dispatchGenerateAddress } from '../../actions/forms/dispatchGenerateAddress';
+import {IconClipboardCheck, IconClipboardCopy} from "../../svg";
 
 
 const UserData = (props) => {
-
     const { data, sidechainAccounts, history } = props;
+    const [copyed, setCopyed] = useState(false);
     const sidechainAddresses = {};
     Sidechains.map((el) => {
         if (sidechainAccounts) {
@@ -57,6 +58,14 @@ const UserData = (props) => {
         dispatchGenerateAddress(sidechain);
     }
 
+    const copyToClip = (txt) => {
+        navigator.clipboard.writeText(txt);
+        setCopyed(true);
+        setTimeout(() => {
+            setCopyed(false);
+        }, 5000);
+    }
+
     return (
         <div className="drop-user">
             <div className="drop-user__title">
@@ -83,8 +92,11 @@ const UserData = (props) => {
             </div>
             <Translate content="layout.sidechainAccounts" component="h3" className="drop-user__wallets-title" />
             <div className="drop-user__sidechain-address">
-                {Sidechains.map((el) => (
+                {/* {Sidechains.map((el) => (
                     sidechainAddresses[el] != undefined ? <div key={el}><span>{el}</span><span> : </span><span>{sidechainAddresses[el]}</span></div> : <RoundButton key={el} tag={`generate${el}Address`} className="btn-round--light-blue" onClick={(e) => generateAddress(e, el)} />
+                ))} */}
+                {Sidechains.map((el) => (
+                    sidechainAddresses[el] != undefined ? <div className="drop-user__sidechain-address-item" key={el}><span>{el}</span><span> : </span><input defaultValue={sidechainAddresses[el]}/><button onClick={() => copyToClip(sidechainAddresses[el])}>{copyed ? <IconClipboardCheck/> : <IconClipboardCopy />}</button></div> : ''
                 ))}
             </div>
             {/* <Translate content="layout.switchAccount" component="h3" className="drop-user__wallets-title" />

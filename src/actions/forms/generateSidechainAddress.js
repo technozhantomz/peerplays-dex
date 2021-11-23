@@ -3,7 +3,7 @@ import {trxBuilder} from "./trxBuilder";
 import {getDefaultFee} from "./getDefaultFee";
 import { getSidechainAccounts } from '../account/getSidechainAccounts';
 
-export const generateSidechainAddress = async (data, result) => {
+export const generateSidechainAddress = async (data) => {
     const {loginData, accountData} = getStore();
     const payer = accountData.id;
 
@@ -11,6 +11,12 @@ export const generateSidechainAddress = async (data, result) => {
     const deposit_public_key = data.depositPublicKey;
     const withdraw_public_key = data.withdrawPublicKey;
     const withdraw_address = data.withdrawAddress;
+    const result = {
+        success: false,
+        errors:{},
+        callbackData:'',
+        sidechainAccounts: {}
+    };
 
     const trx = {
         type: 'sidechain_address_add',

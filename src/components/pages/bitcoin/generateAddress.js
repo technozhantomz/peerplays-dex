@@ -47,8 +47,8 @@ const GenerateAddress = (props) => {
     };
 
     return(
-        <div className="card__content card__content--widget">
-            <div className="form">
+        <div className="card__content">
+            <div className="form form__send">
                 <div className="input__row">
                     <Input name="depositPublicKey" className="modal__field" {...depositPublicKey}/>
                 </div>
@@ -57,11 +57,6 @@ const GenerateAddress = (props) => {
                 </div>
                 <div className="input__row">
                     <Input name="withdrawAddress" className="modal__field" {...withdrawAddress} />
-                </div>
-                <div className="quantity-wrapper mt-2">
-                    <span>
-                        Fee: {fee.amount} {fee.symbol}
-                    </span>
                 </div>
                 <div className="info__row">
                     <span>Fee: {fee.amount} {fee.symbol}</span>

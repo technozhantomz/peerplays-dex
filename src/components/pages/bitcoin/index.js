@@ -26,9 +26,9 @@ function BitcoinTransactions() {
             </div>
             <div>
                     <Grid container spacing={1}>
-                        <Grid item xs={12} sm={6}>
+                        <Grid item xs={12} sm={sidechainAccount ? 6 : 12}>
                             <div className="graphs">
-                                <Card mode="widget">
+                                <Card mode="full">
                                     <CardHeader title={sidechainAccount ? `bitcoin.updateAddress.title` : 'bitcoin.generateAddress.title'} />
                                     <div className="card__content"> 
                                         {sidechainAccount ? 
