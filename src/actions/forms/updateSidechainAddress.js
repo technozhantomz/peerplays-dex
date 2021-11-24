@@ -21,22 +21,6 @@ export const updateSidechainAddress = async (data) => {
         sidechainAccounts: {}
     };
 
-    // const trx = {
-    //     type: 'sidechain_address_update',
-    //     params: {
-    //         fee: getDefaultFee(),
-    //         payer,
-    //         sidechain_address_id,
-    //         sidechain_address_account: payer,
-    //         sidechain,
-    //         deposit_public_key: '',
-    //         deposit_address: null,
-    //         deposit_address_data: '',
-    //         withdraw_public_key,
-    //         withdraw_address
-    //     }
-    // };
-
     const trx = {
         type: 'sidechain_address_delete',
         params: {
