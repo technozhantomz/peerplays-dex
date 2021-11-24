@@ -14,11 +14,12 @@ import {checkCondition} from "./checkCondition";
 import {checkBackingAsset} from "./checkBackingAsset";
 import {checkAmountToSell, checkAmountToReceive} from './checkBalance';
 import {checkQuantity} from './checkQuantity';
+import { checkTo } from "./checkTo";
 
 export const errorsChecker = {
     newLogin: checkNewLogin,
     login: checkLogin,
-    to: checkLogin,
+    to: checkTo,
     password: checkPassword,
     passwordCheck: checkConfirmPassword,
     newWorkerName: checkNewWorker,
