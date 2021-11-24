@@ -1,69 +1,62 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import Input from "../../helpers/form/input";
-import { getPassword, trxBuilder } from '../../../actions/forms';
-import {dbApi} from "../../../actions/nodes";
-import { useFormInput } from './formInput';
+import { getPassword, feeCalculator, transfer } from '../../../actions/forms';
+
 
 const WithdrawBTCForm = (props) => {
-    const {loginData, accountData} = props;
+    const {loginData, accountData, sidechain, sidechainAccount} = props;
 	const [sent, setSent] = useState(false);
-	const withdrawAmount = useFormInput(0);
-	const [accBalance, setAccbalance] = useState(0);
+	const [withdrawAmount, setWithdrawAmount] = useState(0);
 	const [fee, setFee] = useState({amount: 0, symbol: accountData.assets[0].symbol});
-	const [precision, setPrecision] = useState(accountData.assets[0].precision)
 	const [errors, setErrors] = useState(''); 
+	const sidechainAsset = accountData.assets[1];
+	const accBalance = sidechainAsset.amount / (10 ** sidechainAsset.precision);
+	const feeCalc = feeCalculator['transfer'];
+	
+	const handleChange = (e) => {
+        setWithdrawAmount(e);
+		const {feeErr, feeAmount, errVariable} = feeCalc(e, sidechainAsset.symbol, '');
+		if (feeErr) errors[errVariable] = feeErr;
+		setFee({
+			amount: feeAmount,
+			symbol: accountData.assets[0].symbol
+		});
+    }
 
-	useEffect(() => {
-		if(accountData.assets[1]){
-			setAccbalance(accountData.assets[1].amount / (10 ** accountData.assets[1].precision));
-			setPrecision(accountData.assets[1].precision);
-		}
-	})
-
-    const getSonAccount = async () => { 
-        const sonAccount = await dbApi('get_account_by_name', ["son-account"]).then(e => e);
-        return sonAccount
-    };
+	const handleWithdraw = (data) => {
+		setSent(true);
+		setTimeout(() => {
+			withdrawAmount.value = 0;
+			setSent(false);
+		}, 5000);	
+	};
 
     const SubmitWithDraw = async () => {
 		setErrors('');
-        const sonAccount = await getSonAccount();
-		const trx = {
-			type: 'transfer',
-			params: {
-				fee,
-                from: accountData.id,
-                to: sonAccount.id,
-                amount: {
-					amount: withdrawAmount.value,
-					asset_id: accountData.assets[1].id
-				}
-			}
-		};
-		getPassword(password => ProccesWithdraw(trx, password));
-	};
-
-	const ProccesWithdraw = async (trx, password) => {
-		try {
-			const activeKey = loginData.formPrivateKey(password, 'active');
-			const trxResult = await trxBuilder([trx], [activeKey]);
-			if(trxResult){
-				setSent(true);
-				setTimeout(() => {
-					withdrawAmount.value = 0;
-					setSent(false);
-				}, 5000);
-			}	
-		} catch (error) {
-			setErrors('ERROR');
-		}	
+		getPassword(password => transfer({
+			contacts:[],
+			fee: fee.amount,
+			feeAsset: fee.symbol,
+			from: accountData.name,
+			password,
+			quantity: withdrawAmount,
+			quantityAsset: sidechainAsset.symbol,
+			to: 'son-account'
+		}).then((result) => {
+			result.success ? handleWithdraw(result.callbackData) : setErrors(result.errors);
+		}));
 	};
 
     return(
 		<div className="card__content">
 			<div className="form form__send">
 				<div className="input__row">
-					<Input name="withdrawAmount" type="number" className="modal__field"	{...withdrawAmount}/>
+					<Input 
+						name="withdrawAmount" 
+						type="number" 
+						className="modal__field"
+						value = {withdrawAmount}	
+						onChange={handleChange}/>
 				</div>
 				<div className="info__row">
 					<span>Fee: {fee.amount} {fee.symbol}</span>

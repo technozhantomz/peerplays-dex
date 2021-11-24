@@ -35,13 +35,13 @@ function BitcoinTransactions() {
                                             <UpdateAddress 
                                                 accountData={accountData} 
                                                 sidechainAccount={sidechainAccount}
-                                                oginData={loginData}
+                                                loginData={loginData}
                                                 sidechain={sidechain}/> 
 
                                         :
                                             <GenerateAddress
                                                 accountData={accountData} 
-                                                oginData={loginData}
+                                                loginData={loginData}
                                                 sidechain={sidechain}/>
 
                                         }
@@ -54,7 +54,11 @@ function BitcoinTransactions() {
                                 <div className="graphs">
                                     <Card mode="widget">
                                         <CardHeader title={`bitcoin.withdraw.title`} />
-                                        <WithdrawBTCForm accountData={accountData} loginData={loginData}/>
+                                        <WithdrawBTCForm 
+                                            accountData={accountData} 
+                                            loginData={loginData} 
+                                            sidechain={sidechain} 
+                                            sidechainAccount={sidechainAccount}/>
                                     </Card>
                                 </div>
                             </Grid>
