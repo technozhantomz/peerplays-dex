@@ -6,9 +6,10 @@ import { getSidechainAccounts } from '../account/getSidechainAccounts';
 export const generateSidechainAddress = async (data) => {
     const {loginData, accountData} = getStore();
     const payer = accountData.id;
-
-    const sidechain = data.sidechain.toLowerCase();
+    const sidechain = data.sidechain.toLowerCase();    
     const deposit_public_key = data.depositPublicKey;
+    const deposit_address = (sidechain == 'bitcoin') ? '' : data.depositAddress ? data.depositAddress : '' ;
+    const deposit_address_data = (sidechain == 'bitcoin') ? '' : data.depositAddressData ? data.depositAddressData : ''; 
     const withdraw_public_key = data.withdrawPublicKey;
     const withdraw_address = data.withdrawAddress;
     const result = {
@@ -26,8 +27,8 @@ export const generateSidechainAddress = async (data) => {
             sidechain_address_account: payer,
             sidechain,
             deposit_public_key,
-            deposit_address: '',
-            deposit_address_data: '',
+            deposit_address,
+            deposit_address_data,
             withdraw_public_key,
             withdraw_address
         }

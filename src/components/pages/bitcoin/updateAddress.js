@@ -5,13 +5,12 @@ import {getPassword} from "../../../actions/forms";
 import {useFormInput} from './formInput';
 import {clearLayout} from "../../../dispatch/index";
 import {updateSidechainAddress} from "../../../actions/forms/updateSidechainAddress";
-import {updateAccount} from '../../../dispatch/setAccount';
+import {setSidechainAccounts} from '../../../dispatch/setAccount';
 
 const UpdateAddress = (props) => {
     const {loginData, accountData, sidechain, sidechainAccount} = props;
     const withdrawPublicKey = useFormInput(sidechainAccount.withdraw_public_key);
     const withdrawAddress = useFormInput(sidechainAccount.withdraw_address);
-    const depositAddress = useFormInput(sidechainAccount.deposit_address);
     const [copyed, setCopyed] = useState(false);
     const [fee, setFee] = useState({amount: 0, symbol: accountData.assets[0].symbol});
     const [required, setRequired] = useState(false);
@@ -31,31 +30,35 @@ const UpdateAddress = (props) => {
             console.log(trx);  
             Object.keys(trx.operations.map((op) => {
                 console.log(op[1]);
-                updateAccount([op[1]]);
+                setSidechainAccounts([op[1]]);
             }))
         }))
         setUpdated(true);
         setTimeout(() => {
             clearLayout();
-            setUpdated(false);
-            // window.location.reload();
+            setUpdated(false); 
         }, 5000);
     };
 
     const SubmitUpdateAddress = () => {
-        getPassword(password => updateSidechainAddress({
-            password,
-            fee: fee,
-            sidechainAddressId: sidechainAccount.id,
-            sidechain,
-            depositPublicKey: sidechainAccount.deposit_public_key,
-            depositAddress: sidechainAccount.deposit_address,
-            depositAddressData: sidechainAccount.deposit_address_data,
-            withdrawPublicKey: withdrawPublicKey.value,
-            withdrawAddress: withdrawAddress.value
-        }).then((result) => {
-            result.success ? handleAddressUpdated(result.callbackData) : setErrors(result.errors);
-        }));
+        setRequired(false);
+        if(withdrawPublicKey.value == '' && withdrawAddress.value == ""){
+            setRequired(true);
+        }else {
+            getPassword(password => updateSidechainAddress({
+                password,
+                fee: fee,
+                sidechainAddressId: sidechainAccount.id,
+                sidechain,
+                depositPublicKey: sidechainAccount.deposit_public_key,
+                depositAddress: sidechainAccount.deposit_address,
+                depositAddressData: sidechainAccount.deposit_address_data,
+                withdrawPublicKey: withdrawPublicKey.value,
+                withdrawAddress: withdrawAddress.value
+            }).then((result) => {
+                result.success ? handleAddressUpdated(result.callbackData) : setErrors(result.errors);
+            }));
+        }
     };
     
     return(
@@ -77,7 +80,7 @@ const UpdateAddress = (props) => {
                 </div>
                 <div className="info__row">
                     <span>Fee: {fee.amount} {fee.symbol}</span>
-                    {/* {required && <span>All fields are required</span>} */}
+                    {required && <span>All fields are required</span>}
                     {errors === "ERROR" && <span className="clr--negative">Something went wrong!! Try again.</span>}
                     {updated && <span className="clr--positive">Sidechain address has been updated.</span>}
                 </div>
