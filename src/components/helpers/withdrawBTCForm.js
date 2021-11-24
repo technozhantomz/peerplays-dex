@@ -33,12 +33,12 @@ class WithdrawBTCForm extends Component {
     componentDidMount() {
         const user = getAccountData();
         const userTokens = user.assets;
-        const startAsset = userTokens.length ? userTokens[1].symbol : defaultToken;
+        const startAsset = userTokens.length ? userTokens[0].symbol : defaultToken;
         const contacts = getAccountData().contacts.filter(item => item.type !== 2).map(item => item.name);
 
         const defaultData = {
             from: user.name,
-            quantityAsset: userTokens[1].symbol,
+            quantityAsset: userTokens[0].symbol,
             fee: 0,
             feeAsset: userTokens[0].symbol,
             contacts: contacts || [],
