@@ -18,6 +18,8 @@ import { getAsset } from '../../actions/assets/getAsset';
 import { Grid, Card, CardContent, makeStyles } from '@material-ui/core';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
+import { updateAccount as updateReduxAccount } from '../../dispatch/setAccount';
+import { formAccount } from '../../actions/account';
 
 const tableHeadWitnesses = [
     {
@@ -105,7 +107,7 @@ const Voting = (props) => {
     const [cancelVotes, setCancelVotes] = useState(false);
     const [newVotes, setNewVotes] = useState(props.account.votes.map(el => el.vote_id));
     const [gposSubPeriodStr, setGposSubPeriodStr] = useState('Calculating')
-
+    const [saveLoading, setSaveLoading] = useState(false);
     const classes = useStyles();
 
     const trimNum = (num, digits) => {
@@ -194,6 +196,7 @@ const Voting = (props) => {
         setNewVotes(props.account.votes.map(el => el.vote_id))
     }, [props.account])
     const saveResult = (password) => {
+        setSaveLoading(true);
         let user = getAccountData();
         dbApi('get_account_by_name', [user.name]).then(e => {
             const currentVotes = [...newVotes, ...votes];
@@ -207,8 +210,10 @@ const Voting = (props) => {
             new_options.num_witness = currentVotes.filter((vote) => parseInt(vote.split(':')[0]) === 1).length;
             new_options.num_committee = currentVotes.filter((vote) => parseInt(vote.split(':')[0]) === 0).length;
             new_options.num_son = currentVotes.filter((vote) => parseInt(vote.split(':')[0]) === 3).length;
-            updateAccount({ new_options, extensions: { value: { update_last_voting_time: true } } }, password).then(() => {
+            updateAccount({ new_options, extensions: { value: { update_last_voting_time: true } } }, password).then(async () => {
+                updateReduxAccount(await formAccount(user.name))
                 clearVotes();
+                setSaveLoading(false);
             });
         });
     };
@@ -323,6 +328,7 @@ const Voting = (props) => {
                 fee={props.data.update_fee}
                 cancelFunc={reset}
                 saveFunc={handleSave}
+                loading={saveLoading}
             />
             <ToastContainer className={classes.toastify}/>
         </div>
