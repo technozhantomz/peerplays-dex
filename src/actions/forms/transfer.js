@@ -10,9 +10,9 @@ export const transfer = async (data, result) => {
         return result;
     }
 
-    const to = await dbApi('get_account_by_name', [data.to]).then(e => e);
+    const toAccount = await dbApi('get_account_by_name', [data.to]).then(e => e);
 
-    if(!to){
+    if(!toAccount){
         result.errors['to'] = 'noAcc';
         return result;
     }
@@ -20,7 +20,55 @@ export const transfer = async (data, result) => {
     const {loginData, accountData} = getStore();
     const asset = accountData.assets.find(e => e.symbol === data.quantityAsset);
     const fromAccount = await dbApi('get_account_by_name',[accountData.name]);
-    const from = accountData.id;
+    const password = data.password;
+    const memo = data.memo;
+    let memoFromPublic, memoToPublic;
+
+    if (memo) {
+        memoFromPublic = fromAccount.options.memo_key;
+        memoToPublic = toAccount.options.memo_key;
+    }
+
+    let memoFromPrivkey;
+
+    const activeKey = loginData.formPrivateKey(password, 'active');
+    if (memo) {
+        if (fromAccount.options.memo_key === fromAccount.active.key_auths[0][0]) {
+            memoFromPrivkey = loginData.formPrivateKey(password, 'active');
+        } else {
+            memoFromPrivkey = loginData.formPrivateKey(password, 'memo');
+        }
+        if (!memoFromPrivkey) {
+            throw new Error('Missing private memo key for sender: ' + fromAccount);
+        }
+
+    }
+
+    let memoObject;
+
+    if (memo && memoFromPublic && memoToPublic) {
+        if (!(/111111111111111111111/.test(memoFromPublic)) && !(/111111111111111111111/.test(memoToPublic))) {
+            let nonce = TransactionHelper.unique_nonce_uint64();
+            memoObject = {
+                from: memoFromPublic,
+                to: memoToPublic,
+                nonce,
+                message: Aes.encrypt_with_checksum(
+                    memoFromPrivkey,
+                    memoToPublic,
+                    nonce,
+                    memo
+                )
+            };
+        } else {
+            memoObject = {
+                from: memoFromPublic,
+                to: memoToPublic,
+                nonce: 0,
+                message: Buffer.isBuffer(memo) ? memo : Buffer.concat([Buffer.alloc(4), Buffer.from(memo.toString('utf-8'), 'utf-8')])
+            };
+        }
+    }
 
     const amount = {
         amount: data.quantity * (10 ** asset.precision),
@@ -31,38 +79,14 @@ export const transfer = async (data, result) => {
 
     const trx = {
         type: 'transfer',
-        params: { from, to: to.id, amount, fee }
-    };
-
-    const password = data.password;
-
-    const activeKey = loginData.formPrivateKey(password, 'active');
-
-    if(data.memo){
-        let fromMemo;
-
-        if(fromAccount.options.memo_key === fromAccount.active.key_auths[0][0]) {
-            fromMemo = loginData.formPrivateKey(password, 'active');
-        } else {
-            fromMemo = loginData.formPrivateKey(password, 'memo');
+        params: {
+            fee,
+            from: fromAccount.id,
+            to: toAccount.id,
+            amount,
+            memo: memoObject
         }
-
-        const toMemo = to.options.memo_key;
-        const nonce = TransactionHelper.unique_nonce_uint64();
-        const message = data.memo[0] === "#" ? Aes.encrypt_with_checksum(
-            fromMemo,
-            toMemo,
-            nonce,
-            data.memo
-            ): data.memo;
-
-        trx.params.memo = {
-            from: fromMemo.toPublicKey().toPublicKeyString(),
-            to: toMemo,
-            nonce,
-            message,
-        };
-    }
+    };
 
     const trxResult = await trxBuilder([trx], [activeKey]);
 
