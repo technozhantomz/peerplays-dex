@@ -393,6 +393,18 @@ export const en = {
     "settings": {
         "title": "Settings"
     },
+    "bitcoin": {
+        "title": "Bitcoin Transactions",
+        "withdraw": {
+            "title": "Withdraw BTC"
+        },
+        "generateAddress": {
+            "title": "Generate Bitcoin Address"
+        },
+        "updateAddress": {
+            "title": "Update Bitcoin Address"
+        }
+    },
     "contacts": {
         "title": "Contacts",
         "blacklistedSwitcher": "Blacklisted",

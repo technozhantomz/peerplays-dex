@@ -2,9 +2,9 @@ import React from 'react';
 import {
     IconAssets,
     IconBlockchain,
-    IconBusiness, IconContacts,
+    IconBookOpen,
     IconDashboard,
-    IconExchange, IconQuestion,
+    IconExchange, 
     IconSettings,
     IconVoting
 } from "../svg/index";
@@ -39,5 +39,10 @@ export const menuList = [
         link: '/settings',
         tag: 'settings',
         icon: <IconSettings />,
+    },
+    {
+        link: '/bitcoin',
+        tag: 'bitcoin',
+        icon: <IconBookOpen/>,
     }
 ];

@@ -379,6 +379,18 @@ export const ru = {
     "settings": {
         "title": "Параметры"
     },
+    "bitcoin": {
+        "title": "Биткойн-транзакции",
+        "withdraw": {
+            "title": "Вывести BTC"
+        },
+        "generateAddress": {
+            "title": "Создать биткойн-адрес"
+        },
+        "updateAddress": {
+            "title": "Обновить биткойн-адрес"
+        }
+    },
     "contacts": {
         "title": "Контакты",
         "blacklistedSwitcher": "В чёрном списке",

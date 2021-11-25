@@ -4,7 +4,7 @@ import {trxBuilder} from "./trxBuilder";
 import {getStore} from "../store";
 import {getDefaultFee} from "./getDefaultFee";
 
-export const transfer = async (data, result) => {
+export const transfer = async (data) => {
     if(data.to === data.from){
         result.errors['to'] = 'sendYourself';
         return result;
@@ -16,7 +16,11 @@ export const transfer = async (data, result) => {
         result.errors['to'] = 'noAcc';
         return result;
     }
-
+    const result = {
+        success: false,
+        errors:{},
+        callbackData:'',
+    };
     const {loginData, accountData} = getStore();
     const asset = accountData.assets.find(e => e.symbol === data.quantityAsset);
     const fromAccount = await dbApi('get_account_by_name',[accountData.name]);
