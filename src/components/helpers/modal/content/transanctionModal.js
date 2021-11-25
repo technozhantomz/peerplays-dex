@@ -17,13 +17,14 @@ const getType = opNumber => {
 };
 
 const fetchFunc = async (context) => {
-    const {blockNum, trxNum} = context.props;
+    const {blockNum, trxNum, password} = context.props;
     const dataBlock = await dbApi('get_block', [blockNum]).then(e => e);
 
     const type = getType(dataBlock.transactions[trxNum].operations[0][0]);
 
     const basicTag = `tableInfo.${type}`;
-    const info = await transactionParser(dataBlock.transactions[trxNum].operations[0][1]).then(e => e);
+    const operation = dataBlock.transactions[trxNum].operations[0][1];
+    const info = await transactionParser(operation, password).then(e => e);
 
     return {
         dataBlock,
