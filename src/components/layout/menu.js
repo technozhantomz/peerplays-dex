@@ -5,14 +5,14 @@ import Translate from "react-translate-component";
 import {connect} from "react-redux";
 import {getStorage} from "../../actions/storage/index";
 import {clearLayout} from "../../dispatch/layoutDispatch";
-import Logo from '../../images/logo.png';
 import {getStore} from "../../actions/store";
+import { IconLogo } from '../../svg';
 
 const Menu = (props) => {
     const {loginData} = getStore();
     return <div className={`menu${props.menu ? ' open' : ''}`}>
         <div className="menu__logo-wrapper">
-            <img src={Logo} alt=""/>
+            <IconLogo />
         </div>
         {
             menuList.map((el, id) => {
