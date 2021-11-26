@@ -66,15 +66,6 @@ class BlockHeader extends Component {
 
     getData = (data, num) => formData(data, num).then(data => this.setState({data}));
 
-    normalizeList() {
-        const nodes = [];
-
-        const {data} = this.state;
-        for (let i = 0; i < data.length; i++) {
-
-        }
-    }
-
     render() {
         const nodes = [];
         this.state.data.forEach(data => {
