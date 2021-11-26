@@ -16,6 +16,7 @@ import {checkAmountToSell, checkAmountToReceive} from './checkBalance';
 import {checkQuantity} from './checkQuantity';
 import { checkTo } from "./checkTo";
 import { checkDepositPublicKey } from "./checkDepositPublicKey";
+import { checkWithdrawPublicKey } from "./checkWithdrawPublicKey";
 
 export const errorsChecker = {
     newLogin: checkNewLogin,
@@ -38,5 +39,6 @@ export const errorsChecker = {
     amount_to_sell: checkAmountToSell,
     amount_to_receive: checkAmountToReceive,
     quantity: checkQuantity,
-    depositPublicKey: checkDepositPublicKey
+    depositPublicKey: checkDepositPublicKey,
+    withdrawPublicKey: checkWithdrawPublicKey,
 };
