@@ -242,7 +242,7 @@ const Voting = (props) => {
     return (
         <div className="container page">
               <div className="page__header-wrapper">
-            <Translate className="page__title" component="h1" content={"voting.title"}/>
+            <Translate className="page__title" component="h1" content={"vesting.title"}/>
         </div>
             <div>
                 <Grid container spacing={1}>
