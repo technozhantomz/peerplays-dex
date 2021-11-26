@@ -390,6 +390,9 @@ export const en = {
     "business": {
         "title": "Business"
     },
+    "vesting": {
+        "title": "Vesting"
+    },
     "settings": {
         "title": "Settings"
     },
