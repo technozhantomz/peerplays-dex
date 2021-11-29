@@ -39,7 +39,7 @@ const handleTransactionClick = async (user, operation) => {
 
     const operationData = operation.op[1];
     
-    if (Object.keys(operationData).includes("memo")) {
+    if (Object.keys(operationData).includes("memo") && !(/111111111111111111111/.test(operationData.memo.from)) && !(/111111111111111111111/.test(operationData.memo.to))) {
         getPassword(password => {
             setModal(<TransactionModal user={user} blockNum={operation.block_num}
                 trxNum={operation.trx_in_block} password={password}/>)
