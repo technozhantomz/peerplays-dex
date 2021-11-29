@@ -4,6 +4,7 @@ import Translate from "react-translate-component";
 const TableHeading = ({tableHead}) => (
     <div className="table__header">
         {tableHead.map((el, id) => (
+            
             el.translateTag
                 ? <Translate
                     key={`th-${id}`}
