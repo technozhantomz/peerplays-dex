@@ -5,7 +5,7 @@ import {dbApi} from "../../nodes";
 import BlockHeader from "../../../components/helpers/blockHeader";
 
 export const lookupBlock = val => dbApi('get_block', [val]).then(async info => {
-    if(!info) return [];
+    if(!info) return 'No result Found';
 
     return (
         <Link to={`/block/${val}`} className="global-search__card card" onClick={clearLayout}>

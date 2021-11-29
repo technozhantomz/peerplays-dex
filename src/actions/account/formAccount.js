@@ -11,6 +11,7 @@ import IssueAsset from "../../components/helpers/modal/content/issueAsset";
 import {setModal} from "../../dispatch";
 import {editStorage, getStorage} from "../storage";
 import Link from "react-router-dom/es/Link";
+import {getSidechainAccounts} from "./getSidechainAccounts";
 
 const formMembershipData = async fullAcc => {
     const {account, lifetime_referrer_name, referrer_name, registrar_name, statistics} = fullAcc;
@@ -83,7 +84,7 @@ export const formAccount = async (data) => {
 
     const {account, balances, limit_orders, call_orders, votes} = fullAcc;
     const {id, name, active, owner, options} = account;
-
+    let sidechainAccounts = await getSidechainAccounts(id);
     const assets = await Promise.all(balances.map(formAssetData));
     const history = await getUserHistory({userID: name});
     let contacts = getStorage('contacts')[account.name] ? getStorage('contacts')[account.name] : [];
@@ -151,5 +152,5 @@ export const formAccount = async (data) => {
 
     const membership = await formMembershipData(fullAcc);
 
-    return {id, name, assets, history, keys, limit_orders, call_orders, votes, membership, contacts, createdAssets};
+    return {id, name, assets, history, keys, limit_orders, call_orders, votes, membership, contacts, createdAssets, sidechainAccounts};
 };

@@ -41,7 +41,6 @@ const tableHead = [
         params: 'align-right actions actions--long'
     }
 ];
-
 const formAssets = arr => arr.map(el => ({
     asset: el.symbol,
     available: el.quantity / (10 ** el.precision),
@@ -74,7 +73,7 @@ const UserAssets = ({assets}) => {
         <Table
             tableHead={tableHead}
             rows={newAssets}
-            link={{
+            link={{ 
                 path: '/asset/',
                 key: 'asset'
             }}

@@ -14,7 +14,7 @@ class PairStats extends Component{
 
         const {pair, data} = this.props;
         const {quote, base} = pair;
-        const items = ['price', 'change', 'volume', 'feed', 'limit', 'margin'];
+        const items = ['price', 'change', 'value', 'feed', 'limit', 'margin'];
 
         return(
             <Fragment>

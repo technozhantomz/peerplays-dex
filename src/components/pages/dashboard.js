@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Translate from "react-translate-component";
 import { connect } from "react-redux";
 import { CardHeader } from "../helpers/cardHeader";
 import { Card } from "../helpers/card";
@@ -43,6 +44,9 @@ class Dashboard extends Component {
 
         return (
             <div className="container">
+           <div className="page__header-wrapper">
+            <Translate className="page__title" component="h1" content={"dashboard.title"}/>
+           </div>
                 <div className="card__list__none">
                     <Card mode="small">
                         <SmallCardContent />
