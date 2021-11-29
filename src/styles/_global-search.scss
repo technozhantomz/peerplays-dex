@@ -28,9 +28,9 @@
     box-sizing: border-box;
     box-shadow: none;
   }
-  &__filter, &__result{
+  &__filter{
     margin: 1.6rem 5rem;
-    width: 15%;
+    width: 200px;
   }
   &__filter{
     .dropdown{
