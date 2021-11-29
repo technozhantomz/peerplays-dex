@@ -3,6 +3,7 @@ import {clearLayout} from "../../../dispatch/layoutDispatch";
 import {ContactItem} from "../../../components/helpers/contactItem";
 import {defaultToken} from "../../../params/networkParams";
 import {dbApi} from "../../nodes";
+import { getAccountData } from "../../store";
 
 const setAccountItem = (data) => <ContactItem key={data.id} data={data} handleClick={clearLayout} />;
 
@@ -15,7 +16,13 @@ export const lookupAccounts = async val => {
         );
     let result = await dbApi('lookup_accounts', [val, 20])
         .then(result => result.filter(e => e[0].includes(val)).map(([name, id]) => setAccountItem({name, id})))
-    if (result.length > 0)
-        return result;
+    const account = getAccountData();
+    let filteredResult = [...result];
+    if(filteredResult.length > 0 && account && account.id) {
+        filteredResult = filteredResult.filter(r => r.key !== account.id);
+    }
+    if (filteredResult.length > 0) {
+        return filteredResult;
+    }
     return 'No result Found';
 };
