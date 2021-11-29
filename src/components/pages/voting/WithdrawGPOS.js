@@ -10,34 +10,40 @@ const WithdrawGPOS = (props) => {
 	const { loginData, accountData } = getStore();
 	const { symbol_id, precision, symbol, totalGpos, availableGpos, getAssets } = props;
 	const [withdrawAmount, setWithdrawAmount] = useState(0);
+	const [isBalanceAvailable, setIsBalanceAvailable] = useState(true);
 	const SubmitGposWithdrawal = () => {
 		const begin_timestamp = new Date().toISOString().replace('Z', '');
 		dbApi('get_vesting_balances', [
 			accountData.id
 		]).then((balances) => {
-			const gposBalances = balances.filter(balance => balance.balance_type == 'gpos'); 
-			const trx = {
-				type: 'vesting_balance_withdraw',
-				params: {
-					fee: {
-						amount: 0,
-						asset_id: symbol_id
-					},
-					vesting_balance: gposBalances[0].id,
-					owner: accountData.id,
-					amount: {
-						amount: withdrawAmount * (10 ** precision),
-						asset_id: symbol_id
-					},
-				}
-			};
-			getPassword(password => {
-				const activeKey = loginData.formPrivateKey(password, 'active');
-				trxBuilder([trx], [activeKey]).then(() => {
-					getAssets();
-					setWithdrawAmount(0);
+			if(availableGpos > 0){
+				setIsBalanceAvailable(true);
+				const gposBalances = balances.filter(balance => balance.balance_type == 'gpos');
+				const trx = {
+					type: 'vesting_balance_withdraw',
+					params: {
+						fee: {
+							amount: 0,
+							asset_id: symbol_id
+						},
+						vesting_balance: gposBalances[0].id,
+						owner: accountData.id,
+						amount: {
+							amount: withdrawAmount * (10 ** precision),
+							asset_id: symbol_id
+						},
+					}
+				};
+				getPassword(password => {
+					const activeKey = loginData.formPrivateKey(password, 'active');
+					trxBuilder([trx], [activeKey]).then(() => {
+						getAssets();
+						setWithdrawAmount(0);
+					});
 				});
-			});
+			} else {
+				setIsBalanceAvailable(false);
+			}
 		})
 	}
 	return (
@@ -82,6 +88,7 @@ const WithdrawGPOS = (props) => {
 
 			<CardActions >
 				<button className="btn-round btn-round--buy" onClick={SubmitGposWithdrawal}>Withdraw</button>
+				{!isBalanceAvailable && <h3 className="clr--negative">There is no available gpos.</h3>}
 			</CardActions>
 		</Card>
 	)
