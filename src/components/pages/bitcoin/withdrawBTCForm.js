@@ -9,8 +9,8 @@ const WithdrawBTCForm = (props) => {
 	const [withdrawAmount, setWithdrawAmount] = useState(0);
 	const [fee, setFee] = useState({amount: 0, symbol: accountData.assets[0].symbol});
 	const [errors, setErrors] = useState(''); 
-	const sidechainAsset = accountData.assets[1];
-	const accBalance = sidechainAsset.amount / (10 ** sidechainAsset.precision);
+	const sidechainAsset = accountData.assets[1] ? accountData.assets[1] : {};
+	const accBalance = sidechainAsset.amount ?  sidechainAsset.amount / (10 ** sidechainAsset.precision) : 0;
 	const feeCalc = feeCalculator['transfer'];
 	
 	const handleChange = (e) => {
