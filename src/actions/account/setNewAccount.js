@@ -7,4 +7,5 @@ export const setNewAccount = async (data) => {
     setStorage('account', data.localData);
     setAccount(data);
     clearLayout();
+    window.location.reload(true);
 };
