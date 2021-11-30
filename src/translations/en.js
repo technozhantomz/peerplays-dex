@@ -98,7 +98,7 @@ export const en = {
         },
         "fill_order": {
             "title": "Order Filled",
-            "description": "%(user)s bought %(receives)s for %(pays)s at %(marketLink)s for order #%(id)s",
+            "description": "%(user)s bought %(pays)s for %(receives)s at %(marketLink)s for order #%(id)s",
         },
         "account_update": {
             "title": "Account Updated",
