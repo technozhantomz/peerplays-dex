@@ -13,8 +13,7 @@ const Table = ({className, tableHead, rows, link, onClick, partialFill}) => (
                     <div key={`td-${tdId}`} className={`table__cell ${tdItem.params ? tdItem.params : ''}`}>
                         {tdItem.key === "url" ? 
                         trItem[tdItem.key]?trItem[tdItem.key]:"No Url Available"
-                        :
-                        trItem[tdItem.key]?trItem[tdItem.key]:"-"}  
+                        :trItem[tdItem.key]?trItem[tdItem.key]:"-"}  
                     </div>
                 ))}
                 {partialFill
