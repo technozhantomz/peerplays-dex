@@ -159,6 +159,13 @@ svg .mask{
     font-size: $fzSM;
     line-height: 1.6rem;
   }
+  &__warning{
+    flex: 1;
+    margin-right: 4.1rem;
+    color: $negative;
+    font-size: $fzSM;
+    line-height: 1.6rem;
+  }
 }
 
 .warning{
