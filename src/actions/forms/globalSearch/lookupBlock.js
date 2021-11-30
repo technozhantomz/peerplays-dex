@@ -7,8 +7,8 @@ import BlockHeader from "../../../components/helpers/blockHeader";
 export const lookupBlock = val => dbApi('get_blocks', [val,(parseInt( val ) + parseInt(process.env.BLOCK_TO_VALUE)).toString()]).then(async info => {
     if(!info) return 'No result Found';
     return (
-        <Link to={`/block/${val}`} className="global-search__card card grid__cade" onClick={clearLayout}>
+        <span className="global-search__card card grid__cade">
             <BlockHeader num={val} data={info} />
-        </Link>
+        </span>
     )
 });

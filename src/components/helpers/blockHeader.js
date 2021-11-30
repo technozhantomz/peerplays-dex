@@ -3,6 +3,8 @@ import {getUserName} from "../../actions/account";
 import {formDate} from "../../actions/formDate";
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
+import {clearLayout} from "../../dispatch";
+import Link from "react-router-dom/Link";
 
 const blockHeaderItems = ['blockID','date', 'witness', 'previous', 'transactions'];
 
@@ -39,15 +41,17 @@ const ChildBlock = ({column, data}) => {
 
 const MainBlock = ({data}) => {
     return (
-        <div className="global-search__card card card__margins">
-            <div className="block-header">
-                <h2 className="block-header__num">Block #{data.blockID}</h2>
-                {blockHeaderItems.filter(v => !['blockID'].includes(v)).map(column => (
-                    <ChildBlock data={data}
-                                key={`${data.witness}-${Math.random() * 100}`} column={column}/>
-                ))}
+        <Link to={`/block/${data.blockID}`} onClick={clearLayout}>
+            <div className="global-search__card card card__margins">
+                <div className="block-header">
+                    <h2 className="block-header__num">Block #{data.blockID}</h2>
+                    {blockHeaderItems.filter(v => !['blockID'].includes(v)).map(column => (
+                        <ChildBlock data={data}
+                                    key={`${data.witness}-${Math.random() * 100}`} column={column}/>
+                    ))}
+                </div>
             </div>
-        </div>
+        </Link>
     );
 }
 
