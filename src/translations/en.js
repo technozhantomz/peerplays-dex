@@ -663,6 +663,7 @@ export const en = {
         "isNan": "Amount is not a number.",
         "isNull": "You can't send a null.",
         "isEmptyBalance": "You don't have token to pay fee.",
+        "isEmptyMarketBalance": "You don't have token to pay market fee.",
         "nullWeight": "Can\'t be null",
         "isNotEnough": "Balance is not enough.",
         "isZero": "Quantity should be greater than 0.",
