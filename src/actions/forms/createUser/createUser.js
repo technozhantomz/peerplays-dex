@@ -1,6 +1,7 @@
 import {formKeys} from "./formKeys";
 import {faucetUrl} from "../../../params/networkParams";
 import {formAccountData} from "./formAccountData";
+import { dbApi } from "../../nodes";
 
 export const createUser = async (data, result) => {
     const type = data.type ? data.type : 'cloud';
@@ -27,8 +28,8 @@ export const createUser = async (data, result) => {
 
     if(newUserData.account){
         result.success = true;
-        window.location.reload(true);
-        result.callbackData = await formAccountData[type](newUserData.account, additionalData);
+        const account = await dbApi('get_account_by_name', [newUserData.account.name])
+        result.callbackData = await formAccountData[type](account, additionalData);
     }
 
     return result;

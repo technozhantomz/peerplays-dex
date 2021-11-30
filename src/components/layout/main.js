@@ -13,6 +13,7 @@ import MyAssets from "../pages/myAssets";
 import Block from "../helpers/block";
 import AssetPage from "../pages/asset/assetPage";
 import PrivateRoute from './PrivateRoute';
+import BitcoinTransactions from '../pages/bitcoin';
 
 class Main extends Component {
     render() {
@@ -32,6 +33,7 @@ class Main extends Component {
                     <PrivateRoute exact path="/help" component={Tbd} />
                     <PrivateRoute exact path="/block/:number" component={Block} />
                     <PrivateRoute path="/asset/:symbol" component={AssetPage} />
+                    <PrivateRoute path="/bitcoin" component={BitcoinTransactions} />
                 </Switch>
             </main>
         )

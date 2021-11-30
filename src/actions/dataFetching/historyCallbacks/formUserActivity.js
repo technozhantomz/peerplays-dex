@@ -9,8 +9,9 @@ import Translate from "react-translate-component";
 import TransactionModal from "../../../components/helpers/modal/content/transanctionModal";
 import {setModal} from "../../../dispatch";
 import {getBasicAsset} from "../../store";
+import { getPassword } from "../../forms";
 
-export const formUserActivity = context => {
+export const formUserActivity = async (context) => {
     const user = context.props.data.id;
     let history = context.props.data.history;
 
@@ -34,16 +35,30 @@ export const formUserActivity = context => {
       };
     }));
 };
+const handleTransactionClick = async (user, operation) => {
+
+    const operationData = operation.op[1];
+    
+    if (Object.keys(operationData).includes("memo") && !(/111111111111111111111/.test(operationData.memo.from)) && !(/111111111111111111111/.test(operationData.memo.to))) {
+        getPassword(password => {
+            setModal(<TransactionModal user={user} blockNum={operation.block_num}
+                trxNum={operation.trx_in_block} password={password}/>)
+        });
+    }
+    else {
+        setModal(<TransactionModal user={user} blockNum={operation.block_num}
+            trxNum={operation.trx_in_block} />)
+    }
+}
 
 const formInfoColumn = async (user, operation) => {
     const {type, data} = await formTrxInfo(user, operation);
     const basicTag = `tableInfo.${type}`;
     return {
         type: <Translate content={`${basicTag}.title`} component="a"
-                         onClick={() => setModal(<TransactionModal user={user} blockNum={operation.block_num}
-                                                                   opNum={operation.op_in_trx}/>)}
-                         className="operation positive"/>,
-        info: <Translate content={`${basicTag}.description`} with={data}/>
+            onClick={() => handleTransactionClick(user, operation)}
+            className="operation positive" />,
+        info: <Translate content={`${basicTag}.description`} with={data} />
     };
 };
 

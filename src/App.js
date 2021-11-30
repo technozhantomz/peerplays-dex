@@ -5,7 +5,7 @@ import Overlay from "./components/layout/overlay";
 import Menu from "./components/layout/menu";
 import Modal from "./components/helpers/modal/decoration/modal";
 import NodeDisconnected from "./components/pages/nodeDisconnected";
-import {getStorage, setStorage} from "./actions/storage";
+import {getStorage, removeStorageItem, setStorage} from "./actions/storage";
 import {initFirstNode, pingNodes} from "./actions/nodes";
 import {getPassedTime} from "./actions/getPassedTime";
 import {setAccount, setSidechainAccounts} from "./dispatch/setAccount";
@@ -33,7 +33,8 @@ class App extends Component{
 
                 return;
             }
-
+            removeStorageItem('referrer');
+            removeStorageItem('referrer', 'sessionStorage');
             if(window.location.search && window.location.search.indexOf('?r=') === 0){
                 const referrer = window.location.search.split('=')[1];
                 setStorage('referrer', {name: referrer}, 'sessionStorage');

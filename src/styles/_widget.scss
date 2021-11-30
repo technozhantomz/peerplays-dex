@@ -17,6 +17,17 @@
     .field__dropdown {
       width: 145px;
     }
+    
+    &-inline{
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+      justify-content: space-between;
+      .input{
+        display: inline-block;
+        width: 100%;
+      }
+    }
   }
 }
 
