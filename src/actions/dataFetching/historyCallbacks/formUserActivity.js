@@ -11,7 +11,7 @@ import {setModal} from "../../../dispatch";
 import {getBasicAsset} from "../../store";
 import { getPassword } from "../../forms";
 
-export const formUserActivity = context => {
+export const formUserActivity = async (context) => {
     const user = context.props.data.id;
     let history = context.props.data.history;
 
