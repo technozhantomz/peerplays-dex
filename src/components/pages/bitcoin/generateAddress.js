@@ -54,27 +54,28 @@ const GenerateAddress = (props) => {
         const withdrawPublicKeyError = {};
         const withdrawAddressError = {};
         let isValid = true;
-        if(depositPublicKey.value.length === 0){
+
+        if(depositPublicKey.value.trim().length === 0){
             depositPublicKeyError.depositPublicKeyRequired = 'This field is required';
             isValid = false;
         }
-        if(withdrawPublicKey.value.length > 0 && !validate(depositPublicKey.value)){
+        if(withdrawPublicKey.value.trim().length > 0 && !validate(depositPublicKey.value)){
             depositPublicKeyError.depositPublicKeyValid = 'Deposit Public key not correct';
             isValid = false;
         }
-        if(withdrawPublicKey.value.length === 0){
+        if(withdrawPublicKey.value.trim().length === 0){
             withdrawPublicKeyError.withdrawPublicKeyRequired = 'This field is required';
             isValid = false;
         }
-        if(withdrawPublicKey.value.length > 0 && !validate(withdrawPublicKey.value)){
+        if(withdrawPublicKey.value.trim().length > 0 && !validate(withdrawPublicKey.value)){
             withdrawPublicKeyError.withdrawPublicKeyValid = 'Withdraw Public key not correct';
             isValid = false;
         }
-        if(withdrawAddress.value.length === 0){
+        if(withdrawAddress.value.trim().length === 0){
             withdrawAddressError.withdrawAddressRequired = 'This field is required';
             isValid = false;
         }
-        if(withdrawAddress.value.length > 0 && !validate(withdrawAddress.value)){
+        if(withdrawAddress.value.trim().length > 0 && !validate(withdrawAddress.value)){
             withdrawAddressError.withdrawAddressValid = 'Withdraw address not correct';
             isValid = false;
         }
