@@ -75,7 +75,7 @@ const GenerateAddress = (props) => {
             isValid = false;
         }
         if(withdrawAddress.value.length > 0 && !validate(withdrawAddress.value)){
-            withdrawAddressError.withdrawAddressValid = 'With Draw address not correct';
+            withdrawAddressError.withdrawAddressValid = 'Withdraw address not correct';
             isValid = false;
         }
         setDepositPublicKeyError(depositPublicKeyError);
