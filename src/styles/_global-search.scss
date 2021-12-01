@@ -34,7 +34,7 @@
   }
   &__filter{
     .dropdown{
-      width: 100%;
+      width: 20%;
     }
   }
   &__result{
@@ -51,6 +51,15 @@
     &:hover{
       box-shadow: $shadow-bold;
     }
+  }
+
+  .card__margins {
+   margin-top: 15px;
+  }
+
+  .grid__cade {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
   }
   .asset-stats{
     margin-bottom: 2rem;
