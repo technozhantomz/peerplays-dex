@@ -7,9 +7,9 @@ import {roundNum} from "../../../actions/roundNum";
 import Translate from "react-translate-component";
 import {getBasicAsset} from "../../../actions/store";
 
-const calcSell = ({price, amount_to_receive}) => roundNum(amount_to_receive * price);
-const calcReceive = ({price, amount_to_sell}) => roundNum(amount_to_sell / price);
-const calcPrice = ({amount_to_sell, amount_to_receive}) => roundNum(amount_to_receive / amount_to_sell);
+const calcSell = ({price, amount_to_receive}) => `${roundNum(amount_to_receive * price)}`;
+const calcReceive = ({price, amount_to_sell}) => `${roundNum(amount_to_sell / price)}`;
+const calcPrice = ({amount_to_sell, amount_to_receive}) => `${roundNum(amount_to_receive / amount_to_sell)}`;
 
 const mutations = {
     price: (data) => {
@@ -39,7 +39,47 @@ const mutations = {
         return data;
     }
 };
-
+const formMutations = {
+    price: (form) => {
+        if(form['amount_to_receive'].value){
+            form['amount_to_sell'].value = calcSell({
+                price: form['price'].value,
+                amount_to_receive: form['amount_to_receive'].value
+            });
+        } else if (form['amount_to_sell'].value){
+            form['amount_to_receive'].value = calcReceive({
+                price: form['price'].value,
+                amount_to_sell: form['amount_to_sell'].value
+            });
+        }
+    },
+    amount_to_receive: (form) => {
+        if (form['price'].value){
+            form['amount_to_sell'].value = calcSell({
+                price: form['price'].value,
+                amount_to_receive: form['amount_to_receive'].value
+            });
+        } else  if(form['amount_to_sell'].value){
+            form['price'].value = calcPrice({
+                amount_to_sell: form['amount_to_sell'].value,
+                amount_to_receive: form['amount_to_receive'].value
+            });
+        }
+    },
+    amount_to_sell: (form) => {
+        if (form['price'].value){
+            form['amount_to_receive'].value = calcReceive({
+                price: form['price'].value,
+                amount_to_sell: form['amount_to_sell'].value
+            });
+        } else if(form['amount_to_receive'].value){
+            form['price'].value = calcPrice({
+                amount_to_sell: form['amount_to_sell'].value,
+                amount_to_receive: form['amount_to_receive'].value
+            });
+        }
+    }
+};
 class BuyForm extends Component{
 
     state = {
@@ -90,6 +130,7 @@ class BuyForm extends Component{
                 type="limit_order_create"
                 defaultData={defaultData}
                 requiredFields={['amount_to_sell', 'amount_to_receive']}
+                requiredQuantity = {['amount_to_receive']}
                 mutateData={mutations}
                 action={sellBuy}
                 handleResult={this.resetForm}
@@ -98,6 +139,11 @@ class BuyForm extends Component{
                 {
                     form => {
                         const {errors, data} = form.state;
+                        const handleChange = (value, name) => {
+                            formMutations[name](form.form)
+                            form.handleChange(value, name)
+                        }
+
                         return (
                             <Fragment>
                                 <ControlledInput
@@ -107,9 +153,9 @@ class BuyForm extends Component{
                                     labelTag="exchangeForm.price"
                                     labelParams={{token: defaultData.sellAsset}}
                                     className="with-border"
-                                    onChange={form.handleChange}
+                                    onChange={handleChange}
                                     value={data}
-                                    error={errors}
+                                    error={errors} 
                                 />
                                 <ControlledInput
                                     id={`${type}-receive`}
@@ -118,7 +164,7 @@ class BuyForm extends Component{
                                     labelTag="exchangeForm.quantity"
                                     labelParams={{token: defaultData.buyAsset}}
                                     className="with-border"
-                                    onChange={form.handleChange}
+                                    onChange={handleChange}
                                     value={data}
                                     error={errors}
                                 />
@@ -129,9 +175,10 @@ class BuyForm extends Component{
                                     labelTag="exchangeForm.total"
                                     labelParams={{token: defaultData.sellAsset}}
                                     className="with-border"
-                                    onChange={form.handleChange}
+                                    onChange={handleChange}
                                     value={data}
                                     error={errors}
+                                    readOnly={true}
                                 />
                                 <div className="exchange-form__info-wrapper">
                                     <div className="exchange-form__info">

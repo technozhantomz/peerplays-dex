@@ -4,6 +4,7 @@ import {getPassword} from "../../../actions/forms";
 import RoundButton from "../../helpers/buttons/roundButton";
 import AddNewAsset from "../../helpers/modal/content/addNewAsset";
 import Table from "../../helpers/table";
+import TableCard from "../../helpers/cards";
 
 const tableHead = [
     {
@@ -36,11 +37,14 @@ const CreatedAssets = ({data}) => (
             onClick={() => getPassword(password => setModal(<AddNewAsset password={password} />))}
         />
         {Boolean(data.createdAssets.length) &&
+        <div>
             <Table
                 tableHead={tableHead}
                 rows={data.createdAssets}
                 link={{ path: '/asset/', key: 'symbol' }}
             />
+            <TableCard rows={data.createdAssets} tableHead={tableHead} link={{ path: '/asset/', key: 'symbol' }}/>
+        </div>
         }
     </Fragment>
 );

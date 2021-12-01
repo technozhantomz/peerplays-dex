@@ -1,18 +1,25 @@
-import React, {Component} from 'react';
-import {NavLink, Route, Switch} from "react-router-dom";
+import React, { Component, useEffect, useState } from 'react';
+import { NavLink, Route, Switch } from "react-router-dom";
 import Translate from "react-translate-component";
 import VotingPage from "./voting/votingPage";
 import VotingWorkers from "./voting/votingWorkers";
-import {connect} from "react-redux";
+import { connect } from "react-redux";
 import NeedToLogin from "../helpers/needToLogin";
-import {getInfoVoting} from "../../actions/voting/getInfoVoting";
+import { getInfoVoting } from "../../actions/voting/getInfoVoting";
 import dataFetch from "../helpers/dataFetch";
 import SaveChangesCard from "../helpers/saveChangesCard";
-import {getPassword, updateAccount} from "../../actions/forms";
-import {getStorage} from "../../actions/storage";
-import {dbApi} from "../../actions/nodes";
-import {clearVotes} from "../../dispatch/votesDispatch";
-import {getAccountData} from "../../actions/store";
+import { getPassword, updateAccount } from "../../actions/forms";
+import { dbApi } from "../../actions/nodes";
+import { clearVotes } from "../../dispatch/votesDispatch";
+import { getAccountData } from "../../actions/store";
+import VestGPOS from './voting/VestGPOS';
+import WithdrawGPOS from './voting/WithdrawGPOS';
+import { getAsset } from '../../actions/assets/getAsset';
+import { Grid, Card, CardContent, makeStyles } from '@material-ui/core';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
+import { updateAccount as updateReduxAccount } from '../../dispatch/setAccount';
+import { formAccount } from '../../actions/account';
 
 const tableHeadWitnesses = [
     {
@@ -58,98 +65,278 @@ const votingMenu = [
     {
         link: '/',
         tag: 'witnesses',
-        render: (account, voteList) => <VotingPage params="witness_account" tableHead={tableHeadWitnesses}
-                                                   account={account} votes={voteList['witness_account']}
-                                                   list="witnesses"/>
+        render: (account, voteList, cancelVotes, hooks) => <VotingPage params="witness_account" tableHead={tableHeadWitnesses}
+            account={account} votes={voteList['witness_account']}
+            list="witnesses" cancelVotes={cancelVotes} hooks={hooks} />
     },
     {
         link: '/committee',
         tag: 'committee',
-        render: (account, voteList) => <VotingPage params="committee_member_account" tableHead={tableHeadCommittee}
-                                                   account={account} votes={voteList['committee_member_account']}
-                                                   list="committee"/>
+        render: (account, voteList, cancelVotes, hooks) => <VotingPage params="committee_member_account" tableHead={tableHeadCommittee}
+            account={account} votes={voteList['committee_member_account']}
+            list="committee" cancelVotes={cancelVotes} hooks={hooks} />
     },
     {
-      link: '/son',
-      tag: 'son',
-      render: (account, voteList) => <VotingPage params="son_account" tableHead={tableHeadCommittee}
-                                                 account={account} votes={voteList['son_account']}
-                                                 list="son"/>
-  }
+        link: '/son',
+        tag: 'son',
+        render: (account, voteList, cancelVotes, hooks) => <VotingPage params="son_account" tableHead={tableHeadCommittee}
+            account={account} votes={voteList['son_account']}
+            list="son" cancelVotes={cancelVotes} hooks={hooks} />
+    }
 ];
 
-class Voting extends Component {
-    saveResult = (password) => {
+const useStyles = makeStyles((theme) => ({
+    toastify: {
+        '& .Toastify__toast-icon': {
+            padding: '8px',
+        },
+    },
+}));
+
+const Voting = (props) => {
+    const { account, votes, maintenance } = props;
+    const [totalGpos, setTotalGpos] = useState(0);
+    
+    const [availableGpos, setAvailableGpos] = useState(0);
+    const [gposPerformance, setGposPerformance] = useState(0);
+    const [estimatedRakeReward, setEstimatedRakeReward] = useState(0);
+    const [gposPerfString, setGposPerfString] = useState("");
+    const [precision, setPrecision] = useState(0);
+    const [symbol, setSymbol] = useState("");
+    const [symbol_id, setSymbol_id] = useState("");
+    const [cancelVotes, setCancelVotes] = useState(false);
+    const [newVotes, setNewVotes] = useState(props.account.votes.map(el => el.vote_id));
+    const [gposSubPeriodStr, setGposSubPeriodStr] = useState('Calculating')
+    const [saveLoading, setSaveLoading] = useState(false);
+    const classes = useStyles();
+
+    const trimNum = (num, digits) => {
+        // Early return if NaN
+        if (isNaN(num)) {
+            return 0;
+        }
+        let numString = num.toString();
+        let decimalIndex = numString.indexOf('.');
+        let subString = decimalIndex > 0 ? numString.substring(0, decimalIndex + (digits + 1)) : num;
+        return parseFloat(subString);
+    }
+    const determineGposPerfString = (gposPerformance) => {
+        const constSection = "voting.performance";
+        switch (true) {
+            case gposPerformance === 100:
+                setGposPerfString(constSection + '.max')
+                break;
+            case gposPerformance > 83.33 && gposPerformance < 100:
+                setGposPerfString(constSection + '.great')
+                break;
+            case gposPerformance > 66.66 && gposPerformance <= 83.33:
+                setGposPerfString(constSection + '.good')
+                break;
+            case gposPerformance > 50 && gposPerformance <= 66.66:
+                setGposPerfString(constSection + '.ok')
+                break;
+            case gposPerformance > 33.33 && gposPerformance <= 50:
+                setGposPerfString(constSection + '.low')
+                break;
+            case gposPerformance > 16.68 && gposPerformance <= 33.33:
+                setGposPerfString(constSection + '.lower')
+                break;
+            case gposPerformance >= 1 && gposPerformance <= 16.68:
+                setGposPerfString(constSection + '.crit')
+                break;
+            default: // 0
+                setGposPerfString(constSection + '.none')
+                break;
+        }
+
+    }
+    const getAssets = () => {
+        let user = getAccountData();
+        dbApi('get_gpos_info', [user.id]).then((gposInfo) => {
+            getAsset(gposInfo.award.asset_id).then((asset) => {
+                if (asset) {
+                    const totalBlockchainGpos = gposInfo.total_amount / (10 ** asset.precision);
+                    setTotalGpos(gposInfo.account_vested_balance / (10 ** asset.precision));
+                    setAvailableGpos(gposInfo.allowed_withdraw_amount / (10 ** asset.precision));
+                    const vestingFactor = gposInfo && gposInfo.vesting_factor;
+                    setGposPerformance(trimNum((vestingFactor * 100 || 0), 2));
+                    setEstimatedRakeReward(trimNum(((gposInfo.account_vested_balance / (10 ** asset.precision)) / totalBlockchainGpos) * trimNum((vestingFactor * 100 || 0), 2), 2));
+                    setSymbol(asset.symbol);
+                    setSymbol_id(gposInfo.award.asset_id);
+                    setPrecision(asset.precision);
+                    determineGposPerfString(trimNum((vestingFactor * 100 || 0), 2));
+                }
+            });
+        });
+    }
+    useEffect(() => {
+        getAssets();
+        calculateSubPeriodStr();
+        setInterval(() => {
+            calculateSubPeriodStr();
+        }, 1000)
+    }, []);
+
+    const calculateSubPeriodStr = () => {
+        var now = new Date();
+        var utcNowMS = new Date(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds(), now.getUTCMilliseconds()).getTime();
+        var nextMtMS = new Date(maintenance.nextMaintenance).getTime();
+        var _mt = Math.floor((nextMtMS - utcNowMS) / 1000 / 60);
+        var _ms = Math.floor((nextMtMS - utcNowMS - 60 * 1000 * _mt) / 1000);
+        if (_mt === 0) {
+            _mt = Math.floor((nextMtMS - utcNowMS) / 1000) + ' Seconds'
+        } else if (_mt === 1) {
+            _mt = _mt + " Minute " + _ms + " Seconds"
+        } else {
+            _mt = _mt + " Minutes " + _ms + " Seconds"
+        }
+        setGposSubPeriodStr(_mt)
+    }
+    useEffect(() => {
+        setNewVotes(props.account.votes.map(el => el.vote_id))
+    }, [props.account])
+    const saveResult = (password) => {
+        setSaveLoading(true);
         let user = getAccountData();
         dbApi('get_account_by_name', [user.name]).then(e => {
+            const currentVotes = [...newVotes, ...votes];
             let new_options = e.options;
-            new_options.votes = this.props.votes.sort((a,b) => {
+            new_options.votes = currentVotes.sort((a, b) => {
                 const aSplit = a.split(':');
                 const bSplit = b.split(':');
-    
+
                 return parseInt(aSplit[1], 10) - parseInt(bSplit[1], 10);
             });
-            new_options.num_witness = this.props.votes.filter((vote) => parseInt(vote.split(':')[0]) === 1).length;
-            new_options.num_committee = this.props.votes.filter((vote) => parseInt(vote.split(':')[0]) === 0).length;
-            new_options.num_son = this.props.votes.filter((vote) => parseInt(vote.split(':')[0]) === 3).length;
-            updateAccount({new_options, extensions: {value: {update_last_voting_time: true}}}, password).then(clearVotes);
+            new_options.num_witness = currentVotes.filter((vote) => parseInt(vote.split(':')[0]) === 1).length;
+            new_options.num_committee = currentVotes.filter((vote) => parseInt(vote.split(':')[0]) === 0).length;
+            new_options.num_son = currentVotes.filter((vote) => parseInt(vote.split(':')[0]) === 3).length;
+            updateAccount({ new_options, extensions: { value: { update_last_voting_time: true } } }, password).then(async () => {
+                updateReduxAccount(await formAccount(user.name))
+                clearVotes();
+                setSaveLoading(false);
+            });
+        });
+    };
+    const reset = () => {
+        setCancelVotes(true);
+        setNewVotes(props.account.votes.map(el => el.vote_id))
+        clearVotes();
+        setTimeout(() => {
+            setCancelVotes(false);
         });
     };
 
-    reset = () => {
-        clearVotes();
+    const handleSave = () => {
+        let user = getAccountData();
+        if (user.assets[0].amount / 100000 < 20) {
+            return toast.error('Insufficient test balance.')
+        }
+        if (totalGpos > 0) {
+            getPassword(saveResult)
+
+        } else {
+            toast.error('You need to Vest some GPOS balance first')
+        }
     };
+    if (!account) return <NeedToLogin tag={'empty.login'} />;
+    return (
+        <div className="container page">
+              <div className="page__header-wrapper">
+            <Translate className="page__title" component="h1" content={"vesting.title"}/>
+        </div>
+            <div>
+                <Grid container spacing={1}>
+                    <Grid item xs={12} sm={6}>
+                        <VestGPOS symbol_id={symbol_id} symbol={symbol} precision={precision} totalGpos={totalGpos} getAssets={getAssets} />
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                        <WithdrawGPOS symbol_id={symbol_id} symbol={symbol} precision={precision} totalGpos={totalGpos} availableGpos={availableGpos} getAssets={getAssets} />
+                    </Grid>
+                </Grid>
+            </div>
+            <div style={{ paddingTop: "24px" }}>
+                <Grid container spacing={2}>
+                    <Grid item xs={12} sm={6} md={3}>
+                        <Card >
+                            <Translate className="card__title" component="div" content='voting.performance.title' />
+                            <CardContent>
+                                <Translate component="div" content={gposPerfString} />
+                            </CardContent>
+                        </Card>
+                    </Grid>
+                    <Grid item xs={12} sm={6} md={3}>
+                        <Card >
+                            <Translate className="card__title" component="div" content='voting.percent' />
+                            <CardContent>
+                                {gposPerformance}%
+                            </CardContent>
+                        </Card>
+                    </Grid>
+                    <Grid item xs={12} sm={6} md={3}>
+                        <Card >
+                            <Translate className="card__title" component="div" content='voting.potential' />
+                            <CardContent>
+                                {`${estimatedRakeReward}%`}
+                            </CardContent>
+                        </Card>
+                    </Grid>
+                    <Grid item xs={12} sm={6} md={3}>
+                        <Card >
+                            <Translate className="card__title" component="div" content='voting.next_vote' />
+                            <CardContent>
+                                {gposSubPeriodStr}
+                            </CardContent>
+                        </Card>
 
-    handleSave = () => getPassword(this.saveResult);
+                    </Grid>
+                </Grid>
+            </div>
 
-    render() {
-        if (!this.props.account) return <NeedToLogin tag={'empty.login'}/>;
-
-        return (
-            <div className="container page">
-                <div className="page__header-wrapper">
-                    <Translate className="page__title" component="h1" content="voting.title"/>
-                </div>
-                <div className="page__menu">
+            <div className="page__header-wrapper">
+                <Translate className="page__title" component="h1" content="voting.title" />
+            </div>
+            <div className="page__menu">
+                {
+                    votingMenu.map((el, id) => (
+                        <Translate
+                            key={id}
+                            content={`voting.${el.tag}.title`}
+                            component={NavLink}
+                            to={`/voting${el.link}`}
+                            className="page__menu-item"
+                            exact
+                        />
+                    ))
+                }
+            </div>
+            <div className="page__content voting__content">
+                <Switch>
                     {
                         votingMenu.map((el, id) => (
-                            <Translate
+                            <Route
                                 key={id}
-                                content={`voting.${el.tag}.title`}
-                                component={NavLink}
-                                to={`/voting${el.link}`}
-                                className="page__menu-item"
+                                path={`/voting${el.link}`}
+                                render={() => el.render(account, props.data, cancelVotes, { setNewVotes, newVotes })}
                                 exact
                             />
                         ))
                     }
-                </div>
-                <div className="page__content">
-                    <Switch>
-                        {
-                            votingMenu.map((el, id) => (
-                                <Route
-                                    key={id}
-                                    path={`/voting${el.link}`}
-                                    render={() => el.render(this.props.account, this.props.data)}
-                                    exact
-                                />
-                            ))
-                        }
-                    </Switch>
-                </div>
-                <SaveChangesCard
-                    show={this.props.votes && this.props.votes.length}
-                    fee={this.props.data.update_fee}
-                    cancelFunc={this.reset}
-                    saveFunc={this.handleSave}
-                />
+                </Switch>
             </div>
-        )
-    }
+            <SaveChangesCard
+                show={newVotes.length !== props.account.votes.length}
+                fee={props.data.update_fee}
+                cancelFunc={reset}
+                saveFunc={handleSave}
+                loading={saveLoading}
+            />
+            <ToastContainer className={classes.toastify}/>
+        </div>
+    )
 }
 
-const mapStateToProps = (state) => ({account: state.accountData, votes: state.votes});
-const voteWithData = dataFetch({method: getInfoVoting})(Voting);
+
+const mapStateToProps = (state) => ({ account: state.accountData, votes: state.votes, maintenance: state.maintenance });
+const voteWithData = dataFetch({ method: getInfoVoting })(Voting);
 
 export default connect(mapStateToProps)(voteWithData);

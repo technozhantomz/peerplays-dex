@@ -107,6 +107,12 @@
     height: 352px;
     width: 640px;
   }
+  
+  &--full{
+    width: 90%;
+    margin: 0 auto;
+    padding: 10px;
+  }
 
   &--table {
     margin-top: 25px;
@@ -430,4 +436,23 @@
 
 .fee-pool {
   margin: 4rem 1rem;
+}
+
+@media(max-width:500px){
+  .witness__cards {
+    height: 130px;
+  }
+  .explorer__cards {
+    height: 130px;
+  }
+}
+
+@media(min-width:500px){
+  .explorer__cards {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
 }

@@ -1,97 +1,83 @@
-import React, {Component, Fragment} from "react";
+import React, { Component, Fragment, useEffect, useState } from "react";
 import Translate from "react-translate-component";
-import {IconCheckBlue} from "../../../svg";
+import { IconCheckBlue } from "../../../svg";
 import Table from "../../helpers/table";
-import {setVotes} from "../../../dispatch/votesDispatch";
-import {getStore} from "../../../actions/store";
+import { setVotes } from "../../../dispatch/votesDispatch";
+import { getStore } from "../../../actions/store";
+import TableCard from "../../helpers/cards";
 
-class VotingPage extends Component {
-    state = {
-        active: false,
-        pending: false,
-        voteList: []
-    };
+const VotingPage = (props) => {
+    const [active, setActive] = useState(false);
+    const [pending, setPending] = useState(false);
 
-    buttons = (id) => ({
-        toVote: <button onClick={() => this.addToVote(id)}><IconCheckBlue className="vote__like"/></button>,
-        fromVote: <button onClick={() => this.removeFromVote(id)}><IconCheckBlue className="mask vote__like"/></button>
+    const buttons = (id) => ({
+        toVote: <button onClick={() => addToVote(id)}><IconCheckBlue className="vote__like" /></button>,
+        fromVote: <button onClick={() => removeFromVote(id)}><IconCheckBlue className="mask vote__like" /></button>
     });
 
-    formatVote = (array, voteList) => {
-        return array.map((item, index) => ({
-            ...item,
-            rank: index + 1,
-            vote_icon: this.buttons(item.vote_id)[voteList.find(elem => elem === item.vote_id) ? 'fromVote' : 'toVote']
-        }))
+    const formatVote = (array) => {
+        return array.map((item, index) => {
+            return ({
+                ...item,
+                rank: index + 1,
+                vote_icon: buttons(item.vote_id)[props.hooks.newVotes.find(elem => elem === item.vote_id) ? 'fromVote' : 'toVote']
+            })
+        })
     };
 
-    addToVote = (id) => {
-        this.setState((state, props) => {
-            let voteList = state.voteList;
+    const addToVote = (id) => {
+        if (!props.hooks.newVotes.includes(id)) {
+            let voteList = props.hooks.newVotes;
             voteList.push(id);
-            setVotes([...getStore().votes, ...voteList]);
-            return {
-                voteList,
-                active: this.formatVote(state.active, voteList),
-                pending: this.formatVote(state.pending, voteList)
-            }
-        });
+            props.hooks.setNewVotes([...voteList]);
+        }
+
     };
 
-    removeFromVote = (id) => {
-        this.setState((state, props) => {
-            let voteList = state.voteList.filter(item => item !== id);
-            setVotes([...getStore().votes, ...voteList]);
-            return {
-                voteList,
-                active: this.formatVote(state.active, voteList),
-                pending: this.formatVote(state.pending, voteList)
-            }
-        });
+    const removeFromVote = (id) => {
+        let voteList = props.hooks.newVotes.filter(item => item !== id);
+        props.hooks.setNewVotes([...voteList]);
+        setActive(formatVote(active))
+        setPending(formatVote(pending))
     };
 
-    componentDidMount() {
-        const {params, account, votes} = this.props;
-        let newList = getStore().votes;
-        let list = newList.length ? newList : account.votes.map(item => item.vote_id || item.vote_for);
 
-        this.setState({
-            voteList: list,
-            active: this.formatVote(votes.filter(item => item.active), list),
-            pending: this.formatVote(votes.filter(item => !item.active), list)
-        });
-    }
+    useEffect(() => {
+        setActive(formatVote(props.votes.filter(item => item.active)));
+        setPending(formatVote(props.votes.filter(item => !item.active)));
+    }, [props])
 
-    render() {
-        const {active, pending} = this.state;
-        const {tableHead} = this.props;
 
-        return (
-            <div className="voting__table">
-                {
-                    active &&
-                    <Fragment>
-                        <Translate className="table__title" component="div" content={"blockchain.witnesses.active"}/>
-                        <Table
-                            tableHead={tableHead}
-                            rows={active}
-                        />
-                    </Fragment>
-                }
+    const { tableHead } = props;
 
-                {
-                    pending &&
-                    <Fragment>
-                        <Translate className="table__title" component="div" content={"blockchain.witnesses.pending"}/>
-                        <Table
-                            tableHead={tableHead}
-                            rows={pending}
-                        />
-                    </Fragment>
-                }
-            </div>
-        )
-    }
+    return (
+        <div className="voting__table">
+            {
+                active &&
+                <Fragment>
+                    <Translate className="table__title" component="div" content={"blockchain.witnesses.active"} />
+                    <Table
+                        tableHead={tableHead}
+                        rows={active}
+                    />
+                    <TableCard rows={active} tableHead={tableHead} />
+                </Fragment>
+            }
+
+            {
+                pending &&
+                <Fragment>
+                    <Translate className="table__title" component="div" content={"blockchain.witnesses.pending"} />
+                    <Table
+                        tableHead={tableHead}
+                        rows={pending}
+                    />
+                    <TableCard rows={pending} tableHead={tableHead} />
+                </Fragment>
+            }
+        </div>
+    )
+
 }
 
 export default VotingPage;

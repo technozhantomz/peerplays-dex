@@ -84,8 +84,9 @@ class ChangePair extends Component{
                 <div className="pair-selector">
                     {pair &&
                         <div className="pair-selector__inputs">
-                            <FieldWithHint
+                         <FieldWithHint
                                 name="quote"
+                                className="cpointer"
                                 hideLabel={true}
                                 method={getSymbolsList}
                                 handleChange={this.handlePairChange}
@@ -100,6 +101,7 @@ class ChangePair extends Component{
 
                             <FieldWithHint
                                 name="base"
+                                className="cpointer"
                                 hideLabel={true}
                                 method={getSymbolsList}
                                 handleChange={this.handlePairChange}

@@ -171,3 +171,15 @@
     }
   }
 }
+
+@media(max-width:500px){
+  .table {
+    display: none;
+  }
+}
+
+@media(min-width:500px){
+  .cardsTable {
+    display: none;
+  }
+}

@@ -2,9 +2,9 @@ import React from 'react';
 import {
     IconAssets,
     IconBlockchain,
-    IconBusiness, IconContacts,
+    IconBookOpen,
     IconDashboard,
-    IconExchange, IconQuestion,
+    IconExchange, 
     IconSettings,
     IconVoting
 } from "../svg/index";
@@ -36,23 +36,13 @@ export const menuList = [
         icon: <IconVoting />,
     },
     {
-        link: '/business',
-        tag: 'business',
-        icon: <IconBusiness />,
-    },
-    {
         link: '/settings',
         tag: 'settings',
         icon: <IconSettings />,
     },
     {
-        link: '/contacts',
-        tag: 'contacts',
-        icon: <IconContacts />,
-    },
-    {
-        link: '/help',
-        tag: 'help',
-        icon: <IconQuestion />,
+        link: '/bitcoin',
+        tag: 'bitcoin',
+        icon: <IconBookOpen/>,
     }
 ];

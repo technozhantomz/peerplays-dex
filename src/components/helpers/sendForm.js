@@ -6,7 +6,7 @@ import Form from "./form/form";
 import {transfer} from "../../actions/forms";
 import Textarea from "./form/textarea";
 import {defaultToken} from "../../params/networkParams";
-import {getAccountData} from "../../actions/store";
+import {getAccountData, getBasicAsset} from "../../actions/store";
 import FieldWithHint from "./form/fieldWithHint";
 
 const getSymbolsList = async (symbol) => (
@@ -14,6 +14,14 @@ const getSymbolsList = async (symbol) => (
         .filter(item => item.type !== 2 && item.name.includes(symbol))
         .map(item => item.name)
 );
+
+const getUserAssetsList = async (symbol) => (
+    getAccountData().assets
+        .filter(item => item ? item.symbol : [])
+        .map(item => item.symbol)
+);
+
+const MEMO_MAX_LENGTH = 200;
 
 class SendForm extends Component {
     state = {
@@ -27,12 +35,12 @@ class SendForm extends Component {
         const userTokens = user.assets;
         const startAsset = userTokens.length ? userTokens[0].symbol : defaultToken;
         const contacts = getAccountData().contacts.filter(item => item.type !== 2).map(item => item.name);
-
+        const basicAsset = getBasicAsset().symbol;
         const defaultData = {
             from: user.name,
             quantityAsset: startAsset,
             fee: 0,
-            feeAsset: startAsset,
+            feeAsset: basicAsset,
             contacts: contacts || [],
             quantity: 0,
             memo: '',
@@ -44,16 +52,17 @@ class SendForm extends Component {
 
     handleTransfer = (data) => {
         const context = this;
+        window.location.reload();
         this.setState({sended: true}, () => setTimeout(() => context.setState({sended: false}), 5000));
 
         if(this.props.update) {
             this.props.update();
         }
 
-        Array.from(document.querySelectorAll("input:not(:disabled):not([readonly]):not([type=hidden])" +
-        ",textarea:not(:disabled):not([readonly])")).forEach(
-            (input) => input.value = ""
-        );
+        // Array.from(document.querySelectorAll("input:not(:disabled):not([readonly]):not([type=hidden])" +
+        // ",textarea:not(:disabled):not([readonly])")).forEach(
+        //     (input) => input.value = ""
+        // );
     };
 
     render() {
@@ -103,17 +112,19 @@ class SendForm extends Component {
                                             defaultHints={data.contacts}
                                             defaultVal = {data}
                                         />
-                                        <Dropdown
-                                            btn={<SelectHeader
-                                                text={data.quantityAsset}
-                                            />}
-                                            list={userTokens.map(e => <button
-                                                onClick={() => form.handleChange(e.symbol, 'quantityAsset')}
-                                                type="button">{e.symbol}</button>)}
-                                        />
+                                    <FieldWithHint
+                                                name="quantityAsset"
+                                                method={getUserAssetsList}
+                                                hideLabel={true}
+                                                handleChange={form.handleChange}
+                                                errors={errors}
+                                                defaultVal = {data}
+                                                readOnly={true}
+                                            />
                                     </div>
                                     <div className="input__row">
                                         <Textarea
+                                            maxLength={MEMO_MAX_LENGTH}
                                             name="memo"
                                             comment={true}
                                             className="memo"
@@ -123,7 +134,7 @@ class SendForm extends Component {
                                         />
                                     </div>
                                     <div className="btn__row">
-                                        <span>Fee: {data.fee} {data.quantityAsset}</span>
+                                        <span>Fee: {data.fee} {data.feeAsset}</span>
                                         {sended && <span className="clr--positive">Transaction Completed</span>}
                                         <button type="submit" className="btn-round btn-round--send">SEND</button>
                                     </div>

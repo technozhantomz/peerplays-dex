@@ -9,6 +9,7 @@ import Dropdown from "../../helpers/form/dropdown";
 import SelectHeader from "../../helpers/selectHeader";
 import Input from "../../helpers/form/input";
 import {faucetUrl} from "../../../params/networkParams";
+import Faucet from "./faucet";
 
 class GeneralSettings extends Component {
 
@@ -85,12 +86,12 @@ class GeneralSettings extends Component {
                     btn={<SelectHeader labelTag="general.language" text={activeLang} />}
                     list={localesList}
                 />
-                <Switcher
+                {/* <Switcher
                     id="themeSwitch"
                     label="general.theme"
                     selected={darkTheme}
                     handleChange={this.themeChange}
-                />
+                /> */}
                 <Switcher
                     id="modeSwitch"
                     label="general.mode"
@@ -105,12 +106,8 @@ class GeneralSettings extends Component {
                     onChange={this.handleNotifications}
                 />
                 <Translate content="general.faucet" component="h2" />
-                <Input
-                    name="faucet"
-                    comment={true}
-                    value={formData}
-                    disabled
-                />
+    
+                <Faucet value={formData.faucet}/>
             </div>
         );
     }

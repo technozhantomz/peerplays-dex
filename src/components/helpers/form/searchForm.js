@@ -10,7 +10,7 @@ class SearchForm extends Component{
         setTimeout(() => {
             document.getElementsByClassName('search__field')[0].value = '';
         }, 400);
-        this.props.handleChange('');
+        this.props.handleChange('users');
     };
 
 

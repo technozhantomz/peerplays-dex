@@ -20,9 +20,7 @@ const Membership = ({account}) => {
     const feeAsset = new Asset({...basicAsset, amount: fees.account_upgrade.membership_lifetime_fee});
     const {origin, hostname} = window.location;
 
-    const link = testnetCheck
-        ? origin
-        : hostname.match(/realdata/);
+    const link = origin;
     const name = account.name;
 
     return (
