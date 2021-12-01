@@ -14,5 +14,5 @@ export const lookupBlock = async val => {
                     <BlockHeader num={val} data={info}/>
                 </span>
         )
-    }) : 'You can only serach with block number'
+    }) : 'You can only search with block number'
 };
