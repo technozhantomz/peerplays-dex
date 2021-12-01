@@ -60,7 +60,7 @@ export const getOrders = async (context) => {
         const quoteAsset = await formAssetData(quote);
         const marketPrice = await dbApi('get_ticker', [baseAsset.symbol, quoteAsset.symbol]).then(e => e.latest);
         const forSale = await formAssetData({...baseAsset, amount: el.for_sale });
-        const price = baseAsset.calculatePrice(quote);
+        const price = baseAsset.calculatePrice(quoteAsset);
         const quoteAmount = roundNum(forSale.setPrecision() / price);
 
         let value = 1;
@@ -82,10 +82,10 @@ export const getOrders = async (context) => {
         return {
             trade: baseAsset.symbol,
             order: el.id.substr(el.id.lastIndexOf('.') + 1, ),
-            description: `Buy ${quoteAmount} ${quoteAsset.symbol} for ${forSale.toString()}`,
+            description: `Buy ${quoteAsset.toString()} for ${forSale.toString()}`,
             price: `${price} ${baseAsset.symbol}`,
             market: marketPrice > 0 ? `${roundNum(marketPrice)} ${quoteAsset.symbol}` : 'n/a',
-            value: `${roundNum(value, 0)} ${defaultToken}`,
+            value: `${forSale.toString()}`,
             actions
         }
     }));
