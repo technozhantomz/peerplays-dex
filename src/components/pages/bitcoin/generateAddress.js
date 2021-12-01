@@ -5,7 +5,7 @@ import {setSidechainAccounts} from '../../../dispatch/setAccount';
 import {clearLayout} from "../../../dispatch/index";
 import { getPassword } from "../../../actions/forms";
 import { useFormInput } from "./formInput";
-import { validate, getAddressInfo } from 'bitcoin-address-validation';
+import { validate } from 'bitcoin-address-validation';
 
 const GenerateAddress = (props) => {
     const {loginData, accountData, sidechain} = props;
@@ -37,7 +37,7 @@ const GenerateAddress = (props) => {
 
     const submitGenerateAddress = () => {
         const isValid = formValidation();
-        getPassword(password => generateSidechainAddress({
+        return isValid ? getPassword(password => generateSidechainAddress({
             sidechain: sidechain,
             depositPublicKey: depositPublicKey.value,
             password: password,
@@ -46,7 +46,7 @@ const GenerateAddress = (props) => {
             fee: fee
         }).then((result) => {
             result.success ? handleAddressGenerated(result.callbackData) : setErrors(result.errors);
-        }));
+        })) : ''
     };
 
     const formValidation = () => {
@@ -54,30 +54,34 @@ const GenerateAddress = (props) => {
         const withdrawPublicKeyError = {};
         const withdrawAddressError = {};
         let isValid = true;
-        if(depositPublicKey.value.trim.length == 0){
+        if(depositPublicKey.value.length === 0){
             depositPublicKeyError.depositPublicKeyRequired = 'This field is required';
             isValid = false;
         }
-        if(!validate(depositPublicKey.value)){
+        if(withdrawPublicKey.value.length > 0 && !validate(depositPublicKey.value)){
             depositPublicKeyError.depositPublicKeyValid = 'Deposit Public key not correct';
             isValid = false;
         }
-        if(depositPublicKey.value.trim.length == 0){
+        if(withdrawPublicKey.value.length === 0){
             withdrawPublicKeyError.withdrawPublicKeyRequired = 'This field is required';
             isValid = false;
         }
-        if(!validate(depositPublicKey.value)){
-            withdrawPublicKeyError.withdrawPublicKeyValid = 'Deposit Public key not correct';
+        if(withdrawPublicKey.value.length > 0 && !validate(withdrawPublicKey.value)){
+            withdrawPublicKeyError.withdrawPublicKeyValid = 'Withdraw Public key not correct';
             isValid = false;
         }
-        if(depositPublicKey.value.trim.length == 0){
-            withdrawAddressError.depositPublicKeyRequired = 'This field is required';
+        if(withdrawAddress.value.length === 0){
+            withdrawAddressError.withdrawAddressRequired = 'This field is required';
             isValid = false;
         }
-        if(!validate(depositPublicKey.value)){
-            withdrawAddressError.depositPublicKeyValid = 'Deposit Public key not correct';
+        if(withdrawAddress.value.length > 0 && !validate(withdrawAddress.value)){
+            withdrawAddressError.withdrawAddressValid = 'With Draw address not correct';
             isValid = false;
         }
+        setDepositPublicKeyError(depositPublicKeyError);
+        setWithdrawPublicKeyError(withdrawPublicKeyError);
+        setWithdrawAddressError(withdrawAddressError);
+        return isValid;
     }
 
     return(
@@ -86,12 +90,21 @@ const GenerateAddress = (props) => {
                 <div className="input__row">
                     <Input name="depositPublicKey" className="modal__field" {...depositPublicKey}/>
                 </div>
+                {Object.keys(depositPublicKeyError).map((key) => {
+                    return <h3 key={key} className="clr--negative">{depositPublicKeyError[key]}</h3>
+                })}
                 <div className="input__row">                
                     <Input name="withdrawPublicKey" className="modal__field" {...withdrawPublicKey}/>
                 </div>
+                {Object.keys(withdrawPublicKeyError).map((key) => {
+                    return <h3 key={key} className="clr--negative">{withdrawPublicKeyError[key]}</h3>
+                })}
                 <div className="input__row">
                     <Input name="withdrawAddress" className="modal__field" {...withdrawAddress} />
                 </div>
+                {Object.keys(withdrawAddressError).map((key) => {
+                    return <h3 key={key} className="clr--negative">{withdrawAddressError[key]}</h3>
+                })}
                 <div className="info__row">
                     <span>Fee: {fee.amount} {fee.symbol}</span>
                     {sent && <span className="clr--positive">Sidechain address has been generated.</span>}
@@ -103,7 +116,6 @@ const GenerateAddress = (props) => {
             </div>
         </div>
     )
-
 };
 
 export default GenerateAddress;
