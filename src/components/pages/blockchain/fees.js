@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import {getFees} from "../../../actions/getFees";
 import Table from "../../helpers/table";
+import TableCard from "../../helpers/cards";
 
 const tableHead = [
     {
@@ -42,6 +43,7 @@ class Fees extends Component {
                     tableHead={tableHead}
                     rows={operations}
                 />
+                <TableCard tableHead={tableHead} rows={operations}/>
             </div>
         )
     }

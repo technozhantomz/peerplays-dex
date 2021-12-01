@@ -19,9 +19,17 @@ const getSymbolsList = async (symbol) => (
         .map(item => item.name)
 );
 
+const getUserAssetsList = async (symbol) => (
+    getAccountData().assets
+        .filter(item => item ? item.symbol : [])
+        .map(item => item.symbol)
+);
+
+
 class SendModal extends Component {
 
     state = {
+        sended: false,
         defaultData: false,
         userTokens: false
     };
@@ -47,9 +55,19 @@ class SendModal extends Component {
         this.setState({userTokens, defaultData});
     }
 
+    handleSend = (data) => {
+        this.setState({sended: true}, () => {
+        });
+
+        setTimeout(() => {
+            clearLayout();
+            window.location.reload();
+        }, 3000);
+    };
+
     render() {
 
-        const {defaultData, userTokens} = this.state;
+        const {defaultData, userTokens, sended} = this.state;
 
         if (!userTokens) return <span/>;
 
@@ -61,7 +79,7 @@ class SendModal extends Component {
                     defaultData={defaultData}
                     requiredFields={['to', 'quantity']}
                     action={transfer}
-                    handleResult={clearLayout}
+                    handleResult={this.handleSend}
                 >
                     {
                         form => {
@@ -110,14 +128,14 @@ class SendModal extends Component {
                                                 error={errors}
                                                 value={data}
                                             />
-                                            <Dropdown
-                                                btn={<SelectHeader
-                                                    text={data.quantityAsset}
-                                                    className="with-bg"
-                                                />}
-                                                list={userTokens.map(e => <button
-                                                    onClick={() => form.handleChange(e.symbol, 'quantityAsset')}
-                                                    type="button">{e.symbol}</button>)}
+                                            <FieldWithHint
+                                                name="quantityAsset"
+                                                method={getUserAssetsList}
+                                                hideLabel={true}
+                                                handleChange={form.handleChange}
+                                                errors={errors}
+                                                defaultVal = {data}
+                                                readOnly={true}
                                             />
                                         </div>
                                         <Textarea
@@ -142,6 +160,7 @@ class SendModal extends Component {
                                         </div>
                                     </div>
                                     <div className="modal__bottom">
+                                        {sended && <h3 className="clr--positive">Transaction Completed</h3>}
                                         <Close/>
                                         <Submit tag="send"/>
                                     </div>

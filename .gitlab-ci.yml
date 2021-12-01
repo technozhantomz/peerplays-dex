@@ -16,23 +16,33 @@ variables:
 stages:
   - build
   - test
+  - review
   - deploy
   - dast
 
 # builds app
-build:
+build_dev:
   # node docker image on which this would be run
   image: node:14.16.1-alpine3.13
   stage: build
   script:
     - apk update && apk add g++ make nasm git libtool autoconf automake libpng-dev pkgconfig
+    - echo "DEFAULT_TOKEN='$DEV_TOKEN'" >> .env
+    - echo "DEFAULT_QUOTE='$DEV_QUOTE'" >> .env
+    - echo "FAUCET_URL='$DEV_FAUCET'" >> .env
+    - echo "DEX_URL='$DEV_DEX_URL'" >> .env
+    - echo "DEFAULT_CHAIN_ID='$DEV_CHAIN_ID'" >> .env
+    - echo "BLOCKCHAIN_ENDPOINTS='$DEV_BLOCKCHAIN_ENDPOINTS'" >> .env
     - npm install
-    - .ci/replace_vars.sh
-    - cp example.env .env
     - npm run build
   artifacts:
+    reports:
+      dast: gl-dast-report.json
     paths:
       - dist/
+    expire_in: 2 weeks
+  only:
+    - branches
   tags:
     - docker
 
@@ -49,16 +59,51 @@ docker_build:
     - docker build -f dev.Dockerfile -t $IMAGE .
     - docker push $IMAGE
 
-deploy:
+
+deploy_review:
+  stage: review
+  dependencies:
+    - build_dev
+  script: 
+    - if [ -d "$QA_DEPLOY_DIR" ]; then rm -rf $QA_DEPLOY_DIR/*; else exit 1; fi
+    - if [ -d "$QA_DEPLOY_DIR" ]; then cp -R dist/* $QA_DEPLOY_DIR; else exit 1; fi 
+  environment:
+    name: review/$CI_COMMIT_REF_NAME
+    url: http://$CI_ENVIRONMENT_SLUG.$APPS_DOMAIN
+    on_stop: stop_review_app
+    auto_stop_in: 1 week
+  only: 
+    - branches
+  except:
+    - develop
+  tags:
+    - dex-deploy-review
+
+stop_review_app:
+  stage: review
+  script: stop-review-app
+  environment:
+    name: review/$CI_COMMIT_REF_NAME
+    action: stop
+  only: 
+    - branches
+  except:
+    - develop
+  tags:
+    - dex-deploy-review
+  when: manual
+
+deployToDev:
   stage: deploy
   dependencies:
-    - build
+    - build_dev
   script: 
-    - deploy $DEPLOY_DIR
+    - rm -rf $DEV_DEPLOY_DIR/*
+    - cp -R dist/* $DEV_DEPLOY_DIR
   when:
     manual
   tags:
-    - ppdex
+    - dex1
 
 sonarcloud-check:
  image:

@@ -3,6 +3,7 @@ import Table from "../../helpers/table";
 import {getAssets} from "../../../actions/getAssets";
 import {Radio} from "../../helpers/radio";
 import Translate from "react-translate-component";
+import TableCard from "../../helpers/cards";
 
 const tableHead = [
     {
@@ -52,7 +53,7 @@ class Assets extends Component {
 
         return (
             <div className="assets">
-                <div className="assets__radios">
+                <div className="assets__radioss">
                     {radioGroup.map(item =>
                         <Radio
                             key={item}
@@ -66,6 +67,7 @@ class Assets extends Component {
                     tableHead={tableHead}
                     rows={assets}
                 />
+                <TableCard rows={assets} tableHead={tableHead}/>
             </div>
         )
 

@@ -28,12 +28,13 @@
     box-sizing: border-box;
     box-shadow: none;
   }
-  &__filter, &__result{
+  &__filter{
     margin: 1.6rem 5rem;
+    width: 200px;
   }
   &__filter{
     .dropdown{
-      width: 13.5rem;
+      width: 100%;
     }
   }
   &__result{
@@ -50,6 +51,15 @@
     &:hover{
       box-shadow: $shadow-bold;
     }
+  }
+
+  .card__margins {
+   margin-top: 15px;
+  }
+
+  .grid__cade {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
   }
   .asset-stats{
     margin-bottom: 2rem;

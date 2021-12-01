@@ -4,6 +4,7 @@ import {NavLink} from "react-router-dom";
 import Translate from "react-translate-component";
 import {connect} from "react-redux";
 import {store} from "../../index";
+import { IconLogo } from '../../svg';
 
 const closeMenu = () => {
     [
@@ -15,7 +16,7 @@ const closeMenu = () => {
 const Menu = (props) => (
     <div className={`menu${props.menu ? ' open' : ''}`}>
         <div className="menu__logo-wrapper">
-            <img src={require('../../images/logo.png')} alt=""/>
+            <IconLogo/>
         </div>
         {
             menuList.map((el, id) => (

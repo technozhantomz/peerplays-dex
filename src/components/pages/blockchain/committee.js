@@ -2,6 +2,7 @@ import React, {Component, Fragment} from "react";
 import Translate from "react-translate-component";
 import Table from "../../helpers/table";
 import {getCommittee} from "../../../actions/getCommittee";
+import TableCard from "../../helpers/cards";
 
 const tableHead = [
     {
@@ -61,6 +62,7 @@ class Committee extends Component {
                             tableHead={tableHead}
                             rows={active}
                         />
+                        <TableCard tableHead={tableHead} rows={active}/>
                     </Fragment>
                 }
 
@@ -72,6 +74,7 @@ class Committee extends Component {
                             tableHead={tableHead}
                             rows={pending}
                         />
+                        <TableCard tableHead={tableHead} rows={pending}/>
                     </Fragment>
                 }
             </Fragment>

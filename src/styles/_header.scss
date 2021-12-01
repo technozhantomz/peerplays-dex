@@ -51,7 +51,7 @@ header{
 }
 
 .drop-user{
-  width: 41.5rem;
+  width: 30rem;
   padding: 2.1rem 3.2rem 4.3rem;
   border-radius: 4px;
   box-sizing: border-box;
@@ -85,7 +85,7 @@ header{
     align-items: stretch;
     margin: 1.6rem 0 3.4rem;
     button{
-      width: 48%;
+      width: 70%;
     }
   }
   &__wallets-title{
@@ -127,6 +127,12 @@ header{
       fill: $white;
       opacity: 1;
     }
+  }
+  &__sidechain-address-item{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    align-items: center;
   }
 }
 

@@ -33,6 +33,7 @@ const addressValidation = {
 };
 
 export const checkWithdrawAddress = async data => {
+    if(data.withdrawAddress.match(/^  *$/) !== null) return 'required'
     if(!data.withdrawAddress) return false;
     return addressValidation[data.bridgeName] ? addressValidation[data.bridgeName](data).then(valid => !valid ? 'addressIsNotValid' : false) : false;
 };

@@ -4,7 +4,7 @@ import {defaultQuote} from "../../params/networkParams";
 import {formAssetsList} from "../../actions/assets/formAssetsList";
 import ActionsBtn from "./buttons/actionsBtn";
 import {getAccountData} from "../../actions/store";
-
+import TableCards from "../helpers/cards"
 const tableAssetsHead = [
     {
         key: "asset",
@@ -48,7 +48,7 @@ const getData = async () => {
             asset: item.symbol,
             available: item.quantity / (10 ** item.precision),
             priceUSD: item.usdPrice,
-            change: item.dailyChange === "0" ? item.dailyChange : item.dailyChange > 0 ? `+${item.dailyChange}` : `-${item.dailyChange}`,
+            change: !item.dailyChange || item.dailyChange == 0 ? `0%` : item.dailyChange > 0 ? `+${item.dailyChange}%` : `-${item.dailyChange}%`,
             valueUSD: Number((item.quantity / (10 ** item.precision) * item.usdPrice).toFixed(5))
         })
 
@@ -73,10 +73,13 @@ class TableMyAssets extends Component {
             <Fragment>
                 {
                     data &&
+                    <div>
                     <Table
                         tableHead={tableAssetsHead}
                         rows={data}
                     />
+                    <TableCards tableHead={tableAssetsHead} rows={data}/>
+                    </div>
                 }
             </Fragment>
         )

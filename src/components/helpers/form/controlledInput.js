@@ -25,11 +25,12 @@ const ControlledInput = (props) => {
             <input
                 id={id ? id : name}
                 name={name}
-                value={value[name] || ''}
+                defaultValue={value[name] || ''}
                 type={type}
                 disabled={disabled}
                 onFocus={e => onFocus ? onFocus(e.target.value, name) : e.preventDefault()}
                 onChange={e => onChange ? onChange(e.target.value, name) : e.preventDefault()}
+                onClick={e => onChange ? onChange(e.target.value, name) : e.preventDefault()}
                 onBlur={e => onBlur ? onBlur(e.target.value, name) : e.preventDefault()}
                 placeholder=" "
                 className="field__input"

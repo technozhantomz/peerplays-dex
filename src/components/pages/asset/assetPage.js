@@ -10,6 +10,7 @@ import dataFetch from "../../helpers/dataFetch";
 import {clearAssetData, setAssetData} from "../../../dispatch";
 import {getStore} from "../../../actions/store";
 import {fetchAssetData} from "../../../actions/dataFetching";
+import NeedToLogin from "../../helpers/needToLogin";
 
 const assetMenu = [
     {
@@ -44,6 +45,7 @@ class AssetPage extends Component {
             nextProps.account.name !== this.props.account.name ||
             nextProps.assetData.basicData.issuer !== this.props.assetData.basicData.issuer
         ) this.setMenu(nextProps);
+        this.props.reset();
     }
 
     componentWillUnmount(){
@@ -62,6 +64,8 @@ class AssetPage extends Component {
 
         if(!this.state.menu) return <span />;
 
+        if(!this.props.account.id) return <NeedToLogin pageName={'assets'} />;
+        
         const assetData = {
             ...this.props.assetData,
             accountId: this.props.account.id

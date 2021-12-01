@@ -9,7 +9,7 @@ import OpenOrders from "../user/openOrders";
 import UserActivity from "../user/userActivity";
 import UserMargins from "../user/userMargins";
 import NeedToLogin from "../../helpers/needToLogin";
-import AssetWithdraw from "./assetsWithdraw";
+import {formAccount} from "../../../actions/account/formAccount";
 
 const basicMenu = [
     {
@@ -32,22 +32,25 @@ const basicMenu = [
         tag: 'positions',
         component: UserMargins
     },
-    {
-        link: '/permissions',
-        tag: 'permissions',
-        component: AssetsPermissions
-    },
-    {
-        link: '/withdraw',
-        tag: 'withdraw',
-        component: AssetWithdraw
-    }
+    // {
+    //     link: '/permissions',
+    //     tag: 'permissions',
+    //     component: AssetsPermissions
+    // }
 ];
 
 class MyAssets extends Component{
+
+    state = {
+        accountData : ''
+     };
+
     render(){
 
         const userData = this.props.account;
+
+        const {id} = userData;
+        formAccount(id).then((res) => {this.setState({accountData : res})})
 
         if(!userData) return <NeedToLogin pageName={'assets'} />;
 
@@ -57,7 +60,7 @@ class MyAssets extends Component{
                     <Translate className="page__title" component="h1" content={"assets.title"}/>
                     <QuantityConverter assets={userData.assets} />
                 </div>
-                <PageMenu items={basicMenu} link={`/assets`} path={'/assets'} data={userData} />
+                <PageMenu items={basicMenu} link={`/assets`} path={'/assets'} data={this.state.accountData} />
             </div>
         )
     }

@@ -31,7 +31,7 @@ export const en = {
         "votes": "Votes",
         "key": "Key",
         "time": "Time",
-        "type": "Type",
+        "type": "Price (kbyte)",
         "info": "Info",
         "id": "ID",
         "fee": "Fee",
@@ -42,6 +42,7 @@ export const en = {
         "memberFee": "Member Fee (bitUSD)",
         "blockID": "Block ID",
         "date": "Date",
+        "blockTimestamp": "Time",
         "witness": "Witness",
         "transaction": "Transaction",
         "user": "User",
@@ -97,7 +98,7 @@ export const en = {
         },
         "fill_order": {
             "title": "Order Filled",
-            "description": "%(user)s bought %(receives)s for %(pays)s at %(marketLink)s for order #%(id)s",
+            "description": "%(user)s bought %(pays)s for %(receives)s at %(marketLink)s for order #%(id)s",
         },
         "account_update": {
             "title": "Account Updated",
@@ -113,6 +114,10 @@ export const en = {
         },
         "proposal_create": {
             "title": "Proposal Create",
+            "description": ""
+        },
+        "balance_claim": {
+            "title": "Balance claim",
             "description": ""
         },
         "transfer": {
@@ -253,7 +258,7 @@ export const en = {
         "bidCollateral": {
             "title": "Bid Collateral",
             "text": "Unfortunately, BTC is in Global Settlement. During this time it is possible to bid on the collateral in the Settlement Fund and the debt it covers. When the total outstanding debt is covered by bids, and the additional collateral of each bid plus its share from the settlement fund is greater than the MCR, the asset is automatically revived and a margin position is created for each bid. \n" +
-            "Bids will be included on revival sorted by their bid price until the whole debt is covered (last bid might be covered partially). Included bids will be converted into margin positions and receive the residual collateral such that the position reaches MCR from the settlement fund. Not included bids will be reimbursed. A bid can be removed by placing a zero collateral bid."
+                "Bids will be included on revival sorted by their bid price until the whole debt is covered (last bid might be covered partially). Included bids will be converted into margin positions and receive the residual collateral such that the position reaches MCR from the settlement fund. Not included bids will be reimbursed. A bid can be removed by placing a zero collateral bid."
         },
         "smallCard": {
             "title": "TEST : ETH"
@@ -281,7 +286,7 @@ export const en = {
         "title": "Exchange",
         "price": "Current Price",
         "change": "Change (24h)",
-        "volume": "Volume (24h)",
+        "value": "Value (24h)",
         "feed": "Feed Price",
         "limit": "Call Limit",
         "margin": "Margin Call",
@@ -301,7 +306,7 @@ export const en = {
             "current_block": "Current Block",
             "supply": "Supply (%(currency)s)",
             "active_witnesses": "Active Witnesses",
-            "confirmation_time": "Confrimation Time (Sec)",
+            "confirmation_time": "Confirmation Time (Sec)",
             "last_irreversible": "Last Irreversible Block",
             "stealth_supply": "Stealth Supply (%(currency)s)"
         },
@@ -365,14 +370,43 @@ export const en = {
             "title": "Committee"
         },
         "son": {
-          "title": "SON"
-        }
+            "title": "SON"
+        },
+        "performance": {
+            "title": "Voting Performance",
+            "max": "Max Rewards",
+            "great": "Great Rewards",
+            "good": "Good Rewards",
+            "ok": "OK Rewards",
+            "low": "Low Rewards",
+            "lower": "Lower Rewards",
+            "crit": "Critical Low",
+            "none": "No Rewards"
+        },
+        "percent": "Qualified Reward %",
+        "potential": "Estimated Rake Reward %",
+        "next_vote": "Next vote update"
     },
     "business": {
         "title": "Business"
     },
+    "vesting": {
+        "title": "Vesting"
+    },
     "settings": {
         "title": "Settings"
+    },
+    "bitcoin": {
+        "title": "Bitcoin Transactions",
+        "withdraw": {
+            "title": "Withdraw BTC"
+        },
+        "generateAddress": {
+            "title": "Generate Bitcoin Address"
+        },
+        "updateAddress": {
+            "title": "Update Bitcoin Address"
+        }
     },
     "contacts": {
         "title": "Contacts",
@@ -625,11 +659,15 @@ export const en = {
         "noKey": "Failed to find this key",
         "wrongPass": "Password is wrong",
         "required": "This field is required.",
+        "requiredQuantity": "Quantity is required.",
         "isNan": "Amount is not a number.",
         "isNull": "You can't send a null.",
         "isEmptyBalance": "You don't have token to pay fee.",
+        "isEmptyMarketBalance": "You don't have token to pay market fee.",
         "nullWeight": "Can\'t be null",
         "isNotEnough": "Balance is not enough.",
+        "isZero": "Quantity should be greater than 0.",
+        "isDecimal": "Quantity should not be decimal.",
         "accUsed": "Account is already in use.",
         "assetUsed": "Asset is already in use.",
         "keyUsed": "Key is already in use.",
@@ -711,7 +749,9 @@ export const en = {
         "createUser": {
             "title": "New Account",
             "aboutLogin": "The account name you choose needs to be unique, as it will be registered publicly on the blockchain and will be your identifer for any transactions you make.",
-            "referrer": "Note that you'll create new account with reference provided by %(referrer)s"
+            "referrer": "Note that you'll create new account with reference provided by %(referrer)s",
+            "referrerError": "There is no account with %(referrer)s name",
+            "referrerMembership": "%(referrer)s must be either a lifetime or annual subscriber."
         },
         "login": {
             "title": "Log in"
@@ -757,7 +797,7 @@ export const en = {
             "title": "Withdraw %(asset)s"
         },
         "generateAddress": {
-          "title": "Generate %(sidechain)s Address"
+            "title": "Generate %(sidechain)s Address"
         }
     },
     "buttons": {
@@ -795,6 +835,7 @@ export const en = {
         "userOrders": "User haven't open any order",
         "login": "Please sign in to use the %(pageName)s or create a new account",
         "withdraw": "No asset avaliable",
-        "allRead": "All Read"
+        "allRead": "All Read",
+        "activity": "No Data"
     }
 };

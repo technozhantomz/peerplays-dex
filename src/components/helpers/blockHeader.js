@@ -1,52 +1,82 @@
 import React, {Component} from 'react';
 import {getUserName} from "../../actions/account";
 import {formDate} from "../../actions/formDate";
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+import {clearLayout} from "../../dispatch";
+import Link from "react-router-dom/Link";
 
-const blockHeaderItems = ['date', 'witness', 'previous', 'transactions'];
+const blockHeaderItems = ['blockID','date', 'witness', 'previous', 'transactions'];
 
-const formData = async (info) => ({
-    date: formDate(info.timestamp),
-    witness: await getUserName(info.witness),
-    previous: info.previous,
-    transactions: info.transactions.length
-});
+const formData = async (info, num) => {
+    const collection = [];
+    let i = 0;
+    for await (const node of info) {
+        collection.push({
+            blockID: parseInt(num) + i,
+            date: formDate(node.timestamp),
+            witness: await getUserName(node.witness),
+            previous: node.previous,
+            transactions: node.transactions.length
+        });
+        i++;
+    }
+    return collection.filter(data => String(data.blockID).startsWith(String(num)));
+};
 
-class BlockHeader extends Component{
+const ChildBlock = ({column, data}) => {
+    return (
+        <Grid container spacing={1} key={column} className="blockHeader">
+            <Grid item xs={12} sm={3}>
+                <Typography variant="h6">
+                    {column.charAt(0).toUpperCase()}{column.substr(1,)}
+                </Typography>
+            </Grid>
+            <Grid item xs={12} sm={6}>
+                <Typography style={{fontSize: '12px'}}>{data[column]}</Typography>
+            </Grid>
+        </Grid>
+    );
+}
+
+const MainBlock = ({data}) => {
+    return (
+        <Link to={`/block/${data.blockID}`} onClick={clearLayout}>
+            <div className="global-search__card card card__margins">
+                <div className="block-header">
+                    <h2 className="block-header__num">Block #{data.blockID}</h2>
+                    {blockHeaderItems.filter(v => !['blockID'].includes(v)).map(column => (
+                        <ChildBlock data={data}
+                                    key={`${data.witness}-${Math.random() * 100}`} column={column}/>
+                    ))}
+                </div>
+            </div>
+        </Link>
+    );
+}
+
+class BlockHeader extends Component {
     state = {
-        data: ''
+        data: []
     };
 
-    componentDidMount(){
-        this.getData(this.props.data);
+    componentDidMount() {
+        this.getData(this.props.data, this.props.num);
     }
 
-    componentWillReceiveProps(nextProps){
-        if(this.props.num !== nextProps.num) this.getData(nextProps.data);
+    componentWillReceiveProps(nextProps) {
+        if (this.props.num !== nextProps.num) this.getData(nextProps.data, nextProps.num);
     }
 
-    getData = (data) => formData(data).then(data => this.setState({data}));
+    getData = (data, num) => formData(data, num).then(data => this.setState({data}));
 
-    render(){
+    render() {
+        const nodes = [];
+        this.state.data.forEach(data => {
+            nodes.push(<MainBlock key={data.previous} data={data}/>);
+        });
 
-        let content = '';
-
-        if(this.state.data){
-            content = <div className="block-header__items">
-                {blockHeaderItems.map(elem => (
-                    <div key={elem} className="block-header__item">
-                        <span>{elem.charAt(0).toUpperCase()}{elem.substr(1,)}</span>
-                        <span>{this.state.data[elem]}</span>
-                    </div>
-                ))}
-            </div>
-        }
-
-        return(
-            <div className="block-header">
-                <h2 className="block-header__num">Block #{this.props.num}</h2>
-                {content}
-            </div>
-        )
+        return nodes;
     }
 };
 

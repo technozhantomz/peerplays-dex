@@ -53,6 +53,7 @@ const basicMenu = [
 const checkUser = async (context) => {
     const {match, history} = context.props;
     if(checkActivity(match.params.name)) {
+        history.replace('/');
         history.push('/assets/');
         return {};
     }
