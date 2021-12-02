@@ -183,12 +183,16 @@ const Voting = (props) => {
         var nextMtMS = new Date(maintenance.nextMaintenance).getTime();
         var _mt = Math.floor((nextMtMS - utcNowMS) / 1000 / 60);
         var _ms = Math.floor((nextMtMS - utcNowMS - 60 * 1000 * _mt) / 1000);
-        if (_mt === 0) {
-            _mt = Math.floor((nextMtMS - utcNowMS) / 1000) + ' Seconds'
-        } else if (_mt === 1) {
-            _mt = _mt + " Minute " + _ms + " Seconds"
+        if (nextMtMS <= utcNowMS) {
+            _mt = "0 Minute 0 Second";
         } else {
-            _mt = _mt + " Minutes " + _ms + " Seconds"
+            if (_mt === 0) {
+                _mt = Math.floor((nextMtMS - utcNowMS) / 1000) + ' Seconds'
+            } else if (_mt === 1) {
+                _mt = _mt + " Minute " + _ms + " Seconds"
+            } else {
+                _mt = _mt + " Minutes " + _ms + " Seconds"
+            }
         }
         setGposSubPeriodStr(_mt)
     }
