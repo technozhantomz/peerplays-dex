@@ -21,9 +21,9 @@ class OrderBookTable extends Component{
         const {type, threshold} = props;
         this.setState({type, threshold}, () => {
             const container = document.getElementsByClassName('order-book__table')[0];
+            const spread = document.getElementsByClassName('order-book__spread-wrapper')[0];
             let scroll = 0;
-            if(type === 'all' || type === 'sell' || type === 'buy') {
-                const spread = document.getElementsByClassName('order-book__spread-wrapper')[0];
+            if(type === 'all' && spread != undefined || type === 'sell' && spread != undefined || type === 'buy' && spread != undefined ) {
                 let buydata = props.data.buy.buyRows.filter((item)=>{
                     if(parseInt(props.threshold)  == item.price ){
                         return item;
@@ -38,10 +38,8 @@ class OrderBookTable extends Component{
                  byData.buy.buyRows = buydata;
                  byData.sell.sellRows = selldata;
                 this.setState({tdata:byData})
-                
                 scroll = spread.offsetTop - container.offsetTop - spread.offsetHeight * 1.75;
-
-            }
+             }
            
          container.scrollTop = scroll;
         })
