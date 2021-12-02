@@ -610,6 +610,7 @@ export const ru = {
             "condition": "Состояние (максимум 60 символов)",
             "resolutionDate": "Дата разрешения рынка",
             "depositPublicKey": "Депозит общественный ключ",
+            "depositAddress": "Адрес депозита",
             "withdrawPublicKey": "Снятие публичного ключа",
             "withdrawAddress": "Адрес снятия"
         },
