@@ -70,6 +70,7 @@ deploy_review:
     - truncate -s 1k $QA_DEPLOY_DIR/index.html
     - truncate -s 1k $QA_DEPLOY_DIR/app.dev.js
     - truncate -s 1k $QA_DEPLOY_DIR/*.ico
+    - ls -ltr
   environment:
     name: review/$CI_COMMIT_REF_NAME
     url: http://$CI_ENVIRONMENT_SLUG.$APPS_DOMAIN
