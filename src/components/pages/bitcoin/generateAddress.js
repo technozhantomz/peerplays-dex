@@ -48,7 +48,7 @@ const GenerateAddress = (props) => {
 
     return(
         <div className="card__content">
-            <div className="form form__send">
+            <div className="form form__btc">
                 <div className="input__row">
                     <Input name="depositPublicKey" className="modal__field" {...depositPublicKey}/>
                 </div>

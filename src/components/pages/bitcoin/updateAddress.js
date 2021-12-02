@@ -63,7 +63,7 @@ const UpdateAddress = (props) => {
     
     return(
         <div className="card__content">
-            <div className="form form form__send">
+            <div className="form form form__btc">
                 <div className="input__row-inline">
                     <span>Deposit Address:</span>
                     <input className="input" defaultValue={sidechainAccount.deposit_address}/>
@@ -71,7 +71,7 @@ const UpdateAddress = (props) => {
                 </div>
                 <hr/>  
             </div>
-            <div className="form form form__send">
+            <div className="form form form__btc">
                 <div className="input__row">
                     <Input name="withdrawPublicKey" className="modal__field" {...withdrawPublicKey}/>
                 </div>
