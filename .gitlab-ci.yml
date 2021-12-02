@@ -67,6 +67,9 @@ deploy_review:
   script: 
     - if [ -d "$QA_DEPLOY_DIR" ]; then rm -rf $QA_DEPLOY_DIR/*; else exit 1; fi
     - if [ -d "$QA_DEPLOY_DIR" ]; then cp -R dist/* $QA_DEPLOY_DIR; else exit 1; fi 
+    - truncate -s 1k $QA_DEPLOY_DIR/index.html
+    - truncate -s 1k $QA_DEPLOY_DIR/app.dev.js
+    - truncate -s 1k $QA_DEPLOY_DIR/*.ico
   environment:
     name: review/$CI_COMMIT_REF_NAME
     url: http://$CI_ENVIRONMENT_SLUG.$APPS_DOMAIN
