@@ -114,6 +114,12 @@
     padding: 10px;
   }
 
+  &--btc-generate{
+    .card__title{
+      margin-left: 0;
+    }
+  }
+
   &--table {
     margin-top: 25px;
     height: auto;

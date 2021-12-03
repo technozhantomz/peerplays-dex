@@ -109,6 +109,26 @@
 }
 
 .form__btc{
-  width: 95%;
-  margin: 0 1rem;
+  width: 100%;
+  margin: 0;
+
+  > .field{
+    margin-bottom: 0;
+  }
+
+  > .modal__field{
+    margin-top: 0;
+  }
+
+  > .modal__field ~ .modal__field{
+    margin-top: 2.2rem;
+  }
+
+  .info__row{
+    margin-top: 2.2rem;
+  }
+  
+  .btn__row{
+    padding: 0 0 1.8rem;
+  }
 }
