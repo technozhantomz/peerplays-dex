@@ -382,7 +382,7 @@ export const ru = {
     "bitcoin": {
         "title": "Биткойн-транзакции",
         "withdraw": {
-            "title": "Вывести BTC"
+            "title": "Вывести биткойн"
         },
         "generateAddress": {
             "title": "Создать биткойн-адрес"

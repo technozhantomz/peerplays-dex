@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState} from "react";
 import Input from "../../helpers/form/input";
 import {generateSidechainAddress} from "../../../actions/forms/generateSidechainAddress";
 import {setSidechainAccounts} from '../../../dispatch/setAccount';
@@ -45,7 +45,7 @@ const GenerateAddress = (props) => {
     };
 
     return(
-        <div className="form form__btc">
+        <div className="form form--btc">
                 <Input name="depositPublicKey" className="modal__field" {...depositPublicKey}/>
                 <Input name="withdrawPublicKey" className="modal__field" {...withdrawPublicKey}/>
                 <Input name="withdrawAddress" className="modal__field" {...withdrawAddress} />

@@ -399,7 +399,7 @@ export const en = {
     "bitcoin": {
         "title": "Bitcoin Transactions",
         "withdraw": {
-            "title": "Withdraw BTC"
+            "title": "Withdraw Bitcoin"
         },
         "generateAddress": {
             "title": "Generate Bitcoin Address"

@@ -49,7 +49,7 @@ const UpdateAddress = (props) => {
         <div className="card__content">
             <Form
                 type={'sidechain_address_delete'}
-                className='form__btc'
+                className='form--btc form--btc__widget'
                 defaultData={DefaultData}
                 requiredFields={['withdrawPublicKey', 'withdrawAddress']}
                 action={updateSidechainAddress}
@@ -59,32 +59,26 @@ const UpdateAddress = (props) => {
                 form => {
                     const {errors, data} = form.state;
                     return (
-                        <Fragment>
-                            <div className="form form form__btc">
-                                <div className="input__row">
-                                    <Input 
-                                        name="withdrawPublicKey" 
-                                        className="modal__field"
-                                        onChange={form.handleChange}
-                                        error={errors}
-                                        value={data}/>
-                                </div>
-                                <div className="input__row">
-                                    <Input 
-                                        name="withdrawAddress" 
-                                        className="modal__field" 
-                                        onChange={form.handleChange}
-                                        error={errors}
-                                        value={data}/>
-                                </div>
-                                <div className="info__row">
-                                    <span>Fee: {data.fee} {data.feeAsset}</span>
-                                    {errors === "ERROR" && <span className="clr--negative">Something went wrong!! Try again.</span>}
-                                    {updated && <span className="clr--positive">Sidechain address has been updated.</span>}
-                                </div>
-                                <div className="btn__row">
-                                    <button type="submit"  className="btn-round btn-round--buy">Update</button>
-                                </div>
+                        <Fragment>                            
+                            <Input 
+                                name="withdrawPublicKey" 
+                                className="modal__field"
+                                onChange={form.handleChange}
+                                error={errors}
+                                value={data}/>
+                            <Input 
+                                name="withdrawAddress" 
+                                className="modal__field" 
+                                onChange={form.handleChange}
+                                error={errors}
+                                value={data}/>
+                            <div className="info__row">
+                                <span>Fee: {data.fee} {data.feeAsset}</span>
+                                {errors === "ERROR" && <span className="clr--negative">Something went wrong!! Try again.</span>}
+                                {updated && <span className="clr--positive">Sidechain address has been updated.</span>}
+                            </div>
+                            <div className="btn__row">
+                                <button type="submit"  className="btn-round btn-round--buy">Update</button>
                             </div>
                         </Fragment>
                     )

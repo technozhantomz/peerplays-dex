@@ -114,6 +114,13 @@
     padding: 10px;
   }
 
+  &--widget__btc{
+    height: 300px;
+    width: 640px;
+    padding: 1em;
+    position: relative;
+  }
+
   &--btc-generate {
     &.modal.open{
       z-index: 1;

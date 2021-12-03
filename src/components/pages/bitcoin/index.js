@@ -28,7 +28,7 @@ function BitcoinTransactions() {
                     <Grid container spacing={1}>
                         <Grid item xs={12} sm={sidechainAccount ? 6 : 12}>
                             <div className="graphs">
-                                <Card mode={sidechainAccount ? "sidget" : "btc-generate MuiGrid-root modal open MuiGrid-item MuiGrid-grid-xs-12"}>
+                                <Card mode={sidechainAccount ? "widget__btc" : "btc-generate MuiGrid-root modal open MuiGrid-item MuiGrid-grid-xs-12"}>
                                     <CardHeader title={sidechainAccount ? `bitcoin.updateAddress.title` : 'bitcoin.generateAddress.title'} />
                                     <div className="card__content"> 
                                         {sidechainAccount ? 
@@ -52,7 +52,7 @@ function BitcoinTransactions() {
                         {sidechainAccount &&
                             <Grid item xs={12} sm={6}>
                                 <div className="graphs">
-                                    <Card mode="widget">
+                                    <Card mode="widget__btc">
                                         <CardHeader title={`bitcoin.withdraw.title`} />
                                         <WithdrawBTCForm 
                                             accountData={accountData} 
