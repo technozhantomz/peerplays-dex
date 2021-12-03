@@ -1,6 +1,5 @@
 import React, {Fragment, useState} from "react";
 import Input from "../../helpers/form/input";
-import {IconClipboardCheck, IconClipboardCopy} from "../../../svg";
 import {clearLayout} from "../../../dispatch/index";
 import {updateSidechainAddress} from "../../../actions/forms/updateSidechainAddress";
 import {setSidechainAccounts} from '../../../dispatch/setAccount';
@@ -48,14 +47,6 @@ const UpdateAddress = (props) => {
     
     return(
         <div className="card__content">
-            <div className="form form form__btc">
-                <div className="input__row-inline">
-                    <span><Translate content={"field.labels.depositAddress"}/>:</span>
-                    <input className="input" defaultValue={sidechainAccount.deposit_address}/>
-                    <button onClick={() => copyToClip(sidechainAccount.deposit_address)}>{copyed ? <IconClipboardCheck/> : <IconClipboardCopy />}</button>
-                </div>
-                <hr/>  
-            </div>
             <Form
                 type={'sidechain_address_delete'}
                 className='form__btc'
