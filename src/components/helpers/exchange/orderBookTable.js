@@ -4,7 +4,8 @@ import Table from "../table";
 class OrderBookTable extends Component{
     state = {
         type: '',
-        threshold: ''
+        threshold: '',
+        newData: this.props.data
     };
 
     componentDidMount(){
@@ -21,22 +22,25 @@ class OrderBookTable extends Component{
         this.setState({type, threshold}, () => {
             const container = document.getElementsByClassName('order-book__table')[0];
             let scroll = 0;
-
-            if(type === 'all') {
+            let typeSearch = /all|sell|buy/gi
+            if(typeSearch.test(type)) {
                 const spread = document.getElementsByClassName('order-book__spread-wrapper')[0];
+                let buydata = props.data.buy.buyRows.filter(item => parseInt(props.threshold) > item.price)
+                let selldata = props.data.sell.sellRows.filter(item => parseInt(props.threshold) > item.price)
+                let data = this.state.newData
+                data.buy.buyRows = buydata;
+                data.sell.sellRows = selldata;
+                this.setState({newDate:data})
                 scroll = spread.offsetTop - container.offsetTop - spread.offsetHeight * 1.75;
             }
-           
          container.scrollTop = scroll;
         })
     }
 
-    
-
     render(){
 
         const {type, threshold} = this.state;
-        const {sell, spread, buy} = this.props.data;
+        const {sell, spread, buy} = this.state.newData;
         return(
             <div className="order-book__table custom-scroll">
                 {['all', 'sell'].includes(type)
