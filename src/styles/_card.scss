@@ -114,7 +114,11 @@
     padding: 10px;
   }
 
-  &--btc-generate{
+  &--btc-generate {
+    &.modal.open{
+      z-index: 1;
+    }
+
     .card__title{
       margin-left: 0;
     }
