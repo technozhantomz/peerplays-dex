@@ -17,6 +17,7 @@ import {checkQuantity} from './checkQuantity';
 import { checkTo } from "./checkTo";
 import { checkDepositPublicKey } from "./checkDepositPublicKey";
 import { checkWithdrawPublicKey } from "./checkWithdrawPublicKey";
+import { checkReferrer } from "./checkReferrer";
 
 export const errorsChecker = {
     newLogin: checkNewLogin,
@@ -24,6 +25,7 @@ export const errorsChecker = {
     to: checkTo,
     password: checkPassword,
     passwordCheck: checkConfirmPassword,
+    referrer: checkReferrer,
     newWorkerName: checkNewWorker,
     dateBegin: checkBeginDate,
     dateEnd: checkEndDate,

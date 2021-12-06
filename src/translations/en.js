@@ -98,7 +98,7 @@ export const en = {
         },
         "fill_order": {
             "title": "Order Filled",
-            "description": "%(user)s bought %(receives)s for %(pays)s at %(marketLink)s for order #%(id)s",
+            "description": "%(user)s bought %(pays)s for %(receives)s at %(marketLink)s for order #%(id)s",
         },
         "account_update": {
             "title": "Account Updated",
@@ -663,6 +663,7 @@ export const en = {
         "isNan": "Amount is not a number.",
         "isNull": "You can't send a null.",
         "isEmptyBalance": "You don't have token to pay fee.",
+        "isEmptyMarketBalance": "You don't have token to pay market fee.",
         "nullWeight": "Can\'t be null",
         "isNotEnough": "Balance is not enough.",
         "isZero": "Quantity should be greater than 0.",
@@ -749,7 +750,8 @@ export const en = {
             "title": "New Account",
             "aboutLogin": "The account name you choose needs to be unique, as it will be registered publicly on the blockchain and will be your identifer for any transactions you make.",
             "referrer": "Note that you'll create new account with reference provided by %(referrer)s",
-            "referrerError": "There is no account with %(referrer)s name"
+            "referrerError": "There is no account with %(referrer)s name",
+            "referrerMembership": "%(referrer)s must be either a lifetime or annual subscriber."
         },
         "login": {
             "title": "Log in"

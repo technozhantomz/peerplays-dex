@@ -4,8 +4,7 @@ import Table from "../table";
 class OrderBookTable extends Component{
     state = {
         type: '',
-        threshold: '',
-        tdata:this.props.data,
+        threshold: ''
     };
 
     componentDidMount(){
@@ -13,12 +12,12 @@ class OrderBookTable extends Component{
     }
 
     componentWillReceiveProps(props){
-        this.setNewFilter(props)
         if(props.type !== this.state.type || props.threshold !== this.state.threshold) this.setNewFilter(props)
     }
 
     setNewFilter(props){
         const {type, threshold} = props;
+
         this.setState({type, threshold}, () => {
             const container = document.getElementsByClassName('order-book__table')[0];
             const spread = document.getElementsByClassName('order-book__spread-wrapper')[0];
@@ -50,7 +49,7 @@ class OrderBookTable extends Component{
     render(){
 
         const {type, threshold} = this.state;
-        const {sell, spread, buy} = this.state.tdata;
+        const {sell, spread, buy} = this.props.data;
         return(
             <div className="order-book__table custom-scroll">
                 {['all', 'sell'].includes(type)
@@ -75,7 +74,7 @@ class OrderBookTable extends Component{
                         <div className="order-book__spread-price">{spread.lastPrice}</div>
                     </div>
                 }
-                {buy.buyRows.length > 0 ? ['all', 'buy'].includes(type)
+                {['all', 'buy'].includes(type)
                 && <Table
                     className="table--exchange table--without_header"
                     tableHead={buy.buyHeader}
@@ -85,7 +84,7 @@ class OrderBookTable extends Component{
                         percentKey: 'encashed',
                         color: 'rgba(9,255,0,0.16)'
                     }}
-                /> : "Data not found"
+                />
                 }
             </div>
         )
