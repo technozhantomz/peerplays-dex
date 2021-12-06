@@ -133,6 +133,12 @@ header{
     justify-content: space-around;
     flex-direction: row;
     align-items: center;
+
+    .input{
+      padding: 1em;
+      margin: 0 5px;
+      border: 1px solid rgba(60,71,108,0.18);
+    }
   }
 }
 
