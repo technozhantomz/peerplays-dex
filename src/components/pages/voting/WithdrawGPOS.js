@@ -10,7 +10,10 @@ const WithdrawGPOS = (props) => {
 	const { loginData, accountData } = getStore();
 	const { symbol_id, precision, symbol, totalGpos, availableGpos, getAssets } = props;
 	const [withdrawAmount, setWithdrawAmount] = useState(0);
+	const [withdrawDisabled, setWithdrawDisabled] = useState(false);
+
 	const SubmitGposWithdrawal = () => {
+		setWithdrawDisabled(true)
 		const begin_timestamp = new Date().toISOString().replace('Z', '');
 		dbApi('get_vesting_balances', [
 			accountData.id
@@ -36,8 +39,13 @@ const WithdrawGPOS = (props) => {
 				trxBuilder([trx], [activeKey]).then(() => {
 					getAssets();
 					setWithdrawAmount(0);
+					setWithdrawDisabled(false);
+				}).catch(e => {
+					setWithdrawDisabled(false)
 				});
 			});
+		}).catch(e => {
+			setWithdrawDisabled(false)
 		})
 	}
 	return (
@@ -75,13 +83,19 @@ const WithdrawGPOS = (props) => {
 					value={withdrawAmount}
 				/>
 
+				<div style={{ marginTop: 12, color: "#ff444a", display: (availableGpos == undefined || availableGpos == null || availableGpos <= 0) ? "block" : "none" }}>
+					There is no available GPOS 
+				</div>
+				<div style={{ marginTop: 12, color: "#ff444a", display: (withdrawAmount == undefined || withdrawAmount == null || withdrawAmount <= 0) ? "block" : "none" }}>
+					The withdraw amount should be greater than 0 
+				</div>
 				<div style={{ marginTop: 12 }}>
 					New GPOS Balance: <strong>{totalGpos - withdrawAmount} {symbol}</strong>
 				</div>
 			</CardContent>
 
 			<CardActions >
-				<button className="btn-round btn-round--buy" onClick={SubmitGposWithdrawal}>Withdraw</button>
+				<button disabled={withdrawDisabled} className="btn-round btn-round--buy" onClick={() => {(availableGpos <= 0 || withdrawAmount <= 0) ? "" : SubmitGposWithdrawal()}}>Withdraw</button>
 			</CardActions>
 		</Card>
 	)
