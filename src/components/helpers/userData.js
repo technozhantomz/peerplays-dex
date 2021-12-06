@@ -93,7 +93,7 @@ const UserData = (props) => {
             <Translate content="layout.sidechainAccounts" component="h3" className="drop-user__wallets-title" />
             <div className="drop-user__sidechain-address">
                {Sidechains.map((el) => (
-                    sidechainAddresses[el] != undefined ? <div className="drop-user__sidechain-address-item" key={el}><span>{el}</span><span> : </span><input className="input" defaultValue={sidechainAddresses[el]} disabled/><button onClick={() => copyToClip(sidechainAddresses[el])}><IconCopy/></button></div> : ''
+                    sidechainAddresses[el] != undefined ? <div className="drop-user__sidechain-address-item" key={el}><span>{el}&nbsp;: </span><input className="input" defaultValue={sidechainAddresses[el]} disabled/><button onClick={() => copyToClip(sidechainAddresses[el])}><IconCopy/></button></div> : ''
                 ))}
             </div>
             {/* <Translate content="layout.switchAccount" component="h3" className="drop-user__wallets-title" />
