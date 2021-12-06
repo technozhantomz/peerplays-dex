@@ -25,13 +25,13 @@ class OrderBookTable extends Component{
             let typeSearch = /all|sell|buy/gi
             if(typeSearch.test(type)) {
                 const spread = document.getElementsByClassName('order-book__spread-wrapper')[0];
-                let buydata = props.data.buy.buyRows.filter(item => parseInt(props.threshold) > item.price)
-                let selldata = props.data.sell.sellRows.filter(item => parseInt(props.threshold) > item.price)
+                let buydata = props.data.buy.buyRows.filter(item => parseInt(props.threshold) < item.price)
+                let selldata = props.data.sell.sellRows.filter(item => parseInt(props.threshold) < item.price)
                 let data = this.state.newData
                 data.buy.buyRows = buydata;
                 data.sell.sellRows = selldata;
                 this.setState({newDate:data})
-                scroll = spread.offsetTop - container.offsetTop - spread.offsetHeight * 1.75;
+                spread ? scroll = spread.offsetTop - container.offsetTop - spread.offsetHeight * 1.75 : '';
             }
          container.scrollTop = scroll;
         })

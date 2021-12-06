@@ -11,7 +11,7 @@ class OrderBook extends Component {
 
     state = {
         type: 'all',
-        threshold: '100'
+        threshold: '0.001'
     };
 
     onRowClick = fieldParams => updateExchangeFields({ fieldParams });
@@ -23,7 +23,7 @@ class OrderBook extends Component {
         const { type, threshold } = this.state;
         const tableData = this.props.data;
         const types = ['all', 'sell', 'buy'];
-        const thresholds = ['100', '1000', '10000'];
+        const thresholds = ['0.001','0.005', '0.01'];
 
         const toolTipStyle = {
             backgroundColor: 'black',
