@@ -36,21 +36,28 @@
 @import "asset";
 @import "deposit";
 
-@media(min-width:0px) and (max-width:768px){
-
-    .page__menu-item{
-        font-size: 1.2rem !important;
-        min-width:8rem !important
-    }
-    .bold{
-        font-weight: 700;
-    }
+@media (min-width: 0px) and (max-width: 768px) {
+  .page__menu-item {
+    font-size: 1.2rem !important;
+    min-width: 8rem !important;
+  }
+  .bold {
+    font-weight: 700;
+  }
 }
 
-.cpointer, .field__input{
-    cursor: pointer !important;
+.cpointer,
+.field__input {
+  cursor: pointer !important;
 }
-.react-numeric-input b{
-    cursor: pointer !important;
-    z-index: 11 !important;
+.react-numeric-input b {
+  cursor: pointer !important;
+  z-index: 11 !important;
+}
+.dropdown__body.custom-scroll{
+    max-height: 12rem;
+}
+
+.modal.open{
+    min-height: calc(100vh - 200px);
 }
