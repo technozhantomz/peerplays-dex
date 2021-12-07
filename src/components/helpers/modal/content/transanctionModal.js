@@ -44,7 +44,7 @@ class TransactionModal extends Component {
         return (
             <Fragment>
                 <div className="modal__header">
-                    <BlockHeader num={this.props.data.blockNum} data={this.props.data.dataBlock}/>
+                    <h1>Block #{this.props.blockNum}</h1>
                 </div>
                 <div className="operation__block">
                     <div className="header">
