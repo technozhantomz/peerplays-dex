@@ -49,15 +49,13 @@ const WithdrawBTCForm = (props) => {
 
     return(
 		<div className="card__content">
-			<div className="form form__send">
-				<div className="input__row">
-					<Input 
-						name="withdrawAmount" 
-						type="number" 
-						className="modal__field"
-						value = {withdrawAmount}	
-						onChange={handleChange}/>
-				</div>
+			<div className="form form--btc form--btc__widget">
+				<Input 
+					name="withdrawAmount" 
+					type="number" 
+					className="modal__field"
+					value = {withdrawAmount}	
+					onChange={handleChange}/>
 				<div className="info__row">
 					<span>Fee: {fee.amount} {fee.symbol}</span>
 					{sent && <span className="clr--positive">Transaction Completed</span>}
