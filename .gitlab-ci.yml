@@ -118,3 +118,17 @@ sonarcloud-check:
  script:
    - sonar-scanner
  when: manual
+
+ dast_review_app:
+  extends: dast
+  variables:
+    DAST_AUTH_URL : http://$CI_ENVIRONMENT_SLUG.$APPS_DOMAIN
+    #DAST_PASSWORD: ""
+    #DAST_PASSWORD_FIELD: ""
+    #DAST_USERNAME: ""
+    #DAST_USERNAME_FIELD: ""
+    DAST_WEBSITE: http://$CI_ENVIRONMENT_SLUG.$APPS_DOMAIN
+  only: 
+    - branches
+  except:
+    - develop
