@@ -107,3 +107,42 @@
     }
   }
 }
+
+.form--btc{
+  width: 100%;
+  margin: 0;
+
+  > .field{
+    margin-bottom: 0;
+  }
+
+  > .modal__field{
+    margin-top: 0;
+  }
+
+  > .modal__field ~ .modal__field{
+    margin-top: 2.2rem;
+  }
+
+  .info__row{
+    margin-top: 2.2rem;
+  }
+
+  .btn__row{
+    padding: 0 0 1.8rem;
+  }
+  
+  &__widget{
+    margin: 0 1.6rem;
+    width: 85%;
+    position: inherit;
+
+    .btn__row{
+      position: absolute;
+      bottom: 0;
+      width: 85%;
+      margin: 0 1.6rem 1.8em;
+      padding: 0;
+    }
+  }
+}
