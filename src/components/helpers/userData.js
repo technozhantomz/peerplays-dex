@@ -11,7 +11,7 @@ import UnlockProfile from "./unlockProfile";
 import Button from "./buttons/button";
 import RoundButton from "./buttons/roundButton";
 import { dispatchGenerateAddress } from '../../actions/forms/dispatchGenerateAddress';
-import {IconClipboardCheck, IconClipboardCopy} from "../../svg";
+import {IconCopy} from "../../svg";
 
 
 const UserData = (props) => {
@@ -92,11 +92,8 @@ const UserData = (props) => {
             </div>
             <Translate content="layout.sidechainAccounts" component="h3" className="drop-user__wallets-title" />
             <div className="drop-user__sidechain-address">
-                {/* {Sidechains.map((el) => (
-                    sidechainAddresses[el] != undefined ? <div key={el}><span>{el}</span><span> : </span><span>{sidechainAddresses[el]}</span></div> : <RoundButton key={el} tag={`generate${el}Address`} className="btn-round--light-blue" onClick={(e) => generateAddress(e, el)} />
-                ))} */}
-                {Sidechains.map((el) => (
-                    sidechainAddresses[el] != undefined ? <div className="drop-user__sidechain-address-item" key={el}><span>{el}</span><span> : </span><input defaultValue={sidechainAddresses[el]}/><button onClick={() => copyToClip(sidechainAddresses[el])}>{copyed ? <IconClipboardCheck/> : <IconClipboardCopy />}</button></div> : ''
+               {Sidechains.map((el) => (
+                    sidechainAddresses[el] != undefined ? <div className="drop-user__sidechain-address-item" key={el}><span>{el}&nbsp;: </span><input className="input" defaultValue={sidechainAddresses[el]} disabled/><button onClick={() => copyToClip(sidechainAddresses[el])}><IconCopy/></button></div> : ''
                 ))}
             </div>
             {/* <Translate content="layout.switchAccount" component="h3" className="drop-user__wallets-title" />

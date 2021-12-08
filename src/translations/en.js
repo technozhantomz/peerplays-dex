@@ -56,7 +56,7 @@ export const en = {
         "ratio": "Ratio",
         "callPrice": "Call Price",
         "expiration": "Expiration",
-        "kill": "Kill",
+        "kill": "Delete",
         "param": "%(param)s",
         "total": "Total (%(token)s)",
         "name_description": "Name / Description",
@@ -399,7 +399,7 @@ export const en = {
     "bitcoin": {
         "title": "Bitcoin Transactions",
         "withdraw": {
-            "title": "Withdraw BTC"
+            "title": "Withdraw Bitcoin"
         },
         "generateAddress": {
             "title": "Generate Bitcoin Address"
@@ -626,6 +626,7 @@ export const en = {
             "issueAmount": "Issue Amount",
             "condition": "Condition (max 60 characters)",
             "resolutionDate": "Market resolution date",
+            "depositAddress": "Deposit Address",
             "depositPublicKey": "Deposit Public Key",
             "withdrawPublicKey": "Withdraw Public Key",
             "withdrawAddress": "Withdraw Address"

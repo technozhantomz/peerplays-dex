@@ -55,7 +55,7 @@ export const ru = {
         "ratio": "пропорция",
         "callPrice": "Цена звонка",
         "expiration": "истечение",
-        "kill": "убивать",
+        "kill": "Удалить",
         "param": "%(param)s",
         "total": "Итого (%(token)s)",
         "name_description": "Имя / Описание",
@@ -382,7 +382,7 @@ export const ru = {
     "bitcoin": {
         "title": "Биткойн-транзакции",
         "withdraw": {
-            "title": "Вывести BTC"
+            "title": "Вывести биткойн"
         },
         "generateAddress": {
             "title": "Создать биткойн-адрес"
@@ -610,6 +610,7 @@ export const ru = {
             "condition": "Состояние (максимум 60 символов)",
             "resolutionDate": "Дата разрешения рынка",
             "depositPublicKey": "Депозит общественный ключ",
+            "depositAddress": "Адрес депозита",
             "withdrawPublicKey": "Снятие публичного ключа",
             "withdrawAddress": "Адрес снятия"
         },
