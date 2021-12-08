@@ -58,3 +58,6 @@
     text-align: center;
     padding-top: 10px;
 }
+.modal.open{
+    min-height: calc(100vh - 200px);
+}
