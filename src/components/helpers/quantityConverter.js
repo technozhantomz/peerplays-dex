@@ -80,12 +80,14 @@ class QuantityConverter extends Component{
         return(
             <div className="quantity-converter">
                 <span className="quantity-converter__summ">{ quantity }</span>
+                <div className="quantity-dropdownLabel">
                 <Dropdown
                     btn={<SelectHeader text={assetsList[selectedAsset].symbol} />}
                     list={assetsList.map((el, id) => (
                         <button key={id} onClick={() => this.changeQuantity(id)}>{el.symbol}</button>
                     ))}
                 />
+                </div>
             </div>
         )
     }
