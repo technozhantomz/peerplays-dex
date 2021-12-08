@@ -18,10 +18,10 @@ class FundTheFeePool extends Component {
         const user = getAccountData();
         const userTokens = user.assets;
         const basicAsset = getBasicAsset();
-
+        const symbol = this.props.symbol;
         const defaultData = {
             from: user.name,
-            quantityAsset: basicAsset.symbol,
+            quantityAsset: symbol,
             fee: 0,
             feeAsset: basicAsset.symbol,
             quantity: ''
