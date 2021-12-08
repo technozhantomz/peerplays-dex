@@ -55,7 +55,7 @@ export const ru = {
         "ratio": "пропорция",
         "callPrice": "Цена звонка",
         "expiration": "истечение",
-        "kill": "убивать",
+        "kill": "Удалить",
         "param": "%(param)s",
         "total": "Итого (%(token)s)",
         "name_description": "Имя / Описание",
