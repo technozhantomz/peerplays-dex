@@ -18,7 +18,6 @@ class GlobalSearch extends Component{
     };
 
     componentWillReceiveProps(nextProps){
-        this.setState({searchType:searchTypes[0]})
         if(this.props.open === nextProps.open) return;
         blockContent(nextProps.open);
     }
