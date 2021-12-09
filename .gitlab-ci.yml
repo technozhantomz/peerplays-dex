@@ -122,6 +122,8 @@ sonarcloud-check:
 dast:
   variables:
     DAST_AUTH_URL: $DAST_AUTH_URL
+  script:
+    - printenv
   rules:
     - if: $CI_COMMIT_REF_NAME != 'develop'
       variables:                
