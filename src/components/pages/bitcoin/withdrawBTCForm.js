@@ -26,13 +26,16 @@ const WithdrawBTCForm = (props) => {
 	const handleWithdraw = (data) => {
 		setSent(true);
 		setTimeout(() => {
-			withdrawAmount.value = 0;
+			withdrawAmount == 0;
 			setSent(false);
 		}, 5000);	
 	};
 
     const SubmitWithDraw = async () => {
-		setErrors('');
+		if(withdrawAmount === 0){
+			setErrors('ERROR')
+			return
+		}
 		getPassword(password => transfer({
 			contacts:[],
 			fee: fee.amount,
@@ -59,14 +62,14 @@ const WithdrawBTCForm = (props) => {
 						onChange={handleChange}/>
 				</div>
 				<div className="info__row">
-					<span>Fee: {fee.amount} {fee.symbol}</span>
 					{sent && <span className="clr--positive">Transaction Completed</span>}
 					{errors === 'ERROR' && <span className="clr--negative">Something went wrong!! Try again. </span>}
-					{(withdrawAmount.value == 0) && <span className="clr--negative">This field is required and not zero.</span>}
-					{(withdrawAmount.value > accBalance) && <span className="clr--negative">Value cannot exceed {accBalance}.</span>}
+					{(withdrawAmount == 0) && <span className="clr--negative">This field is required and not zero.</span>}
+					{(withdrawAmount > accBalance) && <span className="clr--negative">Value cannot exceed {accBalance}.</span>}
+					<span>Fee: {fee.amount} {fee.symbol}</span>
 				</div>
 				<div className="btn__row">
-					<button className="btn-round btn-round--buy" onClick={() => (withdrawAmount.value == 0 || withdrawAmount.value > accBalance) ? "" : SubmitWithDraw()}>Withdraw</button>
+					<button className="btn-round btn-round--buy" onClick={() => (withdrawAmount === 0 || withdrawAmount > accBalance) ? '' : SubmitWithDraw()}>Withdraw</button>
 				</div>
 			</div>
 		</div>
