@@ -127,8 +127,8 @@ dast:
       variables:                
           DAST_AUTH_URL : http://$CI_ENVIRONMENT_SLUG.$APPS_DOMAIN
           DAST_WEBSITE: http://$CI_ENVIRONMENT_SLUG.$APPS_DOMAIN
-          #DAST_PASSWORD: ""
-          #DAST_PASSWORD_FIELD: ""
-          #DAST_USERNAME: ""
-          #DAST_USERNAME_FIELD: ""
+          DAST_PASSWORD: 'kBi3uwtzJWxej39'
+          DAST_PASSWORD_FIELD: 'password'
+          DAST_USERNAME: 'dast-tester123'
+          DAST_USERNAME_FIELD: 'username'
         
