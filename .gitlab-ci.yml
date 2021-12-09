@@ -12,8 +12,6 @@ variables:
  GIT_DEPTH: "0"  # Tells git to fetch all the branches of the project, required by the analysis task
  #DAST_WEBSITE: $DAST_WEBSITE
  DOCKER_DRIVER: overlay2
- DAST_VERSION: 2
- SECURE_ANALYZERS_PREFIX: "registry.gitlab.com/gitlab-org/security-products/analyzers"
 
 stages:
   - build
