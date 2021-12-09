@@ -132,21 +132,9 @@ dast:
     paths: [gl-dast-debug-auth-report.html]
     reports:
       dast: gl-dast-report.json
-  
-
-# dast:
-#   stage: dast
-#   image:
-#     name: "$SECURE_ANALYZERS_PREFIX/dast:$DAST_VERSION"
-#   variables:
-#     GIT_STRATEGY: none
-#   allow_failure: true
-#   before_script:
-#     - if [ "$CI_COMMIT_REF_NAME" != "develop" ]; then export DAST_WEBSITE=$(cat environment_url.txt) export DAST_AUTH_URL=$(cat environment_url.txt); fi
-#   script:
-#     - if [ -z "$DAST_WEBSITE$DAST_API_SPECIFICATION" ]; then echo "Either DAST_WEBSITE or DAST_API_SPECIFICATION must be set. See https://docs.gitlab.com/ee/user/application_security/dast/#configuration for more details." && exit 1; fi
-#     - /analyze
-#   artifacts:
-#     paths: [gl-dast-debug-auth-report.html]
-#     reports:
-#       dast: gl-dast-report.json
+  rules:
+    - if: CI_COMMIT_REF_NAME" != develop
+      when: manual
+    - if: $DAST_DISABLED
+      when: never
+    - when: always
