@@ -17,6 +17,7 @@ import { getStoragedAccount, formAccount } from '../../actions/account';
 import { setAccount } from '../../dispatch/setAccount';
 import CloudAccount from '../../classes/cloudAccount';
 import Grid from '@material-ui/core/Grid';
+import UserAssets from "../pages/user/userAssets";
 
 class Dashboard extends Component {
 
@@ -127,7 +128,8 @@ class Dashboard extends Component {
                     }
                     <Card mode="table">
                         <CardHeader title={`block.myAssets.title`} />
-                        <TableMyAssets />
+                        {/* <TableMyAssets /> */}
+                        <UserAssets data={this.props.account}/>
                     </Card>
                 </div>
             </div>
