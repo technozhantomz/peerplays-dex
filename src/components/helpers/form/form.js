@@ -49,7 +49,6 @@ class Form extends Component {
 
 
     submit = (e) => {
-        console.log("I am here for reason", this.props);
         e && e.preventDefault();
         const { errors, data } = this.state;
         if (Object.keys(errors).length) return;
@@ -80,7 +79,7 @@ class Form extends Component {
         }
 
         if (this.props.orderConfirmation) {
-            setModal(<OrderConfirmationModel onSuccess={checkPassword} data={this.props} />)
+            setModal(<OrderConfirmationModel onSuccess={checkPassword} data={this.props} grid={3} />)
             return;
         }
 
