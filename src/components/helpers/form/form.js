@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { feeCalculator, getPassword } from "../../../actions/forms/index";
 import { checkErrors } from "../../../actions/forms/errorsHandling/";
-import orderPreview from "../../../components/helpers/modal/content/orderPreview";
+import OrderConfirmationModel from "../modal/content/orderConfirmationModel";
 import {setModal} from "../../../dispatch";
 
 const handleData = async (context, val, id) => {
@@ -49,6 +49,7 @@ class Form extends Component {
 
 
     submit = (e) => {
+        console.log("I am here for reason", this.props);
         e && e.preventDefault();
         const { errors, data } = this.state;
         if (Object.keys(errors).length) return;
@@ -79,7 +80,7 @@ class Form extends Component {
         }
 
         if (this.props.orderConfirmation) {
-            setModal(<orderPreview onSuccess={checkPassword} />)
+            setModal(<OrderConfirmationModel onSuccess={checkPassword} data={this.props} />)
             return;
         }
 
