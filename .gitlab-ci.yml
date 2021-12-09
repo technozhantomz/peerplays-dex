@@ -124,34 +124,29 @@ sonarcloud-check:
    - sonar-scanner
  when: manual
 
-# dast:
-#   variables:
-#     DAST_AUTH_URL: $DAST_AUTH_URL
-#   script:
-#     - printenv
-#   rules:
-#     - if: $CI_COMMIT_REF_NAME != 'develop'
-#       variables:                
-#         DAST_AUTH_URL : http://$CI_ENVIRONMENT_SLUG.$APPS_DOMAIN
-#         #DAST_WEBSITE: http://$CI_ENVIRONMENT_SLUG.$APPS_DOMAIN
-#         DAST_PASSWORD: 'kBi3uwtzJWxej39'
-#         DAST_PASSWORD_FIELD: 'password'
-#         DAST_USERNAME: 'dast-tester123'
-#         DAST_USERNAME_FIELD: 'username'
-
 dast:
   stage: dast
-  image:
-    name: "$SECURE_ANALYZERS_PREFIX/dast:$DAST_VERSION"
-  variables:
-    GIT_STRATEGY: none
-  allow_failure: true
   before_script:
-    - if [ "$CI_COMMIT_REF_NAME" != "develop" ]; then export DAST_WEBSITE=$(cat environment_url.txt) export DAST_AUTH_URL=$(cat environment_url.txt); fi
-  script:
-    - if [ -z "$DAST_WEBSITE$DAST_API_SPECIFICATION" ]; then echo "Either DAST_WEBSITE or DAST_API_SPECIFICATION must be set. See https://docs.gitlab.com/ee/user/application_security/dast/#configuration for more details." && exit 1; fi
-    - /analyze
+    - if [ "$CI_COMMIT_REF_NAME" != "develop" ]; then export DAST_WEBSITE=$(cat environment_url.txt); else export DAST_WEBSITE=$DAST_WEBSITE; fi
   artifacts:
     paths: [gl-dast-debug-auth-report.html]
     reports:
       dast: gl-dast-report.json
+  
+
+# dast:
+#   stage: dast
+#   image:
+#     name: "$SECURE_ANALYZERS_PREFIX/dast:$DAST_VERSION"
+#   variables:
+#     GIT_STRATEGY: none
+#   allow_failure: true
+#   before_script:
+#     - if [ "$CI_COMMIT_REF_NAME" != "develop" ]; then export DAST_WEBSITE=$(cat environment_url.txt) export DAST_AUTH_URL=$(cat environment_url.txt); fi
+#   script:
+#     - if [ -z "$DAST_WEBSITE$DAST_API_SPECIFICATION" ]; then echo "Either DAST_WEBSITE or DAST_API_SPECIFICATION must be set. See https://docs.gitlab.com/ee/user/application_security/dast/#configuration for more details." && exit 1; fi
+#     - /analyze
+#   artifacts:
+#     paths: [gl-dast-debug-auth-report.html]
+#     reports:
+#       dast: gl-dast-report.json
