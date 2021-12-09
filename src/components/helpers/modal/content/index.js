@@ -7,3 +7,4 @@ export * from './addNewWorker';
 export * from './createUser';
 export * from './transanctionModal';
 export * from './warningModal';
+export * from './orderPreview';

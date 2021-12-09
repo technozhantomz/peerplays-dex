@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { feeCalculator, getPassword } from "../../../actions/forms/index";
 import { checkErrors } from "../../../actions/forms/errorsHandling/";
+import orderPreview from "../../../components/helpers/modal/content/orderPreview";
+import {setModal} from "../../../dispatch";
 
 const handleData = async (context, val, id) => {
     const { mutateData, type } = context.props;
@@ -64,13 +66,25 @@ class Form extends Component {
             return;
         }
 
-        if (this.props.needPassword && !data.password) {
-            getPassword(password => (
-                this.setState(
-                    { data: { ...data, password } },
-                    () => this.handleAction()
-                )
-            ));
+        const checkPassword = () => {
+            if (!data.password) {
+                getPassword(password => (
+                    this.setState(
+                        { data: { ...data, password } },
+                        () => this.handleAction()
+                    )
+                ));
+                return;
+            }
+        }
+
+        if (this.props.orderConfirmation) {
+            setModal(<orderPreview onSuccess={checkPassword} />)
+            return;
+        }
+
+        if(this.props.needPassword){
+            checkPassword();
             return;
         }
 
