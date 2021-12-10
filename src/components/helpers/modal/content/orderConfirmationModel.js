@@ -1,34 +1,50 @@
-import React, { Component, Fragment } from "react";
+import React, {Component, Fragment} from "react";
 import Close from "../decoration/close";
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-
-const orderPreviewItems = ['Price', 'Quantity', 'Fee', 'Total'];
-
-const modalData = async (info) => ({
-    Price: info.price,
-    Quantity: info.amount_to_receive,
-    Fee: info.fee,
-    Total: info.amount_to_sell
-});
+import {connect} from "react-redux";
 
 class OrderConfirmationModel extends Component {
-
     state = {
         data: ''
     };
 
     componentDidMount() {
-        console.log("I am here for props", this.props);
         this.getData(this.props.data.defaultData);
     }
 
-    getData = (data) => modalData(data).then(data => this.setState({ data }));
+    getData = (data) => {
+        const modalData = this.modalData(data)
+        this.setState({data: modalData})
+    };
 
     handleMethod = () => {
-        const { onSuccess } = this.props;
+        const {onSuccess} = this.props;
         onSuccess();
     };
+
+    orderPreviewItems = ['Price', 'Quantity', 'Fee', 'Total', 'Balance'];
+
+    modalData = (info) => ({
+        Price: `${info.price} ${info.sellAsset}`,
+        Quantity: `${info.amount_to_receive} ${info.buyAsset}`,
+        Fee: `${info.fee} ${info.feeAsset}`,
+        Total: `${info.amount_to_sell} ${info.sellAsset}`,
+        Balance: this.getBalance(info),
+    });
+
+    getBalance = (info) => {
+        const isBuy = info.type === 'buy';
+        const assetSymbol = isBuy ? info.sellAsset : info.buyAsset
+        let balance = 0;
+
+        if (this.props.account) {
+            const asset = this.props.account.assets.find(el => el.symbol === assetSymbol);
+            balance = asset ? asset.setPrecision() : 0;
+        }
+        return `${balance} ${assetSymbol}` ;
+    }
+
 
     render() {
         let content = '';
@@ -37,19 +53,20 @@ class OrderConfirmationModel extends Component {
                 <div className="modal__header">
                     <h5 className="modal__title"><strong>Order preview</strong></h5>
                 </div>
-                {orderPreviewItems.map(elem => (
-                    <Grid container spacing={1} key={elem} style={{ justifyContent: "space-between" }}>
-                        <Grid item xs={12} sm={3} >
-                            <Typography variant="h6" >{elem.charAt(0).toUpperCase()}{elem.substr(1,)}</Typography>
+                {this.orderPreviewItems.map(elem => (
+                    <Grid container spacing={1} key={elem} style={{justifyContent: "space-between"}}>
+                        <Grid item xs={12} sm={3}>
+                            <Typography variant="h6">{elem.charAt(0).toUpperCase()}{elem.substr(1,)}</Typography>
                         </Grid>
-                        <Grid item xs={12} sm={6} >
-                            <Typography style={{ fontSize: '12px', textAlign: "right" }}>{this.state.data[elem]}</Typography>
+                        <Grid item xs={12} sm={6}>
+                            <Typography
+                                style={{fontSize: '12px', textAlign: "right"}}>{this.state.data[elem]}</Typography>
                         </Grid>
                     </Grid>
                 ))}
                 <div className="modal__smbottom">
                     <button onClick={this.handleMethod} className="btn-round btn-round">Buy HIVE Now</button>
-                    <Close />
+                    <Close/>
                 </div>
             </Fragment>
         }
@@ -62,4 +79,7 @@ class OrderConfirmationModel extends Component {
     }
 };
 
-export default OrderConfirmationModel;
+const mapStateToProps = state => ({account: state.accountData});
+
+export default connect(mapStateToProps)(OrderConfirmationModel);
+
