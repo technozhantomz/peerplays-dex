@@ -6,7 +6,8 @@ import {connect} from "react-redux";
 
 class OrderConfirmationModel extends Component {
     state = {
-        data: ''
+        data: '',
+        type: '',
     };
 
     componentDidMount() {
@@ -15,7 +16,7 @@ class OrderConfirmationModel extends Component {
 
     getData = (data) => {
         const modalData = this.modalData(data)
-        this.setState({data: modalData})
+        this.setState({data: modalData, type: data.type},)
     };
 
     handleMethod = () => {
@@ -65,7 +66,7 @@ class OrderConfirmationModel extends Component {
                     </Grid>
                 ))}
                 <div className="modal__smbottom">
-                    <button onClick={this.handleMethod} className="btn-round btn-round">Buy HIVE Now</button>
+                    <button onClick={this.handleMethod} className="btn-round btn-round">{this.state.type} HIVE Now</button>
                     <Close/>
                 </div>
             </Fragment>
