@@ -130,6 +130,7 @@ class SendModal extends Component {
                                             />
                                             <FieldWithHint
                                                 name="quantityAsset"
+                                                id="model"
                                                 method={getUserAssetsList}
                                                 hideLabel={true}
                                                 handleChange={form.handleChange}

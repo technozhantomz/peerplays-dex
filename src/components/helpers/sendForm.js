@@ -115,6 +115,7 @@ class SendForm extends Component {
                                     <FieldWithHint
                                                 name="quantityAsset"
                                                 method={getUserAssetsList}
+                                                id="form"
                                                 hideLabel={true}
                                                 handleChange={form.handleChange}
                                                 errors={errors}
