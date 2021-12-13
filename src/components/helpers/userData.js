@@ -87,11 +87,8 @@ const UserData = (props) => {
                     </div>
                 ))}
             </div>
-            <div className="drop-user__btn-wrapper">
-                <RoundButton tag="sendFunds" className="btn-round--light-blue" onClick={sendUserTokens} />
-            </div>
-            <Translate content="layout.sidechainAccounts" component="h3" className="drop-user__wallets-title" />
             <div className="drop-user__sidechain-address">
+                <Translate content="layout.sidechainAccounts" component="h3" className="drop-user__wallets-title" />
                {Sidechains.map((el) => (
                     sidechainAddresses[el] != undefined ? <div className="drop-user__sidechain-address-item" key={el}><span>{el}&nbsp;: </span><input className="input" defaultValue={sidechainAddresses[el]} disabled/><button onClick={() => copyToClip(sidechainAddresses[el])}><IconCopy/></button></div> : ''
                 ))}
