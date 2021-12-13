@@ -4,11 +4,9 @@ import {clearLayout} from "../../../dispatch/index";
 import {updateSidechainAddress} from "../../../actions/forms/updateSidechainAddress";
 import {setSidechainAccounts} from '../../../dispatch/setAccount';
 import Form from "../../helpers/form/form";
-import Translate from "react-translate-component";
 
 const UpdateAddress = (props) => {
-    const {loginData, accountData, sidechain, sidechainAccount} = props;
-    const [copyed, setCopyed] = useState(false);
+    const {sidechain, sidechainAccount} = props;
     const [updated, setUpdated] = useState(false);
 
     const DefaultData = {
@@ -21,15 +19,7 @@ const UpdateAddress = (props) => {
         withdrawPublicKey: sidechainAccount.withdraw_public_key,
         withdrawAddress: sidechainAccount.withdraw_address  
     }; 
-      
-    const copyToClip = (txt) => {
-        navigator.clipboard.writeText(txt);
-        setCopyed(true);
-        setTimeout(() => {
-            setCopyed(false);
-        }, 5000);
-    }
-
+  
     const handleAddressUpdated = (data) => {
         Object.keys(data.map(({trx}) => {
             console.log(trx);  
