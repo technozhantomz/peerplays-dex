@@ -7,6 +7,8 @@ const handleData = async (context, val, id) => {
     let data = { ...context.state.data };
     const feeCalc = feeCalculator[type];
 
+    data = Object.filter(data, data => data);
+
     data[id] = val;
 
     if (mutateData && mutateData[id]) data = mutateData[id](data);
@@ -18,6 +20,12 @@ const handleData = async (context, val, id) => {
     }
     return { data, errors };
 };
+
+Object.filter = (obj, predicate) =>
+    Object.keys(obj)
+        .filter( key => predicate(obj[key]) )
+        .reduce( (res, key) => (res[key] = obj[key], res), {} );
+
 
 class Form extends Component {
     state = {
