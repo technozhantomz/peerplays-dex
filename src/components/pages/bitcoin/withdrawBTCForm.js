@@ -1,10 +1,11 @@
 import React, {useState} from 'react';
 import Input from "../../helpers/form/input";
 import { getPassword, feeCalculator, transfer } from '../../../actions/forms';
+import { clearLayout } from '../../../dispatch';
 
 
 const WithdrawBTCForm = (props) => {
-    const {loginData, accountData, sidechain, sidechainAccount} = props;
+    const {accountData} = props;
 	const [sent, setSent] = useState(false);
 	const [withdrawAmount, setWithdrawAmount] = useState(0);
 	const [fee, setFee] = useState({amount: 0, symbol: accountData.assets[0].symbol});
@@ -26,8 +27,9 @@ const WithdrawBTCForm = (props) => {
 	const handleWithdraw = (data) => {
 		setSent(true);
 		setTimeout(() => {
-			withdrawAmount == 0;
+			clearLayout();
 			setSent(false);
+			window.location.reload();
 		}, 5000);	
 	};
 
