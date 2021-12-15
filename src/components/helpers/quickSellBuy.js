@@ -6,9 +6,10 @@ import {defaultQuote, defaultToken} from "../../params/networkParams";
 import {getAccountData} from "../../actions/store";
 import {dbApi} from "../../actions/nodes";
 import FieldWithHint from "./form/fieldWithHint";
+import except from "../../actions/assets/exceptAssetList";
 
 const getAssetsList = async () => dbApi('list_assets', ['', 100])
-    .then(result => result.map(e => e.symbol));
+    .then(result => result.filter(e => !except.includes(e.symbol)).map(e => e.symbol));
 
 const getUserAssetsList = async (symbol) => (
     getAccountData().assets
@@ -25,7 +26,6 @@ class QuickSellBuy extends Component {
 
     componentDidMount() {
         const userTokens = getAccountData().assets.map(e => e.symbol);
-
         const defaultData = {
             sellAsset: userTokens.length ? userTokens[0] : defaultToken,
             buyAsset: defaultQuote,
