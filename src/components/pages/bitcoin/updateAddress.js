@@ -64,7 +64,8 @@ const UpdateAddress = (props) => {
                                 value={data}/>
                             <div className="info__row">
                                 <span>Fee: {data.fee} {data.feeAsset}</span>
-                                {errors === "ERROR" && <span className="clr--negative">Something went wrong!! Try again.</span>}
+                                {errors === "ERROR" && <span className="clr--negative">Server side error!! Try again.</span>}
+                                {errors === "DUPLICATE" && <h3 className="clr--negative">Key already exists.</h3>}
                                 {updated && <span className="clr--positive">Sidechain address has been updated.</span>}
                             </div>
                             <div className="btn__row">

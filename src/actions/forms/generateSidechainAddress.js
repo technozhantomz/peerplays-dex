@@ -43,7 +43,8 @@ export const generateSidechainAddress = async (data) => {
             result.sidechainAccounts = await getSidechainAccounts(payer);
         }
     } catch (error) {
-        result.errors = "ERROR"
+        const err = error.toString();
+        err.includes('An active deposit key already exists') ? result.errors = "DUPLICATE" : result.errors = "ERROR";
     }
 
     return result;

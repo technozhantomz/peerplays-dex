@@ -52,8 +52,9 @@ const GenerateAddress = (props) => {
             <div className="info__row">
                 <span>Fee: {fee.amount} {fee.symbol}</span>
                 {sent && <span className="clr--positive">Sidechain address has been generated.</span>}
-                {errors === "ERROR" && <h3 className="clr--negative">Something went wrong!! Try again.</h3>}
+                {errors === "ERROR" && <h3 className="clr--negative">Server side error!! Try again.</h3>}
                 {errors === "son_network_error" && <h3 className="clr--negative">Bitcoin SON network unavailable please try again.</h3>}
+                {errors === "DUPLICATE" && <h3 className="clr--negative">Key already exists.</h3>}
             </div>            
             <div className="btn__row">
                 <button className="btn-round btn-round--buy" onClick={() => submitGenerateAddress()}>Generate</button>
