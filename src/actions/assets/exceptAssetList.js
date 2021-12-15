@@ -1,4 +1,4 @@
-const exceptAssetList = 
+const exceptAssetList =
     [
         "AQSQFHZAJVZDTVAC",
         "AXFMUJYATHGJSOIV",
@@ -7,7 +7,20 @@ const exceptAssetList =
         "DOQIBMVBUJYYDXXF",
         "MCLUSD",
         "BTFUN",
-        "SEUSD"
+        "SEUSD",
+        "FKGANJJRLRRSUNTR",
+        "HVVTNQNBHEFYPSJP",
+        "LTQCNISQAEWLEJVS",
+        "NGJZSUSFKIJBXKWJ",
+        "OPNQEXZYKBPOZAUP",
+        "RCDQHTNAHQNDHJXE",
+        "RYVCIRCYJSVAUESQ",
+        "TSKXLOICQJTCFPYY",
+        "UGQZISWHZJKNGVRC",
+        "UUCSGNDAXHJNRJUF",
+        "WGKGQTICUIYEYTWV",
+        "WNIPJIXZAFZGHGIC",
+        "WTFUN"
     ];
 
 export default exceptAssetList;
