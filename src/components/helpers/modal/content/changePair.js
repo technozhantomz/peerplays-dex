@@ -10,9 +10,10 @@ import {clearLayout} from "../../../../dispatch/index";
 import ModalTitle from "../decoration/modalTitle";
 import Translate from "react-translate-component";
 import ModalButton from "../../buttons/modalButton";
+import except from "../../../../actions/assets/exceptAssetList";
 
 const getSymbolsList = async () => dbApi('list_assets', ['', 100])
-    .then(result => result.map(e => e.symbol));
+    .then(result => result.filter(e => !except.includes(e.symbol)).map(e => e.symbol));
 
 class ChangePair extends Component{
     state = {
