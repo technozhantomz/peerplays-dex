@@ -26,7 +26,6 @@ class QuickSellBuy extends Component {
 
     componentDidMount() {
         const userTokens = getAccountData().assets.map(e => e.symbol);
-        console.log(except)
         const defaultData = {
             sellAsset: userTokens.length ? userTokens[0] : defaultToken,
             buyAsset: defaultQuote,
