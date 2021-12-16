@@ -111,6 +111,10 @@
 
 .fit-content{
   white-space: nowrap;
+  &--center{
+    white-space: nowrap;
+    text-align: center;
+  }
 }
 
 .content-padding {
