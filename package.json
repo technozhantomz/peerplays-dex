@@ -29,7 +29,7 @@
     "history": "^4.7.2",
     "lzma": "2.1.6",
     "path-browserify": "^1.0.1",
-    "peerplaysjs-lib": "git+https://gitlab.com/PBSA/tools-libs/peerplaysjs-lib",
+    "peerplaysjs-lib": "git+https://gitlab.com/PBSA/PeerplaysIO/tools-libs/peerplaysjs-lib.git#package_upgrade",
     "qrcode-react": "^0.1.16",
     "react": "^16.2.0",
     "react-bootstrap": "^2.0.0-rc.0",
