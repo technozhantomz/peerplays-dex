@@ -14,13 +14,18 @@ import {checkCondition} from "./checkCondition";
 import {checkBackingAsset} from "./checkBackingAsset";
 import {checkAmountToSell, checkAmountToReceive} from './checkBalance';
 import {checkQuantity} from './checkQuantity';
+import { checkTo } from "./checkTo";
+import { checkDepositPublicKey } from "./checkDepositPublicKey";
+import { checkWithdrawPublicKey } from "./checkWithdrawPublicKey";
+import { checkReferrer } from "./checkReferrer";
 
 export const errorsChecker = {
     newLogin: checkNewLogin,
     login: checkLogin,
-    to: checkLogin,
+    to: checkTo,
     password: checkPassword,
     passwordCheck: checkConfirmPassword,
+    referrer: checkReferrer,
     newWorkerName: checkNewWorker,
     dateBegin: checkBeginDate,
     dateEnd: checkEndDate,
@@ -35,5 +40,7 @@ export const errorsChecker = {
     backingAsset: checkBackingAsset,
     amount_to_sell: checkAmountToSell,
     amount_to_receive: checkAmountToReceive,
-    quantity: checkQuantity
+    quantity: checkQuantity,
+    depositPublicKey: checkDepositPublicKey,
+    withdrawPublicKey: checkWithdrawPublicKey,
 };

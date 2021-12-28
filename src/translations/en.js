@@ -31,7 +31,7 @@ export const en = {
         "votes": "Votes",
         "key": "Key",
         "time": "Time",
-        "type": "Type",
+        "type": "Price (kbyte)",
         "info": "Info",
         "id": "ID",
         "fee": "Fee",
@@ -42,6 +42,7 @@ export const en = {
         "memberFee": "Member Fee (bitUSD)",
         "blockID": "Block ID",
         "date": "Date",
+        "blockTimestamp": "Time",
         "witness": "Witness",
         "transaction": "Transaction",
         "user": "User",
@@ -97,7 +98,7 @@ export const en = {
         },
         "fill_order": {
             "title": "Order Filled",
-            "description": "%(user)s bought %(receives)s for %(pays)s at %(marketLink)s for order #%(id)s",
+            "description": "%(user)s bought %(pays)s for %(receives)s at %(marketLink)s for order #%(id)s",
         },
         "account_update": {
             "title": "Account Updated",
@@ -113,6 +114,10 @@ export const en = {
         },
         "proposal_create": {
             "title": "Proposal Create",
+            "description": ""
+        },
+        "balance_claim": {
+            "title": "Balance claim",
             "description": ""
         },
         "transfer": {
@@ -159,7 +164,7 @@ export const en = {
             "quantity": "Quantity",
             "currency": "Currency",
             "to": "To",
-            "USD": "USD"
+            "TEST": "TEST"
         }
     },
     "quickSellBuy": {
@@ -192,7 +197,7 @@ export const en = {
         },
         "fee": {
             "title": "Fee Pool",
-            "text": "The fee pool is used to pay fees in USD by converting the fee in BTC to USD. If the fee pool runs out of funds, fees may no longer be paid in BTC and will default to USD. The core exchange rate is the price at which BTC are converted to USD.",
+            "text": "The fee pool is used to pay fees in TEST by converting the fee in BTC to TEST. If the fee pool runs out of funds, fees may no longer be paid in BTC and will default to TEST. The core exchange rate is the price at which BTC are converted to TEST.",
             "coreExchangeRate": "Core exchange rate (CER)",
             "feePool": "Pool balance",
             "unclaimedIssuerIncome": "Unclaimed issuer income"
@@ -253,10 +258,10 @@ export const en = {
         "bidCollateral": {
             "title": "Bid Collateral",
             "text": "Unfortunately, BTC is in Global Settlement. During this time it is possible to bid on the collateral in the Settlement Fund and the debt it covers. When the total outstanding debt is covered by bids, and the additional collateral of each bid plus its share from the settlement fund is greater than the MCR, the asset is automatically revived and a margin position is created for each bid. \n" +
-            "Bids will be included on revival sorted by their bid price until the whole debt is covered (last bid might be covered partially). Included bids will be converted into margin positions and receive the residual collateral such that the position reaches MCR from the settlement fund. Not included bids will be reimbursed. A bid can be removed by placing a zero collateral bid."
+                "Bids will be included on revival sorted by their bid price until the whole debt is covered (last bid might be covered partially). Included bids will be converted into margin positions and receive the residual collateral such that the position reaches MCR from the settlement fund. Not included bids will be reimbursed. A bid can be removed by placing a zero collateral bid."
         },
         "smallCard": {
-            "title": "USD : ETH"
+            "title": "TEST : ETH"
         },
         "graph": {
             "title": "%(token)s"
@@ -281,7 +286,7 @@ export const en = {
         "title": "Exchange",
         "price": "Current Price",
         "change": "Change (24h)",
-        "volume": "Volume (24h)",
+        "value": "Value (24h)",
         "feed": "Feed Price",
         "limit": "Call Limit",
         "margin": "Margin Call",
@@ -301,7 +306,7 @@ export const en = {
             "current_block": "Current Block",
             "supply": "Supply (%(currency)s)",
             "active_witnesses": "Active Witnesses",
-            "confirmation_time": "Confrimation Time (Sec)",
+            "confirmation_time": "Confirmation Time (Sec)",
             "last_irreversible": "Last Irreversible Block",
             "stealth_supply": "Stealth Supply (%(currency)s)"
         },
@@ -362,17 +367,46 @@ export const en = {
             "title": "Witnesses"
         },
         "committee": {
-            "title": "Committee-member"
+            "title": "Committee"
         },
         "son": {
-          "title": "Son acc"
-        }
+            "title": "SON"
+        },
+        "performance": {
+            "title": "Voting Performance",
+            "max": "Max Rewards",
+            "great": "Great Rewards",
+            "good": "Good Rewards",
+            "ok": "OK Rewards",
+            "low": "Low Rewards",
+            "lower": "Lower Rewards",
+            "crit": "Critical Low",
+            "none": "No Rewards"
+        },
+        "percent": "Qualified Reward %",
+        "potential": "Estimated Rake Reward %",
+        "next_vote": "Next vote update"
     },
     "business": {
         "title": "Business"
     },
+    "vesting": {
+        "title": "Vesting"
+    },
     "settings": {
         "title": "Settings"
+    },
+    "bitcoin": {
+        "title": "Bitcoin Transactions",
+        "withdraw": {
+            "title": "Withdraw BTC"
+        },
+        "generateAddress": {
+            "title": "Generate Bitcoin Address"
+        },
+        "updateAddress": {
+            "title": "Update Bitcoin Address"
+        }
     },
     "contacts": {
         "title": "Contacts",
@@ -512,7 +546,7 @@ export const en = {
         "upgradeTitle": "Upgrade for 80% Cashback",
         "upgradeDesc": "Lifetime Members get 80% cashback on every transaction fee they pay and qualify to earn referral income from users they register with or refer to the network. A Lifetime Membership is just %(fee)s.",
         "referralTitle": "Your referral link",
-        "referralDesc": "Give this to link to people you want to refer to commodity.LLC: %(link)s/?r=%(name)s",
+        "referralDesc": "Give this to link to people you want to refer to BitShares: %(link)s/?r=%(name)s",
         "allocationTitle": "Fee Allocation",
         "allocationDesc": "Every time < %(name)s > pays a transaction fee, that fee is divided among several different accounts",
         "network": "Network",
@@ -525,7 +559,7 @@ export const en = {
         "pendingTitle": "Pending Fees",
         "pendingDesc": "Fees paid by < %(name)s > are divided among the network, referrers, and registrars once every maintenance interval (%(interval)s seconds). The next maintenance time is %(nextMaintenance)s.",
         "vestingTitle": "Vesting Fees",
-        "vestingDesc": "Most fees are made available immediately, but fees over 100 USD (such as those paid to upgrade your membership or register a premium account name) must vest for a total of 90 days."
+        "vestingDesc": "Most fees are made available immediately, but fees over 100 TEST (such as those paid to upgrade your membership or register a premium account name) must vest for a total of 90 days."
     },
     "search": {
         "users": "Users",
@@ -549,11 +583,11 @@ export const en = {
             "from": "From",
             "to": "To",
             "quantity": "Quantity",
-            "memo": "Destination country",
+            "memo": "Memo",
             "fee": "Fee",
             "gateFee": "Gate Fee",
             "newWorkerName": "Worker Name",
-            "dailyPay": "Daily Pay (USD)",
+            "dailyPay": "Daily Pay (TEST)",
             "dateBegin": "Start Date",
             "dateEnd": "End Date",
             "website": "Website",
@@ -598,9 +632,9 @@ export const en = {
         },
         "comments": {
             "newLogin": "You can use letters, symbols, etc...",
-            "memo": "Entering DESTINATION country guarantees instant transaction",
+            "memo": "Entering country of DESTINATION guarantees instant transaction",
             "newWorkerName": "Be short and descriptive, e.g. \"Worker Purpose - Account Name\"",
-            "dailyPay": "The current best practice is to define a salary in USD/CNY, and commit to burning whatever surplus you receive as a result of the USD price increasing. As long as your worker is active and has sufficient votes to be above the refund worker, you will receive this daily salary.",
+            "dailyPay": "The current best practice is to define a salary in USD/CNY, and commit to burning whatever surplus you receive as a result of the TEST price increasing. As long as your worker is active and has sufficient votes to be above the refund worker, you will receive this daily salary.",
             "faucet": "The faucet address is used to pay the registration fee for new users.",
             "withdrawAmount": "Minimum amount: %(minAmount)s",
             "asset": "Asset",
@@ -625,11 +659,15 @@ export const en = {
         "noKey": "Failed to find this key",
         "wrongPass": "Password is wrong",
         "required": "This field is required.",
+        "requiredQuantity": "Quantity is required.",
         "isNan": "Amount is not a number.",
         "isNull": "You can't send a null.",
         "isEmptyBalance": "You don't have token to pay fee.",
+        "isEmptyMarketBalance": "You don't have token to pay market fee.",
         "nullWeight": "Can\'t be null",
         "isNotEnough": "Balance is not enough.",
+        "isZero": "Quantity should be greater than 0.",
+        "isDecimal": "Quantity should not be decimal.",
         "accUsed": "Account is already in use.",
         "assetUsed": "Asset is already in use.",
         "keyUsed": "Key is already in use.",
@@ -657,7 +695,7 @@ export const en = {
         "newAcc": {
             "longer": "Account name should be longer",
             "shorter": "Account name should be shorter",
-            "firstLetter": "Account name should start with lowercase (small) letter",
+            "firstLetter": "Account name should start with a letter",
             "noSpecials": "Account name should have only letters, digits, or dashes",
             "oneDash": "Account name should have only one dash in a row",
             "lastSymbol": "Account name should end with a letter or digit",
@@ -711,7 +749,9 @@ export const en = {
         "createUser": {
             "title": "New Account",
             "aboutLogin": "The account name you choose needs to be unique, as it will be registered publicly on the blockchain and will be your identifer for any transactions you make.",
-            "referrer": "Note that you'll create new account with reference provided by %(referrer)s"
+            "referrer": "Note that you'll create new account with reference provided by %(referrer)s",
+            "referrerError": "There is no account with %(referrer)s name",
+            "referrerMembership": "%(referrer)s must be either a lifetime or annual subscriber."
         },
         "login": {
             "title": "Log in"
@@ -757,7 +797,7 @@ export const en = {
             "title": "Withdraw %(asset)s"
         },
         "generateAddress": {
-          "title": "Generate %(sidechain)s Address"
+            "title": "Generate %(sidechain)s Address"
         }
     },
     "buttons": {
@@ -793,8 +833,9 @@ export const en = {
         "default": "No data",
         "empty": "Empty",
         "userOrders": "User haven't open any order",
-        "login": "Login to blockchain %(pageName)s or create a new account",
+        "login": "Please sign in to use the %(pageName)s or create a new account",
         "withdraw": "No asset avaliable",
-        "allRead": "All Read"
+        "allRead": "All Read",
+        "activity": "No Data"
     }
 };

@@ -159,6 +159,13 @@ svg .mask{
     font-size: $fzSM;
     line-height: 1.6rem;
   }
+  &__warning{
+    flex: 1;
+    margin-right: 4.1rem;
+    color: $negative;
+    font-size: $fzSM;
+    line-height: 1.6rem;
+  }
 }
 
 .warning{
@@ -176,4 +183,12 @@ svg .mask{
 
 .mt-2{
   margin-top: 2.2rem;
+}
+
+@media(max-width:320px){
+  .login-needed{
+    &__image{
+      margin-top: 1rem;
+    }
+  }
 }

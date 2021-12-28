@@ -48,7 +48,7 @@ const getData = async () => {
             asset: item.symbol,
             available: item.quantity / (10 ** item.precision),
             priceUSD: item.usdPrice,
-            change: item.dailyChange === "0" ? item.dailyChange : item.dailyChange > 0 ? `+${item.dailyChange}` : `-${item.dailyChange}`,
+            change: !item.dailyChange || item.dailyChange == 0 ? `0%` : item.dailyChange > 0 ? `+${item.dailyChange}%` : `-${item.dailyChange}%`,
             valueUSD: Number((item.quantity / (10 ** item.precision) * item.usdPrice).toFixed(5))
         })
 

@@ -11,7 +11,7 @@ const Table = ({className, tableHead, rows, link, onClick, partialFill}) => (
             <div key={`tr-${trId}`} className="table__row">
                 {tableHead.map((tdItem, tdId) => (
                     <div key={`td-${tdId}`} className={`table__cell ${tdItem.params ? tdItem.params : ''}`}>
-                        {tdItem.key == 'url'?trItem[tdItem.key] == ''?'No Url Available':trItem[tdItem.key]:trItem[tdItem.key]}
+                        {tdItem.key == 'value'?trItem[tdItem.key] == "Infinity"? 0:trItem[tdItem.key] : tdItem.key == 'url'?trItem[tdItem.key] == ''?'No Url Available':trItem[tdItem.key]:trItem[tdItem.key]}
                     </div>
                 ))}
                 {partialFill

@@ -1,7 +1,7 @@
 import {defaultToken} from "../../params/networkParams";
 import React from "react";
 
-const SaveChangesCard = ({show, fee, cancelFunc, saveFunc}) => {
+const SaveChangesCard = ({show, fee, cancelFunc, saveFunc, loading}) => {
     return(
         <div className={`save-changes ${show ? 'shown' : ''}`}>
             <div className="container">
@@ -10,8 +10,8 @@ const SaveChangesCard = ({show, fee, cancelFunc, saveFunc}) => {
                     <span>{fee} {defaultToken}</span>
                 </div>
                 <div className="save-changes__btn-wrapper">
-                    <button onClick={cancelFunc}>CANCEL</button>
-                    <button className="btn-round" onClick={saveFunc}>Save Changes</button>
+                    <button onClick={cancelFunc} disabled={loading}>CANCEL</button>
+                    <button className="btn-round" onClick={saveFunc} disabled={loading}>Save Changes</button>
                 </div>
             </div>
         </div>

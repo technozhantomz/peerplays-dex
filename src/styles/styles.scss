@@ -47,6 +47,10 @@
     }
 }
 
-.cpointer{
+.cpointer, .field__input{
     cursor: pointer !important;
+}
+.react-numeric-input b{
+    cursor: pointer !important;
+    z-index: 11 !important;
 }

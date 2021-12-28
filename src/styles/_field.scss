@@ -15,6 +15,8 @@
       &__input, &__text{
         padding: 0 1.6rem;
         margin: 1.8rem 0;
+        overflow: hidden;
+        width: 70%;
       }
     }
   }
@@ -95,7 +97,7 @@
     position: absolute;
     top: 100%;
     left: 0;
-    padding: .5rem 1.5rem;
+    padding: .5rem 0.5rem;
     font-size: $fzSM;
   }
   &__comment{
