@@ -49,11 +49,11 @@ const WithdrawGPOS = (props) => {
 		})
 	}
 	return (
-		<Card mode="widget">
-			<div className="card__title">
+		<Card mode="widget" >
+			<div className="card__title" style={{ paddingTop:"20px" , borderTopLeftRadius:"10px" , borderTopRightRadius:"10px"}}>
 				Power Down
 			</div>
-			<CardContent>
+			<CardContent >
 				<div style={{ marginBottom: 12 }}>
 					<div style={{ display: "inline-block", width: "50%" }}>
 						<div style={{ background: "#f0f0f0", margin: 4, padding: 12 }}>
@@ -70,6 +70,7 @@ const WithdrawGPOS = (props) => {
 				</div>
 
 				<Translate content='withdraw.title' />
+				<div className='input-cus-style'>
 				<NumericInput
 					strict={true}
 					style={{ color: "#f0f0f0" }}
@@ -82,20 +83,22 @@ const WithdrawGPOS = (props) => {
 					onChange={(value) => setWithdrawAmount(value)}
 					value={withdrawAmount}
 				/>
-
+				</div>
 				<div style={{ marginTop: 12, color: "#ff444a", display: (availableGpos == undefined || availableGpos == null || availableGpos <= 0) ? "block" : "none" }}>
 					There is no available GPOS 
 				</div>
 				<div style={{ marginTop: 12, color: "#ff444a", display: (withdrawAmount == undefined || withdrawAmount == null || withdrawAmount <= 0) ? "block" : "none" }}>
 					The withdraw amount should be greater than 0 
 				</div>
-				<div style={{ marginTop: 12 }}>
+				<div style={{ marginTop: 12 }}  class="input-cus-style">
+				<div>
 					New GPOS Balance: <strong>{totalGpos - withdrawAmount} {symbol}</strong>
+				</div>
 				</div>
 			</CardContent>
 
-			<CardActions >
-				<button disabled={withdrawDisabled} className="btn-round btn-round--buy" onClick={() => {(availableGpos <= 0 || withdrawAmount <= 0) ? "" : SubmitGposWithdrawal()}}>Withdraw</button>
+			<CardActions style={{justifyContent:"end"}} >
+				<button disabled={withdrawDisabled} className="btn-round btn-round--buy " onClick={() => {(availableGpos <= 0 || withdrawAmount <= 0) ? "" : SubmitGposWithdrawal()}}>Withdraw</button>
 			</CardActions>
 		</Card>
 	)
