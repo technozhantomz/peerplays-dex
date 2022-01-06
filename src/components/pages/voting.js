@@ -262,15 +262,15 @@ const Voting = (props) => {
                 <Grid container spacing={2}>
                     <Grid item xs={12} sm={6} md={3}>
                         <Card >
-                            <Translate className="card__title" component="div" content='voting.performance.title' />
-                            <CardContent>
+                            <Translate className="card__title" style={{paddingTop:"20px"}} component="div" content='voting.performance.title' />
+                            <CardContent >
                                 <Translate component="div" content={gposPerfString} />
                             </CardContent>
                         </Card>
                     </Grid>
                     <Grid item xs={12} sm={6} md={3}>
                         <Card >
-                            <Translate className="card__title" component="div" content='voting.percent' />
+                            <Translate className="card__title" style={{paddingTop:"20px"}} component="div" content='voting.percent' />
                             <CardContent>
                                 {gposPerformance}%
                             </CardContent>
@@ -278,7 +278,7 @@ const Voting = (props) => {
                     </Grid>
                     <Grid item xs={12} sm={6} md={3}>
                         <Card >
-                            <Translate className="card__title" component="div" content='voting.potential' />
+                            <Translate className="card__title" style={{paddingTop:"20px"}} component="div" content='voting.potential' />
                             <CardContent>
                                 {`${estimatedRakeReward}%`}
                             </CardContent>
@@ -286,7 +286,7 @@ const Voting = (props) => {
                     </Grid>
                     <Grid item xs={12} sm={6} md={3}>
                         <Card >
-                            <Translate className="card__title" component="div" content='voting.next_vote' />
+                            <Translate className="card__title" style={{paddingTop:"20px"}} component="div" content='voting.next_vote' />
                             <CardContent>
                                 {gposSubPeriodStr}
                             </CardContent>
