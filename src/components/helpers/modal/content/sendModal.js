@@ -62,7 +62,7 @@ class SendModal extends Component {
         setTimeout(() => {
             clearLayout();
             window.location.reload();
-        }, 3000);
+        }, 1000);
     };
 
     render() {
