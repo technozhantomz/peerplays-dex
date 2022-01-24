@@ -57,7 +57,7 @@ const WithdrawGPOS = (props) => {
 				<div style={{ marginBottom: 12 }}>
 					<div style={{ display: "inline-block", width: "50%" }}>
 						<div style={{ background: "#f0f0f0", margin: 4, padding: 12 }}>
-							Opening GPOS Balance: <strong>{totalGpos} {symbol}</strong>
+							Opening GPOS Balance: <strong >{totalGpos} {symbol}</strong>
 						</div>
 					</div>
 					<div style={{ display: "inline-block", width: "50%" }}>
@@ -91,8 +91,8 @@ const WithdrawGPOS = (props) => {
 					The withdraw amount should be greater than 0 
 				</div>
 				<div style={{ marginTop: 12 }}  class="input-cus-style">
-				<div>
-					New GPOS Balance: <strong>{totalGpos - withdrawAmount} {symbol}</strong>
+				<div style={{padding:"0 10px"}}>
+					New GPOS Balance : <strong style={{padding:"0 10px"}}>{totalGpos - withdrawAmount} {symbol}</strong>
 				</div>
 				</div>
 			</CardContent>
