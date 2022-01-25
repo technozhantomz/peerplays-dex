@@ -86,8 +86,8 @@ const VestGPOS = (props) => {
 					Value cannot exceed {accBalance}
 				</div>
 				<div style={{ marginTop: 12 }} class="input-cus-style">
-					<div>
-					New GPOS Balance: <strong>{totalGpos + vestAmount} {symbol}</strong>
+					<div style={{padding:"0 10px"}}>
+					New GPOS Balance : <strong style={{padding:"0 10px"}}>{totalGpos + vestAmount} {symbol}</strong>
 					</div>
 				</div>
 			</CardContent>
