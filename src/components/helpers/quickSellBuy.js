@@ -63,7 +63,7 @@ class QuickSellBuy extends Component {
                     type={'limit_order_create'}
                     className="form__sell-buy"
                     defaultData={defaultData}
-                    requiredFields={['amount_to_sell', 'amount_to_receive', 'asset_to_sell', 'asset_to_sell']}
+                    requiredFields={['amount_to_sell', 'amount_to_receive', 'asset_to_sell', 'buyAsset']}
                     action={sellBuy}
                     handleResult={this.handleTransfer}
                     needPassword
@@ -89,6 +89,7 @@ class QuickSellBuy extends Component {
                                             hideLabel={true}
                                             handleChange={form.handleChange}
                                             errors={errors}
+                                            defaultVal={data}
                                             defaultHints={userTokens}
                                             readOnly={true}
                                         />
