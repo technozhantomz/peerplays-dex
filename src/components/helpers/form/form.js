@@ -59,7 +59,8 @@ class Form extends Component {
     submit = (e) => {
         e && e.preventDefault();
         const { errors, data } = this.state;
-        if (Object.keys(errors).length) return;
+        
+         if (Object.keys(errors).length) return;
         
         this.setState({ loading: true });
 
@@ -73,7 +74,6 @@ class Form extends Component {
             this.setState({ loading: false, errors});
             return;
         }
-
         const checkPassword = () => {
             if (!data.password) {
                 getPassword(password => (
@@ -102,9 +102,9 @@ class Form extends Component {
     handleAction = () => {
         const data = this.state.data;
         const { action, handleResult } = this.props;
+        console.log("data",data)
         if (action) {
-
-            const result = {
+         const result = {
                 success: false,
                 errors: {},
                 callbackData: ''
