@@ -6,7 +6,7 @@ import {clearLayout} from "../../../dispatch/index";
 import { getPassword } from "../../../actions/forms";
 import { useFormInput } from "./formInput";
 
-
+ 
 
 const GenerateAddress = (props) => {
     const {loginData, accountData, sidechain} = props;
@@ -16,6 +16,22 @@ const GenerateAddress = (props) => {
     const [sent, setSent] = useState(false);
     const [fee, setFee] = useState({amount: 0, symbol: accountData.assets[0].symbol});
     const [errors, setErrors] = useState('');    
+    const [depositPublicKeyerrors, setErrorsdepositPublicKey] = useState('');    
+    const [withdrawPublicKeyerrors, setErrorswithdrawPublicKey] = useState('');    
+    const [withdrawAddresserrors, setErrorswithdrawAddress] = useState('');
+    
+    useEffect(() => {
+        if(depositPublicKey.value){
+            setErrorsdepositPublicKey();
+        }
+        if(withdrawPublicKey.value){
+            setErrorswithdrawPublicKey();
+        }
+        if(withdrawAddress.value){
+            setErrorswithdrawAddress();
+        }
+        
+    },[depositPublicKey])
    
     const handleAddressGenerated = (data) => {
         Object.keys(data.map(({trx}) => {
@@ -34,6 +50,31 @@ const GenerateAddress = (props) => {
     };
 
     const submitGenerateAddress = () => {
+        if(!depositPublicKey.value &&  !withdrawPublicKey.value && !withdrawAddress.value){
+            setErrorsdepositPublicKey("Field is required")
+            setErrorswithdrawPublicKey("Field is required")
+            setErrorswithdrawAddress("Field is required")
+            return;
+        }else if(!depositPublicKey.value){
+            setErrorswithdrawPublicKey()
+            setErrorswithdrawAddress()
+            setErrorsdepositPublicKey("Field is required")
+            return
+        }else if(!withdrawPublicKey.value){
+            setErrorswithdrawAddress()
+            setErrorsdepositPublicKey()
+            setErrorswithdrawPublicKey("Field is required")
+            return
+        }else if(!withdrawAddress.value){
+            setErrorsdepositPublicKey()
+            setErrorswithdrawPublicKey()
+            setErrorswithdrawAddress("Field is required")
+            return
+        }else{
+            setErrorsdepositPublicKey(""),
+            setErrorswithdrawPublicKey(""),
+            setErrorswithdrawAddress("")
+        }
         getPassword(password => generateSidechainAddress({
             sidechain: sidechain,
             depositPublicKey: depositPublicKey.value,
@@ -49,14 +90,17 @@ const GenerateAddress = (props) => {
     return(
         <div className="card__content">
             <div className="form form__send">
-                <div className="input__row">
+                <div className="">
                     <Input name="depositPublicKey" className="modal__field" {...depositPublicKey}/>
+                {depositPublicKeyerrors === "Field is required" && <h3 className="clr--negative">This Field is required</h3>}
                 </div>
-                <div className="input__row">                
+                <div className="">                
                     <Input name="withdrawPublicKey" className="modal__field" {...withdrawPublicKey}/>
+                {withdrawPublicKeyerrors === "Field is required" && <h3 className="clr--negative">This Field is required</h3>}
                 </div>
-                <div className="input__row">
+                <div className="">
                     <Input name="withdrawAddress" className="modal__field" {...withdrawAddress} />
+                {withdrawAddresserrors === "Field is required" && <h3 className="clr--negative">This Field is required</h3>}
                 </div>
                 <div className="info__row">
                     <span>Fee: {fee.amount} {fee.symbol}</span>
