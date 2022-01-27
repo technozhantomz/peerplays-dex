@@ -9,24 +9,22 @@ import { setNewAccount } from "../../../../actions/account/index";
 import Submit from "../decoration/submit";
 import ModalTitle from "../decoration/modalTitle";
 import { getStorage } from "../../../../actions/storage";
-import { dbApi } from "../../../../actions/nodes";
+import { checkReferrer } from "../../../../actions/forms/errorsHandling/checkReferrer";
 
 const CreateUser = () => {
     const referrer = getStorage('referrer', 'sessionStorage').name;
-    const [referrerName, setReferrerName] = useState(referrer);
+    const [referrerError, setReferrerError] = useState("");
     useEffect(() => {     
-        dbApi('get_account_by_name', [referrer]).then(referrerAccount => {
-            if (!referrerAccount) {
-                setReferrerName("");
-            }
-        });
+        checkReferrer({ referrer }).then(result => {
+            setReferrerError(result);
+        })
     }, [])
     return (
         <Fragment>
             <ModalTitle tag="createUser" />
             <Form
                 requiredFields={['newLogin', 'password', 'passwordCheck']}
-                defaultData={{ referrer: referrerName }}
+                defaultData={referrer ? {referrer} : {}}
                 action={createUser}
                 handleResult={setNewAccount}
             >
@@ -56,11 +54,11 @@ const CreateUser = () => {
                                 error={form.state.errors}
                                 value={form.state.data}
                             />
-                            
-                            {referrer && ( referrerName != "" ? (
-                                <InfoBlock tag="modal.createUser.referrer" data={{ referrer: referrerName }} />
+
+                            {referrer && (!referrerError ? (
+                                <InfoBlock tag="modal.createUser.referrer" data={{ referrer }} />
                             ) : (
-                                <InfoBlock tag="modal.createUser.referrerError" data={{ referrer }} />
+                                <InfoBlock tag={referrerError} data={{ referrer }} className="info-block__warning" />
                             )
                             )}
                         </div>

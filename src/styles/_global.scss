@@ -159,6 +159,13 @@ svg .mask{
     font-size: $fzSM;
     line-height: 1.6rem;
   }
+  &__warning{
+    flex: 1;
+    margin-right: 4.1rem;
+    color: $negative;
+    font-size: $fzSM;
+    line-height: 1.6rem;
+  }
 }
 
 .warning{
@@ -182,6 +189,25 @@ svg .mask{
   .login-needed{
     &__image{
       margin-top: 1rem;
+    }
+  }
+}
+
+.input-cus-style {
+  div:first-child {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  input , div{
+    margin: 0px;
+    background: rgba(0, 0, 0, 0.1);
+    height: 49px;
+  }
+  span {
+    b {
+      border: none;
+      border-color: transparent;
     }
   }
 }

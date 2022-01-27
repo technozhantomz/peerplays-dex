@@ -1,4 +1,4 @@
-.modal{
+.modal {
   width: 66.2rem;
   padding: 2.5rem 4.4rem 1.8rem;
   position: fixed;
@@ -12,58 +12,66 @@
   box-shadow: $shadow-bold;
   font-family: $secondary-font;
   box-sizing: border-box;
-  &.open{
+  &.open {
     max-height: calc(100vh - 100px);
     transform: translate(-50%, -50%);
     opacity: 1;
     transition: $anim;
     z-index: 101;
   }
-  &__header{
+  &__header {
     //display: flex;
     //justify-content: space-between;
     //align-items: center;
     margin-bottom: 4.5rem;
   }
-  &__warning{
+  &__warning {
     display: flex;
     align-items: center;
     margin-top: -3rem;
     margin-bottom: 1.8rem;
-    color: rgba(60,71,108,0.7);
+    color: rgba(60, 71, 108, 0.7);
     font-size: $fzSM;
-    .mask{
-      fill: #75A4BA;
+    .mask {
+      fill: #75a4ba;
     }
-    span{
+    span {
       margin-left: 1rem;
     }
   }
-  &__bottom{
+  &__bottom {
     display: flex;
     justify-content: flex-end;
     align-items: center;
     margin-top: 6rem;
     margin-right: -2.5rem;
   }
-  &__error{
+  &__smbottom {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 6rem;
+    flex-direction: column;
+    margin-right: 0px;
+  }
+  &__error {
     color: $negative;
   }
-  &__button{
+  &__button {
     width: 11rem;
     margin-right: 2.5rem;
     padding: 1rem;
-    color: #3C476C;
+    color: #3c476c;
     font-weight: 500;
     font-family: $secondary-font;
     text-align: center;
     text-transform: uppercase;
     border-radius: 4px;
-    &:hover{
+    &:hover {
       background: $grey-light;
     }
   }
-  &__field{
+  &__field {
     margin-top: 2.2rem;
   }
 }

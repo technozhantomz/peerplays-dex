@@ -46,7 +46,7 @@ export const updateSidechainAddress = async (data) => {
                 withdrawAddress,
                 fee: data.fee
             }).then((response) => {
-                response.success ? result = response : result.errors = 'ERROR';
+                response.success ? result = response : response.errors == 'DUPLICATE' ? result.errors = "DUPLICATE" : result.errors = 'ERROR';
                 return result;
             });
         }

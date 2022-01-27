@@ -6,7 +6,9 @@ import React from "react";
 import {Asset} from "../../../classes";
 
 export const getGlobalHistory = async ({base, quote}) => {
-    const history = await historyApi('get_fill_order_history', [base.id, quote.id, 100]).then(item => item.filter(el => el.op.is_maker));
+    const history = await historyApi('get_fill_order_history', [base.id, quote.id, 100]).then(item => {
+        return item
+    });
 
     const baseAsset = await formAssetData(base);
     const quoteAsset = await formAssetData(quote);
@@ -36,7 +38,7 @@ export const getGlobalHistory = async ({base, quote}) => {
 
     const rows = await Promise.all(history.map(async el => {
 
-        const time = formDate(el.time, ['time']);
+        const time = formDate(el.time, ['date', 'month', 'year', 'time']);
 
         const {pays, receives} = el.op;
 

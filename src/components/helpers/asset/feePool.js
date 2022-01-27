@@ -12,7 +12,7 @@ const formFeePool = async ({basicData, dynamicData, quoteAsset, baseAsset}) => {
     const newBaseAsset = new Asset({...baseAsset, amount: base.amount});
     const newQuoteAsset = new Asset({...quoteAsset, amount: quote.amount});
 
-    const feeAsset = new Asset({...quoteAsset, amount: fee_pool});
+    const feeAsset = new Asset({...baseAsset, amount: fee_pool});
 
     return {
         coreExchangeRate: {

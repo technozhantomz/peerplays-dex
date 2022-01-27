@@ -79,7 +79,7 @@ class Exchange extends Component {
                             </Tabs>
                         </div>
                     </Grid>
-                    <Grid item xs={12} sm={3} style={{ padding: '10px 10px 10px 10px', borderStyle: 'groove' }}>
+                    <Grid item xs={12} sm={3} style={{ padding: '10px 10px 10px 10px'}}>
                         <Translate content="exchange.buy" className="exchange-form__title" component="div" />
                         <BuyForm
                             type="buy"
@@ -87,7 +87,7 @@ class Exchange extends Component {
                             defaultData={fieldParams}
                         />
                     </Grid>
-                    <Grid item xs={12} sm={3} style={{ padding: '10px 10px 10px 10px', borderStyle: 'groove' }}>
+                    <Grid item xs={12} sm={3} className="exchange__center" style={{ padding: '10px 10px 10px 10px'}}>
                         <Translate content="exchange.sell" className="exchange-form__title" component="div" />
                         <BuyForm
                             type="sell"

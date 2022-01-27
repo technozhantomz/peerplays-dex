@@ -8,6 +8,6 @@ export const checkTo = ({ to, from }) => {
     return 'sameAccount';
 
   return dbApi('get_account_by_name', [to])
-    .then(e => !e ? 'accountIsNotExist' : false)
-    .catch(() => 'accountIsNotExist');
+      .then(e => !e ? 'accountIsNotExist' : false)
+      .catch(() => 'accountIsNotExist');
 }

@@ -56,7 +56,7 @@ export const en = {
         "ratio": "Ratio",
         "callPrice": "Call Price",
         "expiration": "Expiration",
-        "kill": "Kill",
+        "kill": "Delete",
         "param": "%(param)s",
         "total": "Total (%(token)s)",
         "name_description": "Name / Description",
@@ -98,7 +98,7 @@ export const en = {
         },
         "fill_order": {
             "title": "Order Filled",
-            "description": "%(user)s bought %(receives)s for %(pays)s at %(marketLink)s for order #%(id)s",
+            "description": "%(user)s bought %(pays)s for %(receives)s at %(marketLink)s for order #%(id)s",
         },
         "account_update": {
             "title": "Account Updated",
@@ -399,7 +399,7 @@ export const en = {
     "bitcoin": {
         "title": "Bitcoin Transactions",
         "withdraw": {
-            "title": "Withdraw BTC"
+            "title": "Withdraw Bitcoin"
         },
         "generateAddress": {
             "title": "Generate Bitcoin Address"
@@ -626,6 +626,7 @@ export const en = {
             "issueAmount": "Issue Amount",
             "condition": "Condition (max 60 characters)",
             "resolutionDate": "Market resolution date",
+            "depositAddress": "Deposit Address",
             "depositPublicKey": "Deposit Public Key",
             "withdrawPublicKey": "Withdraw Public Key",
             "withdrawAddress": "Withdraw Address"
@@ -663,6 +664,7 @@ export const en = {
         "isNan": "Amount is not a number.",
         "isNull": "You can't send a null.",
         "isEmptyBalance": "You don't have token to pay fee.",
+        "isEmptyMarketBalance": "You don't have token to pay market fee.",
         "nullWeight": "Can\'t be null",
         "isNotEnough": "Balance is not enough.",
         "isZero": "Quantity should be greater than 0.",
@@ -749,7 +751,8 @@ export const en = {
             "title": "New Account",
             "aboutLogin": "The account name you choose needs to be unique, as it will be registered publicly on the blockchain and will be your identifer for any transactions you make.",
             "referrer": "Note that you'll create new account with reference provided by %(referrer)s",
-            "referrerError": "There is no account with %(referrer)s name"
+            "referrerError": "There is no account with %(referrer)s name",
+            "referrerMembership": "%(referrer)s must be either a lifetime or annual subscriber."
         },
         "login": {
             "title": "Log in"

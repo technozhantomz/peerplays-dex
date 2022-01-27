@@ -9,7 +9,7 @@ import { useFormInput } from "./formInput";
  
 
 const GenerateAddress = (props) => {
-    const {loginData, accountData, sidechain} = props;
+    const {accountData, sidechain, hasDepoAddress, sidechainAccount} = props;
     const depositPublicKey = useFormInput('');
     const withdrawPublicKey = useFormInput('');
     const withdrawAddress = useFormInput('');
@@ -34,13 +34,7 @@ const GenerateAddress = (props) => {
     },[depositPublicKey])
    
     const handleAddressGenerated = (data) => {
-        Object.keys(data.map(({trx}) => {
-            console.log(trx);  
-            Object.keys(trx.operations.map((op) => {
-                console.log(op[1]);
-                setSidechainAccounts([op[1]]);
-            }))
-        }))
+        data.filter(act => {(act.sidechain == sidechain) ? setSidechainAccounts(act) : ""});
         setSent(true);
         setTimeout(() => {
             clearLayout();
@@ -83,7 +77,7 @@ const GenerateAddress = (props) => {
             withdrawAddress: withdrawAddress.value,
             fee: fee
         }).then((result) => {
-            result.success ? handleAddressGenerated(result.callbackData) : setErrors(result.errors);
+            result.success ? handleAddressGenerated(result.sidechainAccounts) : setErrors(result.errors);
         }));
     };
 

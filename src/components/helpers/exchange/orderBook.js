@@ -23,7 +23,7 @@ class OrderBook extends Component {
         const { type, threshold } = this.state;
         const tableData = this.props.data;
         const types = ['all', 'sell', 'buy'];
-        const thresholds = ['0.001', '0.005', '0.01','2','3','14'];
+        const thresholds = ['0.001','0.005', '0.01'];
 
         const toolTipStyle = {
             backgroundColor: 'black',

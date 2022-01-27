@@ -134,7 +134,7 @@ class BuyForm extends Component{
                 mutateData={mutations}
                 action={sellBuy}
                 handleResult={this.resetForm}
-                needPassword
+                orderConfirmation
             >
                 {
                     form => {

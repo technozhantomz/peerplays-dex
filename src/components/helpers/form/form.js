@@ -1,11 +1,15 @@
 import React, { Component } from "react";
 import { feeCalculator, getPassword } from "../../../actions/forms/index";
 import { checkErrors } from "../../../actions/forms/errorsHandling/";
+import OrderConfirmationModel from "../modal/content/orderConfirmationModel";
+import {setModal} from "../../../dispatch";
 
 const handleData = async (context, val, id) => {
     const { mutateData, type } = context.props;
     let data = { ...context.state.data };
     const feeCalc = feeCalculator[type];
+
+    data = Object.filter(data, data => data);
 
     data[id] = val;
 
@@ -18,6 +22,12 @@ const handleData = async (context, val, id) => {
     }
     return { data, errors };
 };
+
+Object.filter = (obj, predicate) =>
+    Object.keys(obj)
+        .filter( key => predicate(obj[key]) )
+        .reduce( (res, key) => (res[key] = obj[key], res), {} );
+
 
 class Form extends Component {
     state = {
@@ -49,7 +59,8 @@ class Form extends Component {
     submit = (e) => {
         e && e.preventDefault();
         const { errors, data } = this.state;
-        if (Object.keys(errors).length) return;
+        
+         if (Object.keys(errors).length) return;
         
         this.setState({ loading: true });
 
@@ -63,14 +74,25 @@ class Form extends Component {
             this.setState({ loading: false, errors});
             return;
         }
+        const checkPassword = () => {
+            if (!data.password) {
+                getPassword(password => (
+                    this.setState(
+                        { data: { ...data, password } },
+                        () => this.handleAction()
+                    )
+                ));
+                return;
+            }
+        }
 
-        if (this.props.needPassword && !data.password) {
-            getPassword(password => (
-                this.setState(
-                    { data: { ...data, password } },
-                    () => this.handleAction()
-                )
-            ));
+        if (this.props.orderConfirmation) {
+            setModal(<OrderConfirmationModel onSuccess={checkPassword} data={this.props} grid={3} />)
+            return;
+        }
+
+        if(this.props.needPassword){
+            checkPassword();
             return;
         }
 
@@ -80,9 +102,9 @@ class Form extends Component {
     handleAction = () => {
         const data = this.state.data;
         const { action, handleResult } = this.props;
+        console.log("data",data)
         if (action) {
-
-            const result = {
+         const result = {
                 success: false,
                 errors: {},
                 callbackData: ''
