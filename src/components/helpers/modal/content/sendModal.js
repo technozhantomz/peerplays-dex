@@ -110,8 +110,8 @@ class SendModal extends Component {
                                                     disabled={true}
                                                 />
                                                 :
-                                                <FieldWithHint
-                                                    name="to"
+                                                <clear
+                                                     name="to"
                                                     className="mt-2"
                                                     method={getSymbolsList}
                                                     handleChange={form.handleChange}

@@ -206,8 +206,12 @@ svg .mask{
   }
   span {
     b {
-      border: none;
-      border-color: transparent;
+      border: none !important;
+      border-color: transparent !important;
     }
   }
+}
+
+.input-cus-style span b{
+  background:transparent !important;
 }

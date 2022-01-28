@@ -69,7 +69,7 @@ const WithdrawGPOS = (props) => {
 
 				</div>
 
-				<Translate content='withdraw.title' />
+				<Translate style={{ fontWeight:"bold"}} content='withdraw.title' />
 				<div className='input-cus-style'>
 				<NumericInput
 					strict={true}
