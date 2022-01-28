@@ -53,17 +53,17 @@ const VestGPOS = (props) => {
 			</div>
 			<CardContent >
 				<div style={{ marginBottom: 12 }}>
-					<div style={{ display: "inline-block", width: "50%" }}>
+					<div style={{ display: "inline-block", width: "100%" }}>
 						<div style={{ background: "#f0f0f0", margin: 4, padding: 12 }}>
 							Opening GPOS Balance: <strong>{totalGpos} {symbol}</strong>
 						</div>
 					</div>
 				</div>
-				<Translate content='deposit.title' />
+				<Translate style={{ fontWeight:"bold"}} content='deposit.title' />
 				<div className='input-cus-style'>
 				<NumericInput
 					strict={true}
-					style={{ color: "#f0f0f0" }}
+					style={{ color: "#f0f0f0", background:"transparent" }}
 					mobile
 					type="number"
 					className="field__input form-control cpointer"
