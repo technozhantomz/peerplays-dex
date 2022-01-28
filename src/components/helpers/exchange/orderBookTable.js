@@ -21,18 +21,26 @@ class OrderBookTable extends Component{
 
         this.setState({type, threshold}, () => {
             const container = document.getElementsByClassName('order-book__table')[0];
+            const spread = document.getElementsByClassName('order-book__spread-wrapper')[0];
             let scroll = 0;
-            let typeSearch = /all|sell|buy/gi
-            if(typeSearch.test(type)) {
-                const spread = document.getElementsByClassName('order-book__spread-wrapper')[0];
-                let buydata = props.data.buy.buyRows.filter(item => parseInt(props.threshold) < item.price)
-                let selldata = props.data.sell.sellRows.filter(item => parseInt(props.threshold) < item.price)
-                let data = this.state.newData
-                data.buy.buyRows = buydata;
-                data.sell.sellRows = selldata;
-                this.setState({newDate:data})
-                spread ? scroll = spread.offsetTop - container.offsetTop - spread.offsetHeight * 1.75 : '';
-            }
+            if(type === 'all' && spread != undefined || type === 'sell' && spread != undefined || type === 'buy' && spread != undefined ) {
+                let buydata = props.data.buy.buyRows.filter((item)=>{
+                    if(parseInt(props.threshold)  == item.price ){
+                        return item;
+                    }
+                })
+                let selldata = props.data.sell.sellRows.filter((item)=>{
+                    if(parseInt(props.threshold) == item.price){
+                         return item;
+                     }
+                 })
+                 let byData = this.state.tdata
+                 byData.buy.buyRows = buydata;
+                 byData.sell.sellRows = selldata;
+                this.setState({tdata:byData})
+                scroll = spread.offsetTop - container.offsetTop - spread.offsetHeight * 1.75;
+             }
+           
          container.scrollTop = scroll;
         })
     }
