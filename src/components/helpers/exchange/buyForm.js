@@ -129,7 +129,7 @@ class BuyForm extends Component{
             <Form
                 type="limit_order_create"
                 defaultData={defaultData}
-                requiredFields={['amount_to_sell', 'amount_to_receive']}
+                requiredFields={['price','amount_to_sell', 'amount_to_receive']}
                 requiredQuantity = {['amount_to_receive']}
                 mutateData={mutations}
                 action={sellBuy}
