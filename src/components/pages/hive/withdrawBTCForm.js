@@ -1,0 +1,80 @@
+import React, {useState} from 'react';
+import Input from "../../helpers/form/input";
+import { getPassword, feeCalculator, transfer } from '../../../actions/forms';
+import { clearLayout } from '../../../dispatch';
+
+
+const WithdrawBTCForm = (props) => {
+    const {accountData} = props;
+	const [sent, setSent] = useState(false);
+	const [withdrawAmount, setWithdrawAmount] = useState(0);
+	const [fee, setFee] = useState({amount: 0, symbol: accountData.assets[0].symbol});
+	const [errors, setErrors] = useState(''); 
+	const sidechainAsset = accountData.assets[1] ? accountData.assets[1] : {};
+	const accBalance = sidechainAsset.amount ?  sidechainAsset.amount / (10 ** sidechainAsset.precision) : 0;
+	const feeCalc = feeCalculator['transfer'];
+	
+	const handleChange = (e) => {
+        setWithdrawAmount(e);
+		const {feeErr, feeAmount, errVariable} = feeCalc(e, sidechainAsset.symbol, '');
+		if (feeErr) errors[errVariable] = feeErr;
+		setFee({
+			amount: feeAmount,
+			symbol: accountData.assets[0].symbol
+		});
+    }
+
+	const handleWithdraw = (data) => {
+		setSent(true);
+		setTimeout(() => {
+			clearLayout();
+			setSent(false);
+			window.location.reload();
+		}, 5000);	
+	};
+
+    const SubmitWithDraw = async () => {
+		if(withdrawAmount === 0){
+			setErrors('ERROR')
+			return
+		}
+		getPassword(password => transfer({
+			contacts:[],
+			fee: fee.amount,
+			feeAsset: fee.symbol,
+			from: accountData.name,
+			password,
+			quantity: withdrawAmount,
+			quantityAsset: sidechainAsset.symbol,
+			to: 'son-account'
+		}).then((result) => {
+			result.success ? handleWithdraw(result.callbackData) : setErrors(result.errors);
+		}));
+	};
+
+    return(
+		<div className="card__content">
+			<div className="form form--btc form--btc__widget">
+				<Input 
+					name="withdrawAmount" 
+					type="number" 
+					className="modal__field"
+					value = {withdrawAmount}	
+					onChange={handleChange}/>
+				<div className="info__row">
+					{sent && <span className="clr--positive">Transaction Completed</span>}
+					{errors === 'ERROR' && <span className="clr--negative">Something went wrong!! Try again. </span>}
+					{(withdrawAmount == 0) && <span className="clr--negative">This field is required and not zero.</span>}
+					{(withdrawAmount > accBalance) && <span className="clr--negative">Value cannot exceed {accBalance}.</span>}
+					<span>Fee: {fee.amount} {fee.symbol}</span>
+				</div>
+				<div className="btn__row">
+					<button className="btn-round btn-round--buy" onClick={() => (withdrawAmount === 0 || withdrawAmount > accBalance) ? '' : SubmitWithDraw()}>Withdraw</button>
+				</div>
+			</div>
+		</div>
+    )
+};
+
+
+export default WithdrawBTCForm;
