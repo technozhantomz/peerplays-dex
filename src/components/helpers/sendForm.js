@@ -124,8 +124,7 @@ class SendForm extends Component {
                                             />
                                     </div>
                                     <div className="input__row">
-                                        <Textarea
-                                            maxLength={MEMO_MAX_LENGTH}
+                                        <Textarea   
                                             name="memo"
                                             comment={true}
                                             className="memo"
