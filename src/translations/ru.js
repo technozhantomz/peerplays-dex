@@ -370,7 +370,7 @@ export const ru = {
             "title": "комитет"
         },
         "son": {
-            "title": "SON"
+            "title": "СЫН"
         }
     },
     "business": {
