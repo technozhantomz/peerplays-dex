@@ -36,7 +36,7 @@ class Form extends Component {
         errors: {}
     };
     handleChange = (val, id) => handleData(this, val, id)
-        .then((result) => this.validateAndSetState(this.form, result));
+        .then((result) => {this.setState({errors:{}}); this.validateAndSetState(this.form, result)});
 
     validateAndSetState = (form, result) => {
         this.setState(state => {
