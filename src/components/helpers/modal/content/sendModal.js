@@ -85,7 +85,7 @@ class SendModal extends Component {
                         form => {
 
                             const {errors, data} = form.state;
-
+                            
                             return (
                                 <Fragment>
                                     <div className="modal__content">
@@ -97,7 +97,7 @@ class SendModal extends Component {
                                             disabled
                                         />
                                         {
-                                            this.props.defaultTo
+                                            this.props.defaultTo || this.props.defaultTo == "" 
                                                 ?
                                                 <Input
                                                     id="modalSendTo"
