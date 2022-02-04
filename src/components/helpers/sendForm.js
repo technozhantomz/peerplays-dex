@@ -21,7 +21,7 @@ const getUserAssetsList = async (symbol) => (
         .map(item => item.symbol)
 );
 
-const MEMO_MAX_LENGTH = 200;
+const MEMO_MAX_LENGTH = 256;
 
 class SendForm extends Component {
     state = {
@@ -126,6 +126,7 @@ class SendForm extends Component {
                                     <div className="input__row">
                                         <Textarea   
                                             name="memo"
+                                            maxLength={MEMO_MAX_LENGTH}
                                             comment={true}
                                             className="memo"
                                             onChange={form.handleChange}

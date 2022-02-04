@@ -25,7 +25,7 @@ const getUserAssetsList = async (symbol) => (
         .map(item => item.symbol)
 );
 
-
+const MEMO_MAX_LENGTH = 256;
 class SendModal extends Component {
 
     state = {
@@ -142,6 +142,7 @@ class SendModal extends Component {
                                         <Textarea
                                             id="modalSendMemo"
                                             name="memo"
+                                            maxLength={MEMO_MAX_LENGTH}
                                             comment={true}
                                             onChange={form.handleChange}
                                             error={errors}
