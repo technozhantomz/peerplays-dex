@@ -77,6 +77,7 @@ class QuickSellBuy extends Component {
                                         <Input
                                             name="amount_to_sell"
                                             type="number"
+                                            placeholder="sell"
                                             hideLabel={true}
                                             onChange={form.handleChange}
                                             error={errors}
@@ -85,6 +86,7 @@ class QuickSellBuy extends Component {
                                         <div className="sellHint">
                                         <FieldWithHint
                                             name="asset_to_sell"
+                                            placeholder="sell"
                                             method={getUserAssetsList}
                                             hideLabel={true}
                                             handleChange={form.handleChange}
@@ -99,6 +101,7 @@ class QuickSellBuy extends Component {
                                         <Input
                                             name="amount_to_receive"
                                             type="number"
+                                            placeholder="receive"
                                             hideLabel={true}
                                             onChange={form.handleChange}
                                             error={errors}
@@ -107,6 +110,7 @@ class QuickSellBuy extends Component {
                                         <div className="sellHint">
                                         <FieldWithHint
                                             name="buyAsset"
+                                            placeholder="buyAsset"
                                             method={getAssetsList}
                                             hideLabel={true}
                                             handleChange={form.handleChange}

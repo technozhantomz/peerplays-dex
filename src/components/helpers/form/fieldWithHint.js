@@ -78,7 +78,7 @@ class FieldWithHint extends Component{
 
     render(){
 
-        const {name, hideLabel, labelParams, className, errors,id, readOnly} = this.props;
+        const {name, hideLabel, labelParams, className,placeholder, errors,id, readOnly} = this.props;
         const {data, hints} = this.state;
 
         const hasHints = !!hints.length;
@@ -91,6 +91,7 @@ class FieldWithHint extends Component{
                     labelParams={labelParams}
                     className={className}
                     hideLabel={hideLabel}
+                    placeholder={placeholder}
                     onChange={this.handleChange}
                     // onFocus={this.handleChange}
                     // onClick={this.handleChange}

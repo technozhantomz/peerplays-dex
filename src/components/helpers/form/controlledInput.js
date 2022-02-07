@@ -11,6 +11,7 @@ const ControlledInput = (props) => {
         onFocus,
         onBlur,
         formData,
+        placeholder,
         readOnly
     } = props;
 
@@ -32,7 +33,7 @@ const ControlledInput = (props) => {
                 onChange={e => onChange ? onChange(e.target.value, name) : e.preventDefault()}
                 // onClick={e => onChange ? onChange(e.target.value, name) : e.preventDefault()}
                 // onBlur={e => onBlur ? onBlur(e.target.value, name) : e.preventDefault()}
-                placeholder=" "
+                placeholder={placeholder}
                 className="field__input"
                 autoComplete="off"
                 readOnly={readOnly}

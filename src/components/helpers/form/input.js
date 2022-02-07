@@ -9,7 +9,8 @@ const Input = (props) => {
         type = 'text',
         disabled = false,
         formData,
-        onBlur
+        onBlur,
+        placeholder
     } = props;
 
     let onChange = formData ? formData.handleChange : props.onChange;
@@ -28,7 +29,7 @@ const Input = (props) => {
                 disabled={disabled}
                 onChange={e => onChange ? onChange(e.target.value, name) : e.preventDefault()}
                 onBlur={e => onBlur ? onBlur(e.target.value, name) : e.preventDefault()}
-                placeholder=" "
+                placeholder={placeholder}
                 className="field__input"
                 autoComplete="off"
             />
