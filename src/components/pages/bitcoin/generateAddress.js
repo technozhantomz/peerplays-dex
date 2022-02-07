@@ -97,7 +97,7 @@ const GenerateAddress = (props) => {
                 {withdrawAddresserrors === "Field is required" && <h3 className="clr--negative">This Field is required</h3>}
                 </div>
                 <div className="info__row">
-                    <span>Fee: {fee.amount} {fee.symbol}</span>
+                    <span style={{marginTop:'10px',marginBottom:'10px'}}>Fee: {fee.amount} {fee.symbol}</span>
                     {sent && <span className="clr--positive">Sidechain address has been generated.</span>}
                     {errors === "ERROR" && <h3 className="clr--negative">Something went wrong!! Try again.</h3>}
                 </div>            
