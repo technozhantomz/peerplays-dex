@@ -92,8 +92,8 @@ class FieldWithHint extends Component{
                     className={className}
                     hideLabel={hideLabel}
                     onChange={this.handleChange}
-                    // onFocus={this.handleChange}
-                    // onClick={this.handleChange}
+                    onFocus={this.handleChange}
+                    onClick={this.handleChange}
                     value={data}
                     readOnly={readOnly}
                 />
