@@ -79,6 +79,12 @@ const calculateLimitOrderFee = (orderType, amount_to_sell, sellAsset, amount_to_
         feeAmount: 0,
         errVariable: 'amount_to_sell'
     };
+    const result2 = {
+        feeErr: '',
+        feeAmount: 0,
+        errVariable: 'amount_to_receive'
+    };
+
 
     if(!val){
         return result;
@@ -91,13 +97,13 @@ const calculateLimitOrderFee = (orderType, amount_to_sell, sellAsset, amount_to_
     }
 
     if(!val2){
-        return result;
+        return result2;
     } else if(isNaN(val2)){
-        result.feeErr = 'isNan';
-        return result;
+        result2.feeErr = 'isNan';
+        return result2;
     } else if(Number(val2) <= 0){
-        result.feeErr = 'isZero';
-        return result;
+        result2.feeErr = 'isZero';
+     return result2;
     }
 
     const storeData = getStore();
