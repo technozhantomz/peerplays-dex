@@ -59,7 +59,7 @@ const VestGPOS = (props) => {
 						</div>
 					</div>
 				</div>
-				<Translate style={{ fontWeight:"bold"}} content='deposit.title' />
+				<Translate style={{ fontWeight:"bold",margin:"10px",display:"block"}} content='deposit.title' />
 				<div className='input-cus-style'>
 				<NumericInput
 					strict={true}
