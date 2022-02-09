@@ -76,6 +76,7 @@ class Form extends Component {
         }
         const checkPassword = () => {
             if (!data.password) {
+                this.setState({ loading: false });
                 getPassword(password => (
                     this.setState(
                         { data: { ...data, password } },
@@ -87,6 +88,7 @@ class Form extends Component {
         }
 
         if (this.props.orderConfirmation) {
+            this.setState({ loading: false });
             setModal(<OrderConfirmationModel onSuccess={checkPassword} data={this.props} grid={3} />)
             return;
         }
@@ -102,7 +104,6 @@ class Form extends Component {
     handleAction = () => {
         const data = this.state.data;
         const { action, handleResult } = this.props;
-        console.log("data",data)
         if (action) {
          const result = {
                 success: false,
