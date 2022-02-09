@@ -118,13 +118,13 @@ const calculateLimitOrderFee = (orderType, amount_to_sell, sellAsset, amount_to_
 
     const isBasicAsset = sellAsset === basicAsset.symbol;
     const isBasicBuyAsset = buyAsset === basicAsset.symbol;
-    if(!isBasicAsset){
-        const currentAsset = account.assets.find(e => e.symbol === sellAsset);
-        if(!currentAsset || !currentAsset.amount){
-            result.feeErr = 'isEmptyMarketBalance';
-            return result;
-        }
-    }
+    // if(!isBasicAsset){
+    //     const currentAsset = account.assets.find(e => e.symbol === sellAsset);
+    //     if(!currentAsset || !currentAsset.amount){
+    //         result.feeErr = 'isEmptyMarketBalance';
+    //         return result;
+    //     }
+    // }
 
     let feeData = fees['limit_order_create'];
     if (!feeData.fee) feeData = {fee: 100};

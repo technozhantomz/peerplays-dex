@@ -19,10 +19,10 @@ export const sellBuy = async (data, result) => {
     if(data.type && data.type === 'sell') {
         sell.symbol = data.buyAsset;
         sell.amount = data.amount_to_receive;
-        buy.symbol = data.asset_to_sell;
+        buy.symbol = data.sellAsset;
         buy.amount = data.amount_to_sell;
     } else {
-        sell.symbol = data.asset_to_sell;
+        sell.symbol = data.sellAsset;
         sell.amount = data.amount_to_sell;
         buy.symbol = data.buyAsset;
         buy.amount = data.amount_to_receive;
@@ -31,7 +31,6 @@ export const sellBuy = async (data, result) => {
     const sellAsset = await new Asset(sell).getDataBySymbol();
     const buyAsset = await new Asset(buy).getDataBySymbol();
 
-    // console.log(sellAsset);
 
     const amount_to_sell = {
         amount: Math.round(sellAsset.addPrecision()),

@@ -102,7 +102,6 @@ class Form extends Component {
     handleAction = () => {
         const data = this.state.data;
         const { action, handleResult } = this.props;
-        console.log("data",data)
         if (action) {
          const result = {
                 success: false,
