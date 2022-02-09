@@ -5,7 +5,7 @@ import {setSidechainAccounts} from '../../../dispatch/setAccount';
 import {clearLayout} from "../../../dispatch/index";
 import { getPassword } from "../../../actions/forms";
 import { useFormInput } from "./formInput";
-
+import Translate from "react-translate-component";
  
 
 const GenerateAddress = (props) => {
@@ -97,12 +97,12 @@ const GenerateAddress = (props) => {
                 {withdrawAddresserrors === "Field is required" && <h3 className="clr--negative">This Field is required</h3>}
                 </div>
                 <div className="info__row">
-                    <span style={{marginTop:'10px',marginBottom:'10px'}}>Fee: {fee.amount} {fee.symbol}</span>
+                    <span style={{marginTop:'10px',marginBottom:'10px'}}> <Translate content={'field.labels.fee'}/>: {fee.amount} {fee.symbol}</span>
                     {sent && <span className="clr--positive">Sidechain address has been generated.</span>}
                     {errors === "ERROR" && <h3 className="clr--negative">Something went wrong!! Try again.</h3>}
                 </div>            
                 <div className="btn__row">
-                    <button className="btn-round btn-round--buy" onClick={() => submitGenerateAddress()}>Generate</button>
+                    <Translate component="div"className="btn-round btn-round--buy" onClick={() => submitGenerateAddress()} content={'bitcoin.Generate'} />
                 </div>
             </div>
         </div>
