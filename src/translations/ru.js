@@ -359,7 +359,7 @@ export const ru = {
         "blacklistMarket": "Черный список рынка"
     },
     "voting": {
-        "title": "голосование",
+        "title": "Голосование & Вестинг",
         "workers": {
             "title": "Работников"
         },

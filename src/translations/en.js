@@ -359,7 +359,7 @@ export const en = {
         "blacklistMarket": "Blacklist Market",
     },
     "voting": {
-        "title": "Voting",
+        "title": "Voting & Vesting",
         "workers": {
             "title": "Workers"
         },
