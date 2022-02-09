@@ -398,6 +398,7 @@ export const en = {
     },
     "bitcoin": {
         "title": "Bitcoin Transactions",
+        "Generate":"Generate",
         "withdraw": {
             "title": "Withdraw Bitcoin"
         },

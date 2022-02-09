@@ -381,6 +381,7 @@ export const ru = {
     },
     "bitcoin": {
         "title": "Биткойн-транзакции",
+        "Generate":"Создать",
         "withdraw": {
             "title": "Вывести биткойн"
         },
