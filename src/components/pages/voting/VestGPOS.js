@@ -5,12 +5,14 @@ import { connect, useSelector } from "react-redux";
 import Translate from 'react-translate-component';
 import { getPassword, trxBuilder } from '../../../actions/forms';
 import { getStore } from '../../../actions/store';
+import { localeFromStorage } from '../../../actions/locale/localeFromStorage';
 
 const VestGPOS = (props) => {
 	const { symbol_id, precision, symbol, totalGpos, getAssets } = props;
 	const { loginData, accountData } = getStore();
 	const [vestAmount, setVestAmount] = useState(0);
 	const accBalance = accountData.assets[0].amount / (10 ** accountData.assets[0].precision);
+	const [language, setLanguage] = useState( localeFromStorage() )
 
 	const SubmitGposVesting = () => {
 		const begin_timestamp = new Date().toISOString().replace('Z', '');
@@ -49,13 +51,13 @@ const VestGPOS = (props) => {
 	return (
 		<Card mode="widget" style={{ height:"100%"}}>
 			<div className="card__title" style={{ paddingTop:"20px" , borderTopLeftRadius:"10px" , borderTopRightRadius:"10px"}}>
-				Power Up
+			{language === "en"?'Power Up':'Включите питание'}
 			</div>
 			<CardContent >
 				<div style={{ marginBottom: 12 }}>
 					<div style={{ display: "inline-block", width: "100%" }}>
 						<div style={{ background: "#f0f0f0", margin: 4, padding: 12 }}>
-							Opening GPOS Balance: <strong>{totalGpos} {symbol}</strong>
+						{language === "en"?'Opening GPOS Balance':'Открытие баланса GPOS'}: <strong>{totalGpos} {symbol}</strong>
 						</div>
 					</div>
 				</div>
@@ -80,14 +82,14 @@ const VestGPOS = (props) => {
 				/>
 				</div>
 				<div style={{ marginTop: 12, color: "#ff444a", display: (vestAmount == null || vestAmount == 0) ? "block" : "none" }}>
-					This field is required and not zero
+					{language === "en"?'This field is required and not zero':'AAЭто поле обязательно и не равно нулю'}
 				</div>
 				<div style={{ marginTop: 12, color: "#ff444a", display: (vestAmount == null || vestAmount > accBalance) ? "block" : "none" }}>
-					Value cannot exceed {accBalance}
+				{language === "en"?'Value cannot exceed' +{accBalance}:'Значение не может превышать'+{accBalance}} 
 				</div>
 				<div style={{ marginTop: 12 }} class="input-cus-style">
 					<div style={{padding:"0 10px"}}>
-					New GPOS Balance : <strong style={{padding:"0 10px"}}>{totalGpos + vestAmount} {symbol}</strong>
+					{language === "en"?'New GPOS Balance':'Новый баланс GPOS'} : <strong style={{padding:"0 10px"}}>{totalGpos + vestAmount} {symbol}</strong>
 					</div>
 				</div>
 			</CardContent>
