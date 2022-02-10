@@ -49,13 +49,13 @@ const VestGPOS = (props) => {
 	return (
 		<Card mode="widget" style={{ height:"100%"}}>
 			<div className="card__title" style={{ paddingTop:"20px" , borderTopLeftRadius:"10px" , borderTopRightRadius:"10px"}}>
-				Power Up
+			<Translate content={"voting.powerUp"} />
 			</div>
 			<CardContent >
 				<div style={{ marginBottom: 12 }}>
 					<div style={{ display: "inline-block", width: "100%" }}>
 						<div style={{ background: "#f0f0f0", margin: 4, padding: 12 }}>
-							Opening GPOS Balance: <strong>{totalGpos} {symbol}</strong>
+						<Translate content={"voting.openGpos"} />: <strong>{totalGpos} {symbol}</strong>
 						</div>
 					</div>
 				</div>
@@ -80,14 +80,14 @@ const VestGPOS = (props) => {
 				/>
 				</div>
 				<div style={{ marginTop: 12, color: "#ff444a", display: (vestAmount == null || vestAmount == 0) ? "block" : "none" }}>
-					This field is required and not zero
+					<Translate component="div" className="" content={"errors.requiredAndnotzero"} />
 				</div>
 				<div style={{ marginTop: 12, color: "#ff444a", display: (vestAmount == null || vestAmount > accBalance) ? "block" : "none" }}>
-					Value cannot exceed {accBalance}
+				<Translate component="div" className="" content={"errors.requiredAndnotzero"+ accBalance} /> 
 				</div>
 				<div style={{ marginTop: 12 }} class="input-cus-style">
 					<div style={{padding:"0 10px"}}>
-					New GPOS Balance : <strong style={{padding:"0 10px"}}>{totalGpos + vestAmount} {symbol}</strong>
+					<Translate  className="" content={"voting.newGpos"} /> : <strong style={{padding:"0 10px"}}>{totalGpos + vestAmount} {symbol}</strong>
 					</div>
 				</div>
 			</CardContent>
