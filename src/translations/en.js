@@ -409,6 +409,19 @@ export const en = {
             "title": "Update Bitcoin Address"
         }
     },
+    "hive": {
+        "title": "Hive Transactions",
+        "withdraw": {
+            "title": "Withdraw Hive"
+        },
+        "generateAddress": {
+            "title": "Generate Hive Address"
+        },
+        "updateAddress": {
+            "title": "Update Hive Address"
+        }
+    },
+
     "contacts": {
         "title": "Contacts",
         "blacklistedSwitcher": "Blacklisted",
