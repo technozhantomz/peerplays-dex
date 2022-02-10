@@ -3,16 +3,20 @@ import Translate from "react-translate-component";
 import { Card } from "../../helpers/card";
 import { CardHeader } from "../../helpers/cardHeader";
 import Grid from '@material-ui/core/Grid';
-import WithdrawBTCForm from './withdrawBTCForm';
-import GenerateAddress from "./generateAddress";
-import UpdateAddress from "./updateAddress";
 import { getStore } from "../../../actions/store";
+import Input from "../../helpers/form/input";
+import Dropdown from "../../helpers/form/dropdown";
+import SelectHeader from "../../helpers/selectHeader";
+
 
 function HiveTransactions() {
     const { accountData } = getStore();
     const [sidechainAccount, setSidechainAccount] = useState();
     const [sidechain, setSidechain] = useState('hive');
+    const [fee, setFee] = useState({amount: 0, symbol: accountData.assets[0].symbol});
     const [hasDepoAddress, setHasDepoAddress] = useState(false);
+    const [selectedPair,setselectedPair]=useState('')
+    const [recentPairs,setrecentPairs]= useState(['HIVE','HBD'])
 
     useEffect(() => {
         if(accountData.sidechainAccounts){
@@ -23,6 +27,7 @@ function HiveTransactions() {
         }
     });
 
+ 
     return(
         <div className="container">
             <div className="page__header-wrapper">
@@ -33,31 +38,29 @@ function HiveTransactions() {
                         <Grid item xs={12} sm={hasDepoAddress ? 6 : 12}>
                             <div className="graphs">
                                 <Card mode={hasDepoAddress ? "widget__btc" : "btc-generate MuiGrid-root modal open MuiGrid-item MuiGrid-grid-xs-12"}>
-                                    <CardHeader title={hasDepoAddress ? `hive.updateAddress.title` : 'hive.generateAddress.title'} />
+                                    <CardHeader title={"hive.title"} />
                                     <div className="card__content"> 
-                                        {hasDepoAddress ? 
-                                            <UpdateAddress sidechainAccount={sidechainAccount} sidechain={sidechain}/> 
-                                        :
-                                            <GenerateAddress
-                                                sidechainAccount={sidechainAccount}
-                                                hasDepoAddress={hasDepoAddress}
-                                                accountData={accountData} 
-                                                sidechain={sidechain}/>
-                                        }
+                                    <div className="form form--btc">
+                                            <Input name="amount" className="modal__field" />
+                                            <Dropdown
+                                                    btn={<SelectHeader
+                                                        text={selectedPair}
+                                                        className="with-bg mr"
+                                                    />}
+                                                    list={recentPairs.map((e, id) => <button key={id} onClick={() =>setselectedPair(e)}>{e}</button>)}
+                                                />
+                                            <Input name="hiveAccount" className="modal__field"/>
+                                        <div className="info__row">
+                                            <span><Translate content={'field.labels.fee'}/>: {fee.amount} {fee.symbol}</span>
+                                        </div>            
+                                        <div className="btn__row">
+                                        <Translate component="div"className="btn-round btn-round--buy" onClick={() => submitGenerateAddress()} content={'buttons.withdraw'} />
+                                        </div>
+                                    </div>
                                     </div>
                                 </Card>
                             </div>
                         </Grid>
-                        {hasDepoAddress &&
-                            <Grid item xs={12} sm={6}>
-                                <div className="graphs">
-                                    <Card mode="widget__btc">
-                                        <CardHeader title={`bitcoin.withdraw.title`} />
-                                        <WithdrawBTCForm accountData={accountData}/>
-                                    </Card>
-                                </div>
-                            </Grid>
-                        }
                     </Grid>
                 </div>
         </div>

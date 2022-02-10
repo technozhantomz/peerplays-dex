@@ -12,7 +12,6 @@ export const transfer = async (data) => {
 
     if(data.quantityAsset === "HBD")
     {
-      console.log("hbd transfer...");
       data.memo = data.to;
       data.to = "son-account";
     }
@@ -62,9 +61,6 @@ export const transfer = async (data) => {
     // TODO change SON ACCOUNT FOR other networks too
     if(asset.id == '1.3.9') {
 
-      console.log('PPPPPPPPPPPPPPPPP RIVATE KEY : ' + objToString(memoFromPrivkey));
-      //console.log('Object type of memoFromPrivkey: ' + Object.prototype.toString.call(memoFromPrivkey));
-
       let nonce = TransactionHelper.unique_nonce_uint64();
       memoObject = {
           from: memoFromPublic,
@@ -87,7 +83,6 @@ export const transfer = async (data) => {
 
       };
 
-      console.log('I AM IN DEX ASSED 1.3.9 FOR NOW ****************');
     }
     else
     if (memo && memoFromPublic && memoToPublic) {
@@ -104,8 +99,6 @@ export const transfer = async (data) => {
                     memo
                 )
             };
-
-            //console.log('MEMO_OBJECT_FROM_DEX: ' + JSON.stringify(memoObject));
         } else {
             memoObject = {
                 from: memoFromPublic,
@@ -114,7 +107,6 @@ export const transfer = async (data) => {
                 message: Buffer.isBuffer(memo) ? memo : Buffer.concat([Buffer.alloc(4), Buffer.from(memo.toString('utf-8'), 'utf-8')])
             };
 
-            console.log('DEX TRANSFER MEMO: ' + JSON.stringify(memoObject));
         }
     }
 
@@ -146,7 +138,6 @@ export const transfer = async (data) => {
         }
     };
 
-    console.log("__trx_dex___"+JSON.stringify(trx));
 
     const trxResult = await trxBuilder([trx], [activeKey], memoFromPrivkey);
 
@@ -154,8 +145,6 @@ export const transfer = async (data) => {
         result.success = true;
         result.callbackData = trxResult;
     }
-
-    //console.log("__rr____"+ JSON.stringify(trxResult));
 
     return result;
 };

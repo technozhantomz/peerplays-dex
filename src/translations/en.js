@@ -410,7 +410,7 @@ export const en = {
         }
     },
     "hive": {
-        "title": "Hive Transactions",
+        "title": "Withdraw HIVE/HBD",
         "withdraw": {
             "title": "Withdraw Hive"
         },
@@ -643,7 +643,9 @@ export const en = {
             "depositAddress": "Deposit Address",
             "depositPublicKey": "Deposit Public Key",
             "withdrawPublicKey": "Withdraw Public Key",
-            "withdrawAddress": "Withdraw Address"
+            "withdrawAddress": "Withdraw Address",
+            "amount":"Amount",
+            "hiveAccount":"Hive Account"
         },
         "comments": {
             "newLogin": "You can use letters, symbols, etc...",

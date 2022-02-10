@@ -392,6 +392,18 @@ export const ru = {
             "title": "Обновить биткойн-адрес"
         }
     },
+    "hive": {
+        "title": "снять HIVE/HBD",
+        "withdraw": {
+            "title": "Вывести улей"
+        },
+        "generateAddress": {
+            "title": "Создать адрес улья"
+        },
+        "updateAddress": {
+            "title": "Обновить адрес улья"
+        }
+    },
     "contacts": {
         "title": "Контакты",
         "blacklistedSwitcher": "В чёрном списке",
@@ -613,7 +625,9 @@ export const ru = {
             "depositPublicKey": "Депозит общественный ключ",
             "depositAddress": "Адрес депозита",
             "withdrawPublicKey": "Снятие публичного ключа",
-            "withdrawAddress": "Адрес снятия"
+            "withdrawAddress": "Адрес снятия",
+            "amount":"Количество",
+            "hiveAccount":"Аккаунт улья"
         },
         "comments": {
             "newLogin": "Вы можете использовать буквы, символы и т.д. ...",
