@@ -385,7 +385,13 @@ export const en = {
         },
         "percent": "Qualified Reward %",
         "potential": "Estimated Rake Reward %",
-        "next_vote": "Next vote update"
+        "next_vote": "Next vote update",
+        "newGpos":"New GPOS Balance",
+        "noGpos":"There is no available GPOS",
+        "openGpos":"Opening GPOS Balance",
+        "availableGpos":"Available GPOS Balance",
+        "powerUp":"power Up",
+        "powerDown":"power Down",
     },
     "business": {
         "title": "Business"
@@ -655,6 +661,9 @@ export const en = {
         }
     },
     "errors": {
+        "requiredAndnotzero":"This field is required and not zero",
+        "withdrawError":"The withdraw amount should be greater than 0",
+        "Notexceed":"Value cannot exceed",
         "sendYourself": "You can\'t transfer tokens for yourself",
         "noAcc": "Failed to find this account",
         "noKey": "Failed to find this key",

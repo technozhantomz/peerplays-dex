@@ -53,18 +53,18 @@ const WithdrawGPOS = (props) => {
 	return (
 		<Card mode="widget" >
 			<div className="card__title" style={{ paddingTop:"20px" , borderTopLeftRadius:"10px" , borderTopRightRadius:"10px"}}>
-			{language === "en"?'Power Down':'Выключить'}
+			<Translate content={"voting.powerDown"} />
 			</div>
 			<CardContent >
 				<div style={{ marginBottom: 12 }}>
 					<div style={{ display: "inline-block", width: "50%" }}>
 						<div style={{ background: "#f0f0f0", margin: 4, padding: 12 }}>
-						{language === "en"?'Opening GPOS Balance':'Открытие баланса GPOS'}: <strong >{totalGpos} {symbol}</strong>
+						<Translate content={"voting.openGpos"} />: <strong >{totalGpos} {symbol}</strong>
 						</div>
 					</div>
 					<div style={{ display: "inline-block", width: "50%" }}>
 						<div style={{ background: "#f0f0f0", margin: 4, padding: 12 }}>
-						{language === "en"?'Available GPOS Balance':'Доступный баланс GPOS'}:<strong> {availableGpos} {symbol}</strong>
+						<Translate content={"voting.availableGpos"} />:<strong> {availableGpos} {symbol}</strong>
 						</div>
 					</div>
 					</div>
@@ -85,14 +85,14 @@ const WithdrawGPOS = (props) => {
 				/>
 				</div>
 				<div style={{ marginTop: 12, color: "#ff444a", display: (availableGpos == undefined || availableGpos == null || availableGpos <= 0) ? "block" : "none" }}>
-					{language === "en"?'There is no available GPOS':'Нет доступного GPOS'} 
+					<Translate  className="" content={"voting.noGpos"} />
 				</div>
 				<div style={{ marginTop: 12, color: "#ff444a", display: (withdrawAmount == undefined || withdrawAmount == null || withdrawAmount <= 0) ? "block" : "none" }}>
-					{language === "en"?'The withdraw amount should be greater than 0':'Сумма вывода должна быть больше 0'} 
+					<Translate  className="" content={"errors.withdrawError"} /> 
 				</div>
 				<div style={{ marginTop: 12 }}  class="input-cus-style">
 				<div style={{padding:"0 10px"}}>
-				{language === "en"?'New GPOS Balance':'Новый баланс GPOS'} : <strong style={{padding:"0 10px"}}>{totalGpos - withdrawAmount} {symbol}</strong>
+				<Translate  className="" content={"errors.newGpos"} /> : <strong style={{padding:"0 10px"}}>{totalGpos - withdrawAmount} {symbol}</strong>
 				</div>
 				</div>
 			</CardContent>
