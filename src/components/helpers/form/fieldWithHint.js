@@ -85,6 +85,7 @@ class FieldWithHint extends Component{
 
         return(
             <div className={`dropdown dropdown--with-hint ${hasHints && 'open'}`}>
+                
                 <ControlledInput
                     name={name}
                     id={id}
@@ -92,8 +93,8 @@ class FieldWithHint extends Component{
                     className={className}
                     hideLabel={hideLabel}
                     onChange={this.handleChange}
-                    // onFocus={this.handleChange}
-                    // onClick={this.handleChange}
+                    onFocus={name ==='to'?'':this.handleChange}
+                    onClick={ name ==='to'?'':this.handleChange}
                     value={data}
                     readOnly={readOnly}
                 />

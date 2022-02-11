@@ -21,7 +21,7 @@ class Form extends Component{
             if(feeErr) errors['quantity'] = feeErr;
             data['fee'] = feeAmount;
         }
-
+        
         this.setState({data, errors});
     };
 

@@ -106,6 +106,7 @@ class SendForm extends Component {
                                     <div className="input__row">
                                         <FieldWithHint
                                             name="to"
+                                            id="to"
                                             method={getSymbolsList}
                                             handleChange={form.handleChange}
                                             errors={errors}

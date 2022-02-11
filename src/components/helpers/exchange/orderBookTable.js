@@ -34,10 +34,12 @@ class OrderBookTable extends Component{
                          return item;
                      }
                  })
+                 if(buydata.buy){
                  let byData = this.state.tdata
                  byData.buy.buyRows = buydata;
                  byData.sell.sellRows = selldata;
                 this.setState({tdata:byData})
+                 }
                 scroll = spread.offsetTop - container.offsetTop - spread.offsetHeight * 1.75;
              }
            
