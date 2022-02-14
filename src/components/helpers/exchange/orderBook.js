@@ -36,6 +36,17 @@ class OrderBook extends Component {
             left: '50%',
         }
 
+        const toolTipStyle = {
+            backgroundColor: 'black',
+            color: 'white',
+            testAlign: 'center',
+            borderRadius: '6px',
+            padding: '5px 5px 5px 5px',
+            position: 'absolute',
+            bottom: '150%',
+            left: '50%',
+        }
+
         return (
             <div className="order-book">
                 <div className="order-filters">
