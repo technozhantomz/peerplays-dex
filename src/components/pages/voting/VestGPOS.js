@@ -85,7 +85,7 @@ const VestGPOS = (props) => {
 				<div style={{ marginTop: 12, color: "#ff444a", display: (vestAmount == null || vestAmount > accBalance) ? "block" : "none" }}>
 				<Translate component="div" className="" content={"errors.requiredAndnotzero"+ accBalance} /> 
 				</div>
-				<div style={{ marginTop: 12 }} class="input-cus-style">
+				<div style={{ marginTop: 12 }} className="input-cus-style">
 					<div style={{padding:"0 10px"}}>
 					<Translate  className="" content={"voting.newGpos"} /> : <strong style={{padding:"0 10px"}}>{totalGpos + vestAmount} {symbol}</strong>
 					</div>
