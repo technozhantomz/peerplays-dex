@@ -1,6 +1,4 @@
 import React, {Component, Fragment} from 'react';
-import Dropdown from "./form/dropdown";
-import SelectHeader from "./selectHeader";
 import Input from "./form/input";
 import Form from "./form/form";
 import {transfer} from "../../actions/forms";

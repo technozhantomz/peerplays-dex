@@ -415,6 +415,12 @@ export const en = {
             "title": "Update Bitcoin Address"
         }
     },
+    "hive": {
+        "title": "Withdraw HIVE/HBD",
+        "withdraw": {
+            "title": "Withdraw Hive"
+        },
+    },
     "contacts": {
         "title": "Contacts",
         "blacklistedSwitcher": "Blacklisted",
@@ -589,6 +595,7 @@ export const en = {
             "passwordCheck": "Confirm Password",
             "from": "From",
             "to": "To",
+            "hiveAcc": "HIVE account",
             "quantity": "Quantity",
             "memo": "Memo",
             "fee": "Fee",

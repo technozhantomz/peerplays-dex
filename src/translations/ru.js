@@ -416,6 +416,12 @@ export const ru = {
             "title": "Обновить биткойн-адрес"
         }
     },
+    "hive": {
+        "title": "снять HIVE/HBD",
+        "withdraw": {
+            "title": "Вывести улей"
+        }
+    },
     "contacts": {
         "title": "Контакты",
         "blacklistedSwitcher": "В чёрном списке",
@@ -593,6 +599,7 @@ export const ru = {
             "passwordCheck": "Подтвердить пароль",
             "from": "От",
             "to": "Кому",
+            "hiveAcc": "HIVE Счет",
             "quantity": "количество",
             "memo": "записка",
             "fee": "плата",
