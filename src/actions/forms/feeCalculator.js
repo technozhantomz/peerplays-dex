@@ -38,7 +38,7 @@ const calculateFee = (type, errVariable, quantity, assetName, memo) => {
     if(!isBasicAsset){
         const currentAsset = account.assets.find(e => e.symbol === assetName);
         if(!currentAsset || !currentAsset.amount){
-            result.feeErr = 'isEmptyBalance';
+            result.feeErr = 'isNotEnough';
             return result;
         }
         if(currentAsset.setPrecision() < val){
