@@ -20,6 +20,12 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
 import { updateAccount as updateReduxAccount } from '../../dispatch/setAccount';
 import { formAccount } from '../../actions/account';
+import {getGlobalData} from "../../actions/dataFetching/getGlobalData";
+import {setAccount, setSidechainAccounts} from "../../dispatch/setAccount";
+import {setGlobals, setMaintenance} from "../../dispatch";
+import {setNotifications} from "../../dispatch/notificationsDispatch";
+
+
 
 const tableHeadWitnesses = [
     {
@@ -183,12 +189,34 @@ const Voting = (props) => {
         var nextMtMS = new Date(maintenance.nextMaintenance).getTime();
         var _mt = Math.floor((nextMtMS - utcNowMS) / 1000 / 60);
         var _ms = Math.floor((nextMtMS - utcNowMS - 60 * 1000 * _mt) / 1000);
-        if (_mt === 0) {
-            _mt = Math.floor((nextMtMS - utcNowMS) / 1000) + ' Seconds'
-        } else if (_mt === 1) {
-            _mt = _mt + " Minute " + _ms + " Seconds"
+        if (nextMtMS <= utcNowMS) {
+            _mt = "0 Minute 0 Second";
+            getGlobalData()
+                .then(({userData, globalData, notifications, lastBlockData}) => {
+                    if(userData) {
+                        let sd = userData.accountData;
+                        setAccount(userData);
+                        setSidechainAccounts(sd.sidechainAccounts);
+                    } 
+                    if(globalData) setGlobals(globalData);
+                    if(lastBlockData) setMaintenance(lastBlockData);
+                    if(notifications) setNotifications(notifications);
+                    console.timeEnd();
+                })
+                .then(() => {
+                    this.setState({
+                        connectEstablished,
+                        nodeSelected: true
+                    })
+                });
         } else {
-            _mt = _mt + " Minutes " + _ms + " Seconds"
+            if (_mt === 0) {
+                _mt = Math.floor((nextMtMS - utcNowMS) / 1000) + ' Seconds'
+            } else if (_mt === 1) {
+                _mt = _mt + " Minute " + _ms + " Seconds"
+            } else {
+                _mt = _mt + " Minutes " + _ms + " Seconds"
+            }
         }
         setGposSubPeriodStr(_mt)
     }
@@ -258,15 +286,15 @@ const Voting = (props) => {
                 <Grid container spacing={2}>
                     <Grid item xs={12} sm={6} md={3}>
                         <Card >
-                            <Translate className="card__title" component="div" content='voting.performance.title' />
-                            <CardContent>
+                            <Translate className="card__title" style={{paddingTop:"20px"}} component="div" content='voting.performance.title' />
+                            <CardContent >
                                 <Translate component="div" content={gposPerfString} />
                             </CardContent>
                         </Card>
                     </Grid>
                     <Grid item xs={12} sm={6} md={3}>
                         <Card >
-                            <Translate className="card__title" component="div" content='voting.percent' />
+                            <Translate className="card__title" style={{paddingTop:"20px"}} component="div" content='voting.percent' />
                             <CardContent>
                                 {gposPerformance}%
                             </CardContent>
@@ -274,7 +302,7 @@ const Voting = (props) => {
                     </Grid>
                     <Grid item xs={12} sm={6} md={3}>
                         <Card >
-                            <Translate className="card__title" component="div" content='voting.potential' />
+                            <Translate className="card__title" style={{paddingTop:"20px"}} component="div" content='voting.potential' />
                             <CardContent>
                                 {`${estimatedRakeReward}%`}
                             </CardContent>
@@ -282,7 +310,7 @@ const Voting = (props) => {
                     </Grid>
                     <Grid item xs={12} sm={6} md={3}>
                         <Card >
-                            <Translate className="card__title" component="div" content='voting.next_vote' />
+                            <Translate className="card__title" style={{paddingTop:"20px"}} component="div" content='voting.next_vote' />
                             <CardContent>
                                 {gposSubPeriodStr}
                             </CardContent>

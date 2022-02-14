@@ -192,3 +192,26 @@ svg .mask{
     }
   }
 }
+
+.input-cus-style {
+  div:first-child {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  input , div{
+    margin: 0px;
+    background: rgba(0, 0, 0, 0.1);
+    height: 49px;
+  }
+  span {
+    b {
+      border: none !important;
+      border-color: transparent !important;
+    }
+  }
+}
+
+.input-cus-style span b{
+  background:transparent !important;
+}

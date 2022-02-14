@@ -56,7 +56,7 @@ export const en = {
         "ratio": "Ratio",
         "callPrice": "Call Price",
         "expiration": "Expiration",
-        "kill": "Kill",
+        "kill": "Delete",
         "param": "%(param)s",
         "total": "Total (%(token)s)",
         "name_description": "Name / Description",
@@ -359,7 +359,7 @@ export const en = {
         "blacklistMarket": "Blacklist Market",
     },
     "voting": {
-        "title": "Voting",
+        "title": "Voting & Vesting",
         "workers": {
             "title": "Workers"
         },
@@ -385,7 +385,13 @@ export const en = {
         },
         "percent": "Qualified Reward %",
         "potential": "Estimated Rake Reward %",
-        "next_vote": "Next vote update"
+        "next_vote": "Next vote update",
+        "newGpos":"New GPOS Balance",
+        "noGpos":"There is no available GPOS",
+        "openGpos":"Opening GPOS Balance",
+        "availableGpos":"Available GPOS Balance",
+        "powerUp":"power Up",
+        "powerDown":"power Down",
     },
     "business": {
         "title": "Business"
@@ -398,8 +404,9 @@ export const en = {
     },
     "bitcoin": {
         "title": "Bitcoin Transactions",
+        "Generate":"Generate",
         "withdraw": {
-            "title": "Withdraw BTC"
+            "title": "Withdraw Bitcoin"
         },
         "generateAddress": {
             "title": "Generate Bitcoin Address"
@@ -407,6 +414,12 @@ export const en = {
         "updateAddress": {
             "title": "Update Bitcoin Address"
         }
+    },
+    "hive": {
+        "title": "Withdraw HIVE/HBD",
+        "withdraw": {
+            "title": "Withdraw Hive"
+        },
     },
     "contacts": {
         "title": "Contacts",
@@ -582,6 +595,7 @@ export const en = {
             "passwordCheck": "Confirm Password",
             "from": "From",
             "to": "To",
+            "hiveAcc": "HIVE account",
             "quantity": "Quantity",
             "memo": "Memo",
             "fee": "Fee",
@@ -626,6 +640,7 @@ export const en = {
             "issueAmount": "Issue Amount",
             "condition": "Condition (max 60 characters)",
             "resolutionDate": "Market resolution date",
+            "depositAddress": "Deposit Address",
             "depositPublicKey": "Deposit Public Key",
             "withdrawPublicKey": "Withdraw Public Key",
             "withdrawAddress": "Withdraw Address"
@@ -654,6 +669,9 @@ export const en = {
         }
     },
     "errors": {
+        "requiredAndnotzero":"This field is required and not zero",
+        "withdrawError":"The withdraw amount should be greater than 0",
+        "Notexceed":"Value cannot exceed",
         "sendYourself": "You can\'t transfer tokens for yourself",
         "noAcc": "Failed to find this account",
         "noKey": "Failed to find this key",

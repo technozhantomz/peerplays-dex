@@ -6,9 +6,10 @@ import {defaultQuote, defaultToken} from "../../params/networkParams";
 import {getAccountData} from "../../actions/store";
 import {dbApi} from "../../actions/nodes";
 import FieldWithHint from "./form/fieldWithHint";
+import except from "../../actions/assets/exceptAssetList";
 
 const getAssetsList = async () => dbApi('list_assets', ['', 100])
-    .then(result => result.map(e => e.symbol));
+    .then(result => result.filter(e => !except.includes(e.symbol)).map(e => e.symbol));
 
 const getUserAssetsList = async (symbol) => (
     getAccountData().assets
@@ -25,7 +26,6 @@ class QuickSellBuy extends Component {
 
     componentDidMount() {
         const userTokens = getAccountData().assets.map(e => e.symbol);
-
         const defaultData = {
             sellAsset: userTokens.length ? userTokens[0] : defaultToken,
             buyAsset: defaultQuote,
@@ -63,7 +63,7 @@ class QuickSellBuy extends Component {
                     type={'limit_order_create'}
                     className="form__sell-buy"
                     defaultData={defaultData}
-                    requiredFields={['amount_to_sell', 'amount_to_receive', 'asset_to_sell', 'asset_to_sell']}
+                    requiredFields={['amount_to_sell', 'amount_to_receive', 'asset_to_sell', 'buyAsset']}
                     action={sellBuy}
                     handleResult={this.handleTransfer}
                     needPassword
@@ -89,6 +89,7 @@ class QuickSellBuy extends Component {
                                             hideLabel={true}
                                             handleChange={form.handleChange}
                                             errors={errors}
+                                            defaultVal={data}
                                             defaultHints={userTokens}
                                             readOnly={true}
                                         />

@@ -5,12 +5,17 @@ import Translate from 'react-translate-component';
 import { getPassword, trxBuilder } from '../../../actions/forms';
 import { dbApi } from '../../../actions/nodes';
 import { getStore } from '../../../actions/store';
+import { localeFromStorage } from '../../../actions/locale/localeFromStorage';
 
 const WithdrawGPOS = (props) => {
 	const { loginData, accountData } = getStore();
 	const { symbol_id, precision, symbol, totalGpos, availableGpos, getAssets } = props;
 	const [withdrawAmount, setWithdrawAmount] = useState(0);
+	const [withdrawDisabled, setWithdrawDisabled] = useState(false);
+	const [language, setLanguage] = useState( localeFromStorage() )
+
 	const SubmitGposWithdrawal = () => {
+		setWithdrawDisabled(true)
 		const begin_timestamp = new Date().toISOString().replace('Z', '');
 		dbApi('get_vesting_balances', [
 			accountData.id
@@ -36,32 +41,36 @@ const WithdrawGPOS = (props) => {
 				trxBuilder([trx], [activeKey]).then(() => {
 					getAssets();
 					setWithdrawAmount(0);
+					setWithdrawDisabled(false);
+				}).catch(e => {
+					setWithdrawDisabled(false)
 				});
 			});
+		}).catch(e => {
+			setWithdrawDisabled(false)
 		})
 	}
 	return (
-		<Card mode="widget">
-			<div className="card__title">
-				Power Down
+		<Card mode="widget" >
+			<div className="card__title" style={{ paddingTop:"20px" , borderTopLeftRadius:"10px" , borderTopRightRadius:"10px"}}>
+			<Translate content={"voting.powerDown"} />
 			</div>
-			<CardContent>
+			<CardContent >
 				<div style={{ marginBottom: 12 }}>
 					<div style={{ display: "inline-block", width: "50%" }}>
 						<div style={{ background: "#f0f0f0", margin: 4, padding: 12 }}>
-							Opening GPOS Balance: <strong>{totalGpos} {symbol}</strong>
+						<Translate content={"voting.openGpos"} />: <strong >{totalGpos} {symbol}</strong>
 						</div>
 					</div>
 					<div style={{ display: "inline-block", width: "50%" }}>
-
 						<div style={{ background: "#f0f0f0", margin: 4, padding: 12 }}>
-							Available GPOS Balance:<strong> {availableGpos} {symbol}</strong>
+						<Translate content={"voting.availableGpos"} />:<strong> {availableGpos} {symbol}</strong>
 						</div>
 					</div>
+					</div>
 
-				</div>
-
-				<Translate content='withdraw.title' />
+				<Translate style={{ fontWeight:"bold",margin:"10px",display:"block"}} content='withdraw.title' />
+				<div className='input-cus-style'>
 				<NumericInput
 					strict={true}
 					style={{ color: "#f0f0f0" }}
@@ -74,14 +83,22 @@ const WithdrawGPOS = (props) => {
 					onChange={(value) => setWithdrawAmount(value)}
 					value={withdrawAmount}
 				/>
-
-				<div style={{ marginTop: 12 }}>
-					New GPOS Balance: <strong>{totalGpos - withdrawAmount} {symbol}</strong>
+				</div>
+				<div style={{ marginTop: 12, color: "#ff444a", display: (availableGpos == undefined || availableGpos == null || availableGpos <= 0) ? "block" : "none" }}>
+					<Translate  className="" content={"voting.noGpos"} />
+				</div>
+				<div style={{ marginTop: 12, color: "#ff444a", display: (withdrawAmount == undefined || withdrawAmount == null || withdrawAmount <= 0) ? "block" : "none" }}>
+					<Translate  className="" content={"errors.withdrawError"} /> 
+				</div>
+				<div style={{ marginTop: 12 }}  className="input-cus-style">
+				<div style={{padding:"0 10px"}}>
+				<Translate  className="" content={"errors.newGpos"} /> : <strong style={{padding:"0 10px"}}>{totalGpos - withdrawAmount} {symbol}</strong>
+				</div>
 				</div>
 			</CardContent>
 
-			<CardActions >
-				<button className="btn-round btn-round--buy" onClick={SubmitGposWithdrawal}>Withdraw</button>
+			<CardActions style={{justifyContent:"end"}} >
+				<button disabled={withdrawDisabled} className="btn-round btn-round--buy " onClick={() => {(availableGpos <= 0 || withdrawAmount <= 0) ? "" : SubmitGposWithdrawal()}}>Withdraw</button>
 			</CardActions>
 		</Card>
 	)
