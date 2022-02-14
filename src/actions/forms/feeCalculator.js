@@ -38,7 +38,7 @@ const calculateFee = (type, errVariable, quantity, assetName, memo) => {
     if(!isBasicAsset){
         const currentAsset = account.assets.find(e => e.symbol === assetName);
         if(!currentAsset || !currentAsset.amount){
-            result.feeErr = 'isEmptyBalance';
+            result.feeErr = 'isNotEnough';
             return result;
         }
         if(currentAsset.setPrecision() < val){
@@ -79,6 +79,12 @@ const calculateLimitOrderFee = (orderType, amount_to_sell, sellAsset, amount_to_
         feeAmount: 0,
         errVariable: 'amount_to_sell'
     };
+    const result2 = {
+        feeErr: '',
+        feeAmount: 0,
+        errVariable: 'amount_to_receive'
+    };
+
 
     if(!val){
         return result;
@@ -91,13 +97,13 @@ const calculateLimitOrderFee = (orderType, amount_to_sell, sellAsset, amount_to_
     }
 
     if(!val2){
-        return result;
+        return result2;
     } else if(isNaN(val2)){
-        result.feeErr = 'isNan';
-        return result;
+        result2.feeErr = 'isNan';
+        return result2;
     } else if(Number(val2) <= 0){
-        result.feeErr = 'isZero';
-        return result;
+        result2.feeErr = 'isZero';
+     return result2;
     }
 
     const storeData = getStore();
@@ -112,13 +118,6 @@ const calculateLimitOrderFee = (orderType, amount_to_sell, sellAsset, amount_to_
 
     const isBasicAsset = sellAsset === basicAsset.symbol;
     const isBasicBuyAsset = buyAsset === basicAsset.symbol;
-    if(!isBasicAsset){
-        const currentAsset = account.assets.find(e => e.symbol === sellAsset);
-        if(!currentAsset || !currentAsset.amount){
-            result.feeErr = 'isEmptyMarketBalance';
-            return result;
-        }
-    }
 
     let feeData = fees['limit_order_create'];
     if (!feeData.fee) feeData = {fee: 100};

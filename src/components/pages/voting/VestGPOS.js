@@ -47,22 +47,23 @@ const VestGPOS = (props) => {
 		});
 	};
 	return (
-		<Card mode="widget">
-			<div className="card__title">
-				Power Up
+		<Card mode="widget" style={{ height:"100%"}}>
+			<div className="card__title" style={{ paddingTop:"20px" , borderTopLeftRadius:"10px" , borderTopRightRadius:"10px"}}>
+			<Translate content={"voting.powerUp"} />
 			</div>
-			<CardContent>
+			<CardContent >
 				<div style={{ marginBottom: 12 }}>
-					<div style={{ display: "inline-block", width: "50%" }}>
+					<div style={{ display: "inline-block", width: "100%" }}>
 						<div style={{ background: "#f0f0f0", margin: 4, padding: 12 }}>
-							Opening GPOS Balance: <strong>{totalGpos} {symbol}</strong>
+						<Translate content={"voting.openGpos"} />: <strong>{totalGpos} {symbol}</strong>
 						</div>
 					</div>
 				</div>
-				<Translate content='deposit.title' />
+				<Translate style={{ fontWeight:"bold",margin:"10px",display:"block"}} content='deposit.title' />
+				<div className='input-cus-style'>
 				<NumericInput
 					strict={true}
-					style={{ color: "#f0f0f0" }}
+					style={{ color: "#f0f0f0", background:"transparent" }}
 					mobile
 					type="number"
 					className="field__input form-control cpointer"
@@ -77,17 +78,20 @@ const VestGPOS = (props) => {
 					onChange={(value) => setVestAmount(value)}
 					value={vestAmount}
 				/>
+				</div>
 				<div style={{ marginTop: 12, color: "#ff444a", display: (vestAmount == null || vestAmount == 0) ? "block" : "none" }}>
-					This field is required and not zero
+					<Translate component="div" className="" content={"errors.requiredAndnotzero"} />
 				</div>
 				<div style={{ marginTop: 12, color: "#ff444a", display: (vestAmount == null || vestAmount > accBalance) ? "block" : "none" }}>
-					Value cannot exceed {accBalance}
+				<Translate component="div" className="" content={"errors.requiredAndnotzero"+ accBalance} /> 
 				</div>
-				<div style={{ marginTop: 12 }}>
-					New GPOS Balance: <strong>{totalGpos + vestAmount} {symbol}</strong>
+				<div style={{ marginTop: 12 }} className="input-cus-style">
+					<div style={{padding:"0 10px"}}>
+					<Translate  className="" content={"voting.newGpos"} /> : <strong style={{padding:"0 10px"}}>{totalGpos + vestAmount} {symbol}</strong>
+					</div>
 				</div>
 			</CardContent>
-			<CardActions >
+			<CardActions style={{justifyContent:"end"}} >
 				<button className="btn-round btn-round--buy" onClick={() => (vestAmount == null || vestAmount == 0 || vestAmount > accBalance) ? "" : SubmitGposVesting()}>Vest</button>
 			</CardActions>
 		</Card>

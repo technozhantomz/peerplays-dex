@@ -3,14 +3,19 @@ import Translate from "react-translate-component";
 import {IconCross, IconSearch} from "../../../svg";
 
 class SearchForm extends Component{
-
-    onChange = (e) => this.props.handleChange(e.target.value);
+    state = {
+        val: ''
+    }
+    onChange = (e) => {
+        this.setState({val: e.target.value});
+        return this.props.handleChange(e.target.value);
+    };
     onClose = () => {
         this.props.handleClose();
         setTimeout(() => {
-            document.getElementsByClassName('search__field')[0].value = '';
+            document.getElementsByClassName('search__field')[0].value = this.state.val;
         }, 400);
-        this.props.handleChange('users');
+        this.props.handleChange(this.state.val);
     };
 
 

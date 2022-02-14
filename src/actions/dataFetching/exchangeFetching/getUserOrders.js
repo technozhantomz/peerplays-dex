@@ -45,7 +45,7 @@ export const getUserOrders = async (pair, account) => {
         {
             key: 'action',
             translateTag: 'kill',
-            params: 'fit-content clr--negative'
+            params: 'fit-content--center clr--negative'
         }
     ];
 
@@ -82,11 +82,9 @@ export const getUserOrders = async (pair, account) => {
                     base = roundNum(price * quote);
                 }
 
-                const action = <div className="actions__on-hover">
-                    <button className="actions__btn--red" onClick={() => openWarning('limit_order_cancel', order.id)}>
+                const action = <button className="actions__btn" onClick={() => openWarning('limit_order_cancel', order.id)}>
                         <IconDelete />
-                    </button>
-                </div>;
+                    </button>;
 
                 return { expiration, base, quote, price, action }
             }));

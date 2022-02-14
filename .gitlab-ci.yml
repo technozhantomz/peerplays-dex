@@ -10,7 +10,7 @@ include:
 variables:
  SONAR_USER_HOME: "${CI_PROJECT_DIR}/.sonar"  # Defines the location of the analysis task cache
  GIT_DEPTH: "0"  # Tells git to fetch all the branches of the project, required by the analysis task
- DAST_WEBSITE: $DAST_WEBSITE
+ #DAST_WEBSITE: $DAST_WEBSITE
  DOCKER_DRIVER: overlay2
 
 stages:
@@ -67,11 +67,16 @@ deploy_review:
   script: 
     - if [ -d "$QA_DEPLOY_DIR" ]; then rm -rf $QA_DEPLOY_DIR/*; else exit 1; fi
     - if [ -d "$QA_DEPLOY_DIR" ]; then cp -R dist/* $QA_DEPLOY_DIR; else exit 1; fi 
+    - uglifyjs $QA_DEPLOY_DIR/app.dev.js --compress --mangle --output $QA_DEPLOY_DIR/app.dev.js
+    - echo "http://$CI_ENVIRONMENT_SLUG.$APPS_DOMAIN" > environment_url.txt
   environment:
     name: review/$CI_COMMIT_REF_NAME
     url: http://$CI_ENVIRONMENT_SLUG.$APPS_DOMAIN
     on_stop: stop_review_app
     auto_stop_in: 1 week
+  artifacts:
+    paths:
+      - environment_url.txt
   only: 
     - branches
   except:
@@ -116,3 +121,18 @@ sonarcloud-check:
  script:
    - sonar-scanner
  when: manual
+
+dast:
+  stage: dast
+  before_script:
+    - if [ "$CI_COMMIT_REF_NAME" != "develop" ]; then export DAST_WEBSITE=$(cat environment_url.txt); else export DAST_WEBSITE=$DAST_WEBSITE; fi
+  artifacts:
+    paths: [gl-dast-debug-auth-report.html]
+    reports:
+      dast: gl-dast-report.json
+  rules:
+  - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+    when: never
+  - if: $CI_COMMIT_REF_NAME == "develop"
+    when: manual
+  - when: always

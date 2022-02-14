@@ -44,5 +44,10 @@ export const menuList = [
         link: '/bitcoin',
         tag: 'bitcoin',
         icon: <IconBookOpen/>,
+    },
+    {
+        link: '/hive',
+        tag: 'hive',
+        icon: <IconBookOpen/>,
     }
 ];

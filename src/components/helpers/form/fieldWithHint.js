@@ -78,7 +78,7 @@ class FieldWithHint extends Component{
 
     render(){
 
-        const {name, hideLabel, labelParams, className, errors, readOnly} = this.props;
+        const {name, hideLabel, labelParams, className, errors,id, readOnly} = this.props;
         const {data, hints} = this.state;
 
         const hasHints = !!hints.length;
@@ -87,6 +87,7 @@ class FieldWithHint extends Component{
             <div className={`dropdown dropdown--with-hint ${hasHints && 'open'}`}>
                 <ControlledInput
                     name={name}
+                    id={id}
                     labelParams={labelParams}
                     className={className}
                     hideLabel={hideLabel}
