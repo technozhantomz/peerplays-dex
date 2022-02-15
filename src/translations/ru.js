@@ -600,6 +600,8 @@ export const ru = {
             "from": "От",
             "to": "Кому",
             "hiveAcc": "HIVE Счет",
+            "hiveAmount": "Введите сумму HIVE/HBD для вывода",
+            "hiveCurrency": "Выберите валюту",
             "quantity": "количество",
             "memo": "записка",
             "fee": "плата",

@@ -24,7 +24,6 @@ class HiveTransactions extends Component {
     componentDidMount() {
         const user = getAccountData();
         const startAsset = 'HIVE';
-        //const contacts = getAccountData().contacts.filter(item => item.type !== 2).map(item => item.name);
         const basicAsset = getBasicAsset().symbol;
         const defaultData = {
             from: user.name,
@@ -60,91 +59,88 @@ class HiveTransactions extends Component {
                     <Translate className="page__title" component="h1" content={"hive.title"}/>
                 </div>
                 <div>
-                    <Grid container spacing={1}>
-                        <Grid item xs={12} >
-                            <div className="graphs">
-                                <Card mode={"btc-generate MuiGrid-root modal open MuiGrid-item MuiGrid-grid-xs-12"}>
-                                    <CardHeader title={"hive.title"} />
-                                    <div className="card__content"> 
-                                        <div className="form form--btc">
-                                            <Form
-                                                type={'transfer'}
-                                                className="form__send"
-                                                defaultData={defaultData}
-                                                requiredFields={['to', 'quantity', 'memo']}
-                                                action={transfer}
-                                                handleResult={this.handleTransfer}
-                                                needPassword
-                                            >
-                                            {
-                                                form => {
-                                                    const {errors, data} = form.state;
-                        
-                                                    return (
-                                                        <Fragment>
-                                                            <div className="input__row">
-                                                                <Input
-                                                                    style={{"display": "none"}}
-                                                                    name="from"
-                                                                    onChange={form.handleChange}
-                                                                    error={errors}
-                                                                    value={data}
-                                                                    disabled
-                                                                />
-                                                                <Input
-                                                                    name="quantity"
-                                                                    type="number"
-                                                                    onChange={form.handleChange}
-                                                                    error={errors}
-                                                                    value={data}
-                                                                />
-                                                            </div>
-                                                            <div className="input__row">
-                                                                <Input
-                                                                    style={{"display": "none"}}
-                                                                    name="to"
-                                                                    disabled
-                                                                    onChange={form.handleChange}
-                                                                    error={errors}
-                                                                    value={data}
-                                                                />
-                                                                
-                                                                <FieldWithHint
-                                                                    name="quantityAsset"
-                                                                    method={getHiveAssetsList}
-                                                                    id="form"
-                                                                    hideLabel={true}
-                                                                    handleChange={form.handleChange}
-                                                                    errors={errors}
-                                                                    defaultVal = {data}
-                                                                    readOnly={true}
-                                                                />
-                                                            </div>
-                                                            <div className="input__row">
-                                                                <Input
-                                                                    labelTag="field.labels.hiveAcc"   
-                                                                    name="memo"
-                                                                    onChange={form.handleChange}
-                                                                    error={errors}
-                                                                    value={data}
-                                                                />
-                                                            </div>
-                                                            <div className="btn__row">
-                                                                <span>Fee: {data.fee} {data.feeAsset}</span>
-                                                                {sended && <span className="clr--positive">Transaction Completed</span>}
-                                                                <button type="submit" className="btn-round btn-round--send">SEND</button>
-                                                            </div>
-                                                        </Fragment>
-                                                    )
-                                                }
-                                            }
-                                            </Form>
-                                        </div>
-                                    </div>
-                                </Card>
+                    <div className="graphs" style={{justifyContent: "center"}}>
+                        <Card mode={"hive-withdraw"}>
+                            <CardHeader title={"hive.title"} />
+                            <div className="card__content"> 
+                                <div className="form form--btc">
+                                    <Form
+                                        type={'transfer'}
+                                        className="form__send"
+                                        defaultData={defaultData}
+                                        requiredFields={['to', 'quantity', 'memo']}
+                                        action={transfer}
+                                        handleResult={this.handleTransfer}
+                                        needPassword
+                                    >
+                                    {
+                                        form => {
+                                            const {errors, data} = form.state;
+                
+                                            return (
+                                                <Fragment>
+                                                    <div className="input__row">
+                                                        <Input
+                                                            style={{"display": "none"}}
+                                                            name="from"
+                                                            onChange={form.handleChange}
+                                                            error={errors}
+                                                            value={data}
+                                                            disabled
+                                                        />
+                                                        <Input
+                                                            labelTag="field.labels.hiveAmount" 
+                                                            name="quantity"
+                                                            type="number"
+                                                            onChange={form.handleChange}
+                                                            error={errors}
+                                                            value={data}
+                                                        />
+                                                    </div>
+                                                    <div className="input__row">
+                                                        <Input
+                                                            style={{"display": "none"}}
+                                                            name="to"
+                                                            disabled
+                                                            onChange={form.handleChange}
+                                                            error={errors}
+                                                            value={data}
+                                                        />
+                                                        
+                                                        <FieldWithHint
+                                                            name="quantityAsset"
+                                                            method={getHiveAssetsList}
+                                                            id="form"
+                                                            labelTag="field.labels.hiveCurrency" 
+                                                            handleChange={form.handleChange}
+                                                            errors={errors}
+                                                            defaultVal = {data}
+                                                            readOnly={true}
+                                                        />
+                                                    </div>
+                                                    <div className="input__row">
+                                                        <Input
+                                                            labelTag="field.labels.hiveAcc"   
+                                                            name="memo"
+                                                            onChange={form.handleChange}
+                                                            error={errors}
+                                                            value={data}
+                                                        />
+                                                    </div>
+                                                    <div className="btn__row">
+                                                        <span>Fee: {data.fee} {data.feeAsset}</span>
+                                                        {sended && <span className="clr--positive">Transaction Completed</span>}
+                                                        <button type="submit" className="btn-round btn-round--send">Withdraw</button>
+                                                    </div>
+                                                </Fragment>
+                                            )
+                                        }
+                                    }
+                                    </Form>
+                                </div>
                             </div>
-                        </Grid>
-                    </Grid>
+                        </Card>
+                    </div>
                 </div>
             </div>
         );
