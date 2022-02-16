@@ -61,7 +61,7 @@ class HiveTransactions extends Component {
                 <div>
                     <div className="graphs" style={{justifyContent: "center"}}>
                         <Card mode={"hive-withdraw"}>
-                            <CardHeader title={"hive.title"} />
+                            <CardHeader title={"hive.cardTitle"} />
                             <div className="card__content"> 
                                 <div className="form form--btc">
                                     <Form

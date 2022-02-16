@@ -417,6 +417,7 @@ export const ru = {
         }
     },
     "hive": {
+        "cardTitle": "Вывод HIVE или HBD на учетную запись блокчейна Hive",
         "title": "снять HIVE/HBD",
         "withdraw": {
             "title": "Вывести улей"
@@ -599,7 +600,7 @@ export const ru = {
             "passwordCheck": "Подтвердить пароль",
             "from": "От",
             "to": "Кому",
-            "hiveAcc": "HIVE Счет",
+            "hiveAcc": "Введите учетную запись блокчейна Hive, на которую должны быть отправлены средства.",
             "hiveAmount": "Введите сумму HIVE/HBD для вывода",
             "hiveCurrency": "Выберите валюту",
             "quantity": "количество",
