@@ -29,37 +29,35 @@ function BitcoinTransactions() {
                 <Translate className="page__title" component="h1" content={"bitcoin.title"}/>
             </div>
             <div>
-                    <Grid container spacing={1}>
-                        <Grid item xs={12} sm={hasDepoAddress ? 6 : 12}>
+                <Grid container spacing={1}>
+                    <Grid item xs={12} sm={hasDepoAddress ? 6 : 12}>
+                        <div className="graphs">
+                            <Card mode={hasDepoAddress ? "widget__btc" : "btc-generate MuiGrid-root modal open MuiGrid-item MuiGrid-grid-xs-12"}>
+                                <CardHeader title={hasDepoAddress ? `bitcoin.updateAddress.title` : 'bitcoin.generateAddress.title'} />
+                                <div className="card__content"> 
+                                    {hasDepoAddress ? 
+                                        <UpdateAddress sidechainAccount={sidechainAccount} sidechain={sidechain}/> 
+                                    :
+                                        <GenerateAddress
+                                            accountData={accountData} 
+                                            sidechain={sidechain}/>
+                                    }
+                                </div>
+                            </Card>
+                        </div>
+                    </Grid>
+                    {hasDepoAddress &&
+                        <Grid item xs={12} sm={6}>
                             <div className="graphs">
-                                <Card mode={hasDepoAddress ? "widget__btc" : "btc-generate MuiGrid-root modal open MuiGrid-item MuiGrid-grid-xs-12"}>
-                                    <CardHeader title={hasDepoAddress ? `bitcoin.updateAddress.title` : 'bitcoin.generateAddress.title'} />
-                                    <div className="card__content"> 
-                                        {hasDepoAddress ? 
-                                            <UpdateAddress sidechainAccount={sidechainAccount} sidechain={sidechain}/> 
-                                        :
-                                            <GenerateAddress
-                                                sidechainAccount={sidechainAccount}
-                                                hasDepoAddress={hasDepoAddress}
-                                                accountData={accountData} 
-                                                sidechain={sidechain}/>
-                                        }
-                                    </div>
+                                <Card mode="widget__btc">
+                                    <CardHeader title={`bitcoin.withdraw.title`} />
+                                    <WithdrawBTCForm accountData={accountData}/>
                                 </Card>
                             </div>
                         </Grid>
-                        {hasDepoAddress &&
-                            <Grid item xs={12} sm={6}>
-                                <div className="graphs">
-                                    <Card mode="widget__btc">
-                                        <CardHeader title={`bitcoin.withdraw.title`} />
-                                        <WithdrawBTCForm accountData={accountData}/>
-                                    </Card>
-                                </div>
-                            </Grid>
-                        }
-                    </Grid>
-                </div>
+                    }
+                </Grid>
+            </div>
         </div>
     );
 }
