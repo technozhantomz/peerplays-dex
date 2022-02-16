@@ -1,80 +1,117 @@
-import React, {useState} from 'react';
+import React, {Component,  Fragment} from "react";
+import Translate from "react-translate-component";
+import {  getAccountData, getBasicAsset } from "../../../actions/store";
+import Form from "../../helpers/form/form";
 import Input from "../../helpers/form/input";
-import { getPassword, feeCalculator, transfer } from '../../../actions/forms';
-import { clearLayout } from '../../../dispatch';
+import {transfer} from "../../../actions/forms"
 
+class WithdrawBTCForm extends Component {
+    state = {
+        sended: false,
+        defaultData: false,
+    };
 
-const WithdrawBTCForm = (props) => {
-    const {accountData} = props;
-	const [sent, setSent] = useState(false);
-	const [withdrawAmount, setWithdrawAmount] = useState(0);
-	const [fee, setFee] = useState({amount: 0, symbol: accountData.assets[0].symbol});
-	const [errors, setErrors] = useState(''); 
-	const sidechainAsset = accountData.assets[1] ? accountData.assets[1] : {};
-	const accBalance = sidechainAsset.amount ?  sidechainAsset.amount / (10 ** sidechainAsset.precision) : 0;
-	const feeCalc = feeCalculator['transfer'];
-	
-	const handleChange = (e) => {
-        setWithdrawAmount(e);
-		const {feeErr, feeAmount, errVariable} = feeCalc(e, sidechainAsset.symbol, '');
-		if (feeErr) errors[errVariable] = feeErr;
-		setFee({
-			amount: feeAmount,
-			symbol: accountData.assets[0].symbol
-		});
+    componentDidMount() {
+        const user = getAccountData();
+        const startAsset = 'BTC';
+        const basicAsset = getBasicAsset().symbol;
+        const defaultData = {
+            from: user.name,
+            quantityAsset: startAsset,
+            fee: 0,
+            feeAsset: basicAsset,
+            quantity: 0,
+            memo: '',
+            to: 'son-account'
+        };
+
+        this.setState({ defaultData });
     }
 
-	const handleWithdraw = (data) => {
-		setSent(true);
-		setTimeout(() => {
-			clearLayout();
-			setSent(false);
-			window.location.reload();
-		}, 5000);	
-	};
+    handleTransfer = (data) => {
+        const context = this;
+        window.location.reload();
+        this.setState({sended: true}, () => setTimeout(() => context.setState({sended: false}), 5000));
 
-    const SubmitWithDraw = async () => {
-		if(withdrawAmount === 0){
-			setErrors('ERROR')
-			return
-		}
-		getPassword(password => transfer({
-			contacts:[],
-			fee: fee.amount,
-			feeAsset: fee.symbol,
-			from: accountData.name,
-			password,
-			quantity: withdrawAmount,
-			quantityAsset: sidechainAsset.symbol,
-			to: 'son-account'
-		}).then((result) => {
-			result.success ? handleWithdraw(result.callbackData) : setErrors(result.errors);
-		}));
-	};
+        if(this.props.update) {
+            this.props.update();
+        }
+    };
 
-    return(
-		<div className="card__content">
-			<div className="form form--btc form--btc__widget">
-				<Input 
-					name="withdrawAmount" 
-					type="number" 
-					className="modal__field"
-					value = {withdrawAmount}	
-					onChange={handleChange}/>
-				<div className="info__row">
-					{sent && <span className="clr--positive">Transaction Completed</span>}
-					{errors === 'ERROR' && <span className="clr--negative">Something went wrong!! Try again. </span>}
-					{(withdrawAmount == 0) && <span className="clr--negative">This field is required and not zero.</span>}
-					{(withdrawAmount > accBalance) && <span className="clr--negative">Value cannot exceed {accBalance}.</span>}
-					<span>Fee: {fee.amount} {fee.symbol}</span>
-				</div>
-				<div className="btn__row">
-					<button className="btn-round btn-round--buy" onClick={() => (withdrawAmount === 0 || withdrawAmount > accBalance) ? '' : SubmitWithDraw()}>Withdraw</button>
-				</div>
+
+    render() {
+        const {sended, defaultData} = this.state;
+
+        if (!defaultData) return <span/>;
+		return (
+			<div className="card__content">
+				<Form
+					type={'transfer'}
+					className="form form--btc form--btc__widget"
+					defaultData={defaultData}
+					requiredFields={['to', 'quantity']}
+					action={transfer}
+					handleResult={this.handleTransfer}
+					needPassword
+				>
+				{
+					form => {
+						const {errors, data} = form.state;
+
+						return (
+							<Fragment>
+								<div className="input__row">
+									<Input
+										style={{"display": "none"}}
+										name="from"
+										onChange={form.handleChange}
+										error={errors}
+										value={data}
+										disabled
+									/>
+									<Input
+										labelTag="field.labels.withdrawAmount"
+										name="quantity"
+										type="number"
+										onChange={form.handleChange}
+										error={errors}
+										value={data}
+									/>
+								</div>
+								<div className="input__row">
+									<Input
+										style={{"display": "none"}}
+										name="to"
+										disabled
+										onChange={form.handleChange}
+										error={errors}
+										value={data}
+									/>
+									
+									<Input
+										style={{"display": "none"}}
+										name="quantityAsset"
+										disabled
+										onChange={form.handleChange}
+										error={errors}
+										value={data}
+									/>
+								</div>
+								<div className="info__row">
+									{sended && <span className="clr--positive">Transaction Completed</span>}
+									<span>Fee: {data.fee} {data.feeAsset}</span>
+								</div>
+								<div className="btn__row">
+									<button type="submit" className="btn-round btn-round--buy">Withdraw</button>
+								</div>
+							</Fragment>
+						)
+					}
+				}
+				</Form>
 			</div>
-		</div>
-    )
-};
-
+		)
+	};
+}
 
 export default WithdrawBTCForm;
