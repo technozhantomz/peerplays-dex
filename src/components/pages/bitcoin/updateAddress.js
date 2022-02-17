@@ -30,9 +30,7 @@ class UpdateAddress extends Component {
 
     handleAddressUpdated = (data) => {
         Object.keys(data.map(({trx}) => {
-            console.log(trx);  
             Object.keys(trx.operations.map((op) => {
-                console.log(op[1]);
                 setSidechainAccounts([op[1]]);
             }))
         }))
