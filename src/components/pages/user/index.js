@@ -35,7 +35,7 @@ const basicMenu = [
         component: UserMargins
     },
     {
-        link: '/voting',
+        link: '/voting&vesting',
         tag: 'voting',
         component: UserVoting
     },
