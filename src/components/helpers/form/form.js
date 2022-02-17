@@ -8,11 +8,8 @@ const handleData = async (context, val, id) => {
     const { mutateData, type } = context.props;
     let data = { ...context.state.data };
     const feeCalc = feeCalculator[type];
-
     data = Object.filter(data, data => data);
-
     data[id] = val;
-
     if (mutateData && mutateData[id]) data = mutateData[id](data);
     const errors = await checkErrors(data);
     if (feeCalc) {
@@ -59,11 +56,9 @@ class Form extends Component {
     submit = (e) => {
         e && e.preventDefault();
         const { errors, data } = this.state;
-        
          if (Object.keys(errors).length) return;
-        
-        this.setState({ loading: true });
 
+        this.setState({ loading: true });
         this.props.requiredFields && this.props.requiredFields
             .filter(el => !data[el])
             .forEach(el => errors[el] = 'required');

@@ -2,6 +2,9 @@ import {getAccountData} from "../../store";
 
 export const checkAmountToSell = ({type, buyAsset, sellAsset, amount_to_receive, amount_to_sell}) => {
 
+  if(amount_to_receive.length > 8){
+    return 'maxLength';
+  }else{
     if(!amount_to_sell) {
       return 'required';
     } else {
@@ -21,13 +24,17 @@ export const checkAmountToSell = ({type, buyAsset, sellAsset, amount_to_receive,
       }
       return false; 
     }
+  }
 }
 
 export const checkAmountToReceive = ({type, buyAsset, sellAsset, amount_to_sell, amount_to_receive}) => {
 
+  if(amount_to_receive.length > 8){
+    return 'maxLength';
+  }else{
   if(!amount_to_receive) {
     return 'required';
-  } else {
+   } else {
     if(isNaN(amount_to_receive)){
       return 'isNan';
     }
@@ -44,4 +51,5 @@ export const checkAmountToReceive = ({type, buyAsset, sellAsset, amount_to_sell,
     } 
     return false;
   }
+}
 }
