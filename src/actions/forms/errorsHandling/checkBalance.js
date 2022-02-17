@@ -2,7 +2,7 @@ import {getAccountData} from "../../store";
 
 export const checkAmountToSell = ({type, buyAsset, sellAsset, amount_to_receive, amount_to_sell}) => {
 
-  if(amount_to_receive.length > 8){
+  if(amount_to_sell.length > 8){
     return 'maxLength';
   }else{
     if(!amount_to_sell) {
