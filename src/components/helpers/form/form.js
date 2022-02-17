@@ -75,16 +75,14 @@ class Form extends Component {
             return;
         }
         const checkPassword = () => {
-            if (!data.password) {
-                this.setState({ loading: false });
-                getPassword(password => (
-                    this.setState(
-                        { data: { ...data, password } },
-                        () => this.handleAction()
-                    )
-                ));
-                return;
-            }
+            this.setState({ loading: false });
+            getPassword(password => (
+                this.setState(
+                    { data: { ...data, password } },
+                    () => this.handleAction()
+                )
+            ));
+            return;
         }
 
         if (this.props.orderConfirmation) {

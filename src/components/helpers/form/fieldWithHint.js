@@ -96,6 +96,7 @@ class FieldWithHint extends Component{
                     onClick={this.handleChange}
                     value={data}
                     readOnly={readOnly}
+                    {...this.props}
                 />
                 <Caret className='field__caret' />
                 { errors && errors[name] && <Translate content={`errors.${errors[name]}`} className="field__error" /> }
