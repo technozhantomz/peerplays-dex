@@ -92,7 +92,7 @@ const WithdrawGPOS = (props) => {
 				</div>
 				<div style={{ marginTop: 12 }}  className="input-cus-style">
 				<div style={{padding:"0 10px"}}>
-				<Translate  className="" content={"errors.newGpos"} /> : <strong style={{padding:"0 10px"}}>{totalGpos - withdrawAmount} {symbol}</strong>
+				<Translate  className="" content={"voting.newGpos"} /> : <strong style={{padding:"0 10px"}}>{totalGpos - withdrawAmount} {symbol}</strong>
 				</div>
 				</div>
 			</CardContent>
