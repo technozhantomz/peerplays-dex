@@ -270,7 +270,7 @@ const Voting = (props) => {
     return (
         <div className="container page">
               <div className="page__header-wrapper">
-            <Translate className="page__title" component="h1" content={"vesting.title"}/>
+            <Translate className="page__title" component="h1" content={"voting.title"}/>
         </div>
             <div>
                 <Grid container spacing={1}>
@@ -330,7 +330,7 @@ const Voting = (props) => {
                             key={id}
                             content={`voting.${el.tag}.title`}
                             component={NavLink}
-                            to={`/voting${el.link}`}
+                            to={`/voting-vesting${el.link}`}
                             className="page__menu-item"
                             exact
                         />
@@ -343,7 +343,7 @@ const Voting = (props) => {
                         votingMenu.map((el, id) => (
                             <Route
                                 key={id}
-                                path={`/voting${el.link}`}
+                                path={`/voting-vesting${el.link}`}
                                 render={() => el.render(account, props.data, cancelVotes, { setNewVotes, newVotes })}
                                 exact
                             />
