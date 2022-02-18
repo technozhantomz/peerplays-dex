@@ -7,10 +7,12 @@ import {setModal} from "../../../dispatch";
 const handleData = async (context, val, id) => {
     const { mutateData, type } = context.props;
     let data = { ...context.state.data };
-    const feeCalc = feeCalculator[type];
+    let feeCalc;
+    if(val.match(/^ *$/) == null){
+     feeCalc = feeCalculator[type];
+    }
 
     data = Object.filter(data, data => data);
-
     data[id] = val;
 
     if (mutateData && mutateData[id]) data = mutateData[id](data);
