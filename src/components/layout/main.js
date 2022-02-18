@@ -18,15 +18,14 @@ import HiveTransactions from '../pages/hive';
 
 class Main extends Component {
     render() {
-
-        return (
+ return (
             <main>
                 <Switch>
                     <Route exact path="/" component={Dashboard} />
                     <PrivateRoute exact path="/exchange/:pair" component={Exchange} />
                     <PrivateRoute path="/assets" component={MyAssets} />
                     <PrivateRoute path="/blockchain" component={Blockchain} />
-                    <PrivateRoute path="/voting" component={Voting} />
+                    <PrivateRoute path="/voting-vesting" component={Voting} />
                     <PrivateRoute path="/business" component={Business} />
                     <PrivateRoute path="/settings/" component={Settings} />
                     <PrivateRoute path="/user/:name" component={User} />
