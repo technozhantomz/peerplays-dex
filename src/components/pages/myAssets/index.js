@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import Translate from "react-translate-component";
 import AssetsPermissions from "./assetsPermissions";
 import PageMenu from "../../helpers/pageMenu";
-import QuantityConverter from "../../helpers/quantityConverter";
 import {connect} from "react-redux";
 import UserAssets from "../user/userAssets";
 import OpenOrders from "../user/openOrders";
@@ -58,7 +57,6 @@ class MyAssets extends Component{
             <div className="container page">
                 <div className="page__user-title">
                     <Translate className="page__title" component="h1" content={"assets.title"}/>
-                    <QuantityConverter assets={userData.assets} />
                 </div>
                 <PageMenu items={basicMenu} link={`/assets`} path={'/assets'} data={this.state.accountData} />
             </div>

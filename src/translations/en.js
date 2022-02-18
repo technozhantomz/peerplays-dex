@@ -56,7 +56,7 @@ export const en = {
         "ratio": "Ratio",
         "callPrice": "Call Price",
         "expiration": "Expiration",
-        "kill": "Kill",
+        "kill": "Delete",
         "param": "%(param)s",
         "total": "Total (%(token)s)",
         "name_description": "Name / Description",
@@ -359,7 +359,7 @@ export const en = {
         "blacklistMarket": "Blacklist Market",
     },
     "voting": {
-        "title": "Voting",
+        "title": "Voting & Vesting",
         "workers": {
             "title": "Workers"
         },
@@ -385,7 +385,13 @@ export const en = {
         },
         "percent": "Qualified Reward %",
         "potential": "Estimated Rake Reward %",
-        "next_vote": "Next vote update"
+        "next_vote": "Next vote update",
+        "newGpos":"New GPOS Balance",
+        "noGpos":"There is no available GPOS",
+        "openGpos":"Opening GPOS Balance",
+        "availableGpos":"Available GPOS Balance",
+        "powerUp":"power Up",
+        "powerDown":"power Down",
     },
     "business": {
         "title": "Business"
@@ -398,8 +404,9 @@ export const en = {
     },
     "bitcoin": {
         "title": "Bitcoin Transactions",
+        "Generate":"Generate",
         "withdraw": {
-            "title": "Withdraw BTC"
+            "title": "Withdraw Bitcoin"
         },
         "generateAddress": {
             "title": "Generate Bitcoin Address"
@@ -407,6 +414,13 @@ export const en = {
         "updateAddress": {
             "title": "Update Bitcoin Address"
         }
+    },
+    "hive": {
+        "cardTitle": "Withdraw HIVE or HBD to a Hive blockchain account",
+        "title": "Withdraw HIVE/HBD",
+        "withdraw": {
+            "title": "Withdraw Hive"
+        },
     },
     "contacts": {
         "title": "Contacts",
@@ -582,6 +596,9 @@ export const en = {
             "passwordCheck": "Confirm Password",
             "from": "From",
             "to": "To",
+            "hiveAcc": "Enter Hive blockchain account to which the funds are to be sent",
+            "hiveAmount": "Enter amount of HIVE/HBD to be withdrawn",
+            "hiveCurrency": "Select currency",
             "quantity": "Quantity",
             "memo": "Memo",
             "fee": "Fee",
@@ -626,13 +643,14 @@ export const en = {
             "issueAmount": "Issue Amount",
             "condition": "Condition (max 60 characters)",
             "resolutionDate": "Market resolution date",
+            "depositAddress": "Deposit Address",
             "depositPublicKey": "Deposit Public Key",
             "withdrawPublicKey": "Withdraw Public Key",
             "withdrawAddress": "Withdraw Address"
         },
         "comments": {
             "newLogin": "You can use letters, symbols, etc...",
-            "memo": "Entering country of DESTINATION guarantees instant transaction",
+            "memo": "Only users with a memo key can read your memos",
             "newWorkerName": "Be short and descriptive, e.g. \"Worker Purpose - Account Name\"",
             "dailyPay": "The current best practice is to define a salary in USD/CNY, and commit to burning whatever surplus you receive as a result of the TEST price increasing. As long as your worker is active and has sufficient votes to be above the refund worker, you will receive this daily salary.",
             "faucet": "The faucet address is used to pay the registration fee for new users.",
@@ -654,6 +672,9 @@ export const en = {
         }
     },
     "errors": {
+        "requiredAndnotzero":"This field is required and not zero",
+        "withdrawError":"The withdraw amount should be greater than 0",
+        "Notexceed":"Value cannot exceed",
         "sendYourself": "You can\'t transfer tokens for yourself",
         "noAcc": "Failed to find this account",
         "noKey": "Failed to find this key",

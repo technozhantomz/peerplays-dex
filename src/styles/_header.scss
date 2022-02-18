@@ -86,6 +86,7 @@ header{
     margin: 1.6rem 0 3.4rem;
     button{
       width: 70%;
+      margin: 0 auto;
     }
   }
   &__wallets-title{
@@ -130,9 +131,17 @@ header{
   }
   &__sidechain-address-item{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     flex-direction: row;
     align-items: center;
+    width: 227px;
+
+    .input{
+      padding: 1em;
+      margin: 0 10px 0 5px;
+      border: 1px solid rgba(60,71,108,0.18);
+      width: 48%;
+    }
   }
 }
 

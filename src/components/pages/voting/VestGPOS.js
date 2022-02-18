@@ -10,10 +10,10 @@ const VestGPOS = (props) => {
 	const { symbol_id, precision, symbol, totalGpos, getAssets } = props;
 	const { loginData, accountData } = getStore();
 	const [vestAmount, setVestAmount] = useState(0);
+	const accBalance = accountData.assets[0].amount / (10 ** accountData.assets[0].precision);
 
 	const SubmitGposVesting = () => {
 		const begin_timestamp = new Date().toISOString().replace('Z', '');
-
 		const trx = {
 			type: 'vesting_balance_create',
 			params: {
@@ -45,38 +45,54 @@ const VestGPOS = (props) => {
 				setVestAmount(0);
 			});
 		});
-	}
+	};
 	return (
-		<Card mode="widget">
-			<div className="card__title">
-				Power Up
+		<Card mode="widget" style={{ height:"100%"}}>
+			<div className="card__title" style={{ paddingTop:"20px" , borderTopLeftRadius:"10px" , borderTopRightRadius:"10px"}}>
+			<Translate content={"voting.powerUp"} />
 			</div>
-			<CardContent>
+			<CardContent >
 				<div style={{ marginBottom: 12 }}>
-					<div style={{ display: "inline-block", width: "50%" }}>
+					<div style={{ display: "inline-block", width: "100%" }}>
 						<div style={{ background: "#f0f0f0", margin: 4, padding: 12 }}>
-							Opening VOTE POWER Balance: <strong>{totalGpos} {symbol}</strong>
+						<Translate content={"voting.openGpos"} />: <strong>{totalGpos} {symbol}</strong>
 						</div>
 					</div>
 				</div>
-				<Translate content='deposit.title' />
+				<Translate style={{ fontWeight:"bold",margin:"10px",display:"block"}} content='deposit.title' />
+				<div className='input-cus-style'>
 				<NumericInput
-					style={{ color: "#f0f0f0" }}
+					strict={true}
+					style={{ color: "#f0f0f0", background:"transparent" }}
 					mobile
 					type="number"
 					className="field__input form-control cpointer"
 					min={0}
-					max={accountData.assets[0].amount / (10 ** accountData.assets[0].precision)}
+					step={(component, direction) => {
+						// for values smaller than 1 the step is 0.1
+						// for values greater than 1 the step is 1
+						return component.state.value < 1 ? 0.1 : 1
+					}}
+					precision={accountData.assets[0].precision}
+					max={accBalance}
 					onChange={(value) => setVestAmount(value)}
 					value={vestAmount}
 				/>
-
-				<div style={{ marginTop: 12 }}>
-					New POWER Balance: <strong>{totalGpos + parseFloat(vestAmount)} {symbol}</strong>
+				</div>
+				<div style={{ marginTop: 12, color: "#ff444a", display: (vestAmount == null || vestAmount == 0) ? "block" : "none" }}>
+					<Translate component="div" className="" content={"errors.requiredAndnotzero"} />
+				</div>
+				<div style={{ marginTop: 12, color: "#ff444a", display: (vestAmount == null || vestAmount > accBalance) ? "block" : "none" }}>
+				<Translate component="div" className="" content={"errors.requiredAndnotzero"+ accBalance} /> 
+				</div>
+				<div style={{ marginTop: 12 }} className="input-cus-style">
+					<div style={{padding:"0 10px"}}>
+					<Translate  className="" content={"voting.newGpos"} /> : <strong style={{padding:"0 10px"}}>{totalGpos + vestAmount} {symbol}</strong>
+					</div>
 				</div>
 			</CardContent>
-			<CardActions >
-				<button className="btn-round btn-round--buy" onClick={SubmitGposVesting}>Vest</button>
+			<CardActions style={{justifyContent:"end"}} >
+				<button className="btn-round btn-round--buy" onClick={() => (vestAmount == null || vestAmount == 0 || vestAmount > accBalance) ? "" : SubmitGposVesting()}>Vest</button>
 			</CardActions>
 		</Card>
 	)

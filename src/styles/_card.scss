@@ -107,11 +107,42 @@
     height: 352px;
     width: 640px;
   }
+
+  &--hive-withdraw {
+    min-height: 352px;
+    width: 640px;
+    padding: 20px 20px 40px 20px;
+    .card__title{
+      margin-left: 0;
+    }
+    .form__send .field {
+      min-height: 6.5rem;
+      border-radius: 0.25rem;
+    }
+  }
   
   &--full{
     width: 90%;
     margin: 0 auto;
     padding: 10px;
+  }
+
+  &--widget__btc{
+    height: 300px;
+    width: 640px;
+    padding: 1em;
+    position: relative;
+  }
+
+  &--btc-generate {
+    &.modal.open{
+      z-index: 1;
+      top: 55%;
+    }
+
+    .card__title{
+      margin-left: 0;
+    }
   }
 
   &--table {

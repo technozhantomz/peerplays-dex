@@ -4,7 +4,7 @@ import {getStore} from "../store";
 import {getDefaultFee} from "./getDefaultFee";
 
 export const sellBuy = async (data, result) => {
-    if (data.sellAsset === data.buyAsset) {
+    if (data.asset_to_sell === data.buyAsset) {
         result.errors['buyAsset'] = 'sameAsset';
         result.errors['sellAsset'] = 'sameAsset';
         return result;
@@ -31,7 +31,6 @@ export const sellBuy = async (data, result) => {
     const sellAsset = await new Asset(sell).getDataBySymbol();
     const buyAsset = await new Asset(buy).getDataBySymbol();
 
-    // console.log(sellAsset);
 
     const amount_to_sell = {
         amount: Math.round(sellAsset.addPrecision()),

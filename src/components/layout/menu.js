@@ -12,7 +12,9 @@ const Menu = (props) => {
     const {loginData} = getStore();
     return <div className={`menu${props.menu ? ' open' : ''}`}>
         <div className="menu__logo-wrapper">
-            <IconLogo />
+        <NavLink exact to={'/'} onClick={clearLayout}>
+            <IconLogo style={{cursor:'pointer'}} />
+         </NavLink>
         </div>
         {
             menuList.map((el, id) => {

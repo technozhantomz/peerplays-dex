@@ -53,4 +53,22 @@
 .react-numeric-input b{
     cursor: pointer !important;
     z-index: 11 !important;
+   
+}
+span.react-numeric-input{
+    border: none !important;
+    border-color: transparent !important;
+    background:transparent !important;
+}
+.global-search__result.custom-scroll{
+    // text-align: center;
+    padding-top: 10px;
+}
+
+.modal.open{
+    min-height: calc(100vh - 200px);
+}
+
+.dropdown__body.custom-scroll{
+    max-height:13rem;
 }
