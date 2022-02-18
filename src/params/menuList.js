@@ -31,7 +31,7 @@ export const menuList = [
         icon: <IconBlockchain />,
     },
     {
-        link: '/voting&vesting',
+        link: '/voting-vesting',
         tag: 'voting',
         icon: <IconVoting />,
     },

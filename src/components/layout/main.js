@@ -25,7 +25,7 @@ class Main extends Component {
                     <PrivateRoute exact path="/exchange/:pair" component={Exchange} />
                     <PrivateRoute path="/assets" component={MyAssets} />
                     <PrivateRoute path="/blockchain" component={Blockchain} />
-                    <PrivateRoute path="/voting&vesting" component={Voting} />
+                    <PrivateRoute path="/voting-vesting" component={Voting} />
                     <PrivateRoute path="/business" component={Business} />
                     <PrivateRoute path="/settings/" component={Settings} />
                     <PrivateRoute path="/user/:name" component={User} />

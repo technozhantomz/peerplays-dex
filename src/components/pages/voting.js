@@ -330,7 +330,7 @@ const Voting = (props) => {
                             key={id}
                             content={`voting.${el.tag}.title`}
                             component={NavLink}
-                            to={`/voting&vesting${el.link}`}
+                            to={`/voting-vesting${el.link}`}
                             className="page__menu-item"
                             exact
                         />
@@ -343,7 +343,7 @@ const Voting = (props) => {
                         votingMenu.map((el, id) => (
                             <Route
                                 key={id}
-                                path={`/voting&vesting${el.link}`}
+                                path={`/voting-vesting${el.link}`}
                                 render={() => el.render(account, props.data, cancelVotes, { setNewVotes, newVotes })}
                                 exact
                             />
