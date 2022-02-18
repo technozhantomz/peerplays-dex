@@ -3,14 +3,20 @@ import React, { useState } from 'react';
 import NumericInput from 'react-numeric-input';
 import { connect, useSelector } from "react-redux";
 import Translate from 'react-translate-component';
+import { formAccount } from '../../../actions/account';
 import { getPassword, trxBuilder } from '../../../actions/forms';
-import { getStore } from '../../../actions/store';
+import { getStore,getAccountData } from '../../../actions/store';
+import {updateAccount} from "../../../dispatch/setAccount";
+
+
 
 const VestGPOS = (props) => {
 	const { symbol_id, precision, symbol, totalGpos, getAssets } = props;
 	const { loginData, accountData } = getStore();
 	const [vestAmount, setVestAmount] = useState(0);
 	const accBalance = accountData.assets[0].amount / (10 ** accountData.assets[0].precision);
+
+	const account = getAccountData();
 
 	const SubmitGposVesting = () => {
 		const begin_timestamp = new Date().toISOString().replace('Z', '');
@@ -40,10 +46,12 @@ const VestGPOS = (props) => {
 		};
 		getPassword(password => {
 			const activeKey = loginData.formPrivateKey(password, 'active');
-			trxBuilder([trx], [activeKey]).then(() => {
+			trxBuilder([trx], [activeKey]).then(async() => {
 				getAssets();
 				setVestAmount(0);
+				updateAccount(await formAccount(account.name));
 			});
+			
 		});
 	};
 	return (
