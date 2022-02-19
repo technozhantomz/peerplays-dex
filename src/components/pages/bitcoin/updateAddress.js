@@ -1,95 +1,92 @@
-import React, {useState} from "react";
+import React, {Component, Fragment} from "react";
 import Input from "../../helpers/form/input";
-import {IconClipboardCheck, IconClipboardCopy} from "../../../svg";
-import {getPassword} from "../../../actions/forms";
-import {useFormInput} from './formInput';
-import {clearLayout} from "../../../dispatch/index";
 import {updateSidechainAddress} from "../../../actions/forms/updateSidechainAddress";
 import {setSidechainAccounts} from '../../../dispatch/setAccount';
+import Form from "../../helpers/form/form";
+import { getBasicAsset } from "../../../actions/store";
 
-const UpdateAddress = (props) => {
-    const {loginData, accountData, sidechain, sidechainAccount} = props;
-    const withdrawPublicKey = useFormInput(sidechainAccount.withdraw_public_key);
-    const withdrawAddress = useFormInput(sidechainAccount.withdraw_address);
-    const [copyed, setCopyed] = useState(false);
-    const [fee, setFee] = useState({amount: 0, symbol: accountData.assets[0].symbol});
-    const [required, setRequired] = useState(false);
-    const [updated, setUpdated] = useState(false);
-    const [errors, setErrors] = useState('');    
-      
-    const copyToClip = (txt) => {
-        navigator.clipboard.writeText(txt);
-        setCopyed(true);
-        setTimeout(() => {
-            setCopyed(false);
-        }, 5000);
+class UpdateAddress extends Component {
+    state = {
+        updated: false,
+        defaultData: false,
+    };
+    
+    componentDidMount() {
+        const basicAsset = getBasicAsset().symbol;
+        const {sidechain, sidechainAccount} = this.props;
+        const defaultData = {
+            fee: 0,
+            feeAsset: basicAsset,
+            sidechainAddressId: sidechainAccount.id,
+            sidechain,
+            depositPublicKey: sidechainAccount.deposit_public_key,
+            depositAddress: sidechainAccount.deposit_address,
+            depositAddressData: sidechainAccount.deposit_address_data,
+            withdrawPublicKey: sidechainAccount.withdraw_public_key,
+            withdrawAddress: sidechainAccount.withdraw_address  
+        }
+        this.setState({ defaultData });
     }
 
-    const handleAddressUpdated = (data) => {
+    handleAddressUpdated = (data) => {
         Object.keys(data.map(({trx}) => {
-            console.log(trx);  
             Object.keys(trx.operations.map((op) => {
-                console.log(op[1]);
                 setSidechainAccounts([op[1]]);
             }))
         }))
-        setUpdated(true);
-        setTimeout(() => {
-            clearLayout();
-            setUpdated(false); 
-        }, 5000);
-    };
-
-    const SubmitUpdateAddress = () => {
-        setRequired(false);
-        if(withdrawPublicKey.value == '' && withdrawAddress.value == ""){
-            setRequired(true);
-        }else {
-            getPassword(password => updateSidechainAddress({
-                password,
-                fee: fee,
-                sidechainAddressId: sidechainAccount.id,
-                sidechain,
-                depositPublicKey: sidechainAccount.deposit_public_key,
-                depositAddress: sidechainAccount.deposit_address,
-                depositAddressData: sidechainAccount.deposit_address_data,
-                withdrawPublicKey: withdrawPublicKey.value,
-                withdrawAddress: withdrawAddress.value
-            }).then((result) => {
-                result.success ? handleAddressUpdated(result.callbackData) : setErrors(result.errors);
-            }));
-        }
+        const context = this;
+        window.location.reload();
+        this.setState({updated: true}, () => setTimeout(() => context.setState({updated: false}), 5000));
     };
     
-    return(
-        <div className="card__content">
-            <div className="form form form__send">
-                <div className="input__row-inline">
-                    <span>Deposit Address:</span>
-                    <input className="input" defaultValue={sidechainAccount.deposit_address}/>
-                    <button onClick={() => copyToClip(sidechainAccount.deposit_address)}>{copyed ? <IconClipboardCheck/> : <IconClipboardCopy />}</button>
-                </div>
-                <hr/>  
+    render() {
+        const {updated, defaultData} = this.state;
+        if (!defaultData) return <span/>;
+
+        return(
+            <div className="card__content">
+                <Form
+                    type={'sidechain_address_delete'}
+                    className='form--btc form--btc__widget'
+                    defaultData={defaultData}
+                    requiredFields={['withdrawPublicKey', 'withdrawAddress']}
+                    action={updateSidechainAddress}
+                    handleResult={this.handleAddressUpdated}
+                    needPassword>
+                {
+                    form => {
+                        const {errors, data} = form.state;
+                        return (
+                            <Fragment>                            
+                                <Input 
+                                    name="withdrawPublicKey" 
+                                    className="modal__field"
+                                    onChange={form.handleChange}
+                                    error={errors}
+                                    value={data}/>
+                                <Input 
+                                    name="withdrawAddress" 
+                                    className="modal__field" 
+                                    onChange={form.handleChange}
+                                    error={errors}
+                                    value={data}/>
+                                <div className="info__row">
+                                    <span>Fee: {data.fee} {data.feeAsset}</span>
+                                    {errors === "ERROR" && <span className="clr--negative">Server side error!! Try again.</span>}
+                                    {errors === "DUPLICATE" && <h3 className="clr--negative">Key already exists.</h3>}
+                                    {updated && <span className="clr--positive">Sidechain address has been updated.</span>}
+                                </div>
+                                <div className="btn__row">
+                                    <button type="submit"  className="btn-round btn-round--buy">Update</button>
+                                </div>
+                            </Fragment>
+                        )
+                    }
+                }
+                </Form>
             </div>
-            <div className="form form form__send">
-                <div className="input__row">
-                    <Input name="withdrawPublicKey" className="modal__field" {...withdrawPublicKey}/>
-                </div>
-                <div className="input__row">
-                    <Input name="withdrawAddress" className="modal__field" {...withdrawAddress}/>
-                </div>
-                <div className="info__row">
-                    <span>Fee: {fee.amount} {fee.symbol}</span>
-                    {required && <span>All fields are required</span>}
-                    {errors === "ERROR" && <span className="clr--negative">Something went wrong!! Try again.</span>}
-                    {updated && <span className="clr--positive">Sidechain address has been updated.</span>}
-                </div>
-                <div className="btn__row">
-                    <button className="btn-round btn-round--buy" onClick={() => SubmitUpdateAddress()}>Update</button>
-                </div>
-            </div>
-        </div>
-    )
+        )
+    }
 
 };
 

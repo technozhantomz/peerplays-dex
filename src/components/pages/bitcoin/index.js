@@ -9,13 +9,17 @@ import UpdateAddress from "./updateAddress";
 import { getStore } from "../../../actions/store";
 
 function BitcoinTransactions() {
-    const { loginData, accountData } = getStore();
+    const { accountData } = getStore();
     const [sidechainAccount, setSidechainAccount] = useState();
     const [sidechain, setSidechain] = useState('bitcoin');
+    const [hasDepoAddress, setHasDepoAddress] = useState(false);
 
     useEffect(() => {
         if(accountData.sidechainAccounts){
-            accountData.sidechainAccounts.filter(act => {(act.sidechain == sidechain) ? setSidechainAccount(act) : ""});  
+            accountData.sidechainAccounts.filter(act => (act.sidechain == sidechain) ? setSidechainAccount(act): '');  
+        }
+        if(sidechainAccount && sidechainAccount.deposit_address != ''){
+            setHasDepoAddress(true);
         }
     });
 
@@ -25,46 +29,35 @@ function BitcoinTransactions() {
                 <Translate className="page__title" component="h1" content={"bitcoin.title"}/>
             </div>
             <div>
-                    <Grid container spacing={1}>
-                        <Grid item xs={12} sm={sidechainAccount ? 6 : 12}>
+                <Grid container spacing={1}>
+                    <Grid item xs={12} sm={hasDepoAddress ? 6 : 12}>
+                        <div className="graphs">
+                            <Card mode={hasDepoAddress ? "widget__btc" : "btc-generate MuiGrid-root modal open MuiGrid-item MuiGrid-grid-xs-12"}>
+                                <CardHeader title={hasDepoAddress ? `bitcoin.updateAddress.title` : 'bitcoin.generateAddress.title'} />
+                                <div className="card__content"> 
+                                    {hasDepoAddress ? 
+                                        <UpdateAddress sidechainAccount={sidechainAccount} sidechain={sidechain}/> 
+                                    :
+                                        <GenerateAddress
+                                            accountData={accountData} 
+                                            sidechain={sidechain}/>
+                                    }
+                                </div>
+                            </Card>
+                        </div>
+                    </Grid>
+                    {hasDepoAddress &&
+                        <Grid item xs={12} sm={6}>
                             <div className="graphs">
-                                <Card mode="full">
-                                    <CardHeader title={sidechainAccount ? `bitcoin.updateAddress.title` : 'bitcoin.generateAddress.title'} />
-                                    <div className="card__content"> 
-                                        {sidechainAccount ? 
-                                            <UpdateAddress 
-                                                accountData={accountData} 
-                                                sidechainAccount={sidechainAccount}
-                                                loginData={loginData}
-                                                sidechain={sidechain}/> 
-
-                                        :
-                                            <GenerateAddress
-                                                accountData={accountData} 
-                                                loginData={loginData}
-                                                sidechain={sidechain}/>
-
-                                        }
-                                    </div>
+                                <Card mode="widget__btc">
+                                    <CardHeader title={`bitcoin.withdraw.title`} />
+                                    <WithdrawBTCForm accountData={accountData}/>
                                 </Card>
                             </div>
                         </Grid>
-                        {sidechainAccount &&
-                            <Grid item xs={12} sm={6}>
-                                <div className="graphs">
-                                    <Card mode="widget">
-                                        <CardHeader title={`bitcoin.withdraw.title`} />
-                                        <WithdrawBTCForm 
-                                            accountData={accountData} 
-                                            loginData={loginData} 
-                                            sidechain={sidechain} 
-                                            sidechainAccount={sidechainAccount}/>
-                                    </Card>
-                                </div>
-                            </Grid>
-                        }
-                    </Grid>
-                </div>
+                    }
+                </Grid>
+            </div>
         </div>
     );
 }

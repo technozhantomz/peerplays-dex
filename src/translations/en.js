@@ -416,10 +416,10 @@ export const en = {
         }
     },
     "hive": {
-        "cardTitle": "Withdraw HIVE or HBD to a Hive blockchain account",
-        "title": "Withdraw HIVE/HBD",
+        "cardTitle": "Withdraw (USD) or (KES) to a Bank Account",
+        "title": "Withdraw USD or KES",
         "withdraw": {
-            "title": "Withdraw Hive"
+            "title": "Withdraw USD"
         },
     },
     "contacts": {
@@ -596,8 +596,8 @@ export const en = {
             "passwordCheck": "Confirm Password",
             "from": "From",
             "to": "To",
-            "hiveAcc": "Enter Hive blockchain account to which the funds are to be sent",
-            "hiveAmount": "Enter amount of HIVE/HBD to be withdrawn",
+            "hiveAcc": "Enter Bank account number to which the funds are to be sent",
+            "hiveAmount": "Enter amount of USD/KES to be withdrawn",
             "hiveCurrency": "Select currency",
             "quantity": "Quantity",
             "memo": "Memo",
