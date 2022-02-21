@@ -8,7 +8,6 @@ const handleData = async (context, val, id) => {
     const { mutateData, type } = context.props;
     let data = { ...context.state.data };
     const feeCalc = feeCalculator[type];
-
     data = Object.filter(data, data => data);
 
     data[id] = val;
@@ -46,6 +45,9 @@ class Form extends Component {
                     state.data[keyValue] = result.data[keyValue];
                     if (result.errors[keyValue]) {
                         state.errors[keyValue] = result.errors[keyValue];
+                    }
+                    if(result.errors.quantity){
+                        state.data['fee'] = 0
                     }
                 }
             });
