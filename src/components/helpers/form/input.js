@@ -25,6 +25,7 @@ const Input = (props) => {
                 name={name}
                 defaultValue={value[name]}
                 type={type}
+                min="0"
                 disabled={disabled}
                 onChange={e => onChange ? onChange(e.target.value, name) : e.preventDefault()}
                 onBlur={e => onBlur ? onBlur(e.target.value, name) : e.preventDefault()}
