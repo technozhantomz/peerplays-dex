@@ -416,8 +416,8 @@ export const en = {
         }
     },
     "hive": {
-        "cardTitle": "Withdraw (USD) or (KES) to a Bank Account",
-        "title": "Withdraw USD or KES",
+        "cardTitle": "Withdraw (USD) or (KES) to a USA/KENYA Bank account",
+        "title": "Withdraw USD/KES",
         "withdraw": {
             "title": "Withdraw USD"
         },
@@ -596,15 +596,15 @@ export const en = {
             "passwordCheck": "Confirm Password",
             "from": "From",
             "to": "To",
-            "hiveAcc": "Enter Bank account number to which the funds are to be sent",
+            "hiveAcc": "Enter  your USA/KENYA Bank  account to which the funds are to be sent",
             "hiveAmount": "Enter amount of USD/KES to be withdrawn",
             "hiveCurrency": "Select currency",
             "quantity": "Quantity",
-            "memo": "Memo",
+            "memo": "Country ?",
             "fee": "Fee",
             "gateFee": "Gate Fee",
             "newWorkerName": "Worker Name",
-            "dailyPay": "Daily Pay (TEST)",
+            "dailyPay": "Daily Pay (LLC)",
             "dateBegin": "Start Date",
             "dateEnd": "End Date",
             "website": "Website",
@@ -650,7 +650,7 @@ export const en = {
         },
         "comments": {
             "newLogin": "You can use letters, symbols, etc...",
-            "memo": "Only users with a memo key can read your memos",
+            "memo": "Country of the receiver of money",
             "newWorkerName": "Be short and descriptive, e.g. \"Worker Purpose - Account Name\"",
             "dailyPay": "The current best practice is to define a salary in USD/CNY, and commit to burning whatever surplus you receive as a result of the TEST price increasing. As long as your worker is active and has sufficient votes to be above the refund worker, you will receive this daily salary.",
             "faucet": "The faucet address is used to pay the registration fee for new users.",
@@ -716,7 +716,7 @@ export const en = {
         "newAcc": {
             "longer": "Account name should be longer",
             "shorter": "Account name should be shorter",
-            "firstLetter": "Account name should start with a letter",
+            "firstLetter": "Account should start with a small letter",
             "noSpecials": "Account name should have only letters, digits, or dashes",
             "oneDash": "Account name should have only one dash in a row",
             "lastSymbol": "Account name should end with a letter or digit",
