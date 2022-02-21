@@ -102,13 +102,13 @@ class SendForm extends Component {
                                         />
                                     </div>
                                     <div className="input__row">
-                                        <FieldWithHint
+                                       <Input
                                             name="to"
-                                            method={getSymbolsList}
-                                            handleChange={form.handleChange}
-                                            errors={errors}
-                                            defaultHints={data.contacts}
-                                            defaultVal = {data}
+                                            type="text"
+                                            method={getUserAssetsList}
+                                            onChange={form.handleChange}
+                                            error={errors}
+                                            value={data}
                                         />
                                     <FieldWithHint
                                                 name="quantityAsset"
