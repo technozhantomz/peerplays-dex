@@ -12,7 +12,6 @@ const handleData = async (context, val, id) => {
     data = Object.filter(data, data => data);
 
     data[id] = val;
-
     if (mutateData && mutateData[id]) data = mutateData[id](data);
     const errors = await checkErrors(data);
     if (feeCalc) {
