@@ -9,6 +9,7 @@ const Input = (props) => {
         type = 'text',
         disabled = false,
         formData,
+        min=0,
         onBlur
     } = props;
 
@@ -25,7 +26,7 @@ const Input = (props) => {
                 name={name}
                 defaultValue={value[name]}
                 type={type}
-                min="0"
+                min={min}
                 disabled={disabled}
                 onChange={e => onChange ? onChange(e.target.value, name) : e.preventDefault()}
                 onBlur={e => onBlur ? onBlur(e.target.value, name) : e.preventDefault()}
