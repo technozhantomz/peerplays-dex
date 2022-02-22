@@ -46,8 +46,7 @@ export const checkAmountToReceive = ({type, buyAsset, sellAsset, amount_to_sell,
   }
 }
 
-export const checkPrice = ({type, buyAsset, sellAsset, amount_to_sell, price}) => {
-
+export const checkPrice = ({price}) => {
   if(!price) {
     return 'required';
   } else {
@@ -56,14 +55,6 @@ export const checkPrice = ({type, buyAsset, sellAsset, amount_to_sell, price}) =
     }
     if(price <= 0) {
       return 'isZero';
-    } 
-    if(type === 'sell') {
-      const userAsset = getAccountData().assets.find(el => el.symbol === buyAsset);
-      if(!userAsset) {
-        return 'isNotEnough'
-      } else {
-        return userAsset.setPrecision() >= price ? false : 'isNotEnough';
-      }
     } 
     return false;
   }
