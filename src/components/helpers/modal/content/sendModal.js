@@ -111,7 +111,7 @@ class SendModal extends Component {
                                                 />
                                                 :
                                                 <clear
-                                                     name="to"
+                                                    name="to"
                                                     className="mt-2"
                                                     method={getSymbolsList}
                                                     handleChange={form.handleChange}
