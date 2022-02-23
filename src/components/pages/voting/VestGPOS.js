@@ -68,12 +68,14 @@ const VestGPOS = (props) => {
 					type="number"
 					className="field__input form-control cpointer"
 					min={0}
-					// step={(component, direction) => {
-					// 	// for values smaller than 1 the step is 0.1
-					// 	// for values greater than 1 the step is 1
-					// 	return component.state.value < 1 ? 0.1 : 1
-					// }}
-					step={0.1}
+					step={(component, direction) => {
+						// for values smaller than 1 the step is 0.1
+						// for values greater than 1 the step is 1
+						if(direction === 'up'){
+						return component.state.value < 1 ? 0.1 : 1
+						}else{return component.state.value < 2 ? 0.1 : 1}
+					}}
+					// step={0.1}
 					precision={accountData.assets[0].precision}
 					max={accBalance}
 					onChange={(value) => setVestAmount(value)}
