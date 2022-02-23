@@ -14,18 +14,18 @@ import Block from "../helpers/block";
 import AssetPage from "../pages/asset/assetPage";
 import PrivateRoute from './PrivateRoute';
 import BitcoinTransactions from '../pages/bitcoin';
+import HiveTransactions from '../pages/hive';
 
 class Main extends Component {
     render() {
-
-        return (
+ return (
             <main>
                 <Switch>
                     <Route exact path="/" component={Dashboard} />
                     <PrivateRoute exact path="/exchange/:pair" component={Exchange} />
                     <PrivateRoute path="/assets" component={MyAssets} />
                     <PrivateRoute path="/blockchain" component={Blockchain} />
-                    <PrivateRoute path="/voting" component={Voting} />
+                    <PrivateRoute path="/voting-vesting" component={Voting} />
                     <PrivateRoute path="/business" component={Business} />
                     <PrivateRoute path="/settings/" component={Settings} />
                     <PrivateRoute path="/user/:name" component={User} />
@@ -34,6 +34,7 @@ class Main extends Component {
                     <PrivateRoute exact path="/block/:number" component={Block} />
                     <PrivateRoute path="/asset/:symbol" component={AssetPage} />
                     <PrivateRoute path="/bitcoin" component={BitcoinTransactions} />
+                    <PrivateRoute path="/hive" component={HiveTransactions} />
                 </Switch>
             </main>
         )

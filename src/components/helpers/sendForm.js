@@ -1,6 +1,4 @@
 import React, {Component, Fragment} from 'react';
-import Dropdown from "./form/dropdown";
-import SelectHeader from "./selectHeader";
 import Input from "./form/input";
 import Form from "./form/form";
 import {transfer} from "../../actions/forms";
@@ -21,7 +19,7 @@ const getUserAssetsList = async (symbol) => (
         .map(item => item.symbol)
 );
 
-const MEMO_MAX_LENGTH = 200;
+const MEMO_MAX_LENGTH = 256;
 
 class SendForm extends Component {
     state = {
@@ -140,9 +138,9 @@ class SendForm extends Component {
                                             />
                                     </div>
                                     <div className="input__row">
-                                        <Textarea
-                                            maxLength={MEMO_MAX_LENGTH}
+                                        <Textarea   
                                             name="memo"
+                                            maxLength={MEMO_MAX_LENGTH}
                                             comment={true}
                                             className="memo"
                                             onChange={form.handleChange}

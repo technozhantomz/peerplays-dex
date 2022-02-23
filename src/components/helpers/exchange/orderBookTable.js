@@ -34,7 +34,7 @@ class OrderBookTable extends Component{
                          return item;
                      }
                  })
-                 if(buydata.buy){
+                 if(this.state.tdata){
                  let byData = this.state.tdata
                  byData.buy.buyRows = buydata;
                  byData.sell.sellRows = selldata;
