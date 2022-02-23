@@ -8,6 +8,7 @@ const handleData = async (context, val, id) => {
     const { mutateData, type } = context.props;
     let data = { ...context.state.data };
     const feeCalc = feeCalculator[type];
+
     data = Object.filter(data, data => data);
 
     data[id] = val;
@@ -46,9 +47,6 @@ class Form extends Component {
                     if (result.errors[keyValue]) {
                         state.errors[keyValue] = result.errors[keyValue];
                     }
-                    if(result.errors.quantity){
-                        state.data['fee'] = 0
-                    }
                 }
             });
             return state
@@ -77,14 +75,16 @@ class Form extends Component {
             return;
         }
         const checkPassword = () => {
-            this.setState({ loading: false });
-            getPassword(password => (
-                this.setState(
-                    { data: { ...data, password } },
-                    () => this.handleAction()
-                )
-            ));
-            return;
+            if (!data.password) {
+                this.setState({ loading: false });
+                getPassword(password => (
+                    this.setState(
+                        { data: { ...data, password } },
+                        () => this.handleAction()
+                    )
+                ));
+                return;
+            }
         }
 
         if (this.props.orderConfirmation) {
