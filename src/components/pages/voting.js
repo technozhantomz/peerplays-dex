@@ -50,11 +50,12 @@ const tableHeadWitnesses = [
     },
     {
         key: 'total_votes',
-        translateTag: 'votes',
+        translateTag: 'voteCount',
         params: 'align-right fit-content'
     },
     {
         key: 'vote_icon',
+        translateTag: 'votes',
         params: 'align-center fit-content content-padding'
     }
 ];
