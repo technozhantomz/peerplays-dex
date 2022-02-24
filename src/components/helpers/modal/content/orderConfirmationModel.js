@@ -66,7 +66,9 @@ class OrderConfirmationModel extends Component {
                     </Grid>
                 ))}
                 <div className="modal__smbottom">
-                    <button onClick={this.handleMethod} className="btn-round btn-round">{this.state.type} HIVE Now</button>
+                    <button onClick={this.handleMethod} className="btn-round btn-round">
+                        {this.state.type} {this.props.data && this.props.data.defaultData && this.props.data.defaultData.buyAsset} Now
+                    </button>
                     <Close/>
                 </div>
             </Fragment>

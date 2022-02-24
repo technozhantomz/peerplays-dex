@@ -49,6 +49,10 @@ class ChangePair extends Component{
         }
     };
 
+    SetPair = (val,name)=>{
+        this.setState({pair: {val, name},errors: false})
+    }
+
     swipePair = () => {
         const {base, quote} = this.state.pair;
 
@@ -73,6 +77,7 @@ class ChangePair extends Component{
     selectOldPair = (selectedPair) => {
         const [quote, base] = selectedPair.split(' / ');
         this.setState({pair: false}, () => this.setState({pair: {quote, base}, selectedPair}));
+        this.SetPair(quote,base)
     };
 
     render(){

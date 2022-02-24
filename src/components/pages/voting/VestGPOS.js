@@ -3,14 +3,20 @@ import React, { useState } from 'react';
 import NumericInput from 'react-numeric-input';
 import { connect, useSelector } from "react-redux";
 import Translate from 'react-translate-component';
+import { formAccount } from '../../../actions/account';
 import { getPassword, trxBuilder } from '../../../actions/forms';
-import { getStore } from '../../../actions/store';
+import { getStore,getAccountData } from '../../../actions/store';
+import {updateAccount} from "../../../dispatch/setAccount";
+
+
 
 const VestGPOS = (props) => {
 	const { symbol_id, precision, symbol, totalGpos, getAssets } = props;
 	const { loginData, accountData } = getStore();
 	const [vestAmount, setVestAmount] = useState(0);
 	const accBalance = accountData.assets[0].amount / (10 ** accountData.assets[0].precision);
+
+	const account = getAccountData();
 
 	const SubmitGposVesting = () => {
 		const begin_timestamp = new Date().toISOString().replace('Z', '');
@@ -40,26 +46,28 @@ const VestGPOS = (props) => {
 		};
 		getPassword(password => {
 			const activeKey = loginData.formPrivateKey(password, 'active');
-			trxBuilder([trx], [activeKey]).then(() => {
+			trxBuilder([trx], [activeKey]).then(async() => {
 				getAssets();
 				setVestAmount(0);
+				updateAccount(await formAccount(account.name));
 			});
+			
 		});
 	};
 	return (
 		<Card mode="widget" style={{ height:"100%"}}>
 			<div className="card__title" style={{ paddingTop:"20px" , borderTopLeftRadius:"10px" , borderTopRightRadius:"10px"}}>
-				Power Up
+			<Translate content={"voting.powerUp"} />
 			</div>
 			<CardContent >
 				<div style={{ marginBottom: 12 }}>
 					<div style={{ display: "inline-block", width: "100%" }}>
 						<div style={{ background: "#f0f0f0", margin: 4, padding: 12 }}>
-							Opening GPOS Balance: <strong>{totalGpos} {symbol}</strong>
+						<Translate content={"voting.openGpos"} />: <strong>{totalGpos} {symbol}</strong>
 						</div>
 					</div>
 				</div>
-				<Translate style={{ fontWeight:"bold"}} content='deposit.title' />
+				<Translate style={{ fontWeight:"bold",margin:"10px",display:"block"}} content='deposit.title' />
 				<div className='input-cus-style'>
 				<NumericInput
 					strict={true}
@@ -80,14 +88,14 @@ const VestGPOS = (props) => {
 				/>
 				</div>
 				<div style={{ marginTop: 12, color: "#ff444a", display: (vestAmount == null || vestAmount == 0) ? "block" : "none" }}>
-					This field is required and not zero
+					<Translate component="div" className="" content={"errors.requiredAndnotzero"} />
 				</div>
 				<div style={{ marginTop: 12, color: "#ff444a", display: (vestAmount == null || vestAmount > accBalance) ? "block" : "none" }}>
-					Value cannot exceed {accBalance}
+				<Translate component="div" className="" content={"errors.requiredAndnotzero"+ accBalance} /> 
 				</div>
-				<div style={{ marginTop: 12 }} class="input-cus-style">
+				<div style={{ marginTop: 12 }} className="input-cus-style">
 					<div style={{padding:"0 10px"}}>
-					New GPOS Balance : <strong style={{padding:"0 10px"}}>{totalGpos + vestAmount} {symbol}</strong>
+					<Translate  className="" content={"voting.newGpos"} /> : <strong style={{padding:"0 10px"}}>{totalGpos + vestAmount} {symbol}</strong>
 					</div>
 				</div>
 			</CardContent>

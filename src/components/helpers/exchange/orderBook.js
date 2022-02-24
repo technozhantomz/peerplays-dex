@@ -36,6 +36,7 @@ class OrderBook extends Component {
             left: '50%',
         }
 
+
         return (
             <div className="order-book">
                 <div className="order-filters">

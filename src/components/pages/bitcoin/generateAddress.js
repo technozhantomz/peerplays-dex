@@ -1,113 +1,109 @@
-import React, {useState, useEffect} from "react";
+import React, {Component,  Fragment} from "react";
+import Translate from "react-translate-component";
+import { getBasicAsset } from "../../../actions/store";
+import Form from "../../helpers/form/form";
 import Input from "../../helpers/form/input";
 import {generateSidechainAddress} from "../../../actions/forms/generateSidechainAddress";
-import {setSidechainAccounts} from '../../../dispatch/setAccount';
-import {clearLayout} from "../../../dispatch/index";
-import { getPassword } from "../../../actions/forms";
-import { useFormInput } from "./formInput";
+import { setSidechainAccounts } from "../../../dispatch/setAccount";
 
- 
-
-const GenerateAddress = (props) => {
-    const {accountData, sidechain, hasDepoAddress, sidechainAccount} = props;
-    const depositPublicKey = useFormInput('');
-    const withdrawPublicKey = useFormInput('');
-    const withdrawAddress = useFormInput('');
-    const [sent, setSent] = useState(false);
-    const [fee, setFee] = useState({amount: 0, symbol: accountData.assets[0].symbol});
-    const [errors, setErrors] = useState('');    
-    const [depositPublicKeyerrors, setErrorsdepositPublicKey] = useState('');    
-    const [withdrawPublicKeyerrors, setErrorswithdrawPublicKey] = useState('');    
-    const [withdrawAddresserrors, setErrorswithdrawAddress] = useState('');
-    
-    useEffect(() => {
-        if(depositPublicKey.value){
-            setErrorsdepositPublicKey();
-        }
-        if(withdrawPublicKey.value){
-            setErrorswithdrawPublicKey();
-        }
-        if(withdrawAddress.value){
-            setErrorswithdrawAddress();
-        }
-        
-    },[depositPublicKey])
-   
-    const handleAddressGenerated = (data) => {
-        data.filter(act => {(act.sidechain == sidechain) ? setSidechainAccounts(act) : ""});
-        setSent(true);
-        setTimeout(() => {
-            clearLayout();
-            setSent(false);
-            window.location.reload();
-        }, 5000);
+class GenerateAddress extends Component {
+    state = {
+        sended: false,
+        defaultData: false,
     };
 
-    const submitGenerateAddress = () => {
-        if(!depositPublicKey.value &&  !withdrawPublicKey.value && !withdrawAddress.value){
-            setErrorsdepositPublicKey("Field is required")
-            setErrorswithdrawPublicKey("Field is required")
-            setErrorswithdrawAddress("Field is required")
-            return;
-        }else if(!depositPublicKey.value){
-            setErrorswithdrawPublicKey()
-            setErrorswithdrawAddress()
-            setErrorsdepositPublicKey("Field is required")
-            return
-        }else if(!withdrawPublicKey.value){
-            setErrorswithdrawAddress()
-            setErrorsdepositPublicKey()
-            setErrorswithdrawPublicKey("Field is required")
-            return
-        }else if(!withdrawAddress.value){
-            setErrorsdepositPublicKey()
-            setErrorswithdrawPublicKey()
-            setErrorswithdrawAddress("Field is required")
-            return
-        }else{
-            setErrorsdepositPublicKey(""),
-            setErrorswithdrawPublicKey(""),
-            setErrorswithdrawAddress("")
-        }
-        getPassword(password => generateSidechainAddress({
+    componentDidMount() {
+        const { sidechain } = this.props;
+        const basicAsset = getBasicAsset().symbol;
+        const defaultData = {
+            depositPublicKey: '',
+            withdrawPublicKey: '',
+            withdrawAddress: '',
             sidechain: sidechain,
-            depositPublicKey: depositPublicKey.value,
-            password: password,
-            withdrawPublicKey: withdrawPublicKey.value,
-            withdrawAddress: withdrawAddress.value,
-            fee: fee
-        }).then((result) => {
-            result.success ? handleAddressGenerated(result.sidechainAccounts) : setErrors(result.errors);
-        }));
+            fee: 0,
+            feeAsset: basicAsset,
+        };
+
+        this.setState({ defaultData });
+    }
+
+    handleAddressGenerated = (data) => {
+        Object.keys(data.map(({trx}) => {
+            Object.keys(trx.operations.map((op) => {
+                setSidechainAccounts([op[1]]);
+            }))
+        }))
+        
+        const context = this;
+        window.location.reload();
+        this.setState({sended: true}, () => setTimeout(() => context.setState({sended: false}), 5000));
     };
 
-    return(
-        <div className="card__content">
-            <div className="form form__send">
-                <div className="">
-                    <Input name="depositPublicKey" className="modal__field" {...depositPublicKey}/>
-                {depositPublicKeyerrors === "Field is required" && <h3 className="clr--negative">This Field is required</h3>}
-                </div>
-                <div className="">                
-                    <Input name="withdrawPublicKey" className="modal__field" {...withdrawPublicKey}/>
-                {withdrawPublicKeyerrors === "Field is required" && <h3 className="clr--negative">This Field is required</h3>}
-                </div>
-                <div className="">
-                    <Input name="withdrawAddress" className="modal__field" {...withdrawAddress} />
-                {withdrawAddresserrors === "Field is required" && <h3 className="clr--negative">This Field is required</h3>}
-                </div>
-                <div className="info__row">
-                    <span>Fee: {fee.amount} {fee.symbol}</span>
-                    {sent && <span className="clr--positive">Sidechain address has been generated.</span>}
-                    {errors === "ERROR" && <h3 className="clr--negative">Something went wrong!! Try again.</h3>}
-                </div>            
-                <div className="btn__row">
-                    <button className="btn-round btn-round--buy" onClick={() => submitGenerateAddress()}>Generate</button>
+
+    render() {
+        const {sended, defaultData} = this.state;
+
+        if (!defaultData) return <span/>;
+        return (
+            <div className="card__content"> 
+                <div className="form form--btc">
+                    <Form
+                        className="form__send"
+                        type={'sidechain_address_add'}
+                        defaultData={defaultData}
+                        requiredFields={['depositPublicKey', 'withdrawPublicKey', 'withdrawAddress']}
+                        action={generateSidechainAddress}
+                        handleResult={this.handleAddressGenerated}
+                        needPassword
+                    >
+                    {
+                        form => {
+                            const {errors, data} = form.state;
+
+                            return (
+                                <Fragment>
+                                    <div className="input__row">
+                                        <Input
+                                            name="depositPublicKey"
+                                            onChange={form.handleChange}
+                                            error={errors}
+                                            value={data}
+                                        />
+                                    </div>
+                                    <div className="input__row">
+                                        <Input
+                                            name="withdrawPublicKey"
+                                            onChange={form.handleChange}
+                                            error={errors}
+                                            value={data}
+                                        />
+                                        
+                                    </div>
+                                    <div className="input__row">
+                                        <Input 
+                                            name="withdrawAddress"
+                                            onChange={form.handleChange}
+                                            error={errors}
+                                            value={data}
+                                        />
+                                    </div>
+                                    <div className="btn__row">
+                                        <span>Fee: {data.fee.amount ? data.fee.amount : '0'} {data.feeAsset}</span>
+                                        {sended && <span className="clr--positive">Sidechain address has been generated.</span>}
+                                        {errors === "ERROR" && <span className="clr--negative">Server side error!! Try again.</span>}
+                                        {errors === "DUPLICATE" && <h3 className="clr--negative">Key already exists.</h3>}
+                                        <button type="submit" className="btn-round btn-round--send">GENERATE</button>
+                                    </div>
+                                </Fragment>
+                            )
+                        }
+                    }
+                    </Form>
                 </div>
             </div>
-        </div>
-    )
-
-};
+        );
+    }
+    
+}
 
 export default GenerateAddress;

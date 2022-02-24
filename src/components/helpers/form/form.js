@@ -12,7 +12,6 @@ const handleData = async (context, val, id) => {
     data = Object.filter(data, data => data);
 
     data[id] = val;
-
     if (mutateData && mutateData[id]) data = mutateData[id](data);
     const errors = await checkErrors(data);
     if (feeCalc) {
@@ -36,7 +35,7 @@ class Form extends Component {
         errors: {}
     };
     handleChange = (val, id) => handleData(this, val, id)
-        .then((result) => this.validateAndSetState(this.form, result));
+    .then((result) => this.validateAndSetState(this.form, result));
 
     validateAndSetState = (form, result) => {
         this.setState(state => {
@@ -75,18 +74,18 @@ class Form extends Component {
             return;
         }
         const checkPassword = () => {
-            if (!data.password) {
-                getPassword(password => (
-                    this.setState(
-                        { data: { ...data, password } },
-                        () => this.handleAction()
-                    )
-                ));
-                return;
-            }
+            this.setState({ loading: false });
+            getPassword(password => (
+                this.setState(
+                    { data: { ...data, password } },
+                    () => this.handleAction()
+                )
+            ));
+            return;
         }
 
         if (this.props.orderConfirmation) {
+            this.setState({ loading: false });
             setModal(<OrderConfirmationModel onSuccess={checkPassword} data={this.props} grid={3} />)
             return;
         }
@@ -102,7 +101,6 @@ class Form extends Component {
     handleAction = () => {
         const data = this.state.data;
         const { action, handleResult } = this.props;
-        console.log("data",data)
         if (action) {
          const result = {
                 success: false,
