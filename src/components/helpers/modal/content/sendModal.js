@@ -97,30 +97,7 @@ class SendModal extends Component {
                                             disabled
                                         />
                                         {
-                                            this.props.defaultTo
-                                                ?
-                                                <FieldWithHint
-                                                id="modalSendTo"
-                                                name="to"
-                                                method={getSymbolsList}
-                                                handleChange={form.handleChange}
-                                                errors={errors}
-                                                defaultHints={data.contacts}
-                                                defaultVal = {data}
-                                            />
-                                                :
-                                                <Input
-                                                    name="to"
-                                                    className="mt-2"
-                                                    type="text"
-                                                    method={getSymbolsList}
-                                                    onChange={form.handleChange}
-                                                    error={errors}
-                                                    value={data}
-                                                    disabled={true}
-                                                />
-                                                :
-                                                data.contacts && data.contacts.length > 0 ? 
+                                             data.contacts && data.contacts.length > 0 ? 
                                                 <FieldWithHint
                                                     name="to"
                                                     className="mt-2"
