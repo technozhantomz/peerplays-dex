@@ -99,25 +99,26 @@ class SendModal extends Component {
                                         {
                                             this.props.defaultTo
                                                 ?
+                                                <FieldWithHint
+                                                id="modalSendTo"
+                                                name="to"
+                                                method={getSymbolsList}
+                                                handleChange={form.handleChange}
+                                                errors={errors}
+                                                defaultHints={data.contacts}
+                                                defaultVal = {data}
+                                            />
+                                                :
                                                 <Input
-                                                    id="modalSendTo"
                                                     name="to"
                                                     className="mt-2"
                                                     type="text"
+                                                    method={getSymbolsList}
                                                     onChange={form.handleChange}
                                                     error={errors}
                                                     value={data}
-                                                    disabled={true}
                                                 />
-                                                :
-                                                <clear
-                                                     name="to"
-                                                    className="mt-2"
-                                                    method={getSymbolsList}
-                                                    handleChange={form.handleChange}
-                                                    errors={errors}
-                                                    defaultHints={data.contacts}
-                                                />
+                                              
                                         }
                                         <div className="quantity-wrapper mt-2">
                                             <Input
