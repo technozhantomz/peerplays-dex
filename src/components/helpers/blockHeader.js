@@ -32,8 +32,8 @@ const ChildBlock = ({column, data}) => {
                     {column.charAt(0).toUpperCase()}{column.substr(1,)}
                 </Typography>
             </Grid>
-            <Grid item xs={12} sm={6}>
-                <Typography style={{fontSize: '12px'}}>{data[column]}</Typography>
+            <Grid item xs={12} sm={9}>
+                <Typography style={{fontSize: '12px',wordBreak: 'break-all'}}>{data[column]}</Typography>
             </Grid>
         </Grid>
     );
