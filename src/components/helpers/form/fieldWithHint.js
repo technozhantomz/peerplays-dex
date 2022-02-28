@@ -93,10 +93,11 @@ class FieldWithHint extends Component{
                     hideLabel={hideLabel}
                     placeholder={placeholder}
                     onChange={this.handleChange}
-                    // onFocus={this.handleChange}
-                    // onClick={this.handleChange}
+                    onFocus={this.handleChange}
+                    onClick={this.handleChange}
                     value={data}
                     readOnly={readOnly}
+                    {...this.props}
                 />
                 <Caret className='field__caret' />
                 { errors && errors[name] && <Translate content={`errors.${errors[name]}`} className="field__error" /> }

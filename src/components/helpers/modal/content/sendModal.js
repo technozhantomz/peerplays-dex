@@ -25,7 +25,7 @@ const getUserAssetsList = async (symbol) => (
         .map(item => item.symbol)
 );
 
-
+const MEMO_MAX_LENGTH = 256;
 class SendModal extends Component {
 
     state = {
@@ -97,7 +97,7 @@ class SendModal extends Component {
                                             disabled
                                         />
                                         {
-                                            this.props.defaultTo || this.props.defaultTo == "" 
+                                            this.props.defaultTo
                                                 ?
                                                 <Input
                                                     id="modalSendTo"
@@ -110,14 +110,26 @@ class SendModal extends Component {
                                                     disabled={true}
                                                 />
                                                 :
-                                                <clear
-                                                     name="to"
+                                                data.contacts && data.contacts.length > 0 ? 
+                                                <FieldWithHint
+                                                    name="to"
                                                     className="mt-2"
                                                     method={getSymbolsList}
                                                     handleChange={form.handleChange}
                                                     errors={errors}
                                                     defaultHints={data.contacts}
                                                 />
+                                                :
+                                                <Input
+                                                    id="modalSendTo"
+                                                    name="to"
+                                                    className="mt-2"
+                                                    type="text"
+                                                    onChange={form.handleChange}
+                                                    error={errors}
+                                                    value={data}
+                                                />
+
                                         }
                                         <div className="quantity-wrapper mt-2">
                                             <Input
@@ -142,6 +154,7 @@ class SendModal extends Component {
                                         <Textarea
                                             id="modalSendMemo"
                                             name="memo"
+                                            maxLength={MEMO_MAX_LENGTH}
                                             comment={true}
                                             onChange={form.handleChange}
                                             error={errors}

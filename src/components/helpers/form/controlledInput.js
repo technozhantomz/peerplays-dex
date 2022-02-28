@@ -29,7 +29,7 @@ const ControlledInput = (props) => {
                 defaultValue={value[name] || ''}
                 type={type}
                 disabled={disabled}
-                // onFocus={e => onFocus ? onFocus(e.target.value, name) : e.preventDefault()}
+                onFocus={e => onFocus ? onFocus(e.target.value, name) : e.preventDefault()}
                 onChange={e => onChange ? onChange(e.target.value, name) : e.preventDefault()}
                 // onClick={e => onChange ? onChange(e.target.value, name) : e.preventDefault()}
                 // onBlur={e => onBlur ? onBlur(e.target.value, name) : e.preventDefault()}
