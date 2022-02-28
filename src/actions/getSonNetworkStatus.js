@@ -35,7 +35,7 @@ export const getSonNetworkStatus = async () => {
         }
         result = {
             status: status,
-            isSonNetworkOk: activeSons / sons.length > (2/3) ? true : false,
+            isSonNetworkOk: (activeSons / gpo.parameters.extensions.maximum_son_count) > (2/3) ? true : false,
         };
         return result;          
 
