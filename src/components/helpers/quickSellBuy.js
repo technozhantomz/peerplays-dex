@@ -77,7 +77,7 @@ class QuickSellBuy extends Component {
                                         <Input
                                             name="amount_to_sell"
                                             type="number"
-                                            placeholder="sell"
+                                            placeholder="Quantity"
                                             hideLabel={true}
                                             onChange={form.handleChange}
                                             error={errors}
@@ -86,7 +86,7 @@ class QuickSellBuy extends Component {
                                         <div className="sellHint">
                                         <FieldWithHint
                                             name="asset_to_sell"
-                                            placeholder="sell"
+                                            placeholder="Assets"
                                             method={getUserAssetsList}
                                             hideLabel={true}
                                             handleChange={form.handleChange}
@@ -101,7 +101,7 @@ class QuickSellBuy extends Component {
                                         <Input
                                             name="amount_to_receive"
                                             type="number"
-                                            placeholder="receive"
+                                            placeholder="Quantity"
                                             hideLabel={true}
                                             onChange={form.handleChange}
                                             error={errors}
@@ -110,7 +110,7 @@ class QuickSellBuy extends Component {
                                         <div className="sellHint">
                                         <FieldWithHint
                                             name="buyAsset"
-                                            placeholder="buyAsset"
+                                            placeholder="Assets"
                                             method={getAssetsList}
                                             hideLabel={true}
                                             handleChange={form.handleChange}
