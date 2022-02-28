@@ -676,6 +676,7 @@ export const en = {
         "withdrawError":"The withdraw amount should be greater than 0",
         "Notexceed":"Value cannot exceed",
         "sendYourself": "You can\'t transfer tokens for yourself",
+        "sonNotAvailable": "SON network is not available now",
         "noAcc": "Failed to find this account",
         "noKey": "Failed to find this key",
         "wrongPass": "Password is wrong",
