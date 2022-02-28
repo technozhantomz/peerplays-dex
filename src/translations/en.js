@@ -713,6 +713,8 @@ export const en = {
         "conditionLength": "Condition is too long",
         "resolutionError": "Select another date",
         "remainIssueNotEnough": "Remain amount of supply isn't enough to issue",
+        "sonError": "Server side error!! Try again later.",
+        "keyExists": "Key already exists.",
         "newAcc": {
             "longer": "Account name should be longer",
             "shorter": "Account name should be shorter",
@@ -738,6 +740,11 @@ export const en = {
             "end": "Asset name should end with a letter or number",
             "symbols": "Asset name should contain only letters numbers and perhaps a dot."
         }
+    },
+    "success":{
+        "transCompleted": "Transaction Completed",
+        "sidechainUpdated": "Sidechain address has been updated.",
+        "sidechainGenerated": "Sidechain address has been generated.",
     },
     "tabs": {
         "orderBook": "Order Book",
@@ -849,6 +856,8 @@ export const en = {
         "showAdditionalData": "Show Additional Data",
         "hideAdditionalData": "Hide Additional Data",
         "newContact": "+ New Contact",
+        "update": "Update",
+        "generate": "Generate",
     },
     "emptyPage": {
         "default": "No data",
