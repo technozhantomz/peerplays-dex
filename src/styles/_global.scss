@@ -208,6 +208,9 @@ svg .mask{
     b {
       border: none !important;
       border-color: transparent !important;
+      &:hover {
+        background-color: #a49898 !important;
+      }
     }
   }
 }

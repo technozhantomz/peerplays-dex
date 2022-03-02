@@ -45,9 +45,6 @@ class Form extends Component {
                     if (result.errors[keyValue]) {
                         state.errors[keyValue] = result.errors[keyValue];
                     }
-                    if(result.errors.quantity){
-                        state.data['fee'] = 0
-                    }
                 }
             });
             return state
