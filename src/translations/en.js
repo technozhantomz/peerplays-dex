@@ -29,6 +29,7 @@ export const en = {
         "lastBlock": "Last Block",
         "missingBlock": "Missing Block",
         "votes": "Votes",
+        "voteCount":"Vote Count",
         "key": "Key",
         "time": "Time",
         "type": "Price (kbyte)",
