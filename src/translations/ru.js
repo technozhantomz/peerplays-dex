@@ -29,6 +29,7 @@ export const ru = {
         "lastBlock": "Последний блок",
         "missingBlock": "Пропавший блок",
         "votes": "Голосов",
+       "voteCount":"количество голосов", 
         "key": "ключ",
         "time": "Время",
         "type": "тип",
