@@ -102,14 +102,25 @@ class SendForm extends Component {
                                         />
                                     </div>
                                     <div className="input__row">
-                                        <FieldWithHint
-                                            name="to"
-                                            method={getSymbolsList}
-                                            handleChange={form.handleChange}
-                                            errors={errors}
-                                            defaultHints={data.contacts}
-                                            defaultVal = {data}
-                                        />
+                                     {
+                                          data.contacts && data.contacts.length > 0 ? 
+                                          <FieldWithHint
+                                              name="to"
+                                              method={getSymbolsList}
+                                              handleChange={form.handleChange}
+                                              errors={errors}
+                                              defaultHints={data.contacts}
+                                              defaultVal = {data}
+                                          />
+                                          :
+                                          <Input
+                                              name="to"
+                                              type="text"
+                                              onChange={form.handleChange}
+                                              error={errors}
+                                              value={data}
+                                          />
+                                    }
                                     <FieldWithHint
                                                 name="quantityAsset"
                                                 method={getUserAssetsList}
