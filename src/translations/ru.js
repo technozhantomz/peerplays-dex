@@ -360,6 +360,7 @@ export const ru = {
         "blacklistMarket": "Черный список рынка"
     },
     "voting": {
+        "title": "Голосование & Вестинг",
         "vestingTitle": "Вестинг",
         "votingTitle": "Голосование",
         "workers": {

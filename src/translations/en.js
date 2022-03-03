@@ -360,6 +360,7 @@ export const en = {
         "blacklistMarket": "Blacklist Market",
     },
     "voting": {
+        "title": "Voting & Vesting",
         "vestingTitle": "Vesting",
         "votingTitle": "Voting",
         "workers": {
