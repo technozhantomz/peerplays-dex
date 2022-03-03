@@ -38,9 +38,8 @@ class Form extends Component {
 
     validateAndSetState = (form, result) => {
         this.setState(state => {
-            
             Object.keys(result.data).map((keyValue) => {
-                state.errors[keyValue] = '';
+                delete state.errors[keyValue]
                 if (!form[keyValue] || result.data[keyValue] === form[keyValue].value || result.data[keyValue] === form[keyValue].checked) {
                     state.data[keyValue] = result.data[keyValue];
                     if (result.errors[keyValue]) {
