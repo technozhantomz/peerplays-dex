@@ -271,7 +271,7 @@ const Voting = (props) => {
     return (
         <div className="container page">
               <div className="page__header-wrapper">
-            <Translate className="page__title" component="h1" content={"voting.title"}/>
+            <Translate className="page__title" component="h1" content={"voting.vestingTitle"}/>
         </div>
             <div>
                 <Grid container spacing={1}>
@@ -322,7 +322,7 @@ const Voting = (props) => {
             </div>
 
             <div className="page__header-wrapper">
-                <Translate className="page__title" component="h1" content="voting.title" />
+                <Translate className="page__title" component="h1" content="voting.votingTitle" />
             </div>
             <div className="page__menu">
                 {
