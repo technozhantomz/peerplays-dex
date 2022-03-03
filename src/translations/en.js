@@ -589,6 +589,8 @@ export const en = {
     },
     "field": {
         "labels": {
+            "sellAmount": "Sell amount",
+            "buyAmount": "Buy amount",
             "login": "Login",
             "publicName": "Public Name",
             "brainkey": "Brainkey",
