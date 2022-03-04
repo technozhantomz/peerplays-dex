@@ -595,6 +595,8 @@ export const ru = {
     },
     "field": {
         "labels": {
+            "sellAmount": "Сумма продажи",
+            "buyAmount": "Сумма покупки",
             "login": "логин",
             "publicName": "Публичное имя",
             "brainkey": "Брейнки",
