@@ -362,6 +362,8 @@ export const ru = {
     },
     "voting": {
         "title": "Голосование & Вестинг",
+        "vestingTitle": "Вестинг",
+        "votingTitle": "Голосование",
         "workers": {
             "title": "Работников"
         },
