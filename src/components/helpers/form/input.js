@@ -9,6 +9,7 @@ const Input = (props) => {
         type = 'text',
         disabled = false,
         formData,
+        onKeyPress,
         onBlur
     } = props;
 
@@ -26,6 +27,7 @@ const Input = (props) => {
                 defaultValue={value[name]}
                 type={type}
                 disabled={disabled}
+                onKeyPress={onKeyPress}
                 onChange={e => onChange ? onChange(e.target.value, name) : e.preventDefault()}
                 onBlur={e => onBlur ? onBlur(e.target.value, name) : e.preventDefault()}
                 placeholder=" "
