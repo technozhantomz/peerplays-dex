@@ -106,7 +106,6 @@ class SendForm extends Component {
                                           data.contacts && data.contacts.length > 0 ? 
                                           <FieldWithHint
                                               name="to"
-                                              method={getSymbolsList}
                                               handleChange={form.handleChange}
                                               errors={errors}
                                               defaultHints={data.contacts}
