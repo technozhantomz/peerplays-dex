@@ -15,6 +15,7 @@ export const en = {
         "priceWithToken": "Price (%(token)s)",
         "amountWithToken": "Amount (%(token)s)",
         "change": "Change (24h)",
+        "volume": "Volume (asset/%(token)s)",
         "valueWithToken": "Value (%(token)s)",
         "value": "Value",
         "actions": "Actions",
@@ -29,6 +30,7 @@ export const en = {
         "lastBlock": "Last Block",
         "missingBlock": "Missing Block",
         "votes": "Votes",
+        "voteCount":"Vote Count",
         "key": "Key",
         "time": "Time",
         "type": "Price (kbyte)",
@@ -197,7 +199,7 @@ export const en = {
         },
         "fee": {
             "title": "Fee Pool",
-            "text": "The fee pool is used to pay fees in USD by converting the fee in BTC to USD. If the fee pool runs out of funds, fees may no longer be paid in BTC and will default to USD. The core exchange rate is the price at which BTC are converted to USD.",
+            "text": "The fee pool is used to pay fees in TEST by converting the fee in BTC to TEST. If the fee pool runs out of funds, fees may no longer be paid in BTC and will default to TEST. The core exchange rate is the price at which BTC are converted to TEST.",
             "coreExchangeRate": "Core exchange rate (CER)",
             "feePool": "Pool balance",
             "unclaimedIssuerIncome": "Unclaimed issuer income"
@@ -286,7 +288,7 @@ export const en = {
         "title": "Exchange",
         "price": "Current Price",
         "change": "Change (24h)",
-        "value": "Value (24h)",
+        "value": "Volume (24h)",
         "feed": "Feed Price",
         "limit": "Call Limit",
         "margin": "Margin Call",
@@ -360,6 +362,8 @@ export const en = {
     },
     "voting": {
         "title": "Voting & Vesting",
+        "vestingTitle": "Vesting",
+        "votingTitle": "Voting",
         "workers": {
             "title": "Workers"
         },
@@ -587,6 +591,8 @@ export const en = {
     },
     "field": {
         "labels": {
+            "sellAmount": "Sell amount",
+            "buyAmount": "Buy amount",
             "login": "Login",
             "publicName": "Public Name",
             "brainkey": "Brainkey",
@@ -596,15 +602,15 @@ export const en = {
             "passwordCheck": "Confirm Password",
             "from": "From",
             "to": "To",
-            "hiveAcc": "Enter  your USA/KENYA Bank  account to which the funds are to be sent",
+            "hiveAcc": "Enter USD/KES bank account which the funds are to be sent",
             "hiveAmount": "Enter amount of USD/KES to be withdrawn",
             "hiveCurrency": "Select currency",
             "quantity": "Quantity",
-            "memo": "Country ?",
+            "memo": "sent to which Country ?",
             "fee": "Fee",
             "gateFee": "Gate Fee",
             "newWorkerName": "Worker Name",
-            "dailyPay": "Daily Pay (LLC)",
+            "dailyPay": "Daily Pay (TEST)",
             "dateBegin": "Start Date",
             "dateEnd": "End Date",
             "website": "Website",
@@ -676,6 +682,7 @@ export const en = {
         "withdrawError":"The withdraw amount should be greater than 0",
         "Notexceed":"Value cannot exceed",
         "sendYourself": "You can\'t transfer tokens for yourself",
+        "sonNotAvailable": "SON network is not available now",
         "noAcc": "Failed to find this account",
         "noKey": "Failed to find this key",
         "wrongPass": "Password is wrong",
@@ -713,10 +720,12 @@ export const en = {
         "conditionLength": "Condition is too long",
         "resolutionError": "Select another date",
         "remainIssueNotEnough": "Remain amount of supply isn't enough to issue",
+        "sonError": "Server side error!! Try again later.",
+        "keyExists": "Key already exists.",
         "newAcc": {
             "longer": "Account name should be longer",
             "shorter": "Account name should be shorter",
-            "firstLetter": "Account should start with a small letter",
+            "firstLetter": "Account name should start with a letter",
             "noSpecials": "Account name should have only letters, digits, or dashes",
             "oneDash": "Account name should have only one dash in a row",
             "lastSymbol": "Account name should end with a letter or digit",
@@ -738,6 +747,11 @@ export const en = {
             "end": "Asset name should end with a letter or number",
             "symbols": "Asset name should contain only letters numbers and perhaps a dot."
         }
+    },
+    "success":{
+        "transCompleted": "Transaction Completed",
+        "sidechainUpdated": "Sidechain address has been updated.",
+        "sidechainGenerated": "Sidechain address has been generated.",
     },
     "tabs": {
         "orderBook": "Order Book",
@@ -849,6 +863,8 @@ export const en = {
         "showAdditionalData": "Show Additional Data",
         "hideAdditionalData": "Hide Additional Data",
         "newContact": "+ New Contact",
+        "update": "Update",
+        "generate": "Generate",
     },
     "emptyPage": {
         "default": "No data",
