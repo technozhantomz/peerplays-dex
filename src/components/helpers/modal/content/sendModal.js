@@ -149,6 +149,7 @@ class SendModal extends Component {
                                                 errors={errors}
                                                 defaultVal = {data}
                                                 readOnly={true}
+                                                disabled={true}
                                             />
                                         </div>
                                         <Textarea
