@@ -25,22 +25,22 @@ cp example.env .env
 .env
 ```
 # Token symbol
-DEFAULT_TOKEN='LLC'
+DEFAULT_TOKEN=''
 
 # Token symbol
-DEFAULT_QUOTE='BTC'
+DEFAULT_QUOTE=''
 
 # Full URL to the blockchain's faucet
-FAUCET_URL='https://create.commodity.llc/api/v1/accounts'
+FAUCET_URL=''
 
 # Full URL to your DEX instance
-DEX_URL='https://commodity.llc'
+DEX_URL=''
 
 # Chain ID of the blockchain
-DEFAULT_CHAIN_ID='23a8ad8acbf73c93829c998a69f7eda005fba8518156e824d5a1998fa7031234'
+DEFAULT_CHAIN_ID=''
 
 # Blockchain API endpoints (websocket)
-BLOCKCHAIN_ENDPOINTS='wss://login.commodity.llc/ws'
+BLOCKCHAIN_ENDPOINTS=''
 ```
 
 ## Starting after installation and ENV configuration

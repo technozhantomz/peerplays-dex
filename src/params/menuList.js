@@ -6,6 +6,7 @@ import {
     IconDashboard,
     IconExchange, 
     IconSettings,
+    Iconwithdrawal,
     IconVoting
 } from "../svg/index";
 
@@ -31,7 +32,7 @@ export const menuList = [
         icon: <IconBlockchain />,
     },
     {
-        link: '/voting',
+        link: '/voting-vesting',
         tag: 'voting',
         icon: <IconVoting />,
     },
@@ -48,6 +49,6 @@ export const menuList = [
     {
         link: '/hive',
         tag: 'hive',
-        icon: <IconBookOpen/>,
+        icon: <Iconwithdrawal/>,
     }
 ];

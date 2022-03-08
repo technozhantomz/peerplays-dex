@@ -11,7 +11,7 @@ import FieldWithHint from "../../helpers/form/fieldWithHint";
 
 
 const getHiveAssetsList = async (symbol) => {
-    return ['USD', 'KES']
+    return ['HIVE', 'HBD']
 }
 
 
@@ -23,7 +23,7 @@ class HiveTransactions extends Component {
 
     componentDidMount() {
         const user = getAccountData();
-        const startAsset = 'USD';
+        const startAsset = 'HIVE';
         const basicAsset = getBasicAsset().symbol;
         const defaultData = {
             from: user.name,
@@ -128,9 +128,9 @@ class HiveTransactions extends Component {
                                                         />
                                                     </div>
                                                     <div className="btn__row">
-                                                        <span>Fee: {data.fee} {data.feeAsset}</span>
-                                                        {sended && <span className="clr--positive">Transaction Completed</span>}
-                                                        <button type="submit" className="btn-round btn-round--send">Withdraw</button>
+                                                        <span><Translate component="span" content={"field.labels.fee"}/>: {data.fee} {data.feeAsset}</span>
+                                                        {sended && <Translate className="clr--positive" component="span" content={"success.transCompleted"}/> }
+                                                        <Translate className="btn-round btn-round--send" component="button" type="submit" content={"buttons.withdraw"}/>
                                                     </div>
                                                 </Fragment>
                                             )

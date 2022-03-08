@@ -197,7 +197,7 @@ export const en = {
         },
         "fee": {
             "title": "Fee Pool",
-            "text": "The fee pool is used to pay fees in TEST by converting the fee in BTC to TEST. If the fee pool runs out of funds, fees may no longer be paid in BTC and will default to TEST. The core exchange rate is the price at which BTC are converted to TEST.",
+            "text": "The fee pool is used to pay fees in USD by converting the fee in BTC to USD. If the fee pool runs out of funds, fees may no longer be paid in BTC and will default to USD. The core exchange rate is the price at which BTC are converted to USD.",
             "coreExchangeRate": "Core exchange rate (CER)",
             "feePool": "Pool balance",
             "unclaimedIssuerIncome": "Unclaimed issuer income"

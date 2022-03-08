@@ -8,11 +8,9 @@ const handleData = async (context, val, id) => {
     const { mutateData, type } = context.props;
     let data = { ...context.state.data };
     const feeCalc = feeCalculator[type];
-
     data = Object.filter(data, data => data);
 
     data[id] = val;
-
     if (mutateData && mutateData[id]) data = mutateData[id](data);
     const errors = await checkErrors(data);
     if (feeCalc) {
