@@ -63,14 +63,7 @@ class SendForm extends Component {
         // );
     };
 
-    isNumberKey = (e)=>{
-        var charCode = (e.which) ? e.which : e.keyCode
-        if (charCode === 43 || charCode === 45 || charCode === 101 ){
-             return e.preventDefault()
-        }
-        }
-
-    render() {
+   render() {
         const {sended, defaultData, userTokens} = this.state;
 
         if (!defaultData) return <span/>;
@@ -103,7 +96,6 @@ class SendForm extends Component {
                                         <Input
                                             name="quantity"
                                             type="number"
-                                            onKeyPress={(e)=>this.isNumberKey(e)}
                                             onChange={form.handleChange}
                                             error={errors}
                                             value={data}

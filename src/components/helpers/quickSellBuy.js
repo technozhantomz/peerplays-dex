@@ -52,12 +52,7 @@ class QuickSellBuy extends Component {
         
     };
 
-    isNumberKey = (e)=>{
-        var charCode = (e.which) ? e.which : e.keyCode
-        if (charCode === 43 || charCode === 45 || charCode === 101 ){
-             return e.preventDefault()
-        }
-        }
+  
 
     render() {
         const {defaultData, userTokens, sended} = this.state;
@@ -85,7 +80,6 @@ class QuickSellBuy extends Component {
                                             name="amount_to_sell"
                                             labelTag="field.labels.sellAmount"
                                             type="number"
-                                            onKeyPress={(e)=>this.isNumberKey(e)}
                                             onChange={form.handleChange}
                                             error={errors}
                                             defaultVal={data}
@@ -108,7 +102,6 @@ class QuickSellBuy extends Component {
                                             name="amount_to_receive"
                                             labelTag="field.labels.buyAmount"
                                             type="number"
-                                            onKeyPress={(e)=>this.isNumberKey(e)}
                                             onChange={form.handleChange}
                                             error={errors}
                                             defaultVal={data}
