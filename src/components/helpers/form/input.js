@@ -18,8 +18,6 @@ const Input = (props) => {
     let isNumberKey = (e,type)=>{
         var charCode = (e.which) ? e.which : e.keyCode
         if (type === 'number' && (charCode === 43 || charCode === 45 || charCode === 101)){
-            console.log("charCode",charCode)
-            console.log("type",type)
              return e.preventDefault()
         }
         if (type === 'password' && charCode === 32 ){
