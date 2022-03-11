@@ -33,7 +33,7 @@ export const en = {
         "voteCount":"Vote Count",
         "key": "Key",
         "time": "Time",
-        "type": "Price (kbyte)",
+        "type": "Operations",
         "info": "Info",
         "id": "ID",
         "fee": "Fee",
