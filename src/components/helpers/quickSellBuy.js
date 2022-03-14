@@ -13,8 +13,8 @@ const getAssetsList = async () => dbApi('list_assets', ['', 100])
 
 const getUserAssetsList = async (symbol) => (
     getAccountData().assets
-        .filter(item?item.name.includes(symbol):[])
-        .map(item => item.name)
+    .filter(item => item ? item.symbol : [])
+    .map(item => item.symbol)
 );
 
 class QuickSellBuy extends Component {
