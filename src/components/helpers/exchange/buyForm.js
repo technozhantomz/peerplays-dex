@@ -179,7 +179,9 @@ class BuyForm extends Component{
                                     value={data}
                                     error={errors}
                                     readOnly={true}
+                                    style={{cursor:"text"}}
                                 />
+                               
                                 <div className="exchange-form__info-wrapper">
                                     <div className="exchange-form__info">
                                         <Translate content="exchange.fee" />
