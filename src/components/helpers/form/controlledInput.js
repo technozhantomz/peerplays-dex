@@ -15,6 +15,12 @@ const ControlledInput = (props) => {
     } = props;
 
     let onChange = formData ? formData.handleChange : props.onChange;
+    let isNumberKey = (e)=>{
+        var charCode = (e.which) ? e.which : e.keyCode
+      if (charCode === 32 ){
+            return e.preventDefault()
+       }
+        }
 
     if(disabled) onChange = '';
 
@@ -28,6 +34,7 @@ const ControlledInput = (props) => {
                 defaultValue={value[name] || ''}
                 type={type}
                 disabled={disabled}
+                onKeyPress={e => isNumberKey(e)}
                 onFocus={e => onFocus ? onFocus(e.target.value, name) : e.preventDefault()}
                 onChange={e => onChange ? onChange(e.target.value, name) : e.preventDefault()}
                 onClick={e => onChange ? onChange(e.target.value, name) : e.preventDefault()}
