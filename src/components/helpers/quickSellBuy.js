@@ -21,7 +21,7 @@ class QuickSellBuy extends Component {
     state = {
         defaultData: false,
         userTokens: false,
-        sended: false
+        sended: false,
     };
 
     componentDidMount() {
@@ -51,6 +51,8 @@ class QuickSellBuy extends Component {
         );
         
     };
+
+  
 
     render() {
         const {defaultData, userTokens, sended} = this.state;

@@ -63,7 +63,7 @@ class SendForm extends Component {
         // );
     };
 
-    render() {
+   render() {
         const {sended, defaultData, userTokens} = this.state;
 
         if (!defaultData) return <span/>;

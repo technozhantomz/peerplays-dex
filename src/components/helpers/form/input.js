@@ -10,6 +10,7 @@ const Input = (props) => {
         disabled = false,
         onKeyPress,
         formData,
+        onKeyPress,
         onBlur
     } = props;
 
