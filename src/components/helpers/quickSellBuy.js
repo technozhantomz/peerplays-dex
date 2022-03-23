@@ -27,7 +27,7 @@ class QuickSellBuy extends Component {
     componentDidMount() {
         const userTokens = getAccountData().assets.map(e => e.symbol);
         const defaultData = {
-            sellAsset: userTokens.length ? userTokens[0] : defaultToken,
+            asset_to_sell: userTokens && userTokens.length ? userTokens[0] : defaultToken,
             buyAsset: defaultQuote,
             fee: 0,
             amount_to_sell: 0,
@@ -76,8 +76,8 @@ class QuickSellBuy extends Component {
                                     <div className="input__row">
                                         <Input
                                             name="amount_to_sell"
+                                            labelTag="field.labels.sellAmount"
                                             type="number"
-                                            hideLabel={true}
                                             onChange={form.handleChange}
                                             error={errors}
                                             defaultVal={data}
@@ -98,8 +98,8 @@ class QuickSellBuy extends Component {
                                     <div className="input__row">
                                         <Input
                                             name="amount_to_receive"
+                                            labelTag="field.labels.buyAmount"
                                             type="number"
-                                            hideLabel={true}
                                             onChange={form.handleChange}
                                             error={errors}
                                             defaultVal={data}

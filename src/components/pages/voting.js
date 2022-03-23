@@ -50,11 +50,12 @@ const tableHeadWitnesses = [
     },
     {
         key: 'total_votes',
-        translateTag: 'votes',
+        translateTag: 'voteCount',
         params: 'align-right fit-content'
     },
     {
         key: 'vote_icon',
+        translateTag: 'votes',
         params: 'align-center fit-content content-padding'
     }
 ];
@@ -270,7 +271,7 @@ const Voting = (props) => {
     return (
         <div className="container page">
               <div className="page__header-wrapper">
-            <Translate className="page__title" component="h1" content={"vesting.title"}/>
+            <Translate className="page__title" component="h1" content={"voting.vestingTitle"}/>
         </div>
             <div>
                 <Grid container spacing={1}>
@@ -321,7 +322,7 @@ const Voting = (props) => {
             </div>
 
             <div className="page__header-wrapper">
-                <Translate className="page__title" component="h1" content="voting.title" />
+                <Translate className="page__title" component="h1" content="voting.votingTitle" />
             </div>
             <div className="page__menu">
                 {
@@ -330,7 +331,7 @@ const Voting = (props) => {
                             key={id}
                             content={`voting.${el.tag}.title`}
                             component={NavLink}
-                            to={`/voting${el.link}`}
+                            to={`/voting-vesting${el.link}`}
                             className="page__menu-item"
                             exact
                         />
@@ -343,7 +344,7 @@ const Voting = (props) => {
                         votingMenu.map((el, id) => (
                             <Route
                                 key={id}
-                                path={`/voting${el.link}`}
+                                path={`/voting-vesting${el.link}`}
                                 render={() => el.render(account, props.data, cancelVotes, { setNewVotes, newVotes })}
                                 exact
                             />

@@ -22,7 +22,7 @@ export const sellBuy = async (data, result) => {
         buy.symbol = data.sellAsset;
         buy.amount = data.amount_to_sell;
     } else {
-        sell.symbol = data.sellAsset;
+        sell.symbol = data.asset_to_sell;
         sell.amount = data.amount_to_sell;
         buy.symbol = data.buyAsset;
         buy.amount = data.amount_to_receive;

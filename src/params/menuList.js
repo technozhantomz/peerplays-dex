@@ -32,7 +32,7 @@ export const menuList = [
         icon: <IconBlockchain />,
     },
     {
-        link: '/voting',
+        link: '/voting-vesting',
         tag: 'voting',
         icon: <IconVoting />,
     },
@@ -47,7 +47,7 @@ export const menuList = [
         icon: <IconBookOpen/>,
     },
     {
-        link: '/hive',
+        link: '/hive-hbd',
         tag: 'hive',
         icon: <Iconwithdrawal/>,
     }
