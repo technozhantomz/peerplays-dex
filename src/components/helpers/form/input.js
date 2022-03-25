@@ -8,7 +8,6 @@ const Input = (props) => {
         name = '',
         type = 'text',
         disabled = false,
-        onKeyPress,
         formData,
         onKeyPress,
         onBlur
