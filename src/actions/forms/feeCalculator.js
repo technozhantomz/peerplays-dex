@@ -222,14 +222,16 @@ const calculateSidechainAddressAddFee = () => {
   const userBasicAsset = userData.assets.find(el => el.symbol === basicAsset.symbol);
 
   const fees = getFees().sidechain_address_add;
-  if(fees.fee > 0 && (!userBasicAsset || userBasicAsset.setPrecision() <= fees.fee)){
+  if(fees && fees.fee > 0 && (!userBasicAsset || userBasicAsset.setPrecision() <= fees.fee)){
       result.feeErr = 'isNotEnough';
-      return result;
-  }
-
-  const defaultFee = basicAsset.setPrecision(true, fees.fee);
+      const defaultFee = basicAsset.setPrecision(true, fees.fee);
 
   result.feeAmount = new Asset({...basicAsset, amount: defaultFee});
+    return result;
+
+  }
+
+  
 
   return result;
 };
