@@ -27,7 +27,7 @@ class QuickSellBuy extends Component {
     componentDidMount() {
         const userTokens = getAccountData().assets.map(e => e.symbol);
         const defaultData = {
-            asset_to_sell: userTokens && userTokens.length ? userTokens[0] : defaultToken,
+            sellAsset: userTokens && userTokens.length ? userTokens[0] : defaultToken,
             buyAsset: defaultQuote,
             fee: 0,
             amount_to_sell: 0,
@@ -65,7 +65,7 @@ class QuickSellBuy extends Component {
                     type={'limit_order_create'}
                     className="form__sell-buy"
                     defaultData={defaultData}
-                    requiredFields={['amount_to_sell', 'amount_to_receive', 'asset_to_sell', 'buyAsset']}
+                    requiredFields={['amount_to_sell', 'amount_to_receive', 'sellAsset', 'buyAsset']}
                     action={sellBuy}
                     handleResult={this.handleTransfer}
                     needPassword
@@ -86,7 +86,7 @@ class QuickSellBuy extends Component {
                                         />
                                         <div className="sellHint">
                                         <FieldWithHint
-                                            name="asset_to_sell"
+                                            name="sellAsset"
                                             method={getUserAssetsList}
                                             hideLabel={true}
                                             handleChange={form.handleChange}

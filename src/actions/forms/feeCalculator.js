@@ -69,7 +69,7 @@ const calculateFee = (type, errVariable, quantity, assetName, memo) => {
     return result;
 };
 
-const calculateLimitOrderFee = (orderType = 'buy', amount_to_sell, sellAsset,asset_to_sell, amount_to_receive, buyAsset) => {
+const calculateLimitOrderFee = (orderType = 'buy', amount_to_sell, sellAsset, amount_to_receive, buyAsset) => {
     const val = Number(amount_to_sell);
     const val2 = Number(amount_to_receive)
     const result = {
@@ -114,7 +114,7 @@ const calculateLimitOrderFee = (orderType = 'buy', amount_to_sell, sellAsset,ass
         return result;
     }
 
-    const isBasicAsset = asset_to_sell === basicAsset.symbol;
+    const isBasicAsset = sellAsset === basicAsset.symbol;
     const isBasicBuyAsset = buyAsset === basicAsset.symbol;
 
     let feeData = fees['limit_order_create'];
@@ -238,7 +238,7 @@ const calculateSidechainAddressAddFee = () => {
 
 export const feeCalculator = {
     transfer: ({quantity, quantityAsset, memo}) => calculateFee('transfer', 'quantity', quantity, quantityAsset, memo),
-    limit_order_create: ({type, amount_to_sell, sellAsset,asset_to_sell, amount_to_receive, buyAsset}) => calculateLimitOrderFee(type, amount_to_sell, sellAsset,asset_to_sell, amount_to_receive, buyAsset),
+    limit_order_create: ({type, amount_to_sell, sellAsset, amount_to_receive, buyAsset}) => calculateLimitOrderFee(type, amount_to_sell, sellAsset, amount_to_receive, buyAsset),
     withdraw_trx: data => calculateWithdrawFee(data),
     asset_fund_fee_pool: ({quantity, quantityAsset}) => calculateFee('asset_fund_fee_pool', 'quantity', quantity, quantityAsset),
     asset_claim_pool: ({quantityClaim, quantityAsset}) => calculateFee('asset_claim_pool', 'quantity', quantityClaim, quantityAsset),
