@@ -4,7 +4,7 @@ import {getStore} from "../store";
 import {getDefaultFee} from "./getDefaultFee";
 
 export const sellBuy = async (data, result) => {
-    if (data.asset_to_sell === data.buyAsset) {
+    if (data.sellAsset === data.buyAsset) {
         result.errors['buyAsset'] = 'sameAsset';
         result.errors['sellAsset'] = 'sameAsset';
         return result;
@@ -22,7 +22,7 @@ export const sellBuy = async (data, result) => {
         buy.symbol = data.sellAsset;
         buy.amount = data.amount_to_sell;
     } else {
-        sell.symbol = data.asset_to_sell;
+        sell.symbol = data.sellAsset;
         sell.amount = data.amount_to_sell;
         buy.symbol = data.buyAsset;
         buy.amount = data.amount_to_receive;
