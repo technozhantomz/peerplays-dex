@@ -12,6 +12,7 @@ export const checkNewLogin = async ({newLogin}) => {
     if(defaultErrors){
         accErr = defaultErrors.indexOf('Account name should ');
         segmentErr = defaultErrors.indexOf('Each account segment should ');
+        return 'newAccSegment.noSpecials';
     }
     if(accErr > -1) return defaultAccsErrs['accsErr'][defaultErrors.substr(19,)];
     if(segmentErr > -1 && segmentErr > 0) return defaultAccsErrs['segmentErr'][segmentErr.substr(27,)];
