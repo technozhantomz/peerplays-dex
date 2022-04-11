@@ -3,6 +3,8 @@ import { feeCalculator, getPassword } from "../../../actions/forms/index";
 import { checkErrors } from "../../../actions/forms/errorsHandling/";
 import OrderConfirmationModel from "../modal/content/orderConfirmationModel";
 import {setModal} from "../../../dispatch";
+import {getGlobalData} from "../../../actions/dataFetching/getGlobalData";
+import {setAccount} from "../../../dispatch/setAccount";
 
 const handleData = async (context, val, id) => {
     const { mutateData, type } = context.props;
@@ -118,6 +120,12 @@ class Form extends Component {
                     handleResult(result.callbackData);
                     this.setState({ data: this.props.defaultData });
                     this.form.reset();
+                    getGlobalData()
+                    .then(({userData}) =>{
+                        if(userData) {
+                            setAccount(userData);
+                        }
+                    })
                 });
             });
         } else if (handleResult) {
