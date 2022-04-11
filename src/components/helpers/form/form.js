@@ -110,7 +110,6 @@ class Form extends Component {
             };
 
             this.setState({ loading: true });
-
             action(data, result).then(result => {
                 if (!result.success) {
                     this.setState({ loading: false, errors: result.errors });
