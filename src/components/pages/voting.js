@@ -188,7 +188,7 @@ const Voting = (props) => {
         var now = new Date();
         var utcNowMS = new Date(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds(), now.getUTCMilliseconds()).getTime();
         var nextMtMS = new Date(maintenance.nextMaintenance).getTime();
-       var _hr = Math.floor(((nextMtMS - utcNowMS) / 1000 / 60)/60)
+        var _hr = 0
         var _mt = Math.floor((nextMtMS - utcNowMS) / 1000 / 60);
         var _ms = Math.floor((nextMtMS - utcNowMS - 60 * 1000 * _mt) / 1000);
 
@@ -218,7 +218,8 @@ const Voting = (props) => {
             } else if (_mt === 1) {
                 _mt = _mt + " Minute " + _ms + " Seconds"
             }else  if(_mt > 60){ 
-                _mt = _hr + " Hours " + _mt + " Minutes " + _ms + " Seconds"
+                _hr = Math.round(_mt/60)
+                _mt = _hr + " Hours " + (_mt - (_hr * 60)) + " Minutes " + _ms + " Seconds"
             }
              else {
                 _mt = _mt + " Minutes " + _ms + " Seconds"
