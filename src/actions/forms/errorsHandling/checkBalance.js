@@ -1,7 +1,6 @@
 import {getAccountData} from "../../store";
 
 export const checkAmountToSell = ({type, buyAsset, sellAsset, amount_to_receive, amount_to_sell}) => {
-
     if(!amount_to_sell) {
       return 'required';
     } else {
