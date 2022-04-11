@@ -11,11 +11,15 @@ import except from "../../actions/assets/exceptAssetList";
 const getAssetsList = async () => dbApi('list_assets', ['', 100])
     .then(result => result.filter(e => !except.includes(e.symbol)).map(e => e.symbol));
 
-const getUserAssetsList = async (symbol) => (
-    getAccountData().assets
-    .filter(item => item ? item.symbol : [])
-    .map(item => item.symbol)
-);
+const getUserAssetsList = async (symbol) =>  {
+    if(getAccountData().assets && getAccountData().assets.length > 0) {
+        return getAccountData().assets
+        .filter(item => item ? item.symbol : [])
+        .map(item => item.symbol)
+    } else {
+        return [defaultToken]
+    }
+};
 
 class QuickSellBuy extends Component {
     state = {
