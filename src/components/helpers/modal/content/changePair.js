@@ -39,8 +39,22 @@ class ChangePair extends Component{
     handlePairChange = (val, name) => {
         const pair = this.state.pair;
         pair[name] = val;
-        this.setState({pair, errors: false});
-
+        if(name == 'quote'&& this.state.pair.quote != 'TEST')
+        { 
+        const pair = {
+            base:'TEST',
+            quote: this.state.pair.quote
+        };
+            this.setState({pair, errors: false});
+        }
+        if(name === 'base'&& this.state.pair.base != 'TEST')
+        {
+        const pair = {
+            base:this.state.pair.base,
+            quote: 'TEST',
+        };
+            this.setState({pair, errors: false});
+        }
         if(pair.quote === pair.base) {
           this.setState({
             errors: {
