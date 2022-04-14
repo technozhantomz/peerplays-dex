@@ -190,7 +190,7 @@ const Voting = (props) => {
         var nextMtMS = new Date(maintenance.nextMaintenance).getTime();
         var _hr = 0
         var _mt = Math.floor((nextMtMS - utcNowMS) / 1000 / 60);
-        var _ms = Math.floor((nextMtMS - utcNowMS - 60 * 1000 * _mt) / 1000);
+        var _ms = Math.floor((nextMtMS - utcNowMS) / 1000);
 
         if (nextMtMS <= utcNowMS) {
             _mt = "0 Minute 0 Second";
@@ -215,11 +215,11 @@ const Voting = (props) => {
         } else {
             if (_mt === 0) {
                 _mt = Math.floor((nextMtMS - utcNowMS) / 1000) + ' Seconds'
-            } else if (_mt === 1) {
-                _mt = _mt + " Minute " + _ms + " Seconds"
-            }else  if(_mt > 60){ 
+            } else if (_mt < 60 && _mt > 0) {
+                _mt = _mt + " Minute " +(_ms -(_mt*60)) + " Seconds"
+            }else  if(_mt > 60){
                 _hr = Math.round(_mt/60)
-                _mt = _hr + " Hours " + (_mt - (_hr * 60)) + " Minutes " + _ms + " Seconds"
+                _mt = _hr + " Hours " + (_mt - (_hr * 60)) + " Minutes " + (_ms -(_mt*60)-(_hr*60*60))+ " Seconds"
             }
              else {
                 _mt = _mt + " Minutes " + _ms + " Seconds"
