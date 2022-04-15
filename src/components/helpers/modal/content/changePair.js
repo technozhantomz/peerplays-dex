@@ -11,6 +11,7 @@ import ModalTitle from "../decoration/modalTitle";
 import Translate from "react-translate-component";
 import ModalButton from "../../buttons/modalButton";
 import except from "../../../../actions/assets/exceptAssetList";
+import { defaultToken } from '../../../../params/networkParams';
 
 const getSymbolsList = async () => dbApi('list_assets', ['', 100])
     .then(result => result.filter(e => !except.includes(e.symbol)).map(e => e.symbol));
@@ -39,19 +40,19 @@ class ChangePair extends Component{
     handlePairChange = (val, name) => {
         const pair = this.state.pair;
         pair[name] = val;
-        if(name == 'quote'&& this.state.pair.quote != 'TEST')
+        if(name == 'quote'&& this.state.pair.quote != defaultToken)
         { 
         const pair = {
-            base:'TEST',
+            base:defaultToken,
             quote: this.state.pair.quote
         };
             this.setState({pair, errors: false});
         }
-        if(name === 'base'&& this.state.pair.base != 'TEST')
+        if(name === 'base'&& this.state.pair.base != defaultToken)
         {
         const pair = {
             base:this.state.pair.base,
-            quote: 'TEST',
+            quote: defaultToken,
         };
             this.setState({pair, errors: false});
         }
