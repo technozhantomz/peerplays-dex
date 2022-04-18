@@ -56,13 +56,16 @@ class ChangePair extends Component{
         };
             this.setState({pair, errors: false});
         }
-        if(pair.quote === pair.base) {
-          this.setState({
-            errors: {
-              base: 'sameAsset'
-            }
-          });
-        }
+        setTimeout(() => {
+            if(this.state.pair.quote === this.state.pair.base) {
+                this.setState({
+                  errors: {
+                    base: 'sameAsset'
+                  }
+                });
+              }
+        }, 1000);
+       
     };
 
     SetPair = (val,name)=>{
