@@ -3,14 +3,20 @@ import React, { useState } from 'react';
 import NumericInput from 'react-numeric-input';
 import { connect, useSelector } from "react-redux";
 import Translate from 'react-translate-component';
+import { formAccount } from '../../../actions/account';
 import { getPassword, trxBuilder } from '../../../actions/forms';
-import { getStore } from '../../../actions/store';
+import { getStore,getAccountData } from '../../../actions/store';
+import {updateAccount} from "../../../dispatch/setAccount";
+
+
 
 const VestGPOS = (props) => {
 	const { symbol_id, precision, symbol, totalGpos, getAssets } = props;
 	const { loginData, accountData } = getStore();
 	const [vestAmount, setVestAmount] = useState(0);
 	const accBalance = accountData.assets[0].amount / (10 ** accountData.assets[0].precision);
+
+	const account = getAccountData();
 
 	const SubmitGposVesting = () => {
 		const begin_timestamp = new Date().toISOString().replace('Z', '');
@@ -40,10 +46,12 @@ const VestGPOS = (props) => {
 		};
 		getPassword(password => {
 			const activeKey = loginData.formPrivateKey(password, 'active');
-			trxBuilder([trx], [activeKey]).then(() => {
+			trxBuilder([trx], [activeKey]).then(async() => {
 				getAssets();
 				setVestAmount(0);
+				updateAccount(await formAccount(account.name));
 			});
+			
 		});
 	};
 	return (
@@ -71,8 +79,11 @@ const VestGPOS = (props) => {
 					step={(component, direction) => {
 						// for values smaller than 1 the step is 0.1
 						// for values greater than 1 the step is 1
+						if(direction === 'up'){
 						return component.state.value < 1 ? 0.1 : 1
+						}else{return component.state.value < 2 ? 0.1 : 1}
 					}}
+					// step={0.1}
 					precision={accountData.assets[0].precision}
 					max={accBalance}
 					onChange={(value) => setVestAmount(value)}

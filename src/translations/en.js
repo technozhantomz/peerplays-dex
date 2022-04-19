@@ -15,6 +15,7 @@ export const en = {
         "priceWithToken": "Price (%(token)s)",
         "amountWithToken": "Amount (%(token)s)",
         "change": "Change (24h)",
+        "volume": "Volume (asset/%(token)s)",
         "valueWithToken": "Value (%(token)s)",
         "value": "Value",
         "actions": "Actions",
@@ -29,9 +30,10 @@ export const en = {
         "lastBlock": "Last Block",
         "missingBlock": "Missing Block",
         "votes": "Votes",
+        "voteCount":"Vote Count",
         "key": "Key",
         "time": "Time",
-        "type": "Price (kbyte)",
+        "type": "Activity",
         "info": "Info",
         "id": "ID",
         "fee": "Fee",
@@ -286,7 +288,7 @@ export const en = {
         "title": "Exchange",
         "price": "Current Price",
         "change": "Change (24h)",
-        "value": "Value (24h)",
+        "value": "Volume (24h)",
         "feed": "Feed Price",
         "limit": "Call Limit",
         "margin": "Margin Call",
@@ -360,6 +362,8 @@ export const en = {
     },
     "voting": {
         "title": "Voting & Vesting",
+        "vestingTitle": "Vesting",
+        "votingTitle": "Voting",
         "workers": {
             "title": "Workers"
         },
@@ -587,6 +591,8 @@ export const en = {
     },
     "field": {
         "labels": {
+            "sellAmount": "Sell amount",
+            "buyAmount": "Buy amount",
             "login": "Login",
             "publicName": "Public Name",
             "brainkey": "Brainkey",
@@ -676,15 +682,17 @@ export const en = {
         "withdrawError":"The withdraw amount should be greater than 0",
         "Notexceed":"Value cannot exceed",
         "sendYourself": "You can\'t transfer tokens for yourself",
+        "sonNotAvailable": "SON network is not available now",
         "noAcc": "Failed to find this account",
         "noKey": "Failed to find this key",
         "wrongPass": "Password is wrong",
         "required": "This field is required.",
+        "invalidKey":"Invalid key.",
         "requiredQuantity": "Quantity is required.",
         "isNan": "Amount is not a number.",
         "isNull": "You can't send a null.",
-        "isEmptyBalance": "You don't have token to pay fee.",
-        "isEmptyMarketBalance": "You don't have token to pay market fee.",
+        "isEmptyBalance": "You don't have balance to pay fee.",
+        "isEmptyMarketBalance": "You don't have balance to pay market fee.",
         "nullWeight": "Can\'t be null",
         "isNotEnough": "Balance is not enough.",
         "isZero": "Quantity should be greater than 0.",
@@ -713,6 +721,8 @@ export const en = {
         "conditionLength": "Condition is too long",
         "resolutionError": "Select another date",
         "remainIssueNotEnough": "Remain amount of supply isn't enough to issue",
+        "sonError": "Server side error!! Try again later.",
+        "keyExists": "Key already exists.",
         "newAcc": {
             "longer": "Account name should be longer",
             "shorter": "Account name should be shorter",
@@ -738,6 +748,11 @@ export const en = {
             "end": "Asset name should end with a letter or number",
             "symbols": "Asset name should contain only letters numbers and perhaps a dot."
         }
+    },
+    "success":{
+        "transCompleted": "Transaction Completed",
+        "sidechainUpdated": "Sidechain address has been updated.",
+        "sidechainGenerated": "Sidechain address has been generated.",
     },
     "tabs": {
         "orderBook": "Order Book",
@@ -849,6 +864,8 @@ export const en = {
         "showAdditionalData": "Show Additional Data",
         "hideAdditionalData": "Hide Additional Data",
         "newContact": "+ New Contact",
+        "update": "Update",
+        "generate": "Generate",
     },
     "emptyPage": {
         "default": "No data",

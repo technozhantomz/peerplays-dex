@@ -1,7 +1,6 @@
 import {getAccountData} from "../../store";
 
 export const checkAmountToSell = ({type, buyAsset, sellAsset, amount_to_receive, amount_to_sell}) => {
-
     if(!amount_to_sell) {
       return 'required';
     } else {
@@ -11,7 +10,7 @@ export const checkAmountToSell = ({type, buyAsset, sellAsset, amount_to_receive,
       if(amount_to_sell <= 0) {
         return 'isZero';
       }
-      if(type === "buy"){
+      if(type === "buy" || type == undefined){
         const userAsset = getAccountData().assets.find(el => el.symbol === sellAsset);
         if(!userAsset) {
           return 'isNotEnough'

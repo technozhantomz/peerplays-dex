@@ -3,12 +3,13 @@ import { feeCalculator, getPassword } from "../../../actions/forms/index";
 import { checkErrors } from "../../../actions/forms/errorsHandling/";
 import OrderConfirmationModel from "../modal/content/orderConfirmationModel";
 import {setModal} from "../../../dispatch";
+import {getGlobalData} from "../../../actions/dataFetching/getGlobalData";
+import {setAccount} from "../../../dispatch/setAccount";
 
 const handleData = async (context, val, id) => {
     const { mutateData, type } = context.props;
     let data = { ...context.state.data };
     const feeCalc = feeCalculator[type];
-
     data = Object.filter(data, data => data);
 
     data[id] = val;
@@ -109,7 +110,6 @@ class Form extends Component {
             };
 
             this.setState({ loading: true });
-
             action(data, result).then(result => {
                 if (!result.success) {
                     this.setState({ loading: false, errors: result.errors });
@@ -119,6 +119,12 @@ class Form extends Component {
                     handleResult(result.callbackData);
                     this.setState({ data: this.props.defaultData });
                     this.form.reset();
+                    getGlobalData()
+                    .then(({userData}) =>{
+                        if(userData) {
+                            setAccount(userData);
+                        }
+                    })
                 });
             });
         } else if (handleResult) {

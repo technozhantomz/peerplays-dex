@@ -50,11 +50,12 @@ const tableHeadWitnesses = [
     },
     {
         key: 'total_votes',
-        translateTag: 'votes',
+        translateTag: 'voteCount',
         params: 'align-right fit-content'
     },
     {
         key: 'vote_icon',
+        translateTag: 'votes',
         params: 'align-center fit-content content-padding'
     }
 ];
@@ -187,8 +188,10 @@ const Voting = (props) => {
         var now = new Date();
         var utcNowMS = new Date(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds(), now.getUTCMilliseconds()).getTime();
         var nextMtMS = new Date(maintenance.nextMaintenance).getTime();
+        var _hr = 0
         var _mt = Math.floor((nextMtMS - utcNowMS) / 1000 / 60);
         var _ms = Math.floor((nextMtMS - utcNowMS - 60 * 1000 * _mt) / 1000);
+
         if (nextMtMS <= utcNowMS) {
             _mt = "0 Minute 0 Second";
             getGlobalData()
@@ -214,7 +217,11 @@ const Voting = (props) => {
                 _mt = Math.floor((nextMtMS - utcNowMS) / 1000) + ' Seconds'
             } else if (_mt === 1) {
                 _mt = _mt + " Minute " + _ms + " Seconds"
-            } else {
+            }else  if(_mt > 60){ 
+                _hr = Math.round(_mt/60)
+                _mt = _hr + " Hours " + (_mt - (_hr * 60)) + " Minutes " + _ms + " Seconds"
+            }
+             else {
                 _mt = _mt + " Minutes " + _ms + " Seconds"
             }
         }
@@ -270,7 +277,7 @@ const Voting = (props) => {
     return (
         <div className="container page">
               <div className="page__header-wrapper">
-            <Translate className="page__title" component="h1" content={"vesting.title"}/>
+            <Translate className="page__title" component="h1" content={"voting.vestingTitle"}/>
         </div>
             <div>
                 <Grid container spacing={1}>
@@ -321,7 +328,7 @@ const Voting = (props) => {
             </div>
 
             <div className="page__header-wrapper">
-                <Translate className="page__title" component="h1" content="voting.title" />
+                <Translate className="page__title" component="h1" content="voting.votingTitle" />
             </div>
             <div className="page__menu">
                 {
@@ -330,7 +337,7 @@ const Voting = (props) => {
                             key={id}
                             content={`voting.${el.tag}.title`}
                             component={NavLink}
-                            to={`/voting${el.link}`}
+                            to={`/voting-vesting${el.link}`}
                             className="page__menu-item"
                             exact
                         />
@@ -343,7 +350,7 @@ const Voting = (props) => {
                         votingMenu.map((el, id) => (
                             <Route
                                 key={id}
-                                path={`/voting${el.link}`}
+                                path={`/voting-vesting${el.link}`}
                                 render={() => el.render(account, props.data, cancelVotes, { setNewVotes, newVotes })}
                                 exact
                             />

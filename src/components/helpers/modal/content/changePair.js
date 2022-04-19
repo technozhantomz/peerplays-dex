@@ -30,7 +30,8 @@ class ChangePair extends Component{
             quote: quote.symbol
         };
         const storageData = getStorage('exchanges');
-        const selectedPair = storageData.active.split('_').join(' / ');
+        const selectedPair = storageData.list.length < 2 ?storageData.active.split('_').join(' / '):storageData.list[1].split('_').join(' / ');
+        
         const recentPairs = storageData.list;
         this.setState({pair, selectedPair, recentPairs})
     }
@@ -118,6 +119,7 @@ class ChangePair extends Component{
                         </div>
                     }
                     <Translate content="modal.pairSelect.recent" component="h3" className="pair-selector__subtitle" />
+                   
                     <Dropdown
                         btn={<SelectHeader
                             text={selectedPair}
