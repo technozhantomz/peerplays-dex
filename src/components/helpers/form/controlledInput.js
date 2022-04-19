@@ -11,7 +11,8 @@ const ControlledInput = (props) => {
         onFocus,
         onBlur,
         formData,
-        readOnly
+        readOnly,
+        min,
     } = props;
 
     let onChange = formData ? formData.handleChange : props.onChange;
@@ -46,6 +47,7 @@ const ControlledInput = (props) => {
                 placeholder=" "
                 className="field__input"
                 autoComplete="off"
+                min={min}
                 readOnly={readOnly}
             />
         </FieldWrapper>

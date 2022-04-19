@@ -52,9 +52,6 @@ export const checkPrice = ({price}) => {
   } else {
     if(isNaN(price)){
       return 'isNan';
-    }
-    if(price <= 0) {
-      return 'isZero';
     } 
     return false;
   }

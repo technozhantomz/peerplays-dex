@@ -150,17 +150,20 @@ class BuyForm extends Component{
                                     id={`${type}-price`}
                                     name="price"
                                     type="number"
+                                    min={0}
                                     labelTag="exchangeForm.price"
                                     labelParams={{token: defaultData.sellAsset}}
                                     className="with-border"
                                     onChange={handleChange}
                                     value={data}
-                                    error={errors} 
+                                    error={errors}
+
                                 />
                                 <ControlledInput
                                     id={`${type}-receive`}
                                     name="amount_to_receive"
                                     type="number"
+                                    min={0}
                                     labelTag="exchangeForm.quantity"
                                     labelParams={{token: defaultData.buyAsset}}
                                     className="with-border"
@@ -172,6 +175,7 @@ class BuyForm extends Component{
                                     id={`${type}-sell`}
                                     name="amount_to_sell"
                                     type="number"
+                                    min={0}
                                     labelTag="exchangeForm.total"
                                     labelParams={{token: defaultData.sellAsset}}
                                     className="with-border"
