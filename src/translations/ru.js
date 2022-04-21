@@ -15,6 +15,7 @@ export const ru = {
         "priceWithToken": "Цена (%(token)s)",
         "amountWithToken": "Сумма (%(token)s)",
         "change": "Изменение (24h)",
+        "volume": "объем (asset/%(token)s)",
         "valueWithToken": "Значение (%(token)s)",
         "value": "ценность",
         "actions": "Действия",
@@ -29,9 +30,10 @@ export const ru = {
         "lastBlock": "Последний блок",
         "missingBlock": "Пропавший блок",
         "votes": "Голосов",
+       "voteCount":"количество голосов", 
         "key": "ключ",
         "time": "Время",
-        "type": "тип",
+        "type": "Деятельность",
         "info": "информация",
         "id": "идентификатор",
         "fee": "плата",
@@ -286,7 +288,7 @@ export const ru = {
         "title": "обмен",
         "price": "Текущая цена",
         "change": "Изменение (24h)",
-        "value": "Ценить (24h)",
+        "value": "объем (24h)",
         "feed": "Цена корма",
         "limit": "Лимит вызова",
         "margin": "Маржинальный вызов",
@@ -360,6 +362,8 @@ export const ru = {
     },
     "voting": {
         "title": "Голосование & Вестинг",
+        "vestingTitle": "Вестинг",
+        "votingTitle": "Голосование",
         "workers": {
             "title": "Работников"
         },
@@ -417,6 +421,7 @@ export const ru = {
         }
     },
     "hive": {
+        "cardTitle": "Вывод HIVE или HBD на учетную запись блокчейна Hive",
         "title": "снять HIVE/HBD",
         "withdraw": {
             "title": "Вывести улей"
@@ -590,6 +595,8 @@ export const ru = {
     },
     "field": {
         "labels": {
+            "sellAmount": "Сумма продажи",
+            "buyAmount": "Сумма покупки",
             "login": "логин",
             "publicName": "Публичное имя",
             "brainkey": "Брейнки",
@@ -599,7 +606,9 @@ export const ru = {
             "passwordCheck": "Подтвердить пароль",
             "from": "От",
             "to": "Кому",
-            "hiveAcc": "HIVE Счет",
+            "hiveAcc": "Введите учетную запись блокчейна Hive, на которую должны быть отправлены средства.",
+            "hiveAmount": "Введите сумму HIVE/HBD для вывода",
+            "hiveCurrency": "Выберите валюту",
             "quantity": "количество",
             "memo": "записка",
             "fee": "плата",
@@ -678,14 +687,17 @@ export const ru = {
         "withdrawError":"Сумма вывода должна быть больше 0",
         "Notexceed":"Значение не может превышать",
         "sendYourself": "Вы не можете передавать токены для себя",
+        "sonNotAvailable": "Сеть SON сейчас недоступна.",
         "noAcc": "Не удалось найти эту учетную запись",
         "noKey": "Не удалось найти этот ключ",
         "wrongPass": "Пароль неправильный",
         "required": "Это поле не требуется.",
+        "invalidKey":"Неправильный ключ.",
         "isNan": "Сумма - это не число.",
         "requiredQuantity": "Требуется количество.",
         "isNull": "Вы не можете отправить нулевой.",
-        "isEmptyBalance": "У вас нет токена для оплаты.",
+        "isEmptyBalance": "У вас нет баланса для оплаты комиссии.",
+        "isEmptyMarketBalance":"У вас недостаточно средств для оплаты рыночной комиссии.",
         "nullWeight": "Не может быть нулевым",
         "isNotEnough": "Баланса недостаточно.",
         "accUsed": "Учетная запись уже используется.",
@@ -713,6 +725,8 @@ export const ru = {
         "conditionLength": "Состояние слишком длинное",
         "resolutionError": "Выберите другую дату",
         "remainIssueNotEnough": "Оставшегося количества предложения недостаточно для выпуска",
+        "sonError": "Ошибка на стороне сервера!! Попробуйте позже.",
+        "keyExists": "Ключ уже существует.",
         "newAcc": {
             "longer": "Имя учетной записи должно быть длиннее",
             "shorter": "Имя учетной записи должно быть короче",
@@ -738,6 +752,11 @@ export const ru = {
             "end": "Название объекта должно заканчиваться буквой или цифрой",
             "symbols": "Название актива должно состоять только из букв, цифр и, возможно, точки."
         }
+    },
+    "success":{
+        "transCompleted": "Транзакция завершена",
+        "sidechainUpdated": "Адрес боковой цепи обновлен.",
+        "sidechainGenerated": "Адрес боковой цепи сгенерирован.",
     },
     "tabs": {
         "orderBook": "Книга заказов",
@@ -847,6 +866,8 @@ export const ru = {
         "showAdditionalData": "Показать дополнительные данные",
         "hideAdditionalData": "Скрыть дополнительные данные",
         "newContact": "Новый контакт",
+        "update": "Обновить",
+        "generate": "генерировать",
     },
     "emptyPage": {
         "default": "Нет данных",

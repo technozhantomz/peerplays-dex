@@ -9,10 +9,21 @@ const Input = (props) => {
         type = 'text',
         disabled = false,
         formData,
+        onKeyPress,
         onBlur
     } = props;
 
     let onChange = formData ? formData.handleChange : props.onChange;
+
+    let isNumberKey = (e,type)=>{
+        var charCode = (e.which) ? e.which : e.keyCode
+        if (type === 'number' && (charCode === 43 || charCode === 45 || charCode === 101)){
+             return e.preventDefault()
+        }
+        if (type === 'password' && charCode === 32 ){
+            return e.preventDefault()
+       }
+        }
 
     if(disabled) onChange = '';
 
@@ -26,6 +37,7 @@ const Input = (props) => {
                 defaultValue={value[name]}
                 type={type}
                 disabled={disabled}
+                onKeyPress={e => isNumberKey(e,type)}
                 onChange={e => onChange ? onChange(e.target.value, name) : e.preventDefault()}
                 onBlur={e => onBlur ? onBlur(e.target.value, name) : e.preventDefault()}
                 placeholder=" "

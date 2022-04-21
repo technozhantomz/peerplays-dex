@@ -12,7 +12,7 @@ import {checkIssueAmount} from "./checkIssueAmount";
 import {checkDecimal} from "./checkDecimal";
 import {checkCondition} from "./checkCondition";
 import {checkBackingAsset} from "./checkBackingAsset";
-import {checkAmountToSell, checkAmountToReceive} from './checkBalance';
+import {checkAmountToSell, checkAmountToReceive,checkPrice} from './checkBalance';
 import {checkQuantity} from './checkQuantity';
 import { checkTo } from "./checkTo";
 import { checkDepositPublicKey } from "./checkDepositPublicKey";
@@ -41,6 +41,7 @@ export const errorsChecker = {
     backingAsset: checkBackingAsset,
     amount_to_sell: checkAmountToSell,
     amount_to_receive: checkAmountToReceive,
+    price:checkPrice,
     quantity: checkQuantity,
     depositPublicKey: checkDepositPublicKey,
     withdrawPublicKey: checkWithdrawPublicKey,

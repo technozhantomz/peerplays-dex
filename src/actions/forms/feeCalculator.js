@@ -34,9 +34,8 @@ const calculateFee = (type, errVariable, quantity, assetName, memo) => {
     }
 
     const isBasicAsset = assetName === basicAsset.symbol;
-
     if(!isBasicAsset){
-        const currentAsset = account.assets.find(e => e.symbol === assetName);
+        const currentAsset = account.assets.find(e => e.symbol === assetName)
         if(!currentAsset || !currentAsset.amount){
             result.feeErr = 'isNotEnough';
             return result;
@@ -65,13 +64,12 @@ const calculateFee = (type, errVariable, quantity, assetName, memo) => {
 
     result.feeAmount = feeAmount;
     const amountToPay = isBasicAsset ? feeAmount + val : feeAmount;
-
     if(usersBasicAsset.setPrecision() < amountToPay) result.feeErr = 'isNotEnough';
 
     return result;
 };
 
-const calculateLimitOrderFee = (orderType, amount_to_sell, sellAsset, amount_to_receive, buyAsset) => {
+const calculateLimitOrderFee = (orderType = 'buy', amount_to_sell, sellAsset, amount_to_receive, buyAsset) => {
     const val = Number(amount_to_sell);
     const val2 = Number(amount_to_receive)
     const result = {
@@ -223,15 +221,17 @@ const calculateSidechainAddressAddFee = () => {
 
   const userBasicAsset = userData.assets.find(el => el.symbol === basicAsset.symbol);
 
-  if(!userBasicAsset || userBasicAsset.setPrecision() <= 0){
-      result.feeErr = 'isNotEnough';
-      return result;
-  }
-
   const fees = getFees().sidechain_address_add;
-  const defaultFee = basicAsset.setPrecision(true, fees.fee);
+  if(fees && fees.fee > 0 && (!userBasicAsset || userBasicAsset.setPrecision() <= fees.fee)){
+      result.feeErr = 'isNotEnough';
+      const defaultFee = basicAsset.setPrecision(true, fees.fee);
 
   result.feeAmount = new Asset({...basicAsset, amount: defaultFee});
+    return result;
+
+  }
+
+  
 
   return result;
 };
