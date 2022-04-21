@@ -673,7 +673,7 @@ export const ru = {
         }
     },
     "errors": {
-        "maxLength":"только менее 8 цифр",
+        "maxLength":"только менее точность цифр",
         "requiredAndnotzero":"AAЭто поле обязательно и не равно нулю",
         "withdrawError":"Сумма вывода должна быть больше 0",
         "Notexceed":"Значение не может превышать",
