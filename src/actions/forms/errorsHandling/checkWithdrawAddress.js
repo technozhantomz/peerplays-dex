@@ -42,18 +42,22 @@ const addressValidation = {
 
 const generateAddressFromPubkey = (pubkey) => {
     const hexData = CryptoJS.enc.Hex.parse(pubkey)
-    const sha256Digest = sha256(hexData)
-    const ripemd160Digest = ripemd160(sha256Digest)
-    const bech32Words = bech32.toWords(Buffer.from(ripemd160Digest.words, "hex"));
+    const sha256Digest = sha256(hexData, CryptoJS.enc.Hex).toString(CryptoJS.enc.Hex)
+    const ripemd160Digest = ripemd160(CryptoJS.enc.Hex.parse(sha256Digest), CryptoJS.enc.Hex).toString(CryptoJS.enc.Hex)
+    const bech32Words = bech32.toWords(Buffer.from(ripemd160Digest, "hex"));
     const words = new Uint8Array([0, ...bech32Words]);
     const address = bech32.encode("bc", words);
-    console.log(address);
+    return address
 }
 
 export const checkWithdrawAddress = async data => {
     if(!data.withdrawAddress) return false;
     if(data.withdrawAddress.match(/^  *$/) !== null) return 'required'
     const network = testnetCheck ? 'regtest' : 'mainnet'
+    const regtestAddress = generateAddressFromPubkey(data.withdrawPublicKey)
+    let isPubKeyAndAddressMatch = 
+        (regtestAddress.slice(2, 34) === data.withdrawAddress.slice(4, 36))
+    // if(network === 'regtest' && !isPubKeyAndAddressMatch) return 'invalidKey'
     const isValid = validate(data.withdrawAddress, network)
     return isValid ? false : 'invalidKey'
 };
