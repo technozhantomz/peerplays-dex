@@ -155,6 +155,7 @@ class BuyForm extends Component{
                                     labelParams={{token: defaultData.sellAsset}}
                                     className="with-border"
                                     onChange={handleChange}
+                                    min={0}
                                     value={data}
                                     error={errors}
                                 />
@@ -166,6 +167,7 @@ class BuyForm extends Component{
                                     labelParams={{token: defaultData.buyAsset}}
                                     className="with-border"
                                     onChange={handleChange}
+                                    min={0}
                                     value={data}
                                     error={errors}
                                 />
@@ -177,6 +179,7 @@ class BuyForm extends Component{
                                     labelParams={{token: defaultData.sellAsset}}
                                     className="with-border"
                                     onChange={handleChange}
+                                    min={0}
                                     value={data}
                                     error={errors}
                                     readOnly={true}

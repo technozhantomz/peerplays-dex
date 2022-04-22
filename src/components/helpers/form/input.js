@@ -10,6 +10,7 @@ const Input = (props) => {
         disabled = false,
         formData,
         onKeyPress,
+        min,
         onBlur
     } = props;
 
@@ -41,6 +42,7 @@ const Input = (props) => {
                 onChange={e => onChange ? onChange(e.target.value, name) : e.preventDefault()}
                 onBlur={e => onBlur ? onBlur(e.target.value, name) : e.preventDefault()}
                 placeholder=" "
+                min={min}
                 className="field__input"
                 autoComplete="off"
             />

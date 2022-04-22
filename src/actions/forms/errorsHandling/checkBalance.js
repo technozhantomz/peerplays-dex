@@ -11,9 +11,6 @@ export const checkAmountToSell = ({type, buyAsset, sellAsset, amount_to_receive,
       if(isNaN(amount_to_sell)){
         return 'isNan';
       }
-      if(amount_to_sell <= 0) {
-        return 'isZero';
-      }
       if(type === "buy" || type == undefined){
         const userAsset = getAccountData().assets.find(el => el.symbol === sellAsset);
         if(!userAsset) {
@@ -38,10 +35,7 @@ export const checkAmountToReceive = ({type, buyAsset, sellAsset, amount_to_sell,
     if(isNaN(amount_to_receive)){
       return 'isNan';
     }
-    if(amount_to_receive <= 0) {
-      return 'isZero';
-    } 
-    if(type === 'sell') {
+     if(type === 'sell') {
       const userAsset = getAccountData().assets.find(el => el.symbol === buyAsset);
       if(!userAsset) {
         return 'isNotEnough'
@@ -52,6 +46,7 @@ export const checkAmountToReceive = ({type, buyAsset, sellAsset, amount_to_sell,
     return false;
   }
 }
+}
 
 export const checkPrice = ({price}) => {
   if(!price) {
@@ -60,9 +55,6 @@ export const checkPrice = ({price}) => {
     if(isNaN(price)){
       return 'isNan';
     }
-    if(price <= 0) {
-      return 'isZero';
-    } 
     return false;
   }
 }
