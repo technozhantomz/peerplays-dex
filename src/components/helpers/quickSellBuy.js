@@ -80,6 +80,7 @@ class QuickSellBuy extends Component {
                                             name="amount_to_sell"
                                             labelTag="field.labels.sellAmount"
                                             type="number"
+                                            min={0}
                                             onChange={form.handleChange}
                                             error={errors}
                                             defaultVal={data}
@@ -104,6 +105,7 @@ class QuickSellBuy extends Component {
                                             type="number"
                                             onChange={form.handleChange}
                                             error={errors}
+                                            min={0}
                                             defaultVal={data}
                                         />
                                         <div className="sellHint">
