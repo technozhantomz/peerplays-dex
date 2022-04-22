@@ -1,3 +1,11 @@
+import { validate, getAddressInfo } from 'bitcoin-address-validation'
+import { testnetCheck } from "../../../params/networkParams"
+import CryptoJS from 'crypto-js'
+import sha256 from 'crypto-js/sha256'
+import ripemd160 from 'crypto-js/ripemd160'
+
+import { bech32 } from 'bech32'
+
 const validateOLAddress = ({baseApiUrl, inputCoin, withdrawAddress}) => fetch(`${baseApiUrl}/wallets/${inputCoin}/address-validator?${withdrawAddress}`).then(e => e.json()).then(e => e.isValid && e.isAccount);
 const validateCryptoBridgeAddress = ({baseApiUrl, symbol, withdrawAddress}) => fetch(`https://api.crypto-bridge.org/api/v2/accounts/${withdrawAddress}/assets/${symbol.toUpperCase()}/addresses/validate`);
 
@@ -32,9 +40,20 @@ const addressValidation = {
     // 'Crypto Bridge': validateCryptoBridgeAddress,
 };
 
+const generateAddressFromPubkey = (pubkey) => {
+    const hexData = CryptoJS.enc.Hex.parse(pubkey)
+    const sha256Digest = sha256(hexData)
+    const ripemd160Digest = ripemd160(sha256Digest)
+    const bech32Words = bech32.toWords(Buffer.from(ripemd160Digest.words, "hex"));
+    const words = new Uint8Array([0, ...bech32Words]);
+    const address = bech32.encode("bc", words);
+    console.log(address);
+}
+
 export const checkWithdrawAddress = async data => {
-    if(data.withdrawAddress.match(/^  *$/) !== null) return 'required'
-    if(data.length < 44) return 'invalidKey'
     if(!data.withdrawAddress) return false;
-    return addressValidation[data.bridgeName] ? addressValidation[data.bridgeName](data).then(valid => !valid ? 'addressIsNotValid' : false) : false;
+    if(data.withdrawAddress.match(/^  *$/) !== null) return 'required'
+    const network = testnetCheck ? 'regtest' : 'mainnet'
+    const isValid = validate(data.withdrawAddress, network)
+    return isValid ? false : 'invalidKey'
 };
