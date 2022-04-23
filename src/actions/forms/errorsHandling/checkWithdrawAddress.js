@@ -54,10 +54,6 @@ export const checkWithdrawAddress = async data => {
     if(!data.withdrawAddress) return false;
     if(data.withdrawAddress.match(/^  *$/) !== null) return 'required'
     const network = testnetCheck ? 'regtest' : 'mainnet'
-    const regtestAddress = generateAddressFromPubkey(data.withdrawPublicKey)
-    let isPubKeyAndAddressMatch = 
-        (regtestAddress.slice(2, 34) === data.withdrawAddress.slice(4, 36))
-    // if(network === 'regtest' && !isPubKeyAndAddressMatch) return 'invalidKey'
     const isValid = validate(data.withdrawAddress, network)
     return isValid ? false : 'invalidKey'
 };
