@@ -10,6 +10,7 @@ const Input = (props) => {
         disabled = false,
         formData,
         onKeyPress,
+        min,
         onBlur
     } = props;
 
@@ -40,6 +41,7 @@ const Input = (props) => {
                 onKeyPress={e => isNumberKey(e,type)}
                 onChange={e => onChange ? onChange(e.target.value, name) : e.preventDefault()}
                 onBlur={e => onBlur ? onBlur(e.target.value, name) : e.preventDefault()}
+                min={0}
                 placeholder=" "
                 className="field__input"
                 autoComplete="off"

@@ -2,6 +2,7 @@ import React, {Component, Fragment} from 'react';
 import Form from "../form/form";
 import UserBalance from "./userBalance";
 import ControlledInput from "../form/controlledInput";
+import Input from "../form/input";
 import {sellBuy} from "../../../actions/forms";
 import {roundNum} from "../../../actions/roundNum";
 import Translate from "react-translate-component";
@@ -146,7 +147,7 @@ class BuyForm extends Component{
 
                         return (
                             <Fragment>
-                                <ControlledInput
+                                <Input
                                     id={`${type}-price`}
                                     name="price"
                                     type="number"
@@ -155,9 +156,9 @@ class BuyForm extends Component{
                                     className="with-border"
                                     onChange={handleChange}
                                     value={data}
-                                    error={errors} 
+                                    error={errors}
                                 />
-                                <ControlledInput
+                                <Input
                                     id={`${type}-receive`}
                                     name="amount_to_receive"
                                     type="number"
@@ -168,7 +169,7 @@ class BuyForm extends Component{
                                     value={data}
                                     error={errors}
                                 />
-                                <ControlledInput
+                                <Input
                                     id={`${type}-sell`}
                                     name="amount_to_sell"
                                     type="number"
