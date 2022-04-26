@@ -1,10 +1,11 @@
+import { Menu } from "antd";
 import type { NextPage } from "next";
 import { useRouter } from "next/router";
 import { useState } from "react";
 
 import { Layout } from "../../../../common/components";
 import { useViewportContext } from "../../../../common/providers";
-import { Button, DownOutlined, Tabs, Menu } from "../../../../ui/src";
+import { Button, DownOutlined, Tabs } from "../../../../ui/src";
 import { breakpoints } from "../../../../ui/src/breakpoints";
 import {
   AssetsTab,
@@ -65,7 +66,8 @@ const Blockchain: NextPage = () => {
       <Styled.BlockchainCard>
         <Tabs
           renderTabBar={renderTabBar}
-          activeKey={`${tab ? tab : "blockchain"}`}
+          accessKey={`${tab ? tab : "blockchain"}`}
+          defaultActiveKey={`${tab ? tab : "blockchain"}`}
           onTabClick={(key) => {
             router.push(`/blockchain?tab=${key}`);
             if (width < breakpoints.sm) setVisible(false);
