@@ -11,7 +11,7 @@ type Props = {
 };
 
 export const HIVEAndHBDDeposit = ({
-  assetSymbol = "HIVE",
+  assetSymbol = "KES",
 }: Props): JSX.Element => {
   const router = useRouter();
   const { localStorageAccount } = useUserContext();
@@ -25,9 +25,9 @@ export const HIVEAndHBDDeposit = ({
           <Styled.DepositInstruction>
             {`To deposit ${assetSymbol} to `}
             <Styled.AccountContainer>{`${localStorageAccount} `}</Styled.AccountContainer>
-            please send your funds to son-account on the Hive blockchain with
-            the memo
-            <Styled.AccountContainer>{` ${localStorageAccount}`}</Styled.AccountContainer>
+            , Please click on
+            <Styled.AccountContainer>{` ${localStorageAccount}  `}</Styled.AccountContainer> 
+             to use Debit/Credit card and/or mobile money.
           </Styled.DepositInstruction>
         </Styled.Container>
       ) : (
@@ -43,7 +43,7 @@ export const HIVEAndHBDDeposit = ({
           </Styled.Button>
 
           <Styled.FormDisclamer>
-            <span>Don't have a Peerplays account? </span>
+            <span>Don't have a commodityllc account? </span>
             <Link href="/signup">
               <a>Create account</a>
             </Link>

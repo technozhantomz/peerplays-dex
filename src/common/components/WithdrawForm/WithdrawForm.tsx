@@ -80,7 +80,7 @@ export const WithdrawForm = ({
             {selectedAsset === "BTC" ? (
               <p className="label">Withdraw Public key & Address</p>
             ) : (
-              <p className="label">Hive blockchain account</p>
+              <p className="label">Bank account</p>
             )}
           </>
         ) : (
@@ -106,7 +106,7 @@ export const WithdrawForm = ({
             placeholder={
               selectedAsset === "BTC"
                 ? "Withdraw address"
-                : "Hive blockchain account"
+                : "Bank account"
             }
             className="form-input"
           />

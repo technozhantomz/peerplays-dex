@@ -1,1 +1,0 @@
-export const checkBrainkey = ({brainkey}) => brainkey && brainkey.split(' ').filter(e => e).length !== 16 ? 'wrongBrainLength' : '';

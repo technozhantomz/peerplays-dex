@@ -1,1 +1,0 @@
-export const setNodes = nodesList => dispatch => dispatch({type: 'SET_NODES', payload: nodesList});

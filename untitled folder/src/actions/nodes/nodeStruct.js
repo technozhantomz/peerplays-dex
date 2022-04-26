@@ -1,1 +1,0 @@
-export const nodeStruct = (url, connectTime) => ({url, connectTime});

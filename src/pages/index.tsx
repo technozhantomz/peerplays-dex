@@ -8,7 +8,7 @@ const Home: NextPage = () => {
     <Layout title="Home" description="PeerPlays Home Page">
       <div className={styles.container}>
         <main className={styles.main}>
-          <h1 className={styles.title}>Welcome to Peerplays NEX</h1>
+          <h1 className={styles.title}>CommodityLLC Blockchain </h1>
         </main>
       </div>
     </Layout>

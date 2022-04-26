@@ -1,1 +1,0 @@
-export const setStorage = (item, params, storageType = 'localStorage') => window[storageType].setItem(item, JSON.stringify(params));
