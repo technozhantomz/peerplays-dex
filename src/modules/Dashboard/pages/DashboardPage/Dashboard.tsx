@@ -22,7 +22,7 @@ const Dashboard: React.FC = () => {
   const Tabs = [
     { tabName: "Deposit" },
     { tabName: "Withdraw" },
-     { tabName: "Swap" },
+    // { tabName: "Swap" },
     { tabName: "Market" },
   ];
   return (

@@ -20,7 +20,7 @@ export function InputPrefix({
     [inputSymbol: string]: JSX.Element;
   } = {
     BTC: <BitcoinIcon height="30" width="30" />,
-    USD: <PPYIcon height="30" width="30" />,
+    TEST: <PPYIcon height="30" width="30" />,
     PPY: <PPYIcon height="30" width="30" />,
   };
   return (

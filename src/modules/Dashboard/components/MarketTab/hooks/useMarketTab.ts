@@ -21,7 +21,7 @@ export function useMarketTab(): UseMarketTabResult {
       },
     },
     {
-      tradingPair: `KES/${defaultToken}`,
+      tradingPair: `HIVE/${defaultToken}`,
       marketPairStats: {
         volume: 0,
         latest: 0,
@@ -29,7 +29,7 @@ export function useMarketTab(): UseMarketTabResult {
       },
     },
     {
-      tradingPair: `EUR/${defaultToken}`,
+      tradingPair: `HBD/${defaultToken}`,
       marketPairStats: {
         volume: 0,
         latest: 0,
@@ -37,7 +37,7 @@ export function useMarketTab(): UseMarketTabResult {
       },
     },
     {
-      tradingPair: `GOLD/${defaultToken}`,
+      tradingPair: `LARNYX/${defaultToken}`,
       marketPairStats: {
         volume: 0,
         latest: 0,
