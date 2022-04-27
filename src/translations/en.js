@@ -689,6 +689,7 @@ export const en = {
         "required": "This field is required.",
         "invalidKey":"Invalid key.",
         "requiredQuantity": "Quantity is required.",
+        "isTooBig": "Value is too big.",
         "isNan": "Amount is not a number.",
         "isNull": "You can't send a null.",
         "isEmptyBalance": "You don't have balance to pay fee.",
