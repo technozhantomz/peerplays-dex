@@ -8,6 +8,7 @@ import TransferItem from "../../transferItem";
 import {ChainTypes} from "peerplaysjs-lib";
 import {clearLayout} from "../../../../dispatch/index";
 import Close from "../decoration/close";
+import { getAssetById } from '../../../../actions/assets';
 
 const getType = opNumber => {
     const operationsIndexes = Object.values(ChainTypes.operations);
@@ -24,8 +25,15 @@ const fetchFunc = async (context) => {
 
     const basicTag = `tableInfo.${type}`;
     const operation = dataBlock.transactions[trxNum].operations[0][1];
-    const info = await transactionParser(operation, password).then(e => e);
 
+    if (type === 'asset_fund_fee_pool') {
+        const { precision, symbol } = await getAssetById(operation.asset_id)
+        operation['amount'] /= (10 ** precision)
+        operation['amount'] += ` ${symbol}`
+    }
+    
+    const info = await transactionParser(operation, password).then(e => e);
+    
     return {
         dataBlock,
         type: <Translate content={`${basicTag}.title`} component="div" className="operation positive"/>,
@@ -38,6 +46,7 @@ const fetchFunc = async (context) => {
 class TransactionModal extends Component {
 
     componentDidMount() {
+        console.log(this.props.data.info)
     }
 
     render() {
