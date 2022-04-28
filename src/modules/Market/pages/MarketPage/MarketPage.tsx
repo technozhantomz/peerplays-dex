@@ -49,7 +49,7 @@ const MarketPage: NextPage = () => {
     userOrderHistoryRows,
     loadingUserHistoryRows,
     refreshHistory,
-  } = useMarketPage({ currentPair: pair as string });
+  } = useMarketPage ({ currentPair: pair as string });
 
   return (
     <Layout
