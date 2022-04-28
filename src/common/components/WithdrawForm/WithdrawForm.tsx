@@ -106,7 +106,7 @@ export const WithdrawForm = ({
             placeholder={
               selectedAsset === "BTC"
                 ? "Withdraw address"
-                : "Hive blockchain account"
+                : "Withdrawal account"
             }
             className="form-input"
           />
@@ -154,7 +154,7 @@ export const WithdrawForm = ({
         ""
       ) : (
         <Styled.FormDisclamer>
-          <span>Don't have a Peerplays account? </span>
+          <span>Don't have a commodityLLC account? </span>
           <Link href="/signup">
             <a>Create account</a>
           </Link>

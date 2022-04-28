@@ -66,7 +66,6 @@ Install pm2 globally:
 ```
  npm install pm2 -g
 ```
-/src/api/services/initNode.ts
 Now make sure you are in the application's root directory. Build the production distribution:
 ```
 npm run build
