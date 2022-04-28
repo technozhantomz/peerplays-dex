@@ -1,1 +1,0 @@
-export { AssetsTable } from "./AssetsTable";
