@@ -577,7 +577,7 @@ export const en = {
         "pendingTitle": "Pending Fees",
         "pendingDesc": "Fees paid by < %(name)s > are divided among the network, referrers, and registrars once every maintenance interval (%(interval)s seconds). The next maintenance time is %(nextMaintenance)s.",
         "vestingTitle": "Vesting Fees",
-        "vestingDesc": "Most fees are made available immediately, but fees over 100 TEST (such as those paid to upgrade your membership or register a premium account name) must vest for a total of 90 days."
+        "vestingDesc": "Most fees are made available immediately, but fees over 100 %(symbol)s (such as those paid to upgrade your membership or register a premium account name) must vest for a total of 90 days."
     },
     "search": {
         "users": "Users",
