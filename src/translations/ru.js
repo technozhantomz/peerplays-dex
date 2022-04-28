@@ -845,6 +845,7 @@ export const ru = {
         "deposit": "задаток",
         "generateBitcoinAddress": "Создание адреса Bitcoin",
         "logout": "Выход",
+        "changeAvatar": "Сменить аватар",
         "newWorker": "Новый работник",
         "newAsset": "- Новый актив",
         "cancel": "Отмена",

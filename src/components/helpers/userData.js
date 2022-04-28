@@ -74,7 +74,8 @@ const UserData = (props) => {
                     <UnlockProfile closeDropdown={closeDropdown} />
                     <ActionsBtn
                         actionsList={[
-                            <Button tag="logout" onClick={logout} />
+                            <Button tag="logout" onClick={logout} />,
+                            <Button tag="changeAvatar" onClick={() => {}}/>
                         ]}
                     />
                 </div>

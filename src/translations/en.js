@@ -844,6 +844,7 @@ export const en = {
         "deposit": "Deposit",
         "generateBitcoinAddress": "Generate Bitcoin Address",
         "logout": "Logout",
+        "changeAvatar": "Change Avatar",
         "newWorker": "+ New Worker",
         "newAsset": "+ New Asset",
         "cancel": "Cancel",
