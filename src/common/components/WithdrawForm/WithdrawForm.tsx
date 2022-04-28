@@ -80,7 +80,7 @@ export const WithdrawForm = ({
             {selectedAsset === "BTC" ? (
               <p className="label">Withdraw Public key & Address</p>
             ) : (
-              <p className="label">Hive blockchain account</p>
+              <p className="label">Withdrawal account</p>
             )}
           </>
         ) : (

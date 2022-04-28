@@ -66,7 +66,7 @@ Install pm2 globally:
 ```
  npm install pm2 -g
 ```
-
+/src/api/services/initNode.ts
 Now make sure you are in the application's root directory. Build the production distribution:
 ```
 npm run build
@@ -74,7 +74,7 @@ npm run build
 
 Make sure you are in the application's root directory. Serve the application:
 ```
-pm2 start npm --name <must be unique> -- start
+pm2 start npm --name pm2satia -- start
 ```
 
 #### Exmaple NGINX Configuration:
