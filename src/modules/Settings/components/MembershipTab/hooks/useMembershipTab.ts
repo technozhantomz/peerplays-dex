@@ -26,7 +26,6 @@ export function useMembershipTab(): UseMembershipTabResult {
   const { maintenanceInterval, nextMaintenanceTime } = useMaintenace();
 
   const [membershipForm] = Form.useForm();
-  const [submittingPassword, setSubmittingPassword] = useState<boolean>(false);
   const [isPasswordModalVisible, setIsPasswordModalVisible] =
     useState<boolean>(false);
   const [isMembershipModalVisible, setIsMembershipModalVisible] =
@@ -36,6 +35,7 @@ export function useMembershipTab(): UseMembershipTabResult {
     useState<string>("");
   const [transactionSuccessMessage, setTransactionSuccessMessage] =
     useState<string>("");
+  useState<boolean>(false);
   const [feesCashback, setFeesCashback] = useState<number>(0);
   const [membershipPrice, setMembershipPrice] = useState<number>(0);
   const [networkFee, setNetworkFee] = useState<number>(0);
@@ -144,7 +144,6 @@ export function useMembershipTab(): UseMembershipTabResult {
 
   const handleMembershipUpgrade = useCallback(
     async (password: string) => {
-      setSubmittingPassword(true);
       setIsPasswordModalVisible(false);
       setIsMembershipModalVisible(true);
 
@@ -169,11 +168,9 @@ export function useMembershipTab(): UseMembershipTabResult {
         console.log(error);
         setTransactionErrorMessage("Unable to process the transaction!");
         setLoadingTransaction(false);
-        setSubmittingPassword(false);
       }
 
       if (trxResult) {
-        setSubmittingPassword(false);
         setIsLifetimeMember(true);
         setTransactionErrorMessage("");
         setTransactionSuccessMessage(
@@ -242,7 +239,6 @@ export function useMembershipTab(): UseMembershipTabResult {
     handleMembershipModalCancel,
     handleMembershipModalConfirm,
     isPasswordModalVisible,
-    submittingPassword,
     handlePasswordModalCancel,
     onFormFinish,
     membershipForm,

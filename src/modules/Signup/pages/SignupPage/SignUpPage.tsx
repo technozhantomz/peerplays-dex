@@ -15,7 +15,7 @@ const SignUpPage: NextPage = () => {
         <SignUpForm />
         <Styled.FormDisclamerContainer>
           <FormDisclamer>
-            <span>Already have a commodityLLc account? </span>
+            <span>Already have a Peerplays account? </span>
             <Link href="/login">
               <a>Log in</a>
             </Link>

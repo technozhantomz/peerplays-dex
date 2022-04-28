@@ -121,9 +121,9 @@ export function useMarketPage({ currentPair }: Props): UseMarketPageResult {
             ? exchanges.list
             : [
                 `BTC/${defaultAsset.symbol}`,
-                `KES/${defaultAsset.symbol}`,
-                `GOLD/${defaultAsset.symbol}`,
-                `EUR/${defaultAsset.symbol}`,
+                `HIVE/${defaultAsset.symbol}`,
+                `HBD/${defaultAsset.symbol}`,
+                `LARNYX/${defaultAsset.symbol}`,
               ];
         const tradingPairsStats = await Promise.all(
           initPairs.map(formPairStats)

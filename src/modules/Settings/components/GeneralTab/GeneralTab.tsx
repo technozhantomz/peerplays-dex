@@ -1,12 +1,8 @@
-import { Col, Row } from "antd";
-
 import { defaultLocales, faucetUrl } from "../../../../api/params";
 import { useSettingsContext } from "../../../../common/providers";
 import { useSettings } from "../../hooks";
 
 import * as Styled from "./GeneralTab.styled";
-
-const style = { background: "#0092ff" };
 
 export const GeneralTab = (): JSX.Element => {
   const {
@@ -54,18 +50,14 @@ export const GeneralTab = (): JSX.Element => {
             Notify about transfers to my account
           </Styled.TransferCheckbox>
         </Styled.FormItem>
-        <Styled.FaucetSpace>
+        <Styled.FaucetSpace direction="vertical">
           <Styled.LabelText>Faucet</Styled.LabelText>
-          <Row gutter={[1, 20]}>
-            <Col className="gutter-row" md={10} xs={24}>
-              <Styled.FaucetURL>{`Faucet URL: ${faucetUrl}`}</Styled.FaucetURL>
-            </Col>
-            <Col className="gutter-row" md={6} xs={24}>
-              <Styled.Typography.Link copyable={{ text: faucetUrl }}>
-                Copy URL
-              </Styled.Typography.Link>
-            </Col>
-          </Row>
+          <Styled.Space direction="horizontal">
+            <Styled.FaucetURL>{`Faucet URL: ${faucetUrl}`}</Styled.FaucetURL>
+            <Styled.Typography.Link copyable={{ text: faucetUrl }}>
+              Copy URL
+            </Styled.Typography.Link>
+          </Styled.Space>
           {showSuccessMessage && (
             <Styled.LabelText type="success">Setting saved!</Styled.LabelText>
           )}

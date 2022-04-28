@@ -32,7 +32,7 @@ export const LogoSelectOption = (props: LogoSelectionProps): JSX.Element => {
     USD: <PPYIcon height="30" width="30" />,
     PPY: <PPYIcon height="30" width="30" />,
     KES: <HIVEIcon height="30" width="30" />,
-    GOLD: <HIVEIcon height="30" width="30" />,
+    EUR: <HIVEIcon height="30" width="30" />,
   };
   return (
     <Styled.SelectContainer
