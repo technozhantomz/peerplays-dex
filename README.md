@@ -66,7 +66,6 @@ Install pm2 globally:
 ```
  npm install pm2 -g
 ```
-
 Now make sure you are in the application's root directory. Build the production distribution:
 ```
 npm run build
@@ -74,7 +73,7 @@ npm run build
 
 Make sure you are in the application's root directory. Serve the application:
 ```
-pm2 start npm --name <must be unique> -- start
+pm2 start npm --name pm2satia -- start
 ```
 
 #### Exmaple NGINX Configuration:
@@ -84,7 +83,7 @@ server {
   listen 80;
   listen [::]:80;
 
-  server_name <domain>;
+  server_name commodity.llc www.commodity.llc;
 
   location / {
     proxy_pass http://localhost:3000;
@@ -96,7 +95,7 @@ server {
   }
 
   location /_next/static/ {
-    alias /<application absolute path>/.next/static/;
+    root /var/www/commodity.llc/html/dex/.next;
   }
 }
 ```

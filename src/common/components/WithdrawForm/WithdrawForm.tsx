@@ -80,7 +80,7 @@ export const WithdrawForm = ({
             {selectedAsset === "BTC" ? (
               <p className="label">Withdraw Public key & Address</p>
             ) : (
-              <p className="label">Hive blockchain account</p>
+              <p className="label">Withdrawal account</p>
             )}
           </>
         ) : (
@@ -106,7 +106,7 @@ export const WithdrawForm = ({
             placeholder={
               selectedAsset === "BTC"
                 ? "Withdraw address"
-                : "Hive blockchain account"
+                : "Withdrawal account"
             }
             className="form-input"
           />
@@ -154,7 +154,7 @@ export const WithdrawForm = ({
         ""
       ) : (
         <Styled.FormDisclamer>
-          <span>Don't have a CcommodityLLC account? </span>
+          <span>Don't have a commodityLLC account? </span>
           <Link href="/signup">
             <a>Create account</a>
           </Link>
