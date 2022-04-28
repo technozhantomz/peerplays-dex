@@ -25,13 +25,12 @@ const fetchFunc = async (context) => {
 
     const basicTag = `tableInfo.${type}`;
     const operation = dataBlock.transactions[trxNum].operations[0][1];
-
+    
     if (type === 'asset_fund_fee_pool') {
         const { precision, symbol } = await getAssetById(operation.asset_id)
         operation['amount'] /= (10 ** precision)
         operation['amount'] += ` ${symbol}`
     }
-    
     const info = await transactionParser(operation, password).then(e => e);
     
     return {
