@@ -4,7 +4,6 @@ export type UseMembershipTabResult = {
   handleMembershipUpgrade: (password: string) => void;
   isMembershipModalVisible: boolean;
   isPasswordModalVisible: boolean;
-  submittingPassword: boolean;
   loadingTransaction: boolean;
   transactionErrorMessage: string;
   transactionSuccessMessage: string;

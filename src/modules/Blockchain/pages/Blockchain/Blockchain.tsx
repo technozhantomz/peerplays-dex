@@ -66,7 +66,8 @@ const Blockchain: NextPage = () => {
       <Styled.BlockchainCard>
         <Tabs
           renderTabBar={renderTabBar}
-          activeKey={`${tab ? tab : "blockchain"}`}
+          accessKey={`${tab ? tab : "blockchain"}`}
+          defaultActiveKey={`${tab ? tab : "blockchain"}`}
           onTabClick={(key) => {
             router.push(`/blockchain?tab=${key}`);
             if (width < breakpoints.sm) setVisible(false);

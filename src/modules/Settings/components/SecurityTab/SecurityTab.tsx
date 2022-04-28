@@ -33,11 +33,9 @@ export const SecurityTab = (): JSX.Element => {
         {showSuccessMessage && (
           <Styled.LabelText type="success">Setting saved!</Styled.LabelText>
         )}
-        <Styled.BtnDiv>
-          <Styled.SaveButton type="primary" htmlType="submit">
-            Save
-          </Styled.SaveButton>
-        </Styled.BtnDiv>
+        <Styled.SaveButton type="primary" htmlType="submit">
+          Save
+        </Styled.SaveButton>
       </Styled.SecurityTabForm>
     </Styled.SecuritySettingsCard>
   );

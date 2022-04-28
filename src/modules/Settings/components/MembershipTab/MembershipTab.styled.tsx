@@ -15,18 +15,11 @@ export const MembershipCard = styled.div`
     letter-spacing: 0px;
     color: ${colors.textColor};
     min-height: 856px;
-    margin: 20px;
+    margin-left: 10px;
     ${breakpoint.xs} {
       margin-left: 30px;
       position: relative;
       min-height: 950px;
-    }
-  }
-  a {
-    font: normal normal normal 12px/20px Inter;
-    letter-spacing: 0px;
-    ${breakpoint.xs} {
-      font: normal normal normal 14px/20px Inter;
     }
   }
 `;
@@ -37,57 +30,31 @@ export const MembershipForm = styled(UiForm)`
 
 export const Heading = styled(UiText)`
   text-align: left;
-  letter-spacing: 0px;
-  color: ${colors.textColor};
-  opacity: 1;
-  font: normal normal medium 12px/17px Inter;
-  ${breakpoint.xs} {
-    font: normal normal medium 14px/17px Inter;
-  }
+  font-weight: 400;
 `;
 
-export const Label = styled(UiText)`
-   {
-    font: normal normal normal 12px/17px Inter;
-    letter-spacing: 0px;
-    color: ${colors.textColor};
-    opacity: 1;
-    ${breakpoint.xs} {
-      font: normal normal normal 14px/17px Inter;
-    }
-  }
-`;
+export const Label = styled(UiText)``;
 
 export const Paragraph = styled(UiParagraph)`
   text-align: left;
-  width: 100%;
-  font: normal normal normal 12px/17px Inter;
-  letter-spacing: 0px;
-  color: ${colors.textColor};
-  opacity: 1;
+  width: 95%;
   ${breakpoint.xs} {
     width: 70%;
-    font: normal normal normal 14px/17px Inter;
   }
 `;
 
 export const Space = styled(UiSpace)``;
 
 export const ButtonContainer = styled.div`
-  margin: 20px auto;
-  width: 255px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
   ${breakpoint.xs} {
-    width: 295px;
+    width: 50%;
   }
 `;
 
-export const Button = styled(CardFormButton)`
-  width: 100%;
-  heigth: 35px;
-  ${breakpoint.xs} {
-    heigth: 45px;
-  }
-`;
+export const Button = styled(CardFormButton)``;
 
 export const PercentageText = styled(UiText)`
   margin-left: 50px;
@@ -106,14 +73,8 @@ export const LabelContainer = styled.div`
 `;
 
 export const PercentageContainer = styled.div`
-  text-align: left;
-  font: normal normal normal 12px/17px Inter;
-  letter-spacing: 0px;
-  color: ${colors.textColor};
-  opacity: 1;
-  width: 50%;
+  width: 40%;
   ${breakpoint.xs} {
     width: 20%;
-    font: normal normal normal 14px/17px Inter;
   }
 `;
