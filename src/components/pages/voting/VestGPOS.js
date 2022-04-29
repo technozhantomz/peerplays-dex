@@ -11,9 +11,11 @@ import {updateAccount} from "../../../dispatch/setAccount";
 
 
 const VestGPOS = (props) => {
-	const { symbol_id, precision, symbol, totalGpos, getAssets } = props;
+    const { symbol_id, precision, symbol, totalGpos, getAssets } = props;
 	const { loginData, accountData } = getStore();
 	const [vestAmount, setVestAmount] = useState(0);
+	const [fee, setFee] = useState(0);
+	const [sended, setSended] = useState(false);
 	const accBalance = accountData.assets[0].amount / (10 ** accountData.assets[0].precision);
 
 	const account = getAccountData();
@@ -47,13 +49,21 @@ const VestGPOS = (props) => {
 		getPassword(password => {
 			const activeKey = loginData.formPrivateKey(password, 'active');
 			trxBuilder([trx], [activeKey]).then(async() => {
+				setSended(true)
 				getAssets();
 				setVestAmount(0);
 				updateAccount(await formAccount(account.name));
+				setTimeout(() => setSended(false), 5000)
 			});
-			
 		});
 	};
+
+	const handlChange = (value)=>{
+		setVestAmount(value),
+		setFee(1)
+	}
+
+
 	return (
 		<Card mode="widget" style={{ height:"100%"}}>
 			<div className="card__title" style={{ paddingTop:"20px" , borderTopLeftRadius:"10px" , borderTopRightRadius:"10px"}}>
@@ -86,7 +96,7 @@ const VestGPOS = (props) => {
 					// step={0.1}
 					precision={accountData.assets[0].precision}
 					max={accBalance}
-					onChange={(value) => setVestAmount(value)}
+					onChange={(value) => handlChange(value)}
 					value={vestAmount}
 				/>
 				</div>
@@ -102,6 +112,10 @@ const VestGPOS = (props) => {
 					</div>
 				</div>
 			</CardContent>
+			<div className="info__row">
+			<span>Fee: {fee} TEST</span>
+			{sended && <span className="clr--positive"><Translate content={"voting.trans"} /></span>}
+		  </div>
 			<CardActions style={{justifyContent:"end"}} >
 				<button className="btn-round btn-round--buy" onClick={() => (vestAmount == null || vestAmount == 0 || vestAmount > accBalance) ? "" : SubmitGposVesting()}>Vest</button>
 			</CardActions>
