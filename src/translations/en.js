@@ -725,6 +725,7 @@ export const en = {
         "sonError": "Server side error!! Try again later.",
         "keyExists": "Key already exists.",
         "newAcc": {
+            "noCapital": "Account name should not contain capital letters",
             "longer": "Account name should be longer",
             "shorter": "Account name should be shorter",
             "firstLetter": "Account name should start with a letter",
