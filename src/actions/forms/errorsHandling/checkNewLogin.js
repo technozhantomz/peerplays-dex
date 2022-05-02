@@ -37,10 +37,10 @@ const defaultAccsErrs = {
         ' be longer': 'newAcc.longer'
     },
     segmentErr: {
-        ' start with a letter.': 'newAcc.firstLetter',
-        ' have only letters, digits, or dashes.': 'newAcc.noSpecials',
-        ' have only one dash in a row.': 'newAcc.oneDash',
-        ' end with a letter or digit.': 'newAcc.lastSymbol',
+        ' start with a letter.': 'newAccSegment.firstLetter',
+        ' have only letters, digits, or dashes.': 'newAccSegment.noSpecials',
+        ' have only one dash in a row.': 'newAccSegment.oneDash',
+        ' end with a letter or digit.': 'newAccSegment.lastSymbol',
         ' be longer': 'newAcc.longer'
     }
 };
