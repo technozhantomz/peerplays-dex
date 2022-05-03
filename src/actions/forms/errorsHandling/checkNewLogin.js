@@ -3,6 +3,9 @@ import {ChainValidation} from "peerplaysjs-lib";
 
 export const checkNewLogin = async ({newLogin}) => {
     if(!newLogin) return false;
+    if (/^[A-Z]/.test(newLogin)) {
+        return 'newAcc.noCapital';
+    }
 
     const defaultErrors = ChainValidation.is_account_name_error(newLogin);
 
