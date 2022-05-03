@@ -35,7 +35,6 @@ class FieldWithHint extends Component{
     handleChange = (val, name) => {
         let {data, timeout} = this.state;
         data[name] = val;
-        this.setState({dropdown :!this.state.dropdown})
         if(timeout) clearTimeout(timeout);
 
         if(!val) {
@@ -75,7 +74,7 @@ class FieldWithHint extends Component{
         handleChange(val, name);
         this.close(data);
     };
-
+  
     toggleDropdown = ()=>{
         this.setState({dropdown :!this.state.dropdown})
     }
@@ -95,7 +94,7 @@ class FieldWithHint extends Component{
                     labelParams={labelParams}
                     className={className}
                     hideLabel={hideLabel}
-                    onChange={this.handleChange}
+                    onChange={this.toggleDropdown}
                     onFocus={this.handleChange}
                     onClick={this.handleChange}
                     value={data}
