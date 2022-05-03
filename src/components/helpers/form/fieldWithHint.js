@@ -79,6 +79,11 @@ class FieldWithHint extends Component{
         this.setState({dropdown :!this.state.dropdown})
     }
 
+    toggleDropdown = ()=>{
+        this.setState({dropdown :!this.state.dropdown})
+    }
+
+
     render(){
 
         const {name, hideLabel, labelParams, className, errors,id, readOnly} = this.props;
