@@ -13,7 +13,7 @@ import {updateAccount} from "../../../dispatch/setAccount";
 const VestGPOS = (props) => {
 	const { symbol_id, precision, symbol, totalGpos, getAssets } = props;
 	const { loginData, accountData } = getStore();
-	const [vestAmount, setVestAmount] = useState(0);
+	const [vestAmount, setVestAmount] = useState(0.1);
 	const accBalance = accountData.assets[0].amount / (10 ** accountData.assets[0].precision);
 
 	const account = getAccountData();
