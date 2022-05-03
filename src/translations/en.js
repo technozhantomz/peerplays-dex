@@ -707,6 +707,7 @@ export const en = {
         "needPassword": "Please, enter password first",
         "passwordsNotMatch": "Passwords don't match",
         "passwordLength": "Password should be at least 12 characters long",
+        "passwordNoBlank": "Password should not contain blank space",
         "usedWorkerName": "Worker name is already in use.",
         "beginFromToday": "Beginning date must start from today",
         "wrongEndDate": "End date must be after beginning",
