@@ -7,7 +7,15 @@ import { mixIns } from "./mixins";
 
 export const MenuCard = styled(AntdCard)`
    {
+    top: 25px;
     height: 93%;
+    border-radius: 4px;
+    opacity: 1;
+
+    .ant-switch-small {
+      margin-right: 8px;
+    }
+
     ul {
       list-style: none;
       margin: 0;
@@ -22,23 +30,19 @@ export const MenuCard = styled(AntdCard)`
       display: flex;
       justify-content: space-between;
       color: ${colors.textColor};
-      &.active {
-        .menu-icon {
-          color: ${colors.primaryColor};
-        }
-      }
     }
     .menu-icon {
       color: ${colors.borderColorBase};
+      margin-right: 20px;
     }
     .advanced {
       border: none;
-      margin: 30px 0;
+      // margin: 30px 0;
       padding: 0;
       border: none;
     }
     .logout {
-      position: absolute;
+      // position: absolute;
       bottom: 40px;
       border: none;
     }
@@ -49,9 +53,6 @@ export const MenuCard = styled(AntdCard)`
   }
   ${breakpoint.xs} {
     height: inherit;
-    .ant-card-body {
-      padding: 20px;
-    }
     ul {
       li {
         border-bottom: none;

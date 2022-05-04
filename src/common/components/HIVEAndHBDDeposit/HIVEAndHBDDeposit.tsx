@@ -11,7 +11,7 @@ type Props = {
 };
 
 export const HIVEAndHBDDeposit = ({
-  assetSymbol = "KES",
+  assetSymbol = "HIVE",
 }: Props): JSX.Element => {
   const router = useRouter();
   const { localStorageAccount } = useUserContext();
@@ -25,9 +25,9 @@ export const HIVEAndHBDDeposit = ({
           <Styled.DepositInstruction>
             {`To deposit ${assetSymbol} to `}
             <Styled.AccountContainer>{`${localStorageAccount} `}</Styled.AccountContainer>
-            please click on account name, i.e.
-            <Styled.AccountContainer>{` ${localStorageAccount} `}</Styled.AccountContainer>
-            TO USE Debit/Credit card and/or mobile money.
+            please send your funds to son-account on the Hive blockchain with
+            the memo
+            <Styled.AccountContainer>{` ${localStorageAccount}`}</Styled.AccountContainer>
           </Styled.DepositInstruction>
         </Styled.Container>
       ) : (

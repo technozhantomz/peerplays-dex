@@ -5,7 +5,6 @@ import {
   PoweroffOutlined,
   SettingOutlined,
 } from "../../../../../../ui/src";
-import { breakpoints } from "../../../../../../ui/src/breakpoints";
 import { Contacts, Vote } from "../../../../../../ui/src/icons";
 import { useUserContext, useViewportContext } from "../../../../../providers";
 import { MenuItem } from "../MenuItem";
@@ -16,21 +15,21 @@ const { Meta } = Card;
 
 export const ProfileMenu = (): JSX.Element => {
   const { localStorageAccount } = useUserContext();
-  const { width } = useViewportContext();
+  const { xs } = useViewportContext();
 
   return (
     <Styled.ProfileMenu bordered={false}>
       <Meta
         avatar={
           <Styled.ProfileAvitar>
-            {localStorageAccount?.charAt(0)}
+            {localStorageAccount?.charAt(0).toUpperCase()}
           </Styled.ProfileAvitar>
         }
         title={`Hello ${localStorageAccount}!`}
         description={`@${localStorageAccount}`}
       />
       <ul>
-        {width < breakpoints.xs ? (
+        {xs ? (
           <>
             <li>
               <MenuItem
@@ -62,7 +61,7 @@ export const ProfileMenu = (): JSX.Element => {
             Label="Settings"
           />
         </li>
-        {width < breakpoints.xs ? (
+        {xs ? (
           <li className={"link"}>
             <Link href={`/user/${localStorageAccount}`}>
               <a>See all account activity</a>

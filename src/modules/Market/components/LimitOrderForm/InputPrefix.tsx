@@ -30,7 +30,7 @@ export function InputPrefix({
     USD: <PPYIcon height="30" width="30" />,
     PPY: <PPYIcon height="30" width="30" />,
     KES: <HIVEIcon height="30" width="30" />,
-    GOLD: <HIVEIcon height="30" width="30" />,
+    EUR: <HIVEIcon height="30" width="30" />,
     ETH: <EthereumIcon height="30" width="30" />,
     BTS: <BitsharesIcon height="30" width="30" />,
     USDT: <TetherIcon height="30" width="30" />,

@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import { UseToggleMenuResult } from "./useToggleMenu.types";
 
@@ -12,30 +12,23 @@ export function useToggleMenu(): UseToggleMenuResult {
     (menuName: string) => {
       switch (true) {
         case menuName === "notify":
-          setNotificationMenuOpen(!notificationMenuOpen);
+          setNotificationMenuOpen(notificationMenuOpen ? false : true);
           setProfileMenuOpen(false);
           setMainMenuOpen(false);
           break;
         case menuName === "profile":
-          setProfileMenuOpen(!profileMenuOpen);
+          setProfileMenuOpen(profileMenuOpen ? false : true);
           setNotificationMenuOpen(false);
           setMainMenuOpen(false);
           break;
         case menuName === "main":
-          setMainMenuOpen(!mainMenuOpen);
+          setMainMenuOpen(mainMenuOpen ? false : true);
           setNotificationMenuOpen(false);
           setProfileMenuOpen(false);
           break;
       }
     },
-    [
-      notificationMenuOpen,
-      profileMenuOpen,
-      mainMenuOpen,
-      setNotificationMenuOpen,
-      setProfileMenuOpen,
-      setMainMenuOpen,
-    ]
+    [setNotificationMenuOpen, setProfileMenuOpen, setMainMenuOpen]
   );
 
   const closeMenu = useCallback(() => {
@@ -43,6 +36,13 @@ export function useToggleMenu(): UseToggleMenuResult {
     setProfileMenuOpen(false);
     setMainMenuOpen(false);
   }, [setNotificationMenuOpen, setProfileMenuOpen, setMainMenuOpen]);
+
+  useEffect(() => {
+    document.addEventListener("click", closeMenu);
+    return () => {
+      document.removeEventListener("click", closeMenu);
+    };
+  }, []);
 
   return {
     toggleMenu,

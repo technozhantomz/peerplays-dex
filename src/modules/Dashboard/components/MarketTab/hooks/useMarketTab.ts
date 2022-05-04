@@ -29,7 +29,7 @@ export function useMarketTab(): UseMarketTabResult {
       },
     },
     {
-      tradingPair: `GOLD/${defaultToken}`,
+      tradingPair: `EUR/${defaultToken}`,
       marketPairStats: {
         volume: 0,
         latest: 0,
@@ -37,7 +37,7 @@ export function useMarketTab(): UseMarketTabResult {
       },
     },
     {
-      tradingPair: `EUR/${defaultToken}`,
+      tradingPair: `GOLD/${defaultToken}`,
       marketPairStats: {
         volume: 0,
         latest: 0,

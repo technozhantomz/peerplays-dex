@@ -22,7 +22,7 @@ export const AssetTitle = ({ symbol }: Props): JSX.Element => {
     [symbol: string]: string;
   } = {
     BTC: "Bitcoin",
-    USD: "Peerplays",
+    USD: "commodityLLC",
     PPY: "Peerplays",
     KES: "Hive",
     GOLD: "Hive",

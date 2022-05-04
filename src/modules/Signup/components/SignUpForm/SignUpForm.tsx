@@ -82,7 +82,7 @@ export const SignUpForm: React.FC = () => {
       >
         <Styled.Checkbox onChange={setCheckboxVlaue}>
           <p className="checkbox-text">
-            I understand commodityLLC cannot recover my lost password
+            I understand Peerplays cannot recover my lost password
           </p>
         </Styled.Checkbox>
       </Styled.ConfirmFormItem>
