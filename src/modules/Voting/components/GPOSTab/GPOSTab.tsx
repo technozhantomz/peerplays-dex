@@ -14,7 +14,7 @@ export const GPOSTab = (): JSX.Element => {
   const ReadMoreBlock = (
     <>
       <p>
-        The more value that comes into Peerplays blockchain through its
+        The more value that comes into Homepesa Organisation through its
         operations, the more those that participate to help make it secure will
         earn!
       </p>
@@ -23,12 +23,12 @@ export const GPOSTab = (): JSX.Element => {
         ways:
       </p>
       <ul>
-        <li>1. Transfer more PPY into your GPOS balance</li>
-        <li>2. Share Peerplays with others</li>
+        <li>1. Transfer more USD into your Homepesa Organisation</li>
+        <li>2. Share Homepesa Organisation with others</li>
       </ul>
       <p>
         Together as a Decentralized Autonomous Cooperative (DAC), we can ensure
-        Peerplays remains the most secure provably fair blockchain globally.
+        Homepesa Organisation remains the most secure provably fair Organisation globally.
       </p>
     </>
   );
@@ -36,11 +36,11 @@ export const GPOSTab = (): JSX.Element => {
   return (
     <Styled.GPOSTabWrapper>
       <Styled.GPOSIntro>
-        <p>Join GPOS by transferring your PPY to your GPOS balance.</p>
+        <p>Join HOMEPESA by transferring your USD to your HOMEPESA SACCO ACC.</p>
         <p>
           Consistently participate in voting for the best Witnesses, Advisors,
-          Proposals, and SONs. Share the exciting news and DApps available on
-          Peerplays with others.
+          Proposals, and SONs. Share the exciting news and Decentralized Application available on
+          Homepesa Organisation with others.
         </p>
         {sm ? (
           <>
@@ -61,7 +61,7 @@ export const GPOSTab = (): JSX.Element => {
             <ul>
               <li>
                 <Styled.GPOSContentInfoDetailsTitle>
-                  GPOS Balance
+                  Homepesa Organisation
                 </Styled.GPOSContentInfoDetailsTitle>
                 <Styled.GPOSContentInfoDetailsValue>
                   {GPOSInfo.gposBalance} {GPOSInfo.symbol}
@@ -69,7 +69,7 @@ export const GPOSTab = (): JSX.Element => {
               </li>
               <li>
                 <Styled.GPOSContentInfoDetailsTitle>
-                  Voting Performance
+                  Voting progress
                 </Styled.GPOSContentInfoDetailsTitle>
                 <Styled.GPOSContentInfoDetailsValue
                   className={GPOSInfo.performance
@@ -112,19 +112,19 @@ export const GPOSTab = (): JSX.Element => {
             type="primary"
             onClick={() => router.push(`/gpos?tab=power-up`)}
           >
-            Power Up
+            Top Up
           </Styled.GPOSTButton>
           <Styled.GPOSTButton
             type="primary"
             onClick={() => router.push(`/gpos?tab=power-down`)}
           >
-            Power Down
+            Top Down
           </Styled.GPOSTButton>
           <Styled.GPOSTButton
             type="primary"
             onClick={() => router.push(`/voting?tab=witness`)}
           >
-            Vote
+            Homepesa Vote
           </Styled.GPOSTButton>
           <Styled.GPOSTButton type="text">Cancel</Styled.GPOSTButton>
         </Styled.GPOSContentActions>
