@@ -46,10 +46,10 @@ const GPOSPage: NextPage = () => {
   );
   return (
     <Layout
-      title="Peerplays (GPOS)"
+      title="Homepesa (STAKE VOVE)"
       type="card-lrg"
-      heading="Peerplays (GPOS)"
-      description="Peerplays (GPOS)"
+      heading="Homepesa (STAKE VOVE)"
+      description="Homepesa (STAKE VOVE)"
       dexLayout={true}
     >
       <Styled.GPOSCard>

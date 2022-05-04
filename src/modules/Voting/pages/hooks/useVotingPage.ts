@@ -6,53 +6,53 @@ import { VotingPage } from "./useVotingPage.types";
 
 export function useVotingPage(tab?: string): VotingPage {
   const [pageMeta, setPageMeta] = useState<PageMeta>({
-    title: "PeerPlays (GPOS)",
-    heading: "PeerPlays (GPOS)",
-    description: "PeerPlays (GPOS) | ",
+    title: "Homepesa Organisation (Power Vote)",
+    heading: "Homepesa Organisation (Power Vote)",
+    description: "Homepesa Organisation (Power Vote) | ",
   });
 
   useEffect(() => {
     switch (tab) {
       case "gpos":
         setPageMeta({
-          title: "PeerPlays (GPOS)",
-          heading: "PeerPlays (GPOS)",
-          description: "PeerPlays (GPOS)",
+          title: "Homepesa Organisation (Power Vote)",
+          heading: "Homepesa Organisation (Power Vote)",
+          description: "Homepesa Organisation (Power Vote)",
         });
         break;
       case "witness":
         setPageMeta({
-          title: "PeerPlays Voting",
-          heading: "PeerPlays Voting",
-          description: "PeerPlays Voting | Witness",
+          title: "Homepesa Organisation Voting",
+          heading: "Homepesa Organisation Voting",
+          description: "Homepesa Organisation Voting | Witness",
         });
         break;
       case "sons":
         setPageMeta({
-          title: "PeerPlays Voting",
-          heading: "PeerPlays Voting",
-          description: "PeerPlays Voting | SONs",
+          title: "Homepesa Organisation Voting",
+          heading: "Homepesa Organisation Voting",
+          description: "Homepesa Organisation Voting | SONs",
         });
         break;
       case "advisors":
         setPageMeta({
-          title: "PeerPlays Voting",
-          heading: "PeerPlays Voting",
-          description: "PeerPlays Voting | Advisors",
+          title: "Homepesa Organisation Voting",
+          heading: "Homepesa Organisation Voting",
+          description: "Homepesa Organisation Voting | Advisors",
         });
         break;
       case "proxy":
         setPageMeta({
-          title: "PeerPlays Voting",
-          heading: "PeerPlays Voting",
-          description: "PeerPlays Voting | Proxy",
+          title: "Homepesa Organisation Voting",
+          heading: "Homepesa Organisation Voting",
+          description: "Homepesa Organisation Voting | Proxy",
         });
         break;
       default:
         setPageMeta({
-          title: "PeerPlays (GPOS)",
-          heading: "PeerPlays (GPOS)",
-          description: "PeerPlays (GPOS)",
+          title: "Homepesa Organisation (Power Vote)",
+          heading: "Homepesa Organisation (Power Vote)",
+          description: "Homepesa Organisation (Power Vote)",
         });
         break;
     }

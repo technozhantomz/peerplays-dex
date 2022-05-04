@@ -82,7 +82,7 @@ export function usePowerDownForm(): UsePowerDownForm {
     const activeKey = getPrivateKey(password, "active");
     const vestingBalance = await dbApi("get_vesting_balances", [id]).then(
       (balances: any[]) =>
-        balances.filter((balance) => balance.balance_type == "gpos")
+        balances.filter((balance) => balance.balance_type == "HomePesa Stake")
     );
     const withdrawAmount =
       values.withdrawAmount * 10 ** (gposBalances?.asset.precision as number);
