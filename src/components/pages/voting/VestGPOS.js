@@ -46,6 +46,7 @@ const VestGPOS = (props) => {
 				balance_type: 'gpos'
 			}
 		};
+		setFee(trx.params.amount.amount/10000)
 		getPassword(password => {
 			const activeKey = loginData.formPrivateKey(password, 'active');
 			trxBuilder([trx], [activeKey]).then(async() => {
@@ -59,8 +60,7 @@ const VestGPOS = (props) => {
 	};
 
 	const handlChange = (value)=>{
-		setVestAmount(value),
-		setFee(1)
+		setVestAmount(value)
 	}
 
 
