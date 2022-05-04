@@ -13,7 +13,8 @@ import {updateAccount} from "../../../dispatch/setAccount";
 const VestGPOS = (props) => {
 	const { symbol_id, precision, symbol, totalGpos, getAssets } = props;
 	const { loginData, accountData } = getStore();
-	const [vestAmount, setVestAmount] = useState(0.1);
+	const [vestAmount, setVestAmount] = useState(0);
+	const [changes, setChanges] = useState(false);
 	const accBalance = accountData.assets[0].amount / (10 ** accountData.assets[0].precision);
 
 	const account = getAccountData();
@@ -86,11 +87,11 @@ const VestGPOS = (props) => {
 					// step={0.1}
 					precision={accountData.assets[0].precision}
 					max={accBalance}
-					onChange={(value) => setVestAmount(value)}
+					onChange={(value) => {setVestAmount(value),setChanges(true)}}
 					value={vestAmount}
 				/>
 				</div>
-				<div style={{ marginTop: 12, color: "#ff444a", display: (vestAmount == null || vestAmount == 0) ? "block" : "none" }}>
+				<div style={{ marginTop: 12, color: "#ff444a", display: (changes &&(vestAmount == null || vestAmount == 0)) ? "block" : "none" }}>
 					<Translate component="div" className="" content={"errors.requiredAndnotzero"} />
 				</div>
 				<div style={{ marginTop: 12, color: "#ff444a", display: (vestAmount == null || vestAmount > accBalance) ? "block" : "none" }}>

@@ -10,7 +10,7 @@ import { localeFromStorage } from '../../../actions/locale/localeFromStorage';
 const WithdrawGPOS = (props) => {
 	const { loginData, accountData } = getStore();
 	const { symbol_id, precision, symbol, totalGpos, availableGpos, getAssets } = props;
-	const [withdrawAmount, setWithdrawAmount] = useState(0.1);
+	const [withdrawAmount, setWithdrawAmount] = useState(0);
 	const [withdrawDisabled, setWithdrawDisabled] = useState(false);
 	const [changes, setChanges] = useState(false);
 	const [language, setLanguage] = useState( localeFromStorage() )
@@ -88,7 +88,7 @@ const WithdrawGPOS = (props) => {
 				<div style={{ marginTop: 12, color: "#ff444a", display: ( changes &&(availableGpos == undefined || availableGpos == null || availableGpos <= 0) ) ? "block" : "none" }}>
 					<Translate  className="" content={"voting.noGpos"} />
 				</div>
-				<div style={{ marginTop: 12, color: "#ff444a", display: (withdrawAmount == undefined || withdrawAmount == null || withdrawAmount <= 0) ? "block" : "none" }}>
+				<div style={{ marginTop: 12, color: "#ff444a", display: (changes &&(withdrawAmount == undefined || withdrawAmount == null || withdrawAmount <= 0)) ? "block" : "none" }}>
 					<Translate  className="" content={"errors.withdrawError"} /> 
 				</div>
 				<div style={{ marginTop: 12 }}  className="input-cus-style">
