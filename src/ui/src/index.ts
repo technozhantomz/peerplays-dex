@@ -39,7 +39,6 @@ export {
   MoreOutlined,
   UserOutlined,
   RightOutlined,
-  RedoOutlined,
   InfoCircleOutlined,
   CheckOutlined,
   EyeInvisibleOutlined,

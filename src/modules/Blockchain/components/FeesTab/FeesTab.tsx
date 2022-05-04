@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import { useViewportContext } from "../../../../common/providers";
 import { List, Tag } from "../../../../ui/src";
+import { breakpoints } from "../../../../ui/src/breakpoints";
 
 import { FeesColumns } from "./FeesColumns";
 import * as Styled from "./FeesTab.styled";
@@ -22,12 +23,35 @@ export const FeesTab = (): JSX.Element => {
     gameFeesRows,
     marketFeesRows,
   } = useFeesTab();
-  const { sm } = useViewportContext();
+  const { width } = useViewportContext();
   return (
     <Styled.FeesTabWrapper>
       <Styled.Section>
         <Styled.FeeSpecificHeader>General</Styled.FeeSpecificHeader>
-        {sm ? (
+        {width > breakpoints.sm ? (
+          <>
+            <Styled.FeesTable
+              bordered={false}
+              dataSource={
+                generalFull
+                  ? generalFeesRows
+                  : generalFeesRows.filter((item, index) => {
+                      if (index < 5) return item;
+                    })
+              }
+              columns={FeesColumns}
+              loading={loading}
+              pagination={false}
+            />
+            {loading ? (
+              ""
+            ) : generalFull ? (
+              <a onClick={() => setGeneralFull(false)}>Show Less</a>
+            ) : (
+              <a onClick={() => setGeneralFull(true)}>Show More</a>
+            )}
+          </>
+        ) : (
           <>
             <List
               itemLayout="vertical"
@@ -88,28 +112,9 @@ export const FeesTab = (): JSX.Element => {
                 </Styled.FeeListItem>
               )}
             />
-            {generalFull ? (
-              <a onClick={() => setGeneralFull(false)}>Show Less</a>
-            ) : (
-              <a onClick={() => setGeneralFull(true)}>Show More</a>
-            )}
-          </>
-        ) : (
-          <>
-            <Styled.FeesTable
-              bordered={false}
-              dataSource={
-                generalFull
-                  ? generalFeesRows
-                  : generalFeesRows.filter((item, index) => {
-                      if (index < 5) return item;
-                    })
-              }
-              columns={FeesColumns}
-              loading={loading}
-              pagination={false}
-            />
-            {generalFull ? (
+            {loading ? (
+              ""
+            ) : generalFull ? (
               <a onClick={() => setGeneralFull(false)}>Show Less</a>
             ) : (
               <a onClick={() => setGeneralFull(true)}>Show More</a>
@@ -119,7 +124,30 @@ export const FeesTab = (): JSX.Element => {
       </Styled.Section>
       <Styled.Section>
         <Styled.FeeSpecificHeader>Asset Specific</Styled.FeeSpecificHeader>
-        {sm ? (
+        {width > breakpoints.sm ? (
+          <>
+            <Styled.FeesTable
+              bordered={false}
+              dataSource={
+                assetFull
+                  ? assetFeesRows
+                  : assetFeesRows.filter((item, index) => {
+                      if (index < 5) return item;
+                    })
+              }
+              columns={FeesColumns}
+              loading={loading}
+              pagination={false}
+            />
+            {loading ? (
+              ""
+            ) : assetFull ? (
+              <a onClick={() => setAssetFull(false)}>Show Less</a>
+            ) : (
+              <a onClick={() => setAssetFull(true)}>Show More</a>
+            )}
+          </>
+        ) : (
           <>
             <List
               itemLayout="vertical"
@@ -180,28 +208,9 @@ export const FeesTab = (): JSX.Element => {
                 </Styled.FeeListItem>
               )}
             />
-            {assetFull ? (
-              <a onClick={() => setAssetFull(false)}>Show Less</a>
-            ) : (
-              <a onClick={() => setAssetFull(true)}>Show More</a>
-            )}
-          </>
-        ) : (
-          <>
-            <Styled.FeesTable
-              bordered={false}
-              dataSource={
-                assetFull
-                  ? assetFeesRows
-                  : assetFeesRows.filter((item, index) => {
-                      if (index < 5) return item;
-                    })
-              }
-              columns={FeesColumns}
-              loading={loading}
-              pagination={false}
-            />
-            {assetFull ? (
+            {loading ? (
+              ""
+            ) : assetFull ? (
               <a onClick={() => setAssetFull(false)}>Show Less</a>
             ) : (
               <a onClick={() => setAssetFull(true)}>Show More</a>
@@ -211,7 +220,30 @@ export const FeesTab = (): JSX.Element => {
       </Styled.Section>
       <Styled.Section>
         <Styled.FeeSpecificHeader>Account Specific</Styled.FeeSpecificHeader>
-        {sm ? (
+        {width > breakpoints.sm ? (
+          <>
+            <Styled.FeesTable
+              bordered={false}
+              dataSource={
+                accountFull
+                  ? accountFeesRows
+                  : accountFeesRows.filter((item, index) => {
+                      if (index < 5) return item;
+                    })
+              }
+              columns={FeesColumns}
+              loading={loading}
+              pagination={false}
+            />
+            {loading ? (
+              ""
+            ) : accountFull ? (
+              <a onClick={() => setAccountFull(false)}>Show Less</a>
+            ) : (
+              <a onClick={() => setAccountFull(true)}>Show More</a>
+            )}
+          </>
+        ) : (
           <>
             <List
               itemLayout="vertical"
@@ -272,28 +304,9 @@ export const FeesTab = (): JSX.Element => {
                 </Styled.FeeListItem>
               )}
             />
-            {accountFull ? (
-              <a onClick={() => setAccountFull(false)}>Show Less</a>
-            ) : (
-              <a onClick={() => setAccountFull(true)}>Show More</a>
-            )}
-          </>
-        ) : (
-          <>
-            <Styled.FeesTable
-              bordered={false}
-              dataSource={
-                accountFull
-                  ? accountFeesRows
-                  : accountFeesRows.filter((item, index) => {
-                      if (index < 5) return item;
-                    })
-              }
-              columns={FeesColumns}
-              loading={loading}
-              pagination={false}
-            />
-            {accountFull ? (
+            {loading ? (
+              ""
+            ) : accountFull ? (
               <a onClick={() => setAccountFull(false)}>Show Less</a>
             ) : (
               <a onClick={() => setAccountFull(true)}>Show More</a>
@@ -303,7 +316,15 @@ export const FeesTab = (): JSX.Element => {
       </Styled.Section>
       <Styled.Section>
         <Styled.FeeSpecificHeader>Market Specific</Styled.FeeSpecificHeader>
-        {sm ? (
+        {width > breakpoints.sm ? (
+          <Styled.FeesTable
+            bordered={false}
+            dataSource={marketFeesRows}
+            columns={FeesColumns}
+            loading={loading}
+            pagination={false}
+          />
+        ) : (
           <List
             itemLayout="vertical"
             dataSource={marketFeesRows}
@@ -357,21 +378,36 @@ export const FeesTab = (): JSX.Element => {
               </Styled.FeeListItem>
             )}
           />
-        ) : (
-          <Styled.FeesTable
-            bordered={false}
-            dataSource={marketFeesRows}
-            columns={FeesColumns}
-            loading={loading}
-            pagination={false}
-          />
         )}
       </Styled.Section>
       <Styled.Section>
         <Styled.FeeSpecificHeader>
           Bussiness Administration
         </Styled.FeeSpecificHeader>
-        {sm ? (
+        {width > breakpoints.sm ? (
+          <>
+            <Styled.FeesTable
+              bordered={false}
+              dataSource={
+                businessFull
+                  ? businessFeesRows
+                  : businessFeesRows.filter((item, index) => {
+                      if (index < 5) return item;
+                    })
+              }
+              columns={FeesColumns}
+              loading={loading}
+              pagination={false}
+            />
+            {loading ? (
+              ""
+            ) : businessFull ? (
+              <a onClick={() => setBusinessFull(false)}>Show Less</a>
+            ) : (
+              <a onClick={() => setBusinessFull(true)}>Show More</a>
+            )}
+          </>
+        ) : (
           <>
             <List
               itemLayout="vertical"
@@ -432,28 +468,9 @@ export const FeesTab = (): JSX.Element => {
                 </Styled.FeeListItem>
               )}
             />
-            {businessFull ? (
-              <a onClick={() => setBusinessFull(false)}>Show Less</a>
-            ) : (
-              <a onClick={() => setBusinessFull(true)}>Show More</a>
-            )}
-          </>
-        ) : (
-          <>
-            <Styled.FeesTable
-              bordered={false}
-              dataSource={
-                businessFull
-                  ? businessFeesRows
-                  : businessFeesRows.filter((item, index) => {
-                      if (index < 5) return item;
-                    })
-              }
-              columns={FeesColumns}
-              loading={loading}
-              pagination={false}
-            />
-            {businessFull ? (
+            {loading ? (
+              ""
+            ) : businessFull ? (
               <a onClick={() => setBusinessFull(false)}>Show Less</a>
             ) : (
               <a onClick={() => setBusinessFull(true)}>Show More</a>
@@ -463,7 +480,30 @@ export const FeesTab = (): JSX.Element => {
       </Styled.Section>
       <Styled.Section>
         <Styled.FeeSpecificHeader>Game Specific</Styled.FeeSpecificHeader>
-        {sm ? (
+        {width > breakpoints.sm ? (
+          <>
+            <Styled.FeesTable
+              bordered={false}
+              dataSource={
+                gameFull
+                  ? gameFeesRows
+                  : gameFeesRows.filter((item, index) => {
+                      if (index < 5) return item;
+                    })
+              }
+              columns={FeesColumns}
+              loading={loading}
+              pagination={false}
+            />
+            {loading ? (
+              ""
+            ) : gameFull ? (
+              <a onClick={() => setGameFull(false)}>Show Less</a>
+            ) : (
+              <a onClick={() => setGameFull(true)}>Show More</a>
+            )}
+          </>
+        ) : (
           <>
             <List
               itemLayout="vertical"
@@ -524,28 +564,9 @@ export const FeesTab = (): JSX.Element => {
                 </Styled.FeeListItem>
               )}
             />
-            {gameFull ? (
-              <a onClick={() => setGameFull(false)}>Show Less</a>
-            ) : (
-              <a onClick={() => setGameFull(true)}>Show More</a>
-            )}
-          </>
-        ) : (
-          <>
-            <Styled.FeesTable
-              bordered={false}
-              dataSource={
-                gameFull
-                  ? gameFeesRows
-                  : gameFeesRows.filter((item, index) => {
-                      if (index < 5) return item;
-                    })
-              }
-              columns={FeesColumns}
-              loading={loading}
-              pagination={false}
-            />
-            {gameFull ? (
+            {loading ? (
+              ""
+            ) : gameFull ? (
               <a onClick={() => setGameFull(false)}>Show Less</a>
             ) : (
               <a onClick={() => setGameFull(true)}>Show More</a>

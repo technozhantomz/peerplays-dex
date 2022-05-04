@@ -11,7 +11,7 @@ type Props = {
 };
 
 export const HIVEAndHBDDeposit = ({
-  assetSymbol = "HIVE",
+  assetSymbol = "KES",
 }: Props): JSX.Element => {
   const router = useRouter();
   const { localStorageAccount } = useUserContext();
@@ -43,7 +43,7 @@ export const HIVEAndHBDDeposit = ({
           </Styled.Button>
 
           <Styled.FormDisclamer>
-            <span>Don't have a commodityLLC account? </span>
+            <span>Don't have a Peerplays account? </span>
             <Link href="/signup">
               <a>Create account</a>
             </Link>

@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import { useViewportContext } from "../../../../common/providers";
 import { InfoCircleOutlined, List, Tag, Tooltip } from "../../../../ui/src";
+import { breakpoints } from "../../../../ui/src/breakpoints";
 import { StatsCard } from "../StatsCard";
 
 import { AssetsColumns } from "./AssetsColumns";
@@ -11,7 +12,7 @@ import { useAssetsTab } from "./hooks";
 export const AssetsTab = (): JSX.Element => {
   const { loading, assetTableRows, searchValue, handleSearch, assetsStats } =
     useAssetsTab();
-  const { sm } = useViewportContext();
+  const { width } = useViewportContext();
 
   return (
     <Styled.AssetsTabWrapper>
@@ -29,7 +30,23 @@ export const AssetsTab = (): JSX.Element => {
         onSearch={handleSearch}
         loading={loading}
       />
-      {sm ? (
+      {width > breakpoints.sm ? (
+        <Styled.AssetsTable
+          bordered={false}
+          dataSource={
+            searchValue === ""
+              ? assetTableRows
+              : assetTableRows.filter((item) =>
+                  item.symbol
+                    .toLowerCase()
+                    .startsWith(searchValue.toLowerCase())
+                )
+          }
+          columns={AssetsColumns}
+          loading={loading}
+          pagination={false}
+        />
+      ) : (
         <List
           itemLayout="vertical"
           dataSource={
@@ -92,22 +109,6 @@ export const AssetsTab = (): JSX.Element => {
               </Styled.AssetItemContent>
             </Styled.AssetListItem>
           )}
-        />
-      ) : (
-        <Styled.AssetsTable
-          bordered={false}
-          dataSource={
-            searchValue === ""
-              ? assetTableRows
-              : assetTableRows.filter((item) =>
-                  item.symbol
-                    .toLowerCase()
-                    .startsWith(searchValue.toLowerCase())
-                )
-          }
-          columns={AssetsColumns}
-          loading={loading}
-          pagination={false}
         />
       )}
     </Styled.AssetsTabWrapper>
