@@ -2,6 +2,7 @@ import { ChainTypes } from "peerplaysjs-lib";
 import { useCallback, useEffect, useState } from "react";
 
 import { defaultToken } from "../../../../api/params";
+import { breakpoints } from "../../../../ui/src/breakpoints";
 import { useAccount, useAccountHistory, useAsset } from "../../../hooks";
 import {
   usePeerplaysApiContext,
@@ -20,11 +21,11 @@ export function useActivityTable({
   userName,
   isWalletActivityTable = false,
 }: UseActivityTableArgs): UseActivityTableResult {
-  const [activitiesTable, _setActivitiesTable] = useState<ActivityRow[]>([]);
+  const [activitiesRows, _setActivitiesRows] = useState<ActivityRow[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const { dbApi } = usePeerplaysApiContext();
   const { id } = useUserContext();
-  const { sm } = useViewportContext();
+  const { width } = useViewportContext();
   const { formAssetBalanceById, defaultAsset, getAssetById, setPrecision } =
     useAsset();
   const { getUserNameById, getAccountByName } = useAccount();
@@ -45,16 +46,14 @@ export function useActivityTable({
         year: newDate[3],
         time: newDate[4],
       };
-      if (sm) {
-        return (
-          pattern.map((el: string) => dateObj[el]).join(" ") +
-          " | " +
-          dateObj.time
-        );
-      }
-      return String(date).replace("T", " ");
+      if (width > breakpoints.sm) return String(date).replace("T", " ");
+      return (
+        pattern.map((el: string) => dateObj[el]).join(" ") +
+        " | " +
+        dateObj.time
+      );
     },
-    [sm]
+    [width]
   );
 
   const formActivityDescription: {
@@ -307,7 +306,7 @@ export function useActivityTable({
     [dbApi, defaultAsset, getAssetById, formDate, formActivityDescription]
   );
 
-  const setActivitiesTable = useCallback(async () => {
+  const setActivitiesRows = useCallback(async () => {
     try {
       setLoading(true);
       let history: History[];
@@ -346,7 +345,7 @@ export function useActivityTable({
         );
       }
       const activityRows = await Promise.all(history.map(formActivityRow));
-      _setActivitiesTable(activityRows);
+      _setActivitiesRows(activityRows);
       setLoading(false);
     } catch (e) {
       setLoading(false);
@@ -357,15 +356,15 @@ export function useActivityTable({
     setLoading,
     id,
     getAccountHistoryById,
-    _setActivitiesTable,
+    _setActivitiesRows,
     getAccountByName,
     isWalletActivityTable,
     userName,
   ]);
 
   useEffect(() => {
-    setActivitiesTable();
+    setActivitiesRows();
   }, [id, userName]);
 
-  return { activitiesTable, loading };
+  return { activitiesRows, loading };
 }

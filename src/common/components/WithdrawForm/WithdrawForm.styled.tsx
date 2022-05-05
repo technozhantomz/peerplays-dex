@@ -1,5 +1,5 @@
 import { FormDisclamer as UiFormDisclamer } from "..";
-import { CardFormButton, CardForm, Form, styled } from "../../../ui/src";
+import { CardForm, CardFormButton, Form, styled } from "../../../ui/src";
 import { breakpoint } from "../../../ui/src/breakpoints";
 
 export const WithdrawForm = styled(CardForm)`

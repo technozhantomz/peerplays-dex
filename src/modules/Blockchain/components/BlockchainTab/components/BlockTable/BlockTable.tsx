@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 
 import { useViewportContext } from "../../../../../../common/providers";
 import { List } from "../../../../../../ui/src";
+import { breakpoints } from "../../../../../../ui/src/breakpoints";
 import { BlockTableRow } from "../../../../types";
 
 import { BlockColumns } from "./BlockColumns";
@@ -20,11 +21,31 @@ export const BlockTable = ({
   loading,
 }: Props): JSX.Element => {
   const router = useRouter();
-  const { sm } = useViewportContext();
+  const { width } = useViewportContext();
 
   return (
     <>
-      {sm ? (
+      {width > breakpoints.sm ? (
+        <Styled.BlockTable
+          bordered={false}
+          dataSource={
+            searchValue === ""
+              ? blocks
+              : blocks.filter((item) => item.blockID.startsWith(searchValue))
+          }
+          columns={BlockColumns}
+          rowKey={(record) => record.blockID}
+          loading={loading}
+          pagination={false}
+          onRow={(record, _rowIndex) => {
+            return {
+              onClick: (_event) => {
+                router.push(`/blockchain/${record.blockID}`);
+              },
+            };
+          }}
+        />
+      ) : (
         <List
           itemLayout="vertical"
           dataSource={
@@ -65,26 +86,6 @@ export const BlockTable = ({
               </Styled.BlockListItem>
             </Link>
           )}
-        />
-      ) : (
-        <Styled.BlockTable
-          bordered={false}
-          dataSource={
-            searchValue === ""
-              ? blocks
-              : blocks.filter((item) => item.blockID.startsWith(searchValue))
-          }
-          columns={BlockColumns}
-          rowKey={(record) => record.blockID}
-          loading={loading}
-          pagination={false}
-          onRow={(record, _rowIndex) => {
-            return {
-              onClick: (_event) => {
-                router.push(`/blockchain/${record.blockID}`);
-              },
-            };
-          }}
         />
       )}
     </>

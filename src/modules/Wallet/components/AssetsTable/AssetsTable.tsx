@@ -1,6 +1,7 @@
 import { useAsset } from "../../../../common/hooks";
 import { useViewportContext } from "../../../../common/providers";
 import { List } from "../../../../ui/src";
+import { breakpoints } from "../../../../ui/src/breakpoints";
 import { AssetActionButton } from "../AssetActionButton";
 import { AssetTitle } from "../AssetTitle";
 
@@ -17,7 +18,7 @@ export const AssetsTable = ({
   fillterAsset = "",
 }: Props): JSX.Element => {
   const { tableAssets, loading } = useAssetsTable();
-  const { sm } = useViewportContext();
+  const { width } = useViewportContext();
   const { sidechainAssets } = useAsset();
   const columns = [
     {
@@ -98,7 +99,21 @@ export const AssetsTable = ({
   ];
   return (
     <>
-      {sm ? (
+      {width > breakpoints.sm ? (
+        <Styled.AssetsTable
+          columns={
+            showActions ? columns : columns.filter((item) => item.title !== "")
+          }
+          dataSource={
+            fillterAsset === ""
+              ? tableAssets
+              : tableAssets.filter((item) => item.asset === fillterAsset)
+          }
+          loading={loading}
+          pagination={false}
+          size="small"
+        />
+      ) : (
         <List
           itemLayout="vertical"
           dataSource={
@@ -163,20 +178,6 @@ export const AssetsTable = ({
               </Styled.AssetsItemContent>
             </Styled.AssetListItem>
           )}
-        />
-      ) : (
-        <Styled.AssetsTable
-          columns={
-            showActions ? columns : columns.filter((item) => item.title !== "")
-          }
-          dataSource={
-            fillterAsset === ""
-              ? tableAssets
-              : tableAssets.filter((item) => item.asset === fillterAsset)
-          }
-          loading={loading}
-          pagination={false}
-          size="small"
         />
       )}
     </>
