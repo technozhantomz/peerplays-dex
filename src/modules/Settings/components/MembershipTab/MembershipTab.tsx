@@ -69,10 +69,16 @@ export const MembershipTab = (): JSX.Element => {
                   {`Upgrade for ${feesCashback}% Cashback`}
                 </Styled.Heading>
                 <Styled.Paragraph>
-                  {`Lifetime Members get ${feesCashback}% cashback on every
-                  transaction fee they pay and qualify to earn referral income
-                  from users they register with or refer to the network. A
-                  Lifetime Membership is just ${membershipPrice} ${defaultToken}.`}
+                  Every transaction on the commodit blockchain is divided between
+                  the blockchain and referrers. By registering to a Lifetime
+                  Membership the account will receive {`${feesCashback} `}
+                  cashback on every transaction fee paid. As a bonus it will
+                  also qualify to earn referral income from users registered
+                  with or refered to the blockchain.
+                </Styled.Paragraph>
+                <Styled.Paragraph>
+                  A Lifetime Membership price will change over time, right now
+                  it is only {`${membershipPrice} ${defaultToken}`} .
                 </Styled.Paragraph>
                 <Styled.ButtonContainer>
                   <Styled.Button
@@ -88,18 +94,26 @@ export const MembershipTab = (): JSX.Element => {
               <Styled.Space direction="vertical">
                 <Styled.Label>Your referral link</Styled.Label>
                 <Styled.Paragraph>
-                  {`Give this to link to people you want to refer to Peerplays: ${link}/signup/?r=${name}`}
+                  {`Give this to link to people you want to refer to commodit: ${link}/signup/?r=${name}`}
                 </Styled.Paragraph>
               </Styled.Space>
             )}
             <Styled.Heading>Fee Allocation</Styled.Heading>
             <Styled.Paragraph>
               Every time {name} pays a transaction fee, that fee is divided
-              among several different accounts.
+              among several different accounts. The blockchain takes a {networkFee}
+              % cut, and the Lifetime Member who referred {name} gets a{" "}
+              {lifetimeFee}% cut. The registrar is the account that paid the
+              transaction fee to register {name} with the network. The registrar
+              gets to decide how to divide the remaining {referrerTotalFee}%
+              between themselves and their own Affiliate Referrer program.{" "}
+              {name}'s registrar chose to share {referrerFee}% of the total fee
+              with the Affiliate Referrer and keep {registrarFee}% of the total
+              fee for themselves.
             </Styled.Paragraph>
             <Styled.FeeCategoryContainer>
               <Styled.LabelContainer>
-                <Styled.Label>Network</Styled.Label> <br />
+                <Styled.Label>blockchain</Styled.Label> <br />
               </Styled.LabelContainer>
               <Styled.PercentageContainer>
                 <Styled.PercentageText>{networkFee}%</Styled.PercentageText>
@@ -155,7 +169,7 @@ export const MembershipTab = (): JSX.Element => {
             </Styled.FeeCategoryContainer>
             <Styled.Heading>Pending fees</Styled.Heading>
             <Styled.Paragraph>
-              {`Fees paid by ${name} are divided among the network, referrers, and registrars 
+              {`Fees paid by ${name} are divided among the blockchain network, referrers, and registrars 
               once every maintenance interval (${maintenanceInterval} seconds). 
               The next maintenance time is ${nextMaintenanceTime}.`}
             </Styled.Paragraph>
