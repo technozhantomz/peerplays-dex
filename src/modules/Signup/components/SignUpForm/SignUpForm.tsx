@@ -41,7 +41,7 @@ export const SignUpForm: React.FC = () => {
           suffix={validUser ? <CheckOutlined /> : ""}
         />
       </Styled.UsernameFormItem>
-      <Styled.Label>Your auto-generated password</Styled.Label>
+      <Styled.Label>Below is auto-generated password; Want to Edit auto-generated ? </Styled.Label>
       <Styled.PasswordFormItem
         name="password"
         rules={formValdation.password}
@@ -82,7 +82,7 @@ export const SignUpForm: React.FC = () => {
       >
         <Styled.Checkbox onChange={setCheckboxVlaue}>
           <p className="checkbox-text">
-            I understand Peerplays cannot recover my lost password
+            I understand commodityLLC cannot recover my lost password
           </p>
         </Styled.Checkbox>
       </Styled.ConfirmFormItem>
