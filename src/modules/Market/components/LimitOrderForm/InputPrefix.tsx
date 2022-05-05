@@ -27,15 +27,15 @@ export function InputPrefix({
     [inputSymbol: string]: JSX.Element;
   } = {
     BTC: <BitcoinIcon height="30" width="30" />,
-    USD: <PPYIcon height="30" width="30" />,
+    TEST: <PPYIcon height="30" width="30" />,
     PPY: <PPYIcon height="30" width="30" />,
-    KES: <HIVEIcon height="30" width="30" />,
-    EUR: <HIVEIcon height="30" width="30" />,
+    HIVE: <HIVEIcon height="30" width="30" />,
+    HBD: <HIVEIcon height="30" width="30" />,
     ETH: <EthereumIcon height="30" width="30" />,
     BTS: <BitsharesIcon height="30" width="30" />,
     USDT: <TetherIcon height="30" width="30" />,
     Default: <DefaultIcon height="30" width="30" />,
-    //USD: <USDIcon height="30" width="30" />,
+    USD: <USDIcon height="30" width="30" />,
     BCH: <BitcoinCashIcon height="30" width="30" />,
   };
 

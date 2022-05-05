@@ -13,19 +13,19 @@ export const AssetTitle = ({ symbol }: Props): JSX.Element => {
     [symbol: string]: JSX.Element;
   } = {
     BTC: <BitcoinIcon height="30" width="30" />,
-    USD: <PPYIcon height="30" width="30" />,
+    TEST: <PPYIcon height="30" width="30" />,
     PPY: <PPYIcon height="30" width="30" />,
-    KES: <HIVEIcon height="30" width="30" />,
-    GOLD: <HIVEIcon height="30" width="30" />,
+    HIVE: <HIVEIcon height="30" width="30" />,
+    HBD: <HIVEIcon height="30" width="30" />,
   };
   const AssetNames: {
     [symbol: string]: string;
   } = {
     BTC: "Bitcoin",
-    USD: "commodityLLC",
+    TEST: "Peerplays",
     PPY: "Peerplays",
-    KES: "Hive",
-    GOLD: "Hive",
+    HIVE: "Hive",
+    HBD: "Hive",
   };
 
   return (

@@ -22,7 +22,7 @@ const Dashboard: React.FC = () => {
   const Tabs = [
     { tabName: "Deposit" },
     { tabName: "Withdraw" },
-    { tabName: "Swap" },
+    // { tabName: "Swap" },
     { tabName: "Market" },
   ];
   return (
@@ -54,7 +54,7 @@ const Dashboard: React.FC = () => {
         {activeTab.toLowerCase() === "Withdraw".toLowerCase() && (
           <WithdrawTab />
         )}
-        {/*{activeTab === "Swap" && <SwapTab />} */}
+        {/* {activeTab === "Swap" && <SwapTab />} */}
         {activeTab.toLowerCase() === "Market".toLowerCase() && <MarketTab />}
       </Styled.BodyContainer>
     </Layout>
