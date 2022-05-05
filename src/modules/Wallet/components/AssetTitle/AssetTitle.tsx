@@ -16,16 +16,16 @@ export const AssetTitle = ({ symbol }: Props): JSX.Element => {
     USD: <PPYIcon height="30" width="30" />,
     PPY: <PPYIcon height="30" width="30" />,
     KES: <HIVEIcon height="30" width="30" />,
-    EUR: <HIVEIcon height="30" width="30" />,
+    GOLD: <HIVEIcon height="30" width="30" />,
   };
   const AssetNames: {
     [symbol: string]: string;
   } = {
     BTC: "Bitcoin",
-    USD: "Peerplays",
+    USD: "commodityLLC",
     PPY: "Peerplays",
     KES: "Hive",
-    EUR: "Hive",
+    GOLD: "Hive",
   };
 
   return (

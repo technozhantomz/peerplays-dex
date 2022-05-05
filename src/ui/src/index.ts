@@ -3,7 +3,7 @@ export { Button } from "./Button";
 export { Select, Option } from "./Select";
 export { Dropdown } from "./Dropdown";
 export { DownOutlined } from "./DownOutlined";
-export { CardForm, CardFormButton } from "./CardForm";
+export { CardFrom, CardFormButton } from "./CardFrom";
 export { MenuCard } from "./MenuCard";
 export { Avatar } from "./Avatar";
 export { Typography, Text, Paragraph } from "./Typography";

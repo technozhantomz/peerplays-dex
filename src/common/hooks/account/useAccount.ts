@@ -19,7 +19,7 @@ export function useAccount(): UseAccountResult {
     localStorageAccount,
     updateAccount,
     setAssets,
-    setPassword,
+    setIsAccountLocked,
     setLocalStorageAccount,
   } = useUserContext();
   const [loading, setLoading] = useState<boolean>(true);
@@ -55,9 +55,9 @@ export function useAccount(): UseAccountResult {
 
   const removeAccount = useCallback(() => {
     updateAccount("", "", []);
-    setPassword("");
+    setIsAccountLocked(true);
     setLocalStorageAccount("");
-  }, [updateAccount, setPassword, setLocalStorageAccount]);
+  }, [updateAccount, setIsAccountLocked, setLocalStorageAccount]);
 
   const formAccountAfterConfirmation = useCallback(
     async (fullAccount: FullAccount) => {
@@ -69,13 +69,14 @@ export function useAccount(): UseAccountResult {
           })
         );
         updateAccount(fullAccount.account.id, fullAccount.account.name, assets);
+        setIsAccountLocked(false);
         setLoading(false);
       } catch (e) {
         console.log(e);
         setLoading(false);
       }
     },
-    [updateAccount, formAssetBalanceById, setLoading]
+    [updateAccount, setIsAccountLocked, formAssetBalanceById, setLoading]
   );
 
   const formAccountByName = useCallback(

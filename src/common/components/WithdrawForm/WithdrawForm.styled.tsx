@@ -1,8 +1,8 @@
 import { FormDisclamer as UiFormDisclamer } from "..";
-import { CardForm, CardFormButton, Form, styled } from "../../../ui/src";
+import { CardFormButton, CardFrom, Form, styled } from "../../../ui/src";
 import { breakpoint } from "../../../ui/src/breakpoints";
 
-export const WithdrawForm = styled(CardForm)`
+export const WithdrawForm = styled(CardFrom)`
   margin: 0 20px;
   .form-input {
     font-size: 12px;
@@ -12,7 +12,7 @@ export const WithdrawForm = styled(CardForm)`
   }
 `;
 
-export const WithdrawFormAssetAmount = styled(CardForm.Item)`
+export const WithdrawFormAssetAmount = styled(CardFrom.Item)`
   .ant-input-affix-wrapper {
     padding: 0;
     .ant-input-prefix {
@@ -29,7 +29,7 @@ export const WithdrawFormAssetAmount = styled(CardForm.Item)`
     }
   }
 `;
-export const WithdrawFormAsset = styled(CardForm.Item)`
+export const WithdrawFormAsset = styled(CardFrom.Item)`
    {
     width: 100%;
     margin-bottom: 0;

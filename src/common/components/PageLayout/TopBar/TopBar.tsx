@@ -14,7 +14,7 @@ export const TopBar = (): JSX.Element => {
             <Logo className={"logo"} />
           </a>
         </Link>
-        <p className="dex-logo">DEX</p>
+        <p className="dex-logo">MONEY</p>
       </div>
       <div className={"topbar-right"}>
         <MainNavBar />

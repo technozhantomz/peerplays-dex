@@ -41,7 +41,7 @@ export const SignUpForm: React.FC = () => {
           suffix={validUser ? <CheckOutlined /> : ""}
         />
       </Styled.UsernameFormItem>
-      <Styled.Label>Below is auto-generated password; Want to Edit auto-generated ? </Styled.Label>
+      <Styled.Label>Your auto-generated password</Styled.Label>
       <Styled.PasswordFormItem
         name="password"
         rules={formValdation.password}

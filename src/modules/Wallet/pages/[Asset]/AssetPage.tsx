@@ -46,7 +46,7 @@ const AssetPage: NextPage = () => {
       {!loadingSidechainAssets && (
         <Styled.AssetCard>
           <Tabs
-            defaultActiveKey={`${tab ? tab : "transfer"}`}
+            defaultActiveKey={`${tab}`}
             tabBarExtraContent={<Link href="/wallet">Back to Assets</Link>}
             onTabClick={(key) => {
               router.push(`/wallet/${asset}?tab=${key}`);

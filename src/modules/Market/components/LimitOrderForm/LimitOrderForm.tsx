@@ -173,7 +173,7 @@ export const LimitOrderForm = ({
             ""
           ) : (
             <FormDisclamer>
-              <span>Don't have a Peerplays account? </span>
+              <span>Don't have a commodityLLC account? </span>
               <Link href="/signup">
                 <a>Create account</a>
               </Link>

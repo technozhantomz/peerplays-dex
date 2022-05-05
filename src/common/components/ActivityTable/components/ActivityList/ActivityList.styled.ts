@@ -6,7 +6,9 @@ export const ActivityListItem = styled(UiList.Item)`
 `;
 
 export const ActivitysItemContent = styled.div`
-  margin: 18px 0 25px;
+   {
+    margin: 18px 0 25px;
+  }
   .activity-info {
     margin: 5px 0;
     display: flex;

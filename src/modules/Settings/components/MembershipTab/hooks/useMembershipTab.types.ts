@@ -1,14 +1,17 @@
-import { Dispatch, SetStateAction } from "react";
-
 import { FormInstance } from "../../../../../ui/src";
 
 export type UseMembershipTabResult = {
-  handleMembershipUpgrade: (password: string) => Promise<void>;
+  handleMembershipUpgrade: (password: string) => void;
+  isMembershipModalVisible: boolean;
+  isPasswordModalVisible: boolean;
   loadingTransaction: boolean;
   transactionErrorMessage: string;
   transactionSuccessMessage: string;
-  setTransactionErrorMessage: Dispatch<SetStateAction<string>>;
-  setTransactionSuccessMessage: Dispatch<SetStateAction<string>>;
+  confirm: () => void;
+  handleMembershipModalCancel: () => void;
+  handleMembershipModalConfirm: () => void;
+  handlePasswordModalCancel: () => void;
+  onFormFinish: (name: string, info: any) => void;
   membershipForm: FormInstance<MembershipForm>;
   name: string;
   feesCashback: number;
@@ -28,7 +31,6 @@ export type UseMembershipTabResult = {
   registrarName: string;
   paidFees: number;
   expirationDate: string;
-  loadingAccountMembership: boolean;
 };
 
 export type MembershipForm = {

@@ -25,14 +25,14 @@ export const CommitteeTab = (): JSX.Element => {
       <Styled.StatsCardsDeck>
         <StatsCard
           noData={activeCommittee === 0}
-          title="Active Committees"
+          title="Active Committee"
           data={`${activeCommittee}`}
           statsData={committeeStats}
         />
       </Styled.StatsCardsDeck>
       <Styled.CommitteeSearch
         size="large"
-        placeholder="Search Committees"
+        placeholder="Search Committee"
         onSearch={handleSearch}
         loading={loading}
       />

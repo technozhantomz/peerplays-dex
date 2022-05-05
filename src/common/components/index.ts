@@ -9,4 +9,3 @@ export * from "./WithdrawForm";
 export * from "./HIVEAndHBDDeposit";
 export * from "./ActivityTable";
 export * from "./TradingPairCard";
-export * from "./TransactionModal";

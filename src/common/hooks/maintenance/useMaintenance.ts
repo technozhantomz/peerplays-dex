@@ -5,7 +5,7 @@ import { BlockData, GlobalProperties } from "../../types";
 
 import { UseMaintenanceResult } from "./useMaintenance.types";
 
-export function useMaintenance(): UseMaintenanceResult {
+export function useMaintenace(): UseMaintenanceResult {
   const [maintenanceInterval, setMaintenanceInterval] = useState<number>(0);
   const [nextMaintenanceTime, setNextMaintenanceTime] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(true);

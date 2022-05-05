@@ -35,7 +35,7 @@ export function useWithdrawForm(asset: string): UseWithdrawFormResult {
   const { getAccountByName, getPrivateKey, formAccountBalancesByName } =
     useAccount();
   const { localStorageAccount, assets, id } = useUserContext();
-  const { buildTrx } = useTransactionBuilder();
+  const { trxBuilder } = useTransactionBuilder();
   const { calculteTransferFee } = useFees();
   const { buildTransferTransaction } = useTransferTransactionBuilder();
   const {
@@ -144,7 +144,7 @@ export function useWithdrawForm(asset: string): UseWithdrawFormResult {
           id
         );
         try {
-          const deleteTrxResult = await buildTrx([deleteTrx], [activeKey]);
+          const deleteTrxResult = await trxBuilder([deleteTrx], [activeKey]);
           if (deleteTrxResult) {
             const addTrx = buildAddingBitcoinSidechainTransaction(
               id,
@@ -154,7 +154,7 @@ export function useWithdrawForm(asset: string): UseWithdrawFormResult {
               values.withdrawAddress
             );
             try {
-              const addTrxResult = await buildTrx([addTrx], [activeKey]);
+              const addTrxResult = await trxBuilder([addTrx], [activeKey]);
               await getSidechainAccounts(id);
               if (!addTrxResult) {
                 setIsPasswordModalVisible(false);
@@ -199,7 +199,7 @@ export function useWithdrawForm(asset: string): UseWithdrawFormResult {
     let trxResult;
 
     try {
-      trxResult = await buildTrx([trx], [activeKey]);
+      trxResult = await trxBuilder([trx], [activeKey]);
     } catch (e) {
       console.log(e);
       setSubmittingPassword(false);
@@ -316,6 +316,7 @@ export function useWithdrawForm(asset: string): UseWithdrawFormResult {
     withdrawForm,
     formValdation,
     confirm,
+    //loggedIn: localStorageAccount !== null && localStorageAccount !== "",
     handlePasswordModalCancel,
     onFormFinish,
     handleValuesChange,

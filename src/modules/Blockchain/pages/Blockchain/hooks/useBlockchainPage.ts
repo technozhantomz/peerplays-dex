@@ -6,8 +6,8 @@ import { BlockchainPage } from "./useBlockchainPage.types";
 
 export function useBlockchainPage(tab?: string): BlockchainPage {
   const [pageMeta, setPageMeta] = useState<PageMeta>({
-    title: "PeerPlays Blockchain",
-    heading: "PeerPlays Blockchain",
+    title: "commodityLLC Blockchain",
+    heading: "commodityLLC Blockchain",
     description: "Blockchain | ",
   });
 
@@ -15,43 +15,43 @@ export function useBlockchainPage(tab?: string): BlockchainPage {
     switch (tab) {
       case "blockchain":
         setPageMeta({
-          title: "PeerPlays Blockchain",
-          heading: "PeerPlays Blockchain",
+          title: "commodityLLC Blockchain",
+          heading: "commodityLLC Blockchain",
           description: "Blockchain | ",
         });
         break;
       case "assets":
         setPageMeta({
-          title: "PeerPlays Assets",
-          heading: "PeerPlays Assets",
-          description: "PeerPlays Assets",
+          title: "commodityLLC Assets",
+          heading: "commodityLLC Assets",
+          description: "commodityLLC Assets",
         });
         break;
       case "witnesses":
         setPageMeta({
-          title: "PeerPlays Witnesses",
-          heading: "PeerPlays Witnesses",
-          description: "PeerPlays Witnesses",
+          title: "commodityLLC Witnesses",
+          heading: "commodityLLC Witnesses",
+          description: "commodityLLC Witnesses",
         });
         break;
-      case "committees":
+      case "committee":
         setPageMeta({
-          title: "PeerPlays Committees",
-          heading: "PeerPlays Committees",
-          description: "PeerPlays Committees",
+          title: "commodityLLC Committee",
+          heading: "commodityLLC Committee",
+          description: "commodityLLC Committee",
         });
         break;
       case "fees":
         setPageMeta({
-          title: "PeerPlays Fees",
-          heading: "PeerPlays Fees",
-          description: "PeerPlays Fees",
+          title: "commodityLLC Fees",
+          heading: "commodityLLC Fees",
+          description: "commodityLLC Fees",
         });
         break;
       default:
         setPageMeta({
           title: "Blockchain",
-          heading: "PeerPlays Blockchain",
+          heading: "commodityLLC Blockchain",
           description: "Blockchain | ",
         });
         break;

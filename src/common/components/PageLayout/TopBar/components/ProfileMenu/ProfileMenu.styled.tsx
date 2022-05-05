@@ -1,10 +1,6 @@
 import { Avatar, MenuCard, styled } from "../../../../../../ui/src";
-import { colors } from "../../../../../../ui/src/colors";
 
 export const ProfileMenu = styled(MenuCard)`
-  .ant-avatar {
-    background: ${colors.successTag};
-  }
   .ant-card-meta {
     display: flex;
     justify-content: center;

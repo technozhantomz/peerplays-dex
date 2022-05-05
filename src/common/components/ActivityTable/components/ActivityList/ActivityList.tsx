@@ -1,4 +1,5 @@
-import { List } from "../../../../../ui/src";
+import { List } from "antd";
+
 import { useActivityTable } from "../../hooks";
 import { ActivityColumns as columns } from "../ActivityColumns/";
 import { ActivityTag } from "../ActivityTag";
@@ -15,7 +16,7 @@ export const ActivityList = ({
   userName,
   isWalletActivityTable = false,
 }: Props): JSX.Element => {
-  const { activitiesRows, loading } = useActivityTable({
+  const { activitiesTable, loading } = useActivityTable({
     userName,
     isWalletActivityTable,
   });
@@ -23,7 +24,7 @@ export const ActivityList = ({
   return (
     <List
       itemLayout="vertical"
-      dataSource={activitiesRows}
+      dataSource={activitiesTable}
       loading={loading}
       renderItem={(item) => (
         <Styled.ActivityListItem key={item.key}>

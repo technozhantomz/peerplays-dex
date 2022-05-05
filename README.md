@@ -84,10 +84,10 @@ server {
   listen 80;
   listen [::]:80;
 
-  server_name <domain>;
+  server_name market.commodity.llc www.market.commodity.llc;
 
   location / {
-    proxy_pass http://localhost:3000;
+    proxy_pass http://localhost:1111;
     proxy_http_version 1.1;
     proxy_set_header Upgrade $http_upgrade;
     proxy_set_header Connection 'upgrade';
@@ -95,9 +95,14 @@ server {
     proxy_cache_bypass $http_upgrade;
   }
 
-  location /_next/static/ {
-    alias /<application absolute path>/.next/static/;
-  }
+  location ~ ^/[\w\d\.-]+\.(js|css|dat|png|json|ico)$ {
+           try_files $uri $uri/wallet =404;
+      }
+
+  location / {
+            index index.html index.htm;
+            try_files $uri /index.html;
+    }
 }
 ```
 

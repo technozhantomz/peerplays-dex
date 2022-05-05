@@ -40,11 +40,10 @@ export const ContentHeader = styled.div`
 export const TradingPair = styled.p`
   color: ${colors.textColorSecondary};
   font-size: 12px;
-  margin: 10px 0 10px 6px;
   ${breakpoint.sm} {
     font-size: 14px;
-    margin: 10px;
   }
+  margin: 10px;
 `;
 export const PercentChange = styled.p`
   color: ${(props) =>
@@ -52,9 +51,8 @@ export const PercentChange = styled.p`
       ? props.theme.percentChangeColor
       : props.theme.percentChangeColor};
   font-size: 12px;
-  margin: 10px 10px 10px 0;
+  margin: 10px;
   ${breakpoint.xs} {
-    margin: 10px;
     font-size: 14px;
   }
 `;

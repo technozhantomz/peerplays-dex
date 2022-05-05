@@ -21,15 +21,15 @@ const defaultUserState: UserContextType = {
   id: "",
   name: "",
   assets: [],
-  password: "",
+  isAccountLocked: true,
   updateAccount: function (id: string, name: string, assets: Asset[]): void {
     throw new Error(`Function not implemented. ${id},${name}, ${assets}`);
   },
   setAssets: function (assets: Asset[]): void {
     throw new Error(`Function not implemented. ${assets}`);
   },
-  setPassword: function (password: string) {
-    throw new Error(`Function not implemented. ${password}`);
+  setIsAccountLocked: function (isAccountLocked: boolean) {
+    throw new Error(`Function not implemented. ${isAccountLocked}`);
   },
   setLocalStorageAccount: function (value: string): void {
     throw new Error(`Function not implemented. ${value}`);
@@ -48,8 +48,7 @@ export const UserProvider = ({ children }: Props): JSX.Element => {
   const [id, setId] = useState<string>("");
   const [name, setName] = useState<string>("");
   const [assets, _setAssets] = useState<Asset[]>([]);
-  // should add lock time functionality
-  const [password, _setPassword] = useState<string>("");
+  const [isAccountLocked, _setIsAccountLocked] = useState<boolean>(true);
 
   const updateAccount = useCallback(
     (id: string, name: string, assets: Asset[]) => {
@@ -67,12 +66,11 @@ export const UserProvider = ({ children }: Props): JSX.Element => {
     [_setAssets]
   );
 
-  // should implement lock time functionality
-  const setPassword = useCallback(
-    (password: string) => {
-      _setPassword(password);
+  const setIsAccountLocked = useCallback(
+    (isAccountLocked: boolean) => {
+      _setIsAccountLocked(isAccountLocked);
     },
-    [_setPassword]
+    [_setIsAccountLocked]
   );
 
   const formInitialAccountByName = useCallback(
@@ -116,10 +114,10 @@ export const UserProvider = ({ children }: Props): JSX.Element => {
         assets,
         localStorageAccount,
         setLocalStorageAccount,
-        password,
+        isAccountLocked,
         updateAccount,
         setAssets,
-        setPassword,
+        setIsAccountLocked,
       }}
     >
       {children}

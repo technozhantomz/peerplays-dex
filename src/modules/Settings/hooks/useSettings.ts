@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 
 import { useSettingsContext } from "../../../common/providers";
 import { Settings } from "../../../common/types";
@@ -10,15 +10,6 @@ export function useSettings(): UseSettingsResult {
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const { settings, setSettings, setLocale } = useSettingsContext();
   const [generalSettingsForm] = Form.useForm();
-
-  useEffect(() => {
-    generalSettingsForm.setFieldsValue({
-      selectedLanguage: settings.language,
-      allowNotifications: settings.notifications.allow,
-      allowTransferToMeNotifications:
-        settings.notifications.additional.transferToMe,
-    });
-  }, [settings, setSettings]);
 
   const handleAllowNotifications = (e: any) => {
     if (!e.target.checked) {
@@ -45,8 +36,8 @@ export function useSettings(): UseSettingsResult {
               },
             }
           : settings.notifications,
-      walletLock: values.walletLockInMinutes
-        ? values.walletLockInMinutes
+      walletLock: values.walletLockInMintues
+        ? values.walletLockInMintues
         : settings.walletLock,
     };
     if (values.selectedLanguage) {

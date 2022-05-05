@@ -23,7 +23,7 @@ export const ProfileMenu = (): JSX.Element => {
       <Meta
         avatar={
           <Styled.ProfileAvitar>
-            {localStorageAccount?.charAt(0).toUpperCase()}
+            {localStorageAccount?.charAt(0)}
           </Styled.ProfileAvitar>
         }
         title={`Hello ${localStorageAccount}!`}

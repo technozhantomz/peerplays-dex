@@ -30,7 +30,7 @@ export function useGenerateBitcoinAddress(
     ];
   const [isPasswordModalVisible, setIsPasswordModalVisible] =
     useState<boolean>(false);
-  const { buildTrx } = useTransactionBuilder();
+  const { trxBuilder } = useTransactionBuilder();
   const { getPrivateKey } = useAccount();
   const { id } = useUserContext();
   const { getSonNetworkStatus } = useSonNetwork();
@@ -100,7 +100,7 @@ export function useGenerateBitcoinAddress(
       let trxResult;
 
       try {
-        trxResult = await buildTrx([trx], [activeKey]);
+        trxResult = await trxBuilder([trx], [activeKey]);
       } catch (error) {
         console.log(error);
         setIsPasswordModalVisible(false);
@@ -117,7 +117,7 @@ export function useGenerateBitcoinAddress(
     [
       getPrivateKey,
       buildAddingBitcoinSidechainTransaction,
-      buildTrx,
+      trxBuilder,
       setIsPasswordModalVisible,
       getSidechainAccounts,
       setBitcoinSidechainAccounts,

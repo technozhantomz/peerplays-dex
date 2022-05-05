@@ -21,7 +21,7 @@ export function useActivityTable({
   userName,
   isWalletActivityTable = false,
 }: UseActivityTableArgs): UseActivityTableResult {
-  const [activitiesRows, _setActivitiesRows] = useState<ActivityRow[]>([]);
+  const [activitiesTable, _setActivitiesTable] = useState<ActivityRow[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const { dbApi } = usePeerplaysApiContext();
   const { id } = useUserContext();
@@ -306,7 +306,7 @@ export function useActivityTable({
     [dbApi, defaultAsset, getAssetById, formDate, formActivityDescription]
   );
 
-  const setActivitiesRows = useCallback(async () => {
+  const setActivitiesTable = useCallback(async () => {
     try {
       setLoading(true);
       let history: History[];
@@ -345,7 +345,7 @@ export function useActivityTable({
         );
       }
       const activityRows = await Promise.all(history.map(formActivityRow));
-      _setActivitiesRows(activityRows);
+      _setActivitiesTable(activityRows);
       setLoading(false);
     } catch (e) {
       setLoading(false);
@@ -356,15 +356,15 @@ export function useActivityTable({
     setLoading,
     id,
     getAccountHistoryById,
-    _setActivitiesRows,
+    _setActivitiesTable,
     getAccountByName,
     isWalletActivityTable,
     userName,
   ]);
 
   useEffect(() => {
-    setActivitiesRows();
+    setActivitiesTable();
   }, [id, userName]);
 
-  return { activitiesRows, loading };
+  return { activitiesTable, loading };
 }
