@@ -34,10 +34,10 @@ export const checkAmountToReceive = async ({type, buyAsset, sellAsset, amount_to
     }
     if(type === 'sell') {
       const userAsset = getAccountData().assets.find(el => el.symbol === buyAsset);
-      if(!userAsset) {
+      if(!userAsset && amount_to_receive > 0) {
         return 'isNotEnough'
       } else {
-        return userAsset.setPrecision() >= amount_to_receive ? false : 'isNotEnough';
+        return userAsset?userAsset.setPrecision() >= amount_to_receive ? false : 'isNotEnough':'';
       }
     }
     if(amount_to_receive >= 10 ** 8)
