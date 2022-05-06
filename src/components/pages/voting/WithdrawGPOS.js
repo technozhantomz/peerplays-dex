@@ -4,7 +4,7 @@ import NumericInput from 'react-numeric-input';
 import Translate from 'react-translate-component';
 import { getPassword, trxBuilder } from '../../../actions/forms';
 import { dbApi } from '../../../actions/nodes';
-import { getStore } from '../../../actions/store';
+import { getBasicAsset, getStore } from '../../../actions/store';
 import { localeFromStorage } from '../../../actions/locale/localeFromStorage';
 
 const WithdrawGPOS = (props) => {
