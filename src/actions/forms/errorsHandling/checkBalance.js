@@ -37,7 +37,7 @@ export const checkAmountToReceive = async ({type, buyAsset, sellAsset, amount_to
       if(!userAsset && amount_to_receive > 0) {
         return 'isNotEnough'
       } else {
-        return userAsset?userAsset.setPrecision() >= amount_to_receive ? false : 'isNotEnough':'';
+        return userAsset?userAsset.setPrecision() >= amount_to_receive > 0 ? false : 'isNotEnough':'';
       }
     }
     if(amount_to_receive >= 10 ** 8)
