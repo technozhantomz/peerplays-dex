@@ -1,0 +1,148 @@
+.card__content--widget {
+  padding-top: 28px;
+}
+
+.input {
+  &__row {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 2rem;
+
+    .number {
+      width: 196px;
+      margin-right: 2rem;
+    }
+
+    .field__dropdown {
+      width: 145px;
+    }
+    
+    &-inline{
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+      justify-content: space-between;
+      .input{
+        display: inline-block;
+        width: 100%;
+      }
+    }
+  }
+}
+
+.info__row {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-bottom: 1rem;
+
+  span:not(:last-child) {
+    margin-right: 1rem;
+  }
+}
+
+.btn__row {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 2rem;
+
+  .btn-round--buy {
+    width: 196px;
+  }
+}
+
+.form__sell-buy {
+  width: 85%;
+  margin: 0 1.6rem;
+
+  label {
+    max-width: 200px;
+  }
+}
+
+.form__send {
+  width: 95%;
+  margin: 0 1rem;
+
+  .input__row {
+    margin-bottom: 2rem;
+  }
+
+  label, .dropdown {
+    width: 100%;
+  }
+
+  .memo {
+    width: 100%;
+  }
+
+  label:not(:last-child), .dropdown:not(:last-child) {
+    margin-right: 3rem;
+
+    .field, .with_hint {
+      width: 100%;
+    }
+  }
+
+  .currency {
+    width: 220px !important;
+    margin-right: 0 !important;
+  }
+
+  .info__row {
+    padding-bottom: 0;
+  }
+
+  .btn__row {
+    margin-top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .btn-round--send {
+      min-width: 146px;
+    }
+  }
+}
+
+.form--btc{
+  width: 100%;
+  margin: 0;
+
+  > .field{
+    margin-bottom: 0;
+  }
+
+  > .modal__field{
+    margin-top: 0;
+  }
+
+  > .modal__field ~ .modal__field{
+    margin-top: 2.2rem;
+  }
+
+  .info__row{
+    margin-top: 2.2rem;
+  }
+
+  .btn__row{
+    padding: 0 0 1.8rem;
+  }
+  
+  &__widget{
+    margin: 0 1.6rem;
+    width: 85%;
+    position: inherit;
+
+    .btn__row{
+      position: absolute;
+      bottom: 0;
+      width: 85%;
+      margin: 0 1.6rem 1.8em;
+      padding: 0;
+    }
+  }
+}

@@ -1,0 +1,41 @@
+.membership{
+  margin-top: 2rem;
+  margin-left: 2.48rem;
+  &__block{
+    margin-bottom: 6.4rem;
+    .btn-round{
+      display: block;
+      margin-top: 0.8rem;
+      margin-left: auto;
+    }
+  }
+  &__title-wrapper{
+    margin-bottom: 3.1rem;
+  }
+  &__title{
+    font-size: $fzLG;
+    font-weight: 600;
+    color: rgba(0,0,0,0.87);
+  }
+  &__subtitle{
+    display: block;
+    margin-top: 1rem;
+    font-size: $fzSM;
+    color: rgba(60,71,108,0.5);
+  }
+}
+
+.statistic{
+  width: 28rem;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.6rem;
+  color: #2A2E46;
+  &__key{
+    display: flex;
+    flex-direction: column;
+  }
+  &__link{
+    margin-top: 0.5rem;
+  }
+}

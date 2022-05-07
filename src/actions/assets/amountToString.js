@@ -1,0 +1,1 @@
+export const amountToString = (amount, symbol) => `${ amount } ${ symbol }`;

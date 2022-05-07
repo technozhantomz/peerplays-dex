@@ -1,0 +1,74 @@
+@import "variables";
+@import "global";
+@import "btn";
+
+@import "layouts";
+@import "header";
+@import "notifications";
+@import "page";
+@import "global-search";
+@import "modal";
+
+@import "card";
+@import "switch";
+@import "tabs";
+@import "tables";
+@import "myAssets";
+
+@import "checkbox";
+@import "dropdown";
+@import "field";
+@import "radio";
+@import "form";
+@import "upload";
+@import "widget";
+
+@import "settings";
+@import "membership";
+@import "exchange";
+@import "security";
+@import "nodes";
+@import "backup";
+@import "permissions";
+@import "contact";
+@import "voting";
+@import "block";
+@import "asset";
+@import "deposit";
+
+@media(min-width:0px) and (max-width:768px){
+
+    .page__menu-item{
+        font-size: 1.2rem !important;
+        min-width:8rem !important
+    }
+    .bold{
+        font-weight: 700;
+    }
+}
+
+.cpointer, .field__input{
+    cursor: pointer !important;
+}
+.react-numeric-input b{
+    cursor: pointer !important;
+    z-index: 11 !important;
+   
+}
+span.react-numeric-input{
+    border: none !important;
+    border-color: transparent !important;
+    background:transparent !important;
+}
+.global-search__result.custom-scroll{
+    // text-align: center;
+    padding-top: 10px;
+}
+
+.modal.open{
+    min-height: calc(100vh - 200px);
+}
+
+.dropdown__body.custom-scroll{
+    max-height:13rem;
+}

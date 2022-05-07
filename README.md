@@ -1,6 +1,3 @@
-
-Project to build moderen DEX-UI for the Peerplays on chain DEX
-
 # Peerplays DEX
 
 ## Prerequisites
@@ -13,26 +10,19 @@ apt-get install build-essential nasm
 
 ## Installation
 
-Node v16+ is required and it can be installed using nvm following these [installation steps](https://github.com/nvm-sh/nvm#installing-and-updating).
-
-Clone this repo:
-```
-https://gitlab.com/PBSA/NEX.git -b <branch name>
-```
-
-Now make sure you are in the application's root directory. Install app dependecies:
+Node v14+ is required and it can be installed using nvm following these [installation steps](https://github.com/nvm-sh/nvm#installing-and-updating).
 ```
 npm install
 ```
 
 ## ENV configuration
-Create a `.env.local` file in the root of the repository:
+Create a `.env` file in the root of the repository:
 
 ```
-cp .env.example .env.local
+cp example.env .env
 ```
 
-.env.local
+.env
 ```
 # Token symbol
 DEFAULT_TOKEN=''
@@ -53,53 +43,57 @@ DEFAULT_CHAIN_ID=''
 BLOCKCHAIN_ENDPOINTS=''
 ```
 
-## Mannual Starting after installation and ENV configuration
+## Starting after installation and ENV configuration
 ### Development
 ```
-npm run dev
-# or
-yarn dev
+npm start
 ```
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 ### Production
-Install pm2 globally:
-```
- npm install pm2 -g
-```
-
-Now make sure you are in the application's root directory. Build the production distribution:
+Build the production distribution:
 ```
 npm run build
 ```
-
-Make sure you are in the application's root directory. Serve the application:
-```
-pm2 start npm --name <must be unique> -- start
-```
-
+Static files will be created in `./dist` and can be served with a web server like [NGINX](https://www.nginx.com/).
 #### Exmaple NGINX Configuration:
-
+nginx.conf
 ```
 server {
-  listen 80;
-  listen [::]:80;
-
-  server_name <domain>;
-
-  location / {
-    proxy_pass http://localhost:3000;
-    proxy_http_version 1.1;
-    proxy_set_header Upgrade $http_upgrade;
-    proxy_set_header Connection 'upgrade';
-    proxy_set_header Host $host;
-    proxy_cache_bypass $http_upgrade;
-  }
-
-  location /_next/static/ {
-    alias /<application absolute path>/.next/static/;
-  }
+    listen 80;
+    root /srv/www/peerplays-dex;
+    index index.html index.htm;
+    location / {
+       try_files $uri /index.html;
+    }
 }
 ```
 
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Docker
+Install the latest version of [Docker](https://docs.docker.com/get-docker/).
+
+### Build
+After [configuring your ENV](#ENV-configuration), build the image:
+
+#### Development
+```
+docker build . -f dev.Dockerfile -t peerplays/peerplays-dex-dev
+```
+
+#### Production
+```
+docker build . -f prod.Dockerfile -t peerplays/peerplays-dex
+```
+
+### Run
+After building the image, run a container:
+
+#### Development
+```
+docker run -d -p 8080:8080 peerplays/peerplays-dex-dev 
+```
+The application will be available at http://localhost:8080.
+#### Production
+```
+docker run -d -p 80:80 peerplays/peerplays-dex
+```
+The application will be available at http://localhost.

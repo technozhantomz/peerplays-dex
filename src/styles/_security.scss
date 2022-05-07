@@ -1,0 +1,24 @@
+.security{
+  display: flex;
+  align-items: stretch;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+  margin-left: 2.48rem;
+  h2{
+    font-size: $fzLG;
+    margin-bottom: 2.8rem;
+  }
+  .dropdown{
+    width: 20.6rem;
+  }
+  &__item{
+    margin-right: 13rem;
+  }
+  &__tbd{
+    height: 5.6rem;
+    display: flex;
+    align-items: center;
+    font-size: $fzLG;
+    color: $negative;
+  }
+}

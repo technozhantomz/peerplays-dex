@@ -1,0 +1,134 @@
+form{
+  position: relative;
+  &.loading{
+    &:after{
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+  }
+  .switch{
+    margin-bottom: 2.5rem;
+  }
+  .fee{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2rem;
+    span{
+      &:first-child{
+        color: $dark-light;
+        font-size: $fzSM;
+        margin-bottom: .3rem;
+      }
+      &:last-child{
+        color: $dark;
+        font-size: $fzLG;
+      }
+    }
+  }
+}
+
+.form{
+  > .field, > .dropdown--with-hint{
+    margin-bottom: 4rem;
+  }
+  .with-hint{
+    margin-bottom: 4rem !important;
+  }
+  .upload{
+    margin-bottom: 4.6rem;
+    margin-top: 1rem;
+  }
+  .quantity-wrapper .field{
+    margin-bottom: 0;
+  }
+  .radio-group{
+    margin-bottom: 2rem;
+  }
+  &__row{
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    margin: 0 -0.8rem 4rem;
+    > .field, > .dropdown{
+      flex: 1;
+      margin: 0 0.8rem;
+    }
+  }
+  .info-block{
+    margin-bottom: 3.9rem;
+    margin-top: 3.5rem;
+  }
+  &__hide-data{
+    color: $blue;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 3rem;
+  }
+  .deposit{
+    min-height: 52rem;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-bottom: 2rem;
+    > div{
+      width: 100%;
+    }
+  }
+}
+
+.switchers-group{
+  // width: 35rem;
+  .switch{
+    justify-content: space-between;
+  }
+  .switch.right-sided .switch__icon{
+    margin-right: 0;
+  }
+}
+
+.accordeon-item{
+  &__title{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: -1rem;
+    padding: 1rem 0;
+    transition: $anim;
+    border-radius: 5px;
+    &:hover{
+      background-color: $grey-light;
+    }
+    .title{
+      margin-bottom: 0;
+    }
+    svg{
+      width: 1.5rem;
+      margin-right: 0.5rem;
+      transition: $anim;
+    }
+  }
+  &__content{
+    height: 0;
+    margin-top: 0;
+    overflow: hidden;
+    transition: $anim;
+    > .field, > .dropdown--with-hint {
+      margin-bottom: 4rem;
+    }
+  }
+  &.open .accordeon-item{
+    &__title svg{
+      transform: rotate(-180deg);
+    }
+    &__content{
+      height: auto;
+      margin-top: 2rem;
+      overflow: unset;
+    }
+  }
+}
